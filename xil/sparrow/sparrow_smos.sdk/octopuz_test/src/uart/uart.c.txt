@@ -1,0 +1,321 @@
+///#include ""
+#include "xparameters.h"
+#include "xplatform_info.h"
+#include "xuartps.h"
+#include "xil_exception.h"
+#include "xil_printf.h"
+///#include "xintc.h"
+#include "xscugic.h"
+
+
+#define UART_INT_IRQ_ID		XPAR_XUARTPS_0_INTR
+#define INTC_DEVICE_ID		XPAR_SCUGIC_SINGLE_DEVICE_ID
+
+#define TEST_BUFFER_SIZE	100
+
+XUartPs Uart0Ps;
+#define INTC		XScuGic
+
+
+//// INTC InterruptController;	/* Instance of the Interrupt Controller */
+static int SetupInterruptSystem(INTC *IntcInstancePtr,
+				XUartPs *UartInstancePtr,
+				u16 UartIntrId);
+
+void Handler(void *CallBackRef, u32 Event, unsigned int EventData);
+
+
+static u8 SendBuffer[TEST_BUFFER_SIZE];	/* Buffer for Transmitting Data */
+static u8 RecvBuffer[TEST_BUFFER_SIZE];	/* Buffer for Receiving Data */
+
+volatile int TotalReceivedCount;
+volatile int TotalSentCount;
+int TotalErrorCount;
+extern XScuGic xInterruptController;
+#define InterruptController xInterruptController
+///==================================================
+#if 0
+static XUartPs xUARTInstance;
+extern XScuGic xInterruptController;
+void prvUART_Handler( void *pvNotUsed );
+
+xComPortHandle xSerialPortInitMinimal( uint32_t ulWantedBaud, UBaseType_t uxQueueLength )
+{
+BaseType_t xStatus;
+XUartPs_Config *pxConfig;
+
+	/* Create the queue used to hold received characters.  NOTE THE COMMENTS AT
+	THE TOP OF THIS FILE REGARDING THE USE OF QUEUES FOR THIS PURPSOE. */
+	xRxQueue = xQueueCreate( uxQueueLength, sizeof( char ) );
+	configASSERT( xRxQueue );
+
+	/* Create the semaphore used to signal the end of a transmission, then take
+	the semaphore so it is in the correct state the first time
+	xSerialSendString() is called.  A block time of zero is used when taking
+	the semaphore as it is guaranteed to be available (it was just created). */
+	xTxCompleteSemaphore = xSemaphoreCreateBinary();
+	configASSERT( xTxCompleteSemaphore );
+	xSemaphoreTake( xTxCompleteSemaphore, 0 );
+
+	/* Look up the UART configuration then initialise the dirver. */
+	pxConfig = XUartPs_LookupConfig( XPAR_XUARTPS_0_DEVICE_ID );
+
+	/* Initialise the driver. */
+	xStatus = XUartPs_CfgInitialize( &xUARTInstance, pxConfig, XPAR_PS7_UART_1_BASEADDR );
+	configASSERT( xStatus == XST_SUCCESS );
+	( void ) xStatus; /* Remove compiler warning if configASSERT() is not defined. */
+
+	/* Misc. parameter configuration. */
+	XUartPs_SetBaudRate( &xUARTInstance, ulWantedBaud );
+	XUartPs_SetOperMode( &xUARTInstance, XUARTPS_OPER_MODE_NORMAL );
+
+	/* Install the interrupt service routine that is defined within this
+	file. */
+	xStatus = XScuGic_Connect( &xInterruptController, XPAR_XUARTPS_1_INTR,  (Xil_ExceptionHandler) prvUART_Handler, (void *) &xUARTInstance );
+	configASSERT( xStatus == XST_SUCCESS );
+	( void ) xStatus; /* Remove compiler warning if configASSERT() is not defined. */
+
+	/* Ensure interrupts start clear. */
+	XUartPs_WriteReg( XPAR_PS7_UART_1_BASEADDR, XUARTPS_ISR_OFFSET, XUARTPS_IXR_MASK );
+
+	/* Enable the UART interrupt within the GIC. */
+	XScuGic_Enable( &xInterruptController, XPAR_XUARTPS_1_INTR );
+
+	/* Enable the interrupts of interest in the UART. */
+	XUartPs_SetInterruptMask( &xUARTInstance, XUARTPS_IXR_RXFULL | XUARTPS_IXR_RXOVR | XUARTPS_IXR_TOUT | XUARTPS_IXR_TXEMPTY );
+
+	/* Set the receive timeout. */
+	XUartPs_SetRecvTimeout( &xUARTInstance, 8 );
+
+	return ( xComPortHandle ) 0;
+}
+#endif
+
+///==================================================
+
+int init_uart0(void)
+{
+int Status;
+XUartPs_Config *ua0cfg;
+int Index;
+u32 IntrMask;
+int BadByteCount = 0;
+///return XST_FAILURE;
+
+ua0cfg = XUartPs_LookupConfig(0);
+if (NULL == ua0cfg)
+	{
+	return XST_FAILURE;
+	}
+Status = XUartPs_CfgInitialize(&Uart0Ps, ua0cfg, ua0cfg->BaseAddress);
+if (Status != XST_SUCCESS) {
+	return XST_FAILURE;
+}
+
+/* Check hardware build */
+Status = XUartPs_SelfTest(&Uart0Ps);
+if (Status != XST_SUCCESS) {
+	return XST_FAILURE;
+}
+#if 1
+Status = SetupInterruptSystem(&InterruptController, &Uart0Ps, UART_INT_IRQ_ID );
+	if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+#endif
+XUartPs_SetHandler(&Uart0Ps, (XUartPs_Handler)Handler, &Uart0Ps);
+#if 1
+IntrMask =
+		XUARTPS_IXR_TOUT | XUARTPS_IXR_PARITY | XUARTPS_IXR_FRAMING |
+		XUARTPS_IXR_OVER | XUARTPS_IXR_TXEMPTY | XUARTPS_IXR_RXFULL |
+		XUARTPS_IXR_RXOVR;
+#endif
+
+#if 0
+IntrMask =	XUARTPS_IXR_TXEMPTY | XUARTPS_IXR_RXFULL;
+#endif
+
+XUartPs_SetInterruptMask(&Uart0Ps, IntrMask);
+XUartPs_SetRecvTimeout(&Uart0Ps, 8);
+
+#if 0
+XUartPs_SetOperMode(&Uart0Ps, XUARTPS_OPER_MODE_LOCAL_LOOP);
+
+
+XUartPs_SetRecvTimeout(&Uart0Ps, 8);
+
+for (Index = 0; Index < TEST_BUFFER_SIZE; Index++) {
+
+		SendBuffer[Index] = (Index % 26) + 'A';
+
+		RecvBuffer[Index] = 0;
+	}
+
+XUartPs_Recv(&Uart0Ps, RecvBuffer, TEST_BUFFER_SIZE);
+
+XUartPs_Send(&Uart0Ps, SendBuffer, TEST_BUFFER_SIZE);
+while (1) {
+	if ((TotalSentCount == TEST_BUFFER_SIZE) &&
+	    (TotalReceivedCount == TEST_BUFFER_SIZE)) {
+		break;
+	}
+}
+
+/* Verify the entire receive buffer was successfully received */
+for (Index = 0; Index < TEST_BUFFER_SIZE; Index++) {
+	if (RecvBuffer[Index] != SendBuffer[Index]) {
+		BadByteCount++;
+	}
+}
+#endif
+/* Set the UART in Normal Mode */
+XUartPs_SetOperMode(&Uart0Ps, XUARTPS_OPER_MODE_NORMAL);
+
+
+/* If any bytes were not correct, return an error */
+if (BadByteCount != 0) {
+	return XST_FAILURE;
+}
+
+return XST_SUCCESS;
+}
+///================================================================
+static int SetupInterruptSystem(INTC *IntcInstancePtr,
+				XUartPs *UartInstancePtr,
+				u16 UartIntrId)
+{
+	int Status;
+
+	XScuGic_Config *IntcConfig; /* Config for interrupt controller */
+
+	/* Initialize the interrupt controller driver */
+	IntcConfig = XScuGic_LookupConfig(INTC_DEVICE_ID);
+	if (NULL == IntcConfig) {
+		return XST_FAILURE;
+	}
+///====================================
+///	return XST_SUCCESS;
+///====================================
+
+	Status = XScuGic_CfgInitialize(IntcInstancePtr, IntcConfig,
+					IntcConfig->CpuBaseAddress);
+	if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	/*
+	 * Connect the interrupt controller interrupt handler to the
+	 * hardware interrupt handling logic in the processor.
+	 */
+	Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,
+				(Xil_ExceptionHandler) XScuGic_InterruptHandler,
+				IntcInstancePtr);
+#if 1
+	/*
+	 * Connect a device driver handler that will be called when an
+	 * interrupt for the device occurs, the device driver handler
+	 * performs the specific interrupt processing for the device
+	 */
+	Status = XScuGic_Connect(IntcInstancePtr, UartIntrId,
+				  (Xil_ExceptionHandler) XUartPs_InterruptHandler,
+				  (void *) UartInstancePtr);
+	if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	/* Enable the interrupt for the device */
+	XScuGic_Enable(IntcInstancePtr, UartIntrId);
+
+	/* Enable interrupts */
+	 Xil_ExceptionEnable();
+#endif
+	return XST_SUCCESS;
+}
+int enaInterruptUart0(void)
+{
+int Status;
+INTC IntcInstance;
+INTC *IntcInstancePtr=(INTC *)&IntcInstance;
+XScuGic_Config *IntcConfig; /* Config for interrupt controller */
+
+/* Initialize the interrupt controller driver */
+IntcConfig = XScuGic_LookupConfig(INTC_DEVICE_ID);
+if (NULL == IntcConfig)
+	{
+	return XST_FAILURE;
+	}
+///====================================
+///	return XST_SUCCESS;
+///====================================
+Status = XScuGic_CfgInitialize(IntcInstancePtr, IntcConfig,
+					IntcConfig->CpuBaseAddress);
+	if (Status != XST_SUCCESS)
+	{
+		return XST_FAILURE;
+	}
+	XScuGic_Enable(IntcInstancePtr, UART_INT_IRQ_ID);
+	return XST_SUCCESS;
+}
+///=========================================================
+#if 1
+void on_int_tx_uart_bt(void)
+{
+
+}
+#endif
+///================================================================
+void Handler(void *CallBackRef, u32 Event, unsigned int EventData)
+{
+	/* All of the data has been sent */
+	if (Event == XUARTPS_EVENT_SENT_DATA)
+	{
+		TotalSentCount = EventData;
+	}
+
+	/* All of the data has been received */
+	if (Event == XUARTPS_EVENT_RECV_DATA)
+	{
+		TotalReceivedCount = EventData;
+	}
+#if 1
+	/*
+	 * Data was received, but not the expected number of bytes, a
+	 * timeout just indicates the data stopped for 8 character times
+	 */
+	if (Event == XUARTPS_EVENT_RECV_TOUT) {
+		TotalReceivedCount = EventData;
+	}
+
+	/*
+	 * Data was received with an error, keep the data but determine
+	 * what kind of errors occurred
+	 */
+	if (Event == XUARTPS_EVENT_RECV_ERROR) {
+		TotalReceivedCount = EventData;
+		TotalErrorCount++;
+	}
+
+	/*
+	 * Data was received with an parity or frame or break error, keep the data
+	 * but determine what kind of errors occurred. Specific to Zynq Ultrascale+
+	 * MP.
+	 */
+	if (Event == XUARTPS_EVENT_PARE_FRAME_BRKE) {
+		TotalReceivedCount = EventData;
+		TotalErrorCount++;
+	}
+
+	/*
+	 * Data was received with an overrun error, keep the data but determine
+	 * what kind of errors occurred. Specific to Zynq Ultrascale+ MP.
+	 */
+	if (Event == XUARTPS_EVENT_RECV_ORERR) {
+		TotalReceivedCount = EventData;
+		TotalErrorCount++;
+	}
+#endif
+}
+
+
+///=========================================================
+

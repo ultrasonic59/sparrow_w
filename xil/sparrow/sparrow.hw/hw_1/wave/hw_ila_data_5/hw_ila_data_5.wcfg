@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<wave_config>
+	<wave_state>
+	</wave_state>
+	<db_ref_list>
+		<db_ref path="D:/proj/velograph/sparrow/xil/sparrow/sparrow.hw/hw_1/wave/hw_ila_data_5/hw_ila_data_5.wdb" id="1" type="auto">
+			<top_modules>
+				<top_module name="top">
+				</top_module>
+			</top_modules>
+		</db_ref>
+	</db_ref_list>
+	<WVObjectSize size="3">
+	</WVObjectSize>
+	<wvobject fp_name="u_adc_/delay_wdat" type="array" db_ref_id="1">
+		<obj_property name="ElementShortName">u_adc_/delay_wdat[34:0]</obj_property>
+		<obj_property name="ObjectShortName">delay_wdat[34:0]</obj_property>
+		<obj_property name="DisplayName">FullPathName</obj_property>
+		<obj_property name="Radix">HEXRADIX</obj_property>
+	</wvobject>
+	<wvobject fp_name="u_adc_/delay_rdat" type="array" db_ref_id="1">
+		<obj_property name="ElementShortName">u_adc_/delay_rdat[34:0]</obj_property>
+		<obj_property name="ObjectShortName">delay_rdat[34:0]</obj_property>
+		<obj_property name="DisplayName">FullPathName</obj_property>
+		<obj_property name="Radix">HEXRADIX</obj_property>
+	</wvobject>
+	<wvobject fp_name="u_adc_/t_data" type="array" db_ref_id="1">
+		<obj_property name="ElementShortName">u_adc_/t_data[13:0]</obj_property>
+		<obj_property name="ObjectShortName">t_data[13:0]</obj_property>
+		<obj_property name="DisplayName">FullPathName</obj_property>
+		<obj_property name="Radix">HEXRADIX</obj_property>
+	</wvobject>
+</wave_config>
+

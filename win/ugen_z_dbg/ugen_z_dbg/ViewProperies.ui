@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>propertiesDialog</class>
+ <widget class="QDialog" name="propertiesDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>260</width>
+    <height>435</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Цветовая схема</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="topMargin">
+    <number>7</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="label_cell">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>29</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Сетка</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Layout_cell">
+     <item>
+      <widget class="QLabel" name="label_cell_x">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>x</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineCellColumn">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>10</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_cell_y">
+       <property name="text">
+        <string>y</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineCellRow">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>6</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Layout_col_background">
+     <item>
+      <widget class="QLabel" name="lab_col_background">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Фон</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButtonColored" name="Button_col_background"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Layout_col_ocs">
+     <item>
+      <widget class="QLabel" name="label_col_os">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Осциллограмма</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButtonColored" name="Button_col_osc"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Layout_col_cell">
+     <item>
+      <widget class="QLabel" name="label_col_cell">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Сетка</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButtonColored" name="Button_col_cell"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Layout_col_text">
+     <item>
+      <widget class="QLabel" name="label_col_text">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Текст</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButtonColored" name="Button_col_text"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Layout_col_strob">
+     <item>
+      <widget class="QLabel" name="label_col_strob">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Строб 1</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButtonColored" name="Button_col_strob"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Layout_col_strob2">
+     <item>
+      <widget class="QLabel" name="label_col_strob2">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Строб 2</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButtonColored" name="Button_col_strob2"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Layout_col_vrch">
+     <item>
+      <widget class="QLabel" name="label_col_vrch">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>ВРЧ</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButtonColored" name="Button_col_vrch"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Layout_col_sepLine">
+     <item>
+      <widget class="QLabel" name="label_col_sepLine">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Разделитель</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButtonColored" name="Button_col_sepLine"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Layout_col_baseDef">
+     <item>
+      <widget class="QLabel" name="label_col_baseDef">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Норма</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButtonColored" name="Button_col_baseDef"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Layout_col_noContact">
+     <item>
+      <widget class="QLabel" name="label_col_noContact">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Нет контакта</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButtonColored" name="Button_col_noContact"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Layout_col_defect">
+     <item>
+      <widget class="QLabel" name="label_col_defect">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Дефект</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButtonColored" name="Button_col_defect"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Layout_buttons">
+     <item>
+      <widget class="QPushButton" name="okButton">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Применить</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Отмена</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QPushButtonColored</class>
+   <extends>QPushButton</extends>
+   <header location="global">QPushButtonColored.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

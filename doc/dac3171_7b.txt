@@ -1,0 +1,31 @@
+
+Address 0x00    Data    0x46FC
+
+Address 0x02    Data    0x3F80
+
+Address 0x03    Data    0x0001
+
+
+DAC3174
+0x00 0x4EC
+0x01 0x401E
+0x02 0x3F80
+0x03 0x1C71
+0x08 0x6000
+0x09 0x8000
+0x0A 0xF080
+0x14 0x0000
+0x01 0x401E
+0x01 0x403E
+0x01 0x401E
+
+https://e2e.ti.com/search?q=DAC3171&category=forum
+
+https://e2e.ti.com/support/data-converters/f/73/t/813445?tisearch=e2e-sitesearch&keymatch=dac3171
+
+https://e2e.ti.com/support/data-converters/f/73/t/815898?tisearch=e2e-sitesearch&keymatch=DAC3171
+
+https://e2e.ti.com/support/data-converters/f/73/t/650603?tisearch=e2e-sitesearch&keymatch=DAC3171
+
+
+https://e2e.ti.com/support/data-converters/f/73/t/813334?tisearch=e2e-sitesearch&keymatch=DAC3171

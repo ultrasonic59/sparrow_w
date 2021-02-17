@@ -1,0 +1,2 @@
+i2cdetect -l
+i2cdetect -r 0

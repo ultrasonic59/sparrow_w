@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>q_win_sparrow</class>
+ <widget class="QMainWindow" name="q_win_sparrow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>790</width>
+    <height>542</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>q_win_sparrow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,0">
+    <property name="spacing">
+     <number>2</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QSplitter" name="splitter_main">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <widget class="PlotterWidget" name="widget_setted" native="true"/>
+      <widget class="PlotterWidget" name="widget_osc" native="true"/>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="widget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>161</width>
+        <height>0</height>
+       </size>
+      </property>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>76</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Длина разв.</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_con_state">
+       <property name="geometry">
+        <rect>
+         <x>114</x>
+         <y>11</y>
+         <width>51</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>ВЫКЛ</string>
+       </property>
+      </widget>
+      <widget class="param_ed" name="ed_osc_length">
+       <property name="geometry">
+        <rect>
+         <x>81</x>
+         <y>77</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_ip">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>101</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>192.168.1.117</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_start_stop">
+       <property name="geometry">
+        <rect>
+         <x>81</x>
+         <y>40</y>
+         <width>71</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Пуск</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="param_ed" name="ed_t_imp_len">
+       <property name="geometry">
+        <rect>
+         <x>81</x>
+         <y>139</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_t_imp">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>138</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>T импульса</string>
+       </property>
+      </widget>
+      <widget class="param_ed" name="ed_t_imp_offset">
+       <property name="geometry">
+        <rect>
+         <x>81</x>
+         <y>165</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_t_imp_offset">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>164</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>T сдвига</string>
+       </property>
+      </widget>
+      <widget class="param_ed" name="ed_t_cycle">
+       <property name="geometry">
+        <rect>
+         <x>82</x>
+         <y>196</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_t_def">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>220</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>T дефекта</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_t_cycle">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>195</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>T повторения</string>
+       </property>
+      </widget>
+      <widget class="param_ed" name="ed_t_def">
+       <property name="geometry">
+        <rect>
+         <x>82</x>
+         <y>222</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_a_imp">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>340</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>А импульса</string>
+       </property>
+      </widget>
+      <widget class="param_ed" name="ed_a_imp">
+       <property name="geometry">
+        <rect>
+         <x>82</x>
+         <y>341</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_f_imp">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>366</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Частота,МГц</string>
+       </property>
+      </widget>
+      <widget class="param_ed" name="ed_f_imp">
+       <property name="geometry">
+        <rect>
+         <x>82</x>
+         <y>367</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_gauss">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>450</y>
+         <width>70</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>гаусс</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_num_periods">
+       <property name="geometry">
+        <rect>
+         <x>7</x>
+         <y>107</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Число периодов</string>
+       </property>
+      </widget>
+      <widget class="param_ed" name="ed_num_periods">
+       <property name="geometry">
+        <rect>
+         <x>81</x>
+         <y>108</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButt_debug">
+       <property name="geometry">
+        <rect>
+         <x>81</x>
+         <y>449</y>
+         <width>73</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Debug</string>
+       </property>
+      </widget>
+      <widget class="param_ed" name="ed_kus">
+       <property name="geometry">
+        <rect>
+         <x>82</x>
+         <y>253</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_kus">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>252</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Усиление</string>
+       </property>
+      </widget>
+      <widget class="param_ed" name="ed_beg_osc">
+       <property name="geometry">
+        <rect>
+         <x>82</x>
+         <y>284</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_beg_osc">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>283</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Нач. развёрт</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_step_osc">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>309</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Шаг развёрт</string>
+       </property>
+      </widget>
+      <widget class="param_ed" name="ed_step_osc">
+       <property name="geometry">
+        <rect>
+         <x>82</x>
+         <y>310</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_ampl_val">
+       <property name="geometry">
+        <rect>
+         <x>12</x>
+         <y>40</y>
+         <width>61</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_attenuation_lev0">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>400</y>
+         <width>131</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Ослабление 20 дБ</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_attenuation_lev1">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>422</y>
+         <width>131</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Ослабление 40 дБ</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>PlotterWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">PlotterWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>param_ed</class>
+   <extends>QLineEdit</extends>
+   <header location="global">param_ed.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>pushButton_start_stop</tabstop>
+  <tabstop>lineEdit_ip</tabstop>
+  <tabstop>ed_osc_length</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
