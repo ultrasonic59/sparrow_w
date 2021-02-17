@@ -49,10 +49,6 @@ module sparrow_smos_top
 ///======dac====================
     ,o_dac_clk_p
     ,o_dac_clk_m
-///    ,o_dac_align_k
-///    ,o_dac_align_m
-///    ,o_dac_sync_p
-///    ,o_dac_sync_m
     ,o_dac_dclk_p
     ,o_dac_dclk_m
     ,o_dac_dat_p
@@ -312,40 +308,17 @@ wire t_izl;
 assign	t_izl = i_sync;
 
 wire clr;
-///assign clr=1'b0;
 assign clr= ~o_clr_n;
 wire OnTimeCnt;
 assign	OnTimeCnt =1'b1;
-///wire clk80;
-///wire clk160;
-///assign clk80=i_clk24;
 wire [17:0]cnt_time;
 
 sepia_time utime_(.i_clk(clk80),.i_clr(clr),.i_psk(t_izl)
 						,.i_onCnt(OnTimeCnt),.o_cnt_time(cnt_time),.tst());
 ///=======================================
-///======= sniff ===========================
-/*
-wire [3:0]tst_usniff;
-wire [15:0]usniff_odata;
-wire cs_sniff;
-assign cs_sniff= (ps_sys_addr[15:14]== `ADDR_COMMON)
-                &(ps_sys_addr[13:12]== `ADDR_SNIFF_REGS)
-                 &(ps_sys_cs);                      
-u_sniffer u_sniff_(.i_ps_clk(ps_sys_clk)
-            ,.i_clk(clk96),.i_clr(clr)
- 			,.i_cs(cs_sniff),.i_we(ps_sys_wen),.i_rd(ps_sys_ren)
- 			,.i_addr(ps_sys_addr)
-			,.i_data(ps_sys_wdata[15:0]),.o_data(usniff_odata)
- ///======= usb ===========================
-            ,.i_dm(io_ext[1]),.i_dp(io_ext[0])	
-		    ,.tst(tst_usniff));
-		    */
 ///======dac====================
 wire o_dac_clk_p;
 wire o_dac_clk_m;
-///wire o_dac_align_k;
-///wire o_dac_align_m;
 wire o_dac_sync_p;
 wire o_dac_sync_m;
 wire o_dac_dclk_p;
@@ -366,12 +339,10 @@ u_dac u_dac_(.i_ps_clk(ps_sys_clk)
 			,.i_data(ps_sys_wdata[15:0]),.o_data(udac_odata)
            
             ,.o_dac_clk_p(o_dac_clk_p),.o_dac_clk_m(o_dac_clk_m)
- ////           ,.o_dac_sync_p(o_dac_sync_p),.o_dac_sync_m(o_dac_sync_m)
-           ,.o_dac_dclk_p(o_dac_dclk_p),.o_dac_dclk_m(o_dac_dclk_m)
+            ,.o_dac_dclk_p(o_dac_dclk_p),.o_dac_dclk_m(o_dac_dclk_m)
            ,.o_dac_dat_p(o_dac_dat_p),.o_dac_dat_m(o_dac_dat_m)
            ,.i_sync(i_sync)
-		      ,.tst(tst_udac));
-///assign o_ext=tst_udac;		      
+		   ,.tst(tst_udac));
 ///======adc====================
 wire o_adc_clk_p;
 wire o_adc_clk_n;
@@ -429,20 +400,8 @@ ila_0 ila0(
  );
 */
     
-/*		      
-input [6:0]i_adc_dat_p;
-input [6:0]i_adc_dat_n;
-input i_adc_clko_p;
-input i_adc_clko_n;
-output o_adc_clk_p;
-output o_adc_clk_n;
-*/
-
 //++++++++++++++ test ++++++++++++++++
 wire [15:0]odat_us;
-
-////wire [15:0]odat_ugen;
-
 ///=====================================
 always @*
 case (ps_sys_addr[15:14])
@@ -456,8 +415,6 @@ case (ps_sys_addr[15:14])
 	       rdata[15:0]<=udac_odata[15:0];						// 
         `ADDR_ADC_REGS:
 	       rdata[15:0]<=uadc_odata[15:0];						// 
-////        `ADDR_SNIFF_REGS:
-////	       rdata[15:0]<=usniff_odata[15:0];						// 
         `ADDR_COMMON_REGS:
             case (ps_sys_addr[6:5])
             `OFFS_CS_USPI:
@@ -475,7 +432,6 @@ case (ps_sys_addr[15:14])
           endcase  
 	default:
 	  rdata[15:0]<=odat_us[15:0];						// 
-///	  rdata[15:0]<=odat_us[15:0];						// 
 ///	  rdata[15:0]<=cnt_time[17:2];						// 
 endcase
 ///==========================================
@@ -493,20 +449,4 @@ assign t_ext[1]=tst_clk[0];
 assign t_ext[2]=tst_clk[1];		      
 assign t_ext[3]=tst_clk[2];		      
 ///=====================================================
-
-/*
-always @*
-////		  rdata<=32'h12345678;						// 
-	case (ps_sys_addr[2:1])
-		2'b00:	
-		  rdata<=tst_dat1;						// 
-		2'b01:	
-            rdata<=tst_dat2;                        // 
-		2'b10:	
-              rdata<=tst_dat3;                        // 
-		default:							// 
-            rdata<=tst_dat4;                        // 
-		endcase
-*/
-
 endmodule
