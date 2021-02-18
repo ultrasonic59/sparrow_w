@@ -40,6 +40,8 @@
 `define  OFFS_DDS_H 		    6'h05
 `define  OFFS_LEN_CNT_DAC 		6'h06
 
+`define  DELAY_DAC_L            6'h08
+`define  DELAY_DAC_H            6'h09
 ///========= OFFS_CONF DAC==========
 `define  B_ON_TST               0   ///DAC_OUT -> DAC
 `define  B_ON_DDS               1

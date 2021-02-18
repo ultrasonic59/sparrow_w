@@ -45,9 +45,16 @@ wire [6:0]o_dac_dat_p;
 wire [6:0]o_dac_dat_m;
 ///=====================================
 reg [2:0]z_sync;
+reg [13:0]dac_cnt;
 
 wire sregs_we_dat;
 assign sregs_we_dat=i_cs&(i_addr[13:12]==`ADDR_DAC_REGS)&(i_addr[15:14]==`ADDR_COMMON)&i_we;
+reg [31:0]delay_dac;
+reg [31:0]delay_dac_cnt;
+reg on_cnt_delay;
+wire dac_trig ;
+reg  dac_trigr;
+
 reg [15:0]conf;
 reg [31:0]dds_val;
 reg [31:0]dds_b_ph;///beg phasa
@@ -67,6 +74,7 @@ begin
 if(i_addr[6:1] ==`OFFS_CONF)
    conf= i_data[15:0];
 end
+
 always @(negedge sregs_we_dat )
 begin
 if(i_addr[6:1] ==`OFFS_DAC_OUT)
@@ -99,10 +107,39 @@ begin
 if(i_addr[6:1] ==`OFFS_LEN_CNT_DAC)
    len_cnt_dac[15:0]<= i_data[15:0];
 end
+///====================================
+always @(negedge sregs_we_dat )
+begin
+if(i_addr[6:1] ==`DELAY_DAC_L)
+   delay_dac[15:0]<= i_data[15:0];
+end
+always @(negedge sregs_we_dat )
+begin
+if(i_addr[6:1] ==`DELAY_DAC_H)
+   delay_dac[31:16]<= i_data[15:0];
+end
+///====================================
+always @(posedge i_clk )
+if(i_clr)
+    begin
+    on_cnt_delay <= 1'b0;
+	delay_dac_cnt <= delay_dac;				///
+	end
+else if(dac_trigr)
+    begin
+    on_cnt_delay <= 1'b1;
+	delay_dac_cnt <= delay_dac;				///
+	end
+else if(on_cnt_delay) 
+    begin
+    if(delay_dac_cnt==32'h0)
+        on_cnt_delay <= 1'b0;
+    else
+	delay_dac_cnt <= delay_dac_cnt+1'b1;				///
+	end
 
 ///====================================
-reg [13:0]dac_cnt;
-always @(posedge i_clk or posedge i_clr)
+always @(posedge i_clk )
 if(i_clr)
 	dac_cnt <= 14'b0;				///
 else if(dac_cnt>=len_cnt_dac[13:0])
@@ -110,7 +147,7 @@ else if(dac_cnt>=len_cnt_dac[13:0])
 else
 	dac_cnt <=dac_cnt+1'b1; 
 ///====================================
-always @(posedge i_clk or posedge i_clr)
+always @(posedge i_clk )
 if(i_clr)
 	z_sync <= 3'b0;				///
 else
@@ -164,6 +201,7 @@ phase_acc ph_acc(.clk_i(i_clk),
 ///====================================
 
 ///===============================
+/*
 ila_0 ila0(
  .clk(i_clk),
  .probe0(conf),
@@ -173,6 +211,7 @@ ila_0 ila0(
  .probe4(curr_ph[31:19]),
  .probe5(tt_odat)
  );
+ */
 ///===================================
 
 
@@ -239,7 +278,11 @@ case(i_addr[15:14])         ///1
 				o_data <= dds_val[31:16];
             `OFFS_LEN_CNT_DAC:
                 o_data <= len_cnt_dac;
-             default:    
+            `DELAY_DAC_L:
+ 				o_data <= delay_dac[15:0];
+           `DELAY_DAC_H:
+				o_data <= delay_dac[31:16];
+            default:    
 	           o_data <= 16'h3333;
           endcase         ///3
         default:    

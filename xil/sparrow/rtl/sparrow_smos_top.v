@@ -84,21 +84,9 @@ module sparrow_smos_top
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
-  ///output clk40;
-  ///output fclk;
-  ///input [15:0]idata;
- /// output [0:14]o_addr;
-  ///output [0:1]o_be;
- /// output [0:15]o_data;
-  ///output [0:0]o_ncs;
-  ///output o_nrd;
- /// output o_nwr;
- /// output o_txd_c;
-///  input i_rxd_c;
 input i_clk24;
 ///===================================
 ///======ext io====================
-////inout [11:0]io_ext;
 inout [10:0]io_ext;
 ///======adc====================
 input [13:0]i_adc_dat;
@@ -109,10 +97,6 @@ input i_zzz;
 ///======dac====================
 output o_dac_clk_p;
 output o_dac_clk_m;
-///output o_dac_align_k;
-///output o_dac_align_m;
-///output o_dac_sync_p;
-///output o_dac_sync_m;
 output o_dac_dclk_p;
 output o_dac_dclk_m;
 output [6:0]o_dac_dat_p;
@@ -158,22 +142,7 @@ reg [3:0]tst_clk;
 wire ug_irq;
 ///wire o_zz;
 ///=======================================
-/*
-wire                sys_clk    = ps_sys_clk      ;
-wire                sys_rstn   = ps_sys_rstn     ;
-wire  [    32-1: 0] sys_addr   = ps_sys_addr     ;
-wire  [    32-1: 0] sys_wdata  = ps_sys_wdata    ;
-wire  [     4-1: 0] sys_sel    = ps_sys_sel      ;
-wire  [     8-1: 0] sys_wen    ;
-wire  [     8-1: 0] sys_ren    ;
-*/
-///wire  [(8*32)-1: 0] sys_rdata  ;
-////wire  [ (8*1)-1: 0] sys_err    ;
-///wire  [ (8*1)-1: 0] sys_ack    ;
-///reg   [     8-1: 0] sys_cs     ;
 wire             ps_sys_clk         ;
-////wire             ps_sys_rstn        ;
-///(* mark_debug = "true" *) 
 wire  [ 31: 0] ps_sys_addr        ;
 ///(* mark_debug = "true" *) 
 wire  [ 31: 0] ps_sys_wdata       ;
@@ -250,8 +219,6 @@ wire clk200;
 wire clk80;
 assign clk200=_clk200;
 assign clk80=_clk80;
-///assign clk40=fclk[3];
-///assign clk80=fclk[2];
 
 pll24_80 pll1
  (
