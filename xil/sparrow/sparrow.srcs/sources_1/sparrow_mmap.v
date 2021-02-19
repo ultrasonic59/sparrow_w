@@ -39,6 +39,7 @@
 `define  OFFS_DDS_L 		    6'h04
 `define  OFFS_DDS_H 		    6'h05
 `define  OFFS_LEN_CNT_DAC 		6'h06
+///`define  OFFS_DAC_REJ 		    6'h07
 
 `define  DELAY_DAC_L            6'h08
 `define  DELAY_DAC_H            6'h09
@@ -74,9 +75,20 @@
 `define  OFFS_DELAY_RDAT6            6'h16	
 ///===========================================
 ///========= OFFS_CONF ADC==========
-`define  B_ON_TST               0   ///DAC_OUT -> DAC
-`define  B_EXT_SYNC             4   ///=1 ext sync
-`define  B_EXT_FAL              5   ///=1 falling edge
+////`define  B_ON_TST               0   ///DAC_OUT -> DAC
+////`define  B_EXT_SYNC             4   ///=1 ext sync
+////`define  B_EXT_FAL              5   ///=1 falling edge
+///=========== REJ DAC ============================
+`define  REJ_DDS               3'h0   ///
+`define  REJ_RAM               3'h1   ///RAM_OUT -> DAC
+`define  REJ_TST_DAT           3'h2   ///PS_DAC -> DAC
+///=========== REJ SYNC DAC ============================
+`define  AUTO_NO_SYNC           3'h0   ///
+`define  AUTO_SYNC              3'h1   ///
+`define  EXT_PSK                3'h2   ///
+///=========== EXT SYNC(PSK) ============================
+`define  RE           2'h0   ///rising edge _/-
+`define  FE           2'h1   ///falling edge -\_
 
 ///=======================================
 `endif ///__SPARROW_MMAP__

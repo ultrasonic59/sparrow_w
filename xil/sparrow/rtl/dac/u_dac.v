@@ -5,8 +5,6 @@ module u_dac(i_ps_clk
             ,i_cs,i_we,i_addr
 			,i_data,o_data
             ,o_dac_clk_p,o_dac_clk_m
-////           ,o_dac_align_p,o_dac_align_m
-////           ,o_dac_sync_p,o_dac_sync_m
            ,o_dac_dclk_p,o_dac_dclk_m
            ,o_dac_dat_p,o_dac_dat_m
            ,i_sync
@@ -33,7 +31,7 @@ input i_sync;
 output [3:0]tst;
 ///====================================
 reg [15:0]o_data;
-reg [15:0]dac_odata;
+reg [15:0]tst_dac_odata;
 
 wire [3:0]tst;
 
@@ -54,11 +52,18 @@ reg [31:0]delay_dac_cnt;
 reg on_cnt_delay;
 wire dac_trig ;
 reg  dac_trigr;
-
+reg  ena_cnt_dac;
 reg [15:0]conf;
 reg [31:0]dds_val;
 reg [31:0]dds_b_ph;///beg phasa
 reg [15:0]len_cnt_dac;
+wire [2:0]dac_rej;
+wire [2:0]dac_sync_rej;
+wire [1:0]ext_dac_sync_rej;
+assign dac_rej=conf[2:0];
+assign dac_sync_rej=conf[5:3];
+assign ext_dac_sync_rej=conf[7:6];
+/*
 wire ena_tst_dac_out;
 assign ena_tst_dac_out=conf[`B_ON_TST];
 wire on_dds;
@@ -67,7 +72,7 @@ wire en_dds;
 assign en_dds=conf[`B_EN_DDS];
 wire dds_ph_dat;
 assign dds_ph_dat=conf[`B_DDS_PH_DAT];
-
+*/
 
 always @(negedge sregs_we_dat )
 begin
@@ -78,7 +83,7 @@ end
 always @(negedge sregs_we_dat )
 begin
 if(i_addr[6:1] ==`OFFS_DAC_OUT)
-   dac_odata= i_data[15:0];
+   tst_dac_odata= i_data[15:0];
 end
 always @(negedge sregs_we_dat )
 begin
@@ -119,6 +124,11 @@ if(i_addr[6:1] ==`DELAY_DAC_H)
    delay_dac[31:16]<= i_data[15:0];
 end
 ///====================================
+wire end_delay_dac_cnt;
+reg  [ 2: 0] z_end_delay_dac_cnt;
+
+assign end_delay_dac_cnt=(delay_dac_cnt==32'h0);
+
 always @(posedge i_clk )
 if(i_clr)
     begin
@@ -132,20 +142,40 @@ else if(dac_trigr)
 	end
 else if(on_cnt_delay) 
     begin
-    if(delay_dac_cnt==32'h0)
+    if(end_delay_dac_cnt)
         on_cnt_delay <= 1'b0;
     else
-	delay_dac_cnt <= delay_dac_cnt+1'b1;				///
+	   delay_dac_cnt <= delay_dac_cnt-1'b1;				///
 	end
+	
+always @(posedge i_clk) 
+if (i_clr) 
+    z_end_delay_dac_cnt   <= 3'b0 ;
+else 
+     z_end_delay_dac_cnt <= {z_end_delay_dac_cnt[1:0],end_delay_dac_cnt} ;
 
 ///====================================
 always @(posedge i_clk )
 if(i_clr)
 	dac_cnt <= 14'b0;				///
-else if(dac_cnt>=len_cnt_dac[13:0])
-	dac_cnt <= 14'b0;				///
-else
-	dac_cnt <=dac_cnt+1'b1; 
+else 
+    case(dac_sync_rej)
+    `AUTO_NO_SYNC:
+        if(dac_cnt>=len_cnt_dac[13:0])
+	       dac_cnt <= 14'b0;				///
+        else
+	       dac_cnt <=dac_cnt+1'b1; 
+    `AUTO_SYNC:
+        if((dac_cnt>=len_cnt_dac[13:0])|dac_trigr )
+	       dac_cnt <= 14'b0;				///
+        else
+	       dac_cnt <=dac_cnt+1'b1; 
+     default:
+         if(dac_trigr )
+	       dac_cnt <= 14'b0;				///
+        else if(ena_cnt_dac)
+	       dac_cnt <=dac_cnt+1'b1; 
+    endcase
 ///====================================
 always @(posedge i_clk )
 if(i_clr)
@@ -155,7 +185,7 @@ else
 
 assign tst= dac_cnt[3:0];
 ///wire [13:0]tt_odat;
-wire [13:0]t_odat;
+reg [13:0]dac_odata;
 wire [13:0]dds_out;
 wire [31:0]curr_ph;
 
@@ -164,14 +194,24 @@ wire [15:0]ps_ram_odata;
 wire [12:0]dac_ram_addr;
 wire [15:0]dac_ram_odata;
 
-assign t_odat= (ena_tst_dac_out)?dac_odata[13:0]
+always @*
+case(dac_rej)
+    `REJ_TST_DAT:      ///test_dat_out
+        dac_odata <=tst_dac_odata[13:0];
+    default:
+        dac_odata <=dac_ram_odata[13:0];
+ endcase  
+    
+/*
+assign dac_odata= (ena_tst_dac_out)?tst_dac_odata[13:0]
                 :(on_dds)?(dds_ph_dat?dac_ram_addr:dds_out)
                 :dds_ph_dat?dac_cnt[13:0]:dac_ram_odata[13:0];
+                */
 ///assign t_odat= tt_odat;
 ///====================================
 
-assign dds_out=dac_ram_odata[13:0];
-assign dac_ram_addr=(on_dds)?curr_ph[31:19]:dac_cnt[12:0];
+////assign dds_out=dac_ram_odata[13:0];
+assign dac_ram_addr=(dac_rej==`REJ_DDS)?curr_ph[31:19]:dac_cnt[12:0];
 
 assign ps_we_ram=i_cs&(i_addr[15:14]==`ADDR_DAC_RAM)&i_we;
 mem_2kx16 mem_dac(
@@ -224,8 +264,8 @@ begin: dac_data
 dac_data_out 
 dac_data_( 
  .tx_clk(i_clk)
- ,.tx_data_p(t_odat[ii])
- , .tx_data_m(t_odat[ii+7])
+ ,.tx_data_p(dac_odata[ii])
+ , .tx_data_m(dac_odata[ii+7])
  ,.tx_data_out_p(o_dac_dat_p[ii])
  ,.tx_data_out_m(o_dac_dat_m[ii])
 );
@@ -267,7 +307,7 @@ case(i_addr[15:14])         ///1
 			`OFFS_CONF:
 				o_data <= conf;
 			`OFFS_DAC_OUT:
-				o_data <= dac_odata;
+				o_data <= tst_dac_odata;
             `OFFS_B_PH_L:
                 o_data <= dds_b_ph[15:0];
             `OFFS_B_PH_H:
