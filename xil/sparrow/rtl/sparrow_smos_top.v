@@ -138,7 +138,7 @@ input i_adc_sdout;
 
 wire o_clr_n;
 ///================================
-reg [3:0]tst_clk;
+reg [15:0]tst_clk;
 wire ug_irq;
 ///wire o_zz;
 ///=======================================
@@ -408,12 +408,13 @@ endcase
 always @(posedge clk96)
 tst_clk<=tst_clk+1'b1;
 
-wire [3:0]t_ext;
+////wire [3:0]t_ext;
 ///assign o_ext=uspi_tst;		      
-
-assign t_ext[0]=clk80;		      
-assign t_ext[1]=tst_clk[0];		      
-assign t_ext[2]=tst_clk[1];		      
-assign t_ext[3]=tst_clk[2];		      
+////io_ext
+////assign t_ext[0]=clk80;		      
+////assign t_ext[1]=tst_clk[0];		      
+////assign t_ext[2]=tst_clk[1];		      
+////assign t_ext[3]=tst_clk[2];		
+assign  io_ext[10:0]=  tst_clk[15:5];  
 ///=====================================================
 endmodule

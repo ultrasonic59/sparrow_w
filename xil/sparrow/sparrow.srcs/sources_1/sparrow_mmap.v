@@ -89,6 +89,7 @@
 ///=========== EXT SYNC(PSK) ============================
 `define  RE           2'h0   ///rising edge _/-
 `define  FE           2'h1   ///falling edge -\_
+`define  EXT_TRIG_DEB           8'h50   ///debounce time
 
 ///=======================================
 `endif ///__SPARROW_MMAP__

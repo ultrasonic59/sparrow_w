@@ -60,9 +60,12 @@ reg [15:0]len_cnt_dac;
 wire [2:0]dac_rej;
 wire [2:0]dac_sync_rej;
 wire [1:0]ext_dac_sync_rej;
+
 assign dac_rej=conf[2:0];
 assign dac_sync_rej=conf[5:3];
 assign ext_dac_sync_rej=conf[7:6];
+wire en_dds;
+
 /*
 wire ena_tst_dac_out;
 assign ena_tst_dac_out=conf[`B_ON_TST];
@@ -177,12 +180,63 @@ else
 	       dac_cnt <=dac_cnt+1'b1; 
     endcase
 ///====================================
+reg              trig_in      ;
+wire             ext_trig_p   ;
+wire             ext_trig_n   ;
+
+reg  [1:0] ext_trig_dp    ;
+reg  [1:0] ext_trig_dn    ;
+reg  [7:0] ext_trig_debp  ;
+reg  [7:0] ext_trig_debn  ;
+
 always @(posedge i_clk )
 if(i_clr)
+    begin
 	z_sync <= 3'b0;				///
+    ext_trig_dp   <=  2'h0 ;
+    ext_trig_dn   <=  2'h0 ;
+    ext_trig_debp <= 8'h0 ;
+    ext_trig_debn <= 8'h0 ;
+	end
 else
+    begin
 	z_sync <={z_sync[1:0],i_sync}; 
+     /// look for input changes
+      if ((ext_trig_debp == 8'h0) && (z_sync[1] && !z_sync[2]))
+         ext_trig_debp <= `EXT_TRIG_DEB ; 
+      else if (ext_trig_debp != 8'h0)
+         ext_trig_debp <= ext_trig_debp - 1'h1 ;
 
+      if ((ext_trig_debn == 8'h0) && (!z_sync[1] && z_sync[2]))
+         ext_trig_debn <= `EXT_TRIG_DEB ; //
+      else if (ext_trig_debn != 8'h0)
+         ext_trig_debn <= ext_trig_debn - 1'h1 ;
+      // update output values
+      ext_trig_dp[1] <= ext_trig_dp[0] ;
+      if (ext_trig_debp == 8'h0)
+         ext_trig_dp[0] <= z_sync[1] ;
+      ext_trig_dn[1] <= ext_trig_dn[0] ;
+      if (ext_trig_debn == 8'h0)
+         ext_trig_dn[0] <= z_sync[1] ;
+	end
+assign ext_trig_p = (ext_trig_dp == 2'b01) ;
+assign ext_trig_n = (ext_trig_dn == 2'b10) ;
+
+always @*
+case(ext_dac_sync_rej)
+    `FE:
+        trig_in <= ext_trig_n  ; // external negative edge
+    default:
+        trig_in <= ext_trig_p  ; // external positive edge
+endcase 
+
+always @(posedge i_clk )
+if(i_clr)
+     dac_trigr <=  1'b0 ;
+else
+     dac_trigr <=  trig_in ;
+
+///=============================================
 assign tst= dac_cnt[3:0];
 ///wire [13:0]tt_odat;
 reg [13:0]dac_odata;
@@ -201,7 +255,7 @@ case(dac_rej)
     default:
         dac_odata <=dac_ram_odata[13:0];
  endcase  
-    
+ ///==================================================   
 /*
 assign dac_odata= (ena_tst_dac_out)?tst_dac_odata[13:0]
                 :(on_dds)?(dds_ph_dat?dac_ram_addr:dds_out)
@@ -212,6 +266,7 @@ assign dac_odata= (ena_tst_dac_out)?tst_dac_odata[13:0]
 
 ////assign dds_out=dac_ram_odata[13:0];
 assign dac_ram_addr=(dac_rej==`REJ_DDS)?curr_ph[31:19]:dac_cnt[12:0];
+assign en_dds=(dac_rej==`REJ_DDS)?1'b1:1'b0;
 
 assign ps_we_ram=i_cs&(i_addr[15:14]==`ADDR_DAC_RAM)&i_we;
 mem_2kx16 mem_dac(
@@ -228,7 +283,6 @@ mem_2kx16 mem_dac(
     ,.dinb(16'b0)
     ,.doutb(dac_ram_odata)
   );
-
 ///====================================
 phase_acc ph_acc(.clk_i(i_clk),
                 .clr_i(i_clr),
@@ -239,7 +293,6 @@ phase_acc ph_acc(.clk_i(i_clk),
                 .phase_o(curr_ph)
                 );
 ///====================================
-
 ///===============================
 /*
 ila_0 ila0(
