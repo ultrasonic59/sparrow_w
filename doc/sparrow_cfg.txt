@@ -1,0 +1,9 @@
+==== Rej DAC ============
+0. Auto_no_sync
+1. Auto_sync
+2. Ext_pusk
+3.  
+
+======= Ext Sync(pusk) ======
+0. RE-rising edge _/-
+1. FE-falling edge -\_
