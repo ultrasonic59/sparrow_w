@@ -134,13 +134,26 @@ bool c_tune_thr::send_param()
 		tnum_bytes+=sizeof(quint8);
 		m_changed_param&=~CHNG_ATTENUATOR;
 	}
+	if(m_changed_param&CHNG_FREQ)
+	{
+		memcpy(par_trk_buff+t_offs, &m_sent_par.freq, sizeof(quint32));
+		t_offs+=sizeof(quint32);
+		tnum_bytes+=sizeof(quint32);
+		m_changed_param&=~CHNG_FREQ;
+	}
+	if(m_changed_param&CHNG_DAC_REJ)
+	{
+		memcpy(par_trk_buff+t_offs, &m_sent_par.rej, sizeof(quint16));
+		t_offs+=sizeof(quint16);
+		tnum_bytes+=sizeof(quint16);
+		m_changed_param&=~CHNG_DAC_REJ;
+	}
 
 
 	quint16 tnum_bytes1;
 	tnum_bytes1=tnum_bytes+OFFS_FLG_CHNG;
 	memcpy(par_trk_buff,&tnum_bytes,sizeof(quint16));
-
-
+	
 	return dev_cmd.dev_put_param(par_trk_buff,tnum_bytes);
 }
 
@@ -220,7 +233,19 @@ bool c_tune_thr::send_params()
 {
 	bool result = true;
 
-	m_changed_param = CHNG_TIMP_LEN | CHNG_TIMP_OFFSET | CHNG_TCYCLE | CHNG_TDEF | CHNG_IMP_POINTS | CHNG_BEG_OSC | CHNG_STEP_OSC | CHNG_KUS | CHNG_ATTENUATOR;
+	m_changed_param = CHNG_TIMP_LEN 
+		| CHNG_TIMP_OFFSET 
+		| CHNG_TCYCLE 
+		| CHNG_TDEF 
+		| CHNG_IMP_POINTS 
+///		| CHNG_BEG_OSC 
+///		| CHNG_STEP_OSC 
+		| CHNG_KUS 
+		| CHNG_ATTENUATOR
+		|CHNG_FREQ
+		|CHNG_DAC_REJ
+		;
+
 	result = send_param();
 
 	return result;

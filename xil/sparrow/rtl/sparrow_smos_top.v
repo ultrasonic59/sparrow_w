@@ -295,7 +295,7 @@ wire [6:0]o_dac_dat_m;
 wire i_sync;
 wire [3:0]tst_udac;
 wire [15:0]udac_odata;
-
+wire dac_trigr;
 wire cs_udac;
 assign cs_udac=((ps_sys_addr[15:14]== `ADDR_DAC_RAM)|| ((ps_sys_addr[15:14]== `ADDR_COMMON)
                 &(ps_sys_addr[13:12]== `ADDR_DAC_REGS)))
@@ -308,7 +308,7 @@ u_dac u_dac_(.i_ps_clk(ps_sys_clk)
             ,.o_dac_clk_p(o_dac_clk_p),.o_dac_clk_m(o_dac_clk_m)
             ,.o_dac_dclk_p(o_dac_dclk_p),.o_dac_dclk_m(o_dac_dclk_m)
            ,.o_dac_dat_p(o_dac_dat_p),.o_dac_dat_m(o_dac_dat_m)
-           ,.i_sync(i_sync)
+           ,.i_sync(i_sync),.dac_trigr(dac_trigr)
 		   ,.tst(tst_udac));
 ///======adc====================
 wire o_adc_clk_p;
@@ -415,6 +415,11 @@ tst_clk<=tst_clk+1'b1;
 ////assign t_ext[1]=tst_clk[0];		      
 ////assign t_ext[2]=tst_clk[1];		      
 ////assign t_ext[3]=tst_clk[2];		
-assign  io_ext[10:0]=  tst_clk[15:5];  
+///assign  io_ext[10:0]=  tst_clk[15:5];  
+assign  io_ext[10:5]=  6'b0;  
+assign  io_ext[4]=  dac_trigr;  
+
+assign  io_ext[3:0]=  tst_udac;  
+
 ///=====================================================
 endmodule

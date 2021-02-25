@@ -14,6 +14,7 @@ namespace Ui {
 #define XIL_REJ		0
 #define DAC_REJ		1
 #define ADC_REJ		2
+
 ///#define CONTR_REJ	3
 
 //#define TEST_REJ	4

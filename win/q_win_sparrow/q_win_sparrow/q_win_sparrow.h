@@ -10,7 +10,20 @@
 
 #include "dial_debug.h"
 
+#define DAC_DDS		0
+#define DAC_RAM		1
+#define DAC_TST1	2
 
+#define DAC_REJ_DDS		0x0
+#define DAC_REJ_RAM		0x1
+#define DAC_REJ_TST1	0x2
+
+#define DAC_NO_SYNC		0
+#define DAC_SYNC		1
+#define DAC_EXT_PSK		2
+
+#define DAC_SYNC_RE		0
+#define DAC_SYNC_FE		1
 
 class q_win_sparrow : public QMainWindow
 {
@@ -71,6 +84,7 @@ protected slots:
 	void beg_osc_changed();
 	void step_osc_changed();
 
+	void dac_rej_changed();
 
 
 	void NumPeriods_changed();
@@ -113,7 +127,7 @@ signals:
 	void put_xil_dat_dial(xil_dat_req_t*);
 	void put_dac_dat_dial(dac_spi_req_t*);
 	void put_adc_dat_dial(adc_spi_req_t*);
-
+////	void currentIndexChanged(int);
 
 public:
 

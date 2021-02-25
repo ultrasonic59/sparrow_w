@@ -120,7 +120,22 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 
 
 	ui.lineEdit_ip->setText(dev_obj.ip_addr);
+////=================================================
+	ui.comboBox_Dac_Rej->addItem("DDS",DAC_DDS);
+	ui.comboBox_Dac_Rej->addItem("RAM",DAC_RAM);
+	ui.comboBox_Dac_Rej->addItem("TST1",DAC_TST1);
+	connect(ui.comboBox_Dac_Rej, SIGNAL(currentIndexChanged(int)), this, SLOT(dac_rej_changed()));
 
+	ui.comboBox_Dac_Sync->addItem("No Sync",DAC_NO_SYNC);
+	ui.comboBox_Dac_Sync->addItem("Sync",DAC_SYNC);
+	ui.comboBox_Dac_Sync->addItem("Ext psk",DAC_EXT_PSK);
+	connect(ui.comboBox_Dac_Sync, SIGNAL(currentIndexChanged(int)), this, SLOT(dac_rej_changed()));
+
+	ui.comboBox_Front->addItem("RE",DAC_SYNC_RE);
+	ui.comboBox_Front->addItem("FE",DAC_SYNC_FE);
+	connect(ui.comboBox_Front, SIGNAL(currentIndexChanged(int)), this, SLOT(dac_rej_changed()));
+
+///=============================================
 
 
 
@@ -375,6 +390,49 @@ void q_win_sparrow::step_osc_changed()
 	dev_obj.g_changed_param |= CHNG_STEP_OSC;
 }
 
+void q_win_sparrow::dac_rej_changed()
+{
+quint16 tmp;
+par_contr_t &par_contr = dev_obj.curr_par_contr;
+///par_contr.sent_par.rej &= ~0x7;
+switch(ui.comboBox_Dac_Rej->currentIndex())
+	{
+	case DAC_RAM:
+		par_contr.rej_dac=DAC_REJ_RAM;
+		break;
+	case DAC_TST1:
+		par_contr.rej_dac=DAC_REJ_TST1;
+		break;
+	default:
+		par_contr.rej_dac=DAC_REJ_DDS;
+		break;
+	}
+switch(ui.comboBox_Dac_Sync->currentIndex())
+	{
+	case DAC_SYNC:
+		par_contr.rej_sync_dac=DAC_SYNC;
+		break;
+	case DAC_EXT_PSK:
+		par_contr.rej_sync_dac=DAC_EXT_PSK;
+		break;
+	default:
+		par_contr.rej_sync_dac=DAC_NO_SYNC;
+		break;
+	}
+switch(ui.comboBox_Front->currentIndex())
+	{
+	case DAC_SYNC_FE:
+		par_contr.rej_ext_sync=DAC_SYNC_FE;
+		break;
+	default:
+		par_contr.rej_ext_sync=DAC_SYNC_RE;
+		break;
+	}
+
+tmp= (par_contr.rej_dac&0x7)+ ((par_contr.rej_sync_dac&0x7)<<3) + ((par_contr.rej_ext_sync&0x3)<<5);
+par_contr.sent_par.rej=tmp;
+dev_obj.g_changed_param |= CHNG_DAC_REJ;
+}
 
 
 void q_win_sparrow::NumPeriods_changed()
@@ -417,6 +475,7 @@ void q_win_sparrow::DevFreq_changed()
 	par_contr_t &par_contr = dev_obj.curr_par_contr;
 
 	par_contr.dev_frequency = static_cast<float>(dev_freq) / COEF_DEV_FREQ;
+#if 0
 	float curr_period_len = COEF_PERIOD_TRANSF / par_contr.dev_frequency;
 	curr_period_len *= par_contr.num_periods;
 
@@ -434,6 +493,10 @@ void q_win_sparrow::DevFreq_changed()
 
 
 	dev_obj.g_changed_param |= CHNG_TIMP_LEN | CHNG_IMP_POINTS;
+#endif
+	par_contr.sent_par.freq=(quint32)(par_contr.dev_frequency*10000);
+	dev_obj.g_changed_param |= CHNG_FREQ;
+
 }
 
 

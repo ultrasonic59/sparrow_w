@@ -128,6 +128,9 @@ struct par_sent_t
 
 
 	quint8 attenuator;
+////===========================================
+	quint16 rej;
+	quint32 freq;		// 
 
 };
 
@@ -146,6 +149,9 @@ struct par_contr_t
 	float dev_frequency;	// частота колебаний в импульсе
 
 	bool gaus_enable;
+quint8 rej_dac;
+quint8 rej_sync_dac;
+quint8 rej_ext_sync;
 
 
 };
@@ -178,6 +184,9 @@ struct osc_struct_t
 #define CHNG_STEP_OSC			(0x1<<8)
 
 #define CHNG_ATTENUATOR			(0x1<<9)
+////=============================================
+#define CHNG_FREQ				(0x1<<10)
+#define CHNG_DAC_REJ			(0x1<<11)
 
 
 

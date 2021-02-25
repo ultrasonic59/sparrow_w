@@ -8,6 +8,7 @@ module u_dac(i_ps_clk
            ,o_dac_dclk_p,o_dac_dclk_m
            ,o_dac_dat_p,o_dac_dat_m
            ,i_sync
+           ,dac_trigr
 		    ,tst);
 ///====================================
 input i_ps_clk;
@@ -25,6 +26,8 @@ output o_dac_dclk_m;
 output [6:0]o_dac_dat_p;
 output [6:0]o_dac_dat_m;
 input i_sync;
+output dac_trigr;
+
 ///====================================
 ///====================================
 ///===== tst ==================
@@ -127,8 +130,32 @@ if(i_addr[6:1] ==`DELAY_DAC_H)
    delay_dac[31:16]<= i_data[15:0];
 end
 ///====================================
+wire end_dac_cnt;
+assign end_dac_cnt=(dac_cnt>=len_cnt_dac[13:0]);
 wire end_delay_dac_cnt;
 reg  [ 2: 0] z_end_delay_dac_cnt;
+reg psk_cnt_dac;
+always @*
+   psk_cnt_dac <= (!z_end_delay_dac_cnt[2]) & z_end_delay_dac_cnt[1] ;
+   
+always @(posedge i_clk) 
+begin
+   if (i_clr) 
+    begin
+      ena_cnt_dac   <=  1'b0 ;
+    end
+   else 
+     begin
+     if (psk_cnt_dac)
+        begin
+         ena_cnt_dac <= 1'b1 ;
+        end
+      else if (end_dac_cnt)
+        begin
+        ena_cnt_dac   <=  1'b0 ;
+        end  
+      end
+end
 
 assign end_delay_dac_cnt=(delay_dac_cnt==32'h0);
 
@@ -164,16 +191,16 @@ if(i_clr)
 else 
     case(dac_sync_rej)
     `AUTO_NO_SYNC:
-        if(dac_cnt>=len_cnt_dac[13:0])
+        if(end_dac_cnt)
 	       dac_cnt <= 14'b0;				///
         else
 	       dac_cnt <=dac_cnt+1'b1; 
     `AUTO_SYNC:
-        if((dac_cnt>=len_cnt_dac[13:0])|dac_trigr )
+        if((end_dac_cnt)|dac_trigr )
 	       dac_cnt <= 14'b0;				///
         else
 	       dac_cnt <=dac_cnt+1'b1; 
-     default:
+     default:   ///
          if(dac_trigr )
 	       dac_cnt <= 14'b0;				///
         else if(ena_cnt_dac)

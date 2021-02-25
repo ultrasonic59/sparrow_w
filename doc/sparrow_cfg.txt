@@ -1,9 +1,48 @@
-==== Rej DAC ============
+==== Rej DAC conf[2:0] ============
+0. DDS
+1. Ram
+2. Tst_dat_out
+3. 
+4. 
+
+
+==== Rej sync DAC conf[5:3] ============
 0. Auto_no_sync
 1. Auto_sync
 2. Ext_pusk
-3.  
+3. 
+4. 
 
-======= Ext Sync(pusk) ======
+======= Ext Sync(pusk) conf[7:6] ======
 0. RE-rising edge _/-
-1. FE-falling edge -\_
+1. FE-faling edge -\_
+
+quint8 rej_dac;
+quint8 rej_sync_dac;
+quint8 rej_ext_sync;
+
+Fo=(M*Fc)/2**N
+2**N=2**32 = 4294967296
+M= (Fo*2**N)/Fc
+
+
+comboBox_Dac_Rej
+comboBox_Dac_Sync
+comboBox_Front
+falling
+rising
+
+	ui.comboBox_Dac_Sync->addItem("No Sync",DAC_NO_SYNC);
+	ui.comboBox_Dac_Sync->addItem("Sync",DAC_SYNC);
+	ui.comboBox_Dac_Sync->addItem("Ext psk",DAC_EXT_PSK);
+	connect(ui.comboBox_Dac_Sync, SIGNAL(currentIndexChanged(int)), this, SLOT(dac_rej_changed()));
+
+	ui.comboBox_Front->addItem("RE",DAC_SYNC_RE);
+	ui.comboBox_Front->addItem("FE",DAC_SYNC_FE);
+
+comboBox_rej
+	ui.setupUi(this);
+	ui.comboBox_rej->addItem("XIL",XIL_REJ);
+	ui.comboBox_rej->addItem("DAC",DAC_REJ);
+	ui.comboBox_rej->addItem("ADC",ADC_REJ);
+      QObject::connect(comboBox_Dac_Rej, SIGNAL(currentIndexChanged(int)), comboBox_Dac_Rej, SLOT(setCurrentIndex(int)));
