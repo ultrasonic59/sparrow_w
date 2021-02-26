@@ -429,7 +429,7 @@ switch(ui.comboBox_Front->currentIndex())
 		break;
 	}
 
-tmp= (par_contr.rej_dac&0x7)+ ((par_contr.rej_sync_dac&0x7)<<3) + ((par_contr.rej_ext_sync&0x3)<<5);
+tmp= (par_contr.rej_dac&0x7)+ ((par_contr.rej_sync_dac&0x7)<<3) + ((par_contr.rej_ext_sync&0x3)<<6);
 par_contr.sent_par.rej=tmp;
 dev_obj.g_changed_param |= CHNG_DAC_REJ;
 }
@@ -475,7 +475,7 @@ void q_win_sparrow::DevFreq_changed()
 	par_contr_t &par_contr = dev_obj.curr_par_contr;
 
 	par_contr.dev_frequency = static_cast<float>(dev_freq) / COEF_DEV_FREQ;
-#if 0
+#if 1
 	float curr_period_len = COEF_PERIOD_TRANSF / par_contr.dev_frequency;
 	curr_period_len *= par_contr.num_periods;
 

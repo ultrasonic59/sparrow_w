@@ -208,6 +208,7 @@ else
     endcase
 ///====================================
 reg              trig_in      ;
+/*
 wire             ext_trig_p   ;
 wire             ext_trig_n   ;
 
@@ -248,13 +249,23 @@ else
 	end
 assign ext_trig_p = (ext_trig_dp == 2'b01) ;
 assign ext_trig_n = (ext_trig_dn == 2'b10) ;
-
+*/
+always @(posedge i_clk )
+if(i_clr)
+    begin
+	z_sync <= 3'b0;				///
+	end
+else
+    begin
+	z_sync <={z_sync[1:0],i_sync}; 
+	end
+/*
 always @*
 case(ext_dac_sync_rej)
     `FE:
-        trig_in <= ext_trig_n  ; // external negative edge
+        trig_in <= (!z_sync[1] & z_sync[2]) ; // external negative edge
     default:
-        trig_in <= ext_trig_p  ; // external positive edge
+        trig_in <= (z_sync[1] & !z_sync[2]) ; // external positive edge
 endcase 
 
 always @(posedge i_clk )
@@ -262,6 +273,14 @@ if(i_clr)
      dac_trigr <=  1'b0 ;
 else
      dac_trigr <=  trig_in ;
+*/
+always @(posedge i_clk )
+case(ext_dac_sync_rej)
+    `FE:
+        dac_trigr <= (!z_sync[1] & z_sync[2]) ; // external negative edge
+    default:
+        dac_trigr <= (z_sync[1] & !z_sync[2]) ; // external positive edge
+endcase 
 
 ///=============================================
 assign tst= dac_cnt[3:0];
@@ -311,10 +330,12 @@ mem_2kx16 mem_dac(
     ,.doutb(dac_ram_odata)
   );
 ///====================================
+wire sync_dds;
+assign sync_dds =(dac_sync_rej==`AUTO_SYNC)?dac_trigr:1'b0;
 phase_acc ph_acc(.clk_i(i_clk),
                 .clr_i(i_clr),
                 .phase_en_i(en_dds),
-                .sync_i(1'b0),
+                .sync_i(sync_dds),
                 .b_phase_i(dds_b_ph),
                 .dds_val_i(dds_val),
                 .phase_o(curr_ph)

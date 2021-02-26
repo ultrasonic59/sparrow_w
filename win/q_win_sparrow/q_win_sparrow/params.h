@@ -110,7 +110,7 @@
 #define COEF_DEV_FREQ		10000
 
 
-#define COEF_PERIOD_TRANSF	125
+#define COEF_PERIOD_TRANSF	252		////125
 
 
 struct par_sent_t

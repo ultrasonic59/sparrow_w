@@ -168,6 +168,7 @@ void c_tune_thr::req_timer_timeout()
 
 		if(is_initing)
 		{
+			memcpy(&m_param, p_param, sizeof(par_contr_t));
 			if(send_params())
 			{
 				is_initing = false;
@@ -242,8 +243,8 @@ bool c_tune_thr::send_params()
 ///		| CHNG_STEP_OSC 
 		| CHNG_KUS 
 		| CHNG_ATTENUATOR
-		|CHNG_FREQ
-		|CHNG_DAC_REJ
+		| CHNG_FREQ
+		| CHNG_DAC_REJ
 		;
 
 	result = send_param();

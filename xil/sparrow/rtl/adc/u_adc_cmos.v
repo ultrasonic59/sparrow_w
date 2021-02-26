@@ -179,6 +179,7 @@ reg [13:0]r_data;
 reg [13:0]rr_data;
 reg [13:0]tt_data;
 ///==================================
+reg adc_trigr;
 reg [2:0]z_sync;
 reg [15:0]len_cnt_adc;
 always @(negedge sregs_we_dat )
@@ -195,20 +196,29 @@ else
 
 reg [13:0]adc_cnt;
 ///localparam MX_CNT_ADC=14'd2000;
-always @(negedge i_clk or posedge i_clr)
+always @(negedge i_clk)
 if(i_clr)
 	adc_cnt <= 14'b0;				///
-else if(adc_cnt>=len_cnt_adc[13:0])
+else if((adc_cnt>=len_cnt_adc[13:0])||adc_trigr)
 ///else if(adc_cnt>=MX_CNT_ADC)
 	adc_cnt <= 14'b0;				///
 else
 	adc_cnt <=adc_cnt+1'b1; 
 ///====================================
-always @(posedge i_clk or posedge i_clr)
+always @(posedge i_clk )
 if(i_clr)
 	z_sync <= 3'b0;				///
 else
 	z_sync <={z_sync[1:0],i_sync}; 
+	
+always @(posedge i_clk )
+///case(ext_dac_sync_rej)
+ ///   `FE:
+        adc_trigr <= (!z_sync[1] & z_sync[2]) ; // external negative edge
+///    default:
+////        dac_trigr <= (z_sync[1] & !z_sync[2]) ; // external positive edge
+////endcase 
+	
 wire adc_we_en;
 wire [15:0]ps_ram_odata;
 wire [12:0]adc_ram_addr;
