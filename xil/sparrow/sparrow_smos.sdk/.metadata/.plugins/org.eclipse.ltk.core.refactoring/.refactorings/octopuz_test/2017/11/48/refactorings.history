@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;octopuz_test/src/freertos_hello_world.c&apos; to &apos;otopuz_test.c&apos;" description="Rename resource &apos;freertos_hello_world.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/freertos_hello_world.c" name="otopuz_test.c" stamp="1511442292455" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;octopuz_test/src/otopuz_test.c&apos; to &apos;octopuz_test.c&apos;" description="Rename resource &apos;otopuz_test.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/otopuz_test.c" name="octopuz_test.c" stamp="1511442312045" updateReferences="true"/>
-</session>

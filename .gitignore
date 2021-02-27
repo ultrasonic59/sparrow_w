@@ -22,10 +22,8 @@ win/ugen_z_dbg/ugen_z_dbg/Debug/
 win/ugen_z_dbg/ugen_z_dbg/GeneratedFiles/
 win/ugen_z_dbg/ugen_z_dbg/Release/
 win/ugen_z_dbg/Win32/
-xil/sparrow/sparrow.cache/
-xil/sparrow/sparrow.runs/
-xil/sparrow/sparrow_smos.cache/
-xil/sparrow/sparrow_smos.runs/
+xil/sparrow/sparrow_cmos.cache/
+xil/sparrow/sparrow_cmos.runs/
 
 *.backup.*
 *.jou

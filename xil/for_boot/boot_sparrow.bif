@@ -1,7 +1,7 @@
 //arch = zynq; split = false; format = MCS
 the_ROM_image:
 {
-	[bootloader]D:\proj\velograph\sparrow\xil\for_boot\fsbl.elf
-	D:\proj\velograph\sparrow\xil\for_boot\sparrow_smos_top.bit
-	D:\proj\velograph\sparrow\xil\for_boot\u-boot.elf
+	[bootloader]D:\proj\velograph\sparrow_w\xil\for_boot\fsbl.elf
+	D:\proj\velograph\sparrow_w\xil\for_boot\sparrow_smos_top.bit
+	D:\proj\velograph\sparrow_w\xil\for_boot\u-boot.elf
 }
