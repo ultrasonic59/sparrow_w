@@ -1,7 +1,0 @@
-1563986465448	Delete resource 'ZC702_hw_platform'
-1563986479100	Delete resource 'standalone_bsp_0'
-1563990219599	Delete resource 'sparrow_test1/src/testperiph.c'
-1563990234068	Delete resource 'sparrow_test1/src/xiicps_polled_master_example.c'
-1563990249066	Delete resource 'sparrow_test1/src/xsysmon_polled_example.c'
-1563990480106	Delete resource 'sparrow_test1/src/xiicps_selftest_example.c'
-1563990670302	Delete resource 'sparrow_test1/src/xiicps_intr_master_example.c'
