@@ -1,0 +1,5 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  "../../../octopuz2.ip_user_files/bd/octop_ps/ip/octop_ps_rst_ps7_0_50M_0/sim/octop_ps_rst_ps7_0_50M_0.vhd"
+
+# Do not sort compile order
+nosort
