@@ -1,8 +1,6 @@
 
 Address 0x00    Data    0x46FC
-
 Address 0x02    Data    0x3F80
-
 Address 0x03    Data    0x0001
 
 
@@ -29,3 +27,10 @@ https://e2e.ti.com/support/data-converters/f/73/t/650603?tisearch=e2e-sitesearch
 
 
 https://e2e.ti.com/support/data-converters/f/73/t/813334?tisearch=e2e-sitesearch&keymatch=DAC3171
+
+ed_corr
+
+ed_begr
+
+corr_changed()
+en_show_corr(bool on_off)
