@@ -1,14 +1,14 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Fri Jan 17 17:19:50 2020
--- Host        : vova-PC running 64-bit Service Pack 1  (build 7601)
--- Command     : write_vhdl -force -mode funcsim -rename_top mem_2kx16 -prefix
---               mem_2kx16_ mem_2kx16_sim_netlist.vhdl
+-- Tool Version: Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
+-- Date        : Mon Jan 20 00:01:26 2025
+-- Host        : vovag running 64-bit major release  (build 9200)
+-- Command     : write_vhdl -force -mode funcsim
+--               D:/proj/velograph/sparrow_w/xil/sparrow/sparrow_smos.srcs/sources_1/ip/mem_2kx16/mem_2kx16_sim_netlist.vhdl
 -- Design      : mem_2kx16
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7z010clg225-1
+-- Device      : xc7z007sclg225-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -20,6 +20,8 @@ entity mem_2kx16_bindec is
     addra : in STD_LOGIC_VECTOR ( 0 to 0 );
     ena : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mem_2kx16_bindec : entity is "bindec";
 end mem_2kx16_bindec;
 
 architecture STRUCTURE of mem_2kx16_bindec is
@@ -90,6 +92,8 @@ entity mem_2kx16_blk_mem_gen_mux is
     ena : in STD_LOGIC;
     douta_array : in STD_LOGIC_VECTOR ( 31 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mem_2kx16_blk_mem_gen_mux : entity is "blk_mem_gen_mux";
 end mem_2kx16_blk_mem_gen_mux;
 
 architecture STRUCTURE of mem_2kx16_blk_mem_gen_mux is
@@ -559,6 +563,8 @@ entity mem_2kx16_blk_mem_gen_prim_wrapper is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mem_2kx16_blk_mem_gen_prim_wrapper : entity is "blk_mem_gen_prim_wrapper";
 end mem_2kx16_blk_mem_gen_prim_wrapper;
 
 architecture STRUCTURE of mem_2kx16_blk_mem_gen_prim_wrapper is
@@ -1645,6 +1651,8 @@ entity mem_2kx16_blk_mem_gen_prim_width is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mem_2kx16_blk_mem_gen_prim_width : entity is "blk_mem_gen_prim_width";
 end mem_2kx16_blk_mem_gen_prim_width;
 
 architecture STRUCTURE of mem_2kx16_blk_mem_gen_prim_width is
@@ -1814,6 +1822,8 @@ entity mem_2kx16_blk_mem_gen_generic_cstr is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mem_2kx16_blk_mem_gen_generic_cstr : entity is "blk_mem_gen_generic_cstr";
 end mem_2kx16_blk_mem_gen_generic_cstr;
 
 architecture STRUCTURE of mem_2kx16_blk_mem_gen_generic_cstr is
@@ -1934,6 +1944,8 @@ entity mem_2kx16_blk_mem_gen_top is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mem_2kx16_blk_mem_gen_top : entity is "blk_mem_gen_top";
 end mem_2kx16_blk_mem_gen_top;
 
 architecture STRUCTURE of mem_2kx16_blk_mem_gen_top is
@@ -1973,6 +1985,8 @@ entity mem_2kx16_blk_mem_gen_v8_4_3_synth is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mem_2kx16_blk_mem_gen_v8_4_3_synth : entity is "blk_mem_gen_v8_4_3_synth";
 end mem_2kx16_blk_mem_gen_v8_4_3_synth;
 
 architecture STRUCTURE of mem_2kx16_blk_mem_gen_v8_4_3_synth is
@@ -2213,6 +2227,8 @@ entity mem_2kx16_blk_mem_gen_v8_4_3 is
   attribute C_WRITE_WIDTH_B of mem_2kx16_blk_mem_gen_v8_4_3 : entity is 16;
   attribute C_XDEVICEFAMILY : string;
   attribute C_XDEVICEFAMILY of mem_2kx16_blk_mem_gen_v8_4_3 : entity is "zynq";
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mem_2kx16_blk_mem_gen_v8_4_3 : entity is "blk_mem_gen_v8_4_3";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of mem_2kx16_blk_mem_gen_v8_4_3 : entity is "yes";
 end mem_2kx16_blk_mem_gen_v8_4_3;

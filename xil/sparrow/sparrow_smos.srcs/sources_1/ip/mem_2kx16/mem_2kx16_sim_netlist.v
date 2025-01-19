@@ -1,14 +1,14 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Fri Jan 17 17:19:50 2020
-// Host        : vova-PC running 64-bit Service Pack 1  (build 7601)
-// Command     : write_verilog -force -mode funcsim -rename_top mem_2kx16 -prefix
-//               mem_2kx16_ mem_2kx16_sim_netlist.v
+// Tool Version: Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
+// Date        : Mon Jan 20 00:01:26 2025
+// Host        : vovag running 64-bit major release  (build 9200)
+// Command     : write_verilog -force -mode funcsim
+//               D:/proj/velograph/sparrow_w/xil/sparrow/sparrow_smos.srcs/sources_1/ip/mem_2kx16/mem_2kx16_sim_netlist.v
 // Design      : mem_2kx16
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
-// Device      : xc7z010clg225-1
+// Device      : xc7z007sclg225-1
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
@@ -214,6 +214,7 @@ module mem_2kx16
         .web(web));
 endmodule
 
+(* ORIG_REF_NAME = "bindec" *) 
 module mem_2kx16_bindec
    (ena_array,
     addra,
@@ -267,6 +268,7 @@ module mem_2kx16_bindec_0
         .O(enb_array[0]));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_generic_cstr" *) 
 module mem_2kx16_blk_mem_gen_generic_cstr
    (douta,
     doutb,
@@ -388,6 +390,7 @@ module mem_2kx16_blk_mem_gen_generic_cstr
         .web(web));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_mux" *) 
 module mem_2kx16_blk_mem_gen_mux
    (douta,
     clka,
@@ -738,6 +741,7 @@ module mem_2kx16_blk_mem_gen_mux__parameterized0
         .R(1'b0));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module mem_2kx16_blk_mem_gen_prim_width
    (douta_array,
     doutb_array,
@@ -973,6 +977,7 @@ module mem_2kx16_blk_mem_gen_prim_width__parameterized2
         .web(web));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper" *) 
 module mem_2kx16_blk_mem_gen_prim_wrapper
    (douta_array,
     doutb_array,
@@ -2040,6 +2045,7 @@ module mem_2kx16_blk_mem_gen_prim_wrapper__parameterized2
         .WEBWE({1'b0,1'b0,1'b0,1'b0,web,web,web,web}));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_top" *) 
 module mem_2kx16_blk_mem_gen_top
    (douta,
     doutb,
@@ -2119,7 +2125,7 @@ endmodule
 (* C_WEA_WIDTH = "1" *) (* C_WEB_WIDTH = "1" *) (* C_WRITE_DEPTH_A = "8192" *) 
 (* C_WRITE_DEPTH_B = "8192" *) (* C_WRITE_MODE_A = "WRITE_FIRST" *) (* C_WRITE_MODE_B = "WRITE_FIRST" *) 
 (* C_WRITE_WIDTH_A = "16" *) (* C_WRITE_WIDTH_B = "16" *) (* C_XDEVICEFAMILY = "zynq" *) 
-(* downgradeipidentifiedwarnings = "yes" *) 
+(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3" *) (* downgradeipidentifiedwarnings = "yes" *) 
 module mem_2kx16_blk_mem_gen_v8_4_3
    (clka,
     rsta,
@@ -2345,6 +2351,7 @@ module mem_2kx16_blk_mem_gen_v8_4_3
         .web(web));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3_synth" *) 
 module mem_2kx16_blk_mem_gen_v8_4_3_synth
    (douta,
     doutb,

@@ -50,12 +50,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_OscillogramPlotterSetter.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_OscillogramPlotterSetter.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="AbstactPlotter.cpp">
       <Filter>Source Files\Plotters</Filter>
     </ClCompile>
@@ -67,36 +61,6 @@
     </ClCompile>
     <ClCompile Include="PlotterWidget.cpp">
       <Filter>Source Files\Plotters</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_base_cmd.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_base_cmd.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_base_dev_cmd.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_base_dev_cmd.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_obj_cmd.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_obj_cmd.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_tune_thr.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_tune_thr.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_udp_cmd.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_udp_cmd.cpp">
-      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="base_cmd.cpp">
       <Filter>Source Files\device</Filter>
@@ -125,74 +89,53 @@
     <ClCompile Include="param_ed.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_param_ed.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_param_ed.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_q_win_sparrow.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="q_win_sparrow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_q_win_sparrow.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_q_win_sparrow.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="dial_debug.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_dial_debug.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_dial_debug.cpp">
-      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="OscillogramPlotterSetter2.cpp">
       <Filter>Source Files\Plotters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="OscillogramPlotterSetter.h">
+    <QtMoc Include="OscillogramPlotterSetter.h">
       <Filter>Header Files\Plotters</Filter>
-    </CustomBuild>
-    <CustomBuild Include="base_cmd.h">
+    </QtMoc>
+    <QtMoc Include="base_cmd.h">
       <Filter>Header Files\device</Filter>
-    </CustomBuild>
-    <CustomBuild Include="base_dev_cmd.h">
+    </QtMoc>
+    <QtMoc Include="base_dev_cmd.h">
       <Filter>Header Files\device</Filter>
-    </CustomBuild>
-    <CustomBuild Include="obj_cmd.h">
+    </QtMoc>
+    <QtMoc Include="obj_cmd.h">
       <Filter>Header Files\device</Filter>
-    </CustomBuild>
-    <CustomBuild Include="tune_thr.h">
+    </QtMoc>
+    <QtMoc Include="tune_thr.h">
       <Filter>Header Files\device</Filter>
-    </CustomBuild>
-    <CustomBuild Include="udp_cmd.h">
+    </QtMoc>
+    <QtMoc Include="udp_cmd.h">
       <Filter>Header Files\device</Filter>
-    </CustomBuild>
-    <CustomBuild Include="param_ed.h">
+    </QtMoc>
+    <QtMoc Include="param_ed.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="q_win_sparrow.qrc">
+    </QtMoc>
+    <QtRcc Include="q_win_sparrow.qrc">
       <Filter>Resource Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="q_win_sparrow.h">
+    </QtRcc>
+    <QtMoc Include="q_win_sparrow.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="q_win_sparrow.ui">
+    </QtMoc>
+    <QtUic Include="q_win_sparrow.ui">
       <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="dial_debug.h">
+    </QtUic>
+    <QtMoc Include="dial_debug.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="dial_debug.ui">
+    </QtMoc>
+    <QtUic Include="dial_debug.ui">
       <Filter>Form Files</Filter>
-    </CustomBuild>
+    </QtUic>
     <CustomBuild Include="OscillogramPlotterSetter2.h">
       <Filter>Header Files\Plotters</Filter>
     </CustomBuild>
@@ -218,12 +161,6 @@
     </ClInclude>
     <ClInclude Include="params.h">
       <Filter>Header Files\device</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_q_win_sparrow.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_dial_debug.h">
-      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,14 +1,14 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Thu Jan 30 18:10:44 2020
-// Host        : vova-PC running 64-bit Service Pack 1  (build 7601)
-// Command     : write_verilog -force -mode funcsim -rename_top pll24_80 -prefix
-//               pll24_80_ pll24_80_sim_netlist.v
+// Tool Version: Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
+// Date        : Mon Jan 20 00:00:58 2025
+// Host        : vovag running 64-bit major release  (build 9200)
+// Command     : write_verilog -force -mode funcsim
+//               D:/proj/velograph/sparrow_w/xil/sparrow/sparrow_smos.srcs/sources_1/ip/pll24_80/pll24_80_sim_netlist.v
 // Design      : pll24_80
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
-// Device      : xc7z010clg225-1
+// Device      : xc7z007sclg225-1
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
@@ -47,6 +47,7 @@ module pll24_80
         .reset(reset));
 endmodule
 
+(* ORIG_REF_NAME = "pll24_80_clk_wiz" *) 
 module pll24_80_pll24_80_clk_wiz
    (clk_out1,
     clk_out2,

@@ -1,13 +1,13 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Tue Jan 21 19:39:58 2020
-// Host        : vova-PC running 64-bit Service Pack 1  (build 7601)
-// Command     : write_verilog -force -mode synth_stub -rename_top ila_0 -prefix
-//               ila_0_ ila_0_stub.v
+// Tool Version: Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
+// Date        : Mon Jan 20 00:02:00 2025
+// Host        : vovag running 64-bit major release  (build 9200)
+// Command     : write_verilog -force -mode synth_stub
+//               D:/proj/velograph/sparrow_w/xil/sparrow/sparrow_smos.srcs/sources_1/ip/ila_0/ila_0_stub.v
 // Design      : ila_0
 // Purpose     : Stub declaration of top-level module interface
-// Device      : xc7z010clg225-1
+// Device      : xc7z007sclg225-1
 // --------------------------------------------------------------------------------
 
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.

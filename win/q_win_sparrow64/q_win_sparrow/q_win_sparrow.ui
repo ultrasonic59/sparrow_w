@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>790</width>
-    <height>542</height>
+    <height>562</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -265,8 +265,8 @@
       <widget class="QLabel" name="label_a_imp">
        <property name="geometry">
         <rect>
-         <x>11</x>
-         <y>340</y>
+         <x>10</x>
+         <y>380</y>
          <width>71</width>
          <height>24</height>
         </rect>
@@ -278,8 +278,8 @@
       <widget class="param_ed" name="ed_a_imp">
        <property name="geometry">
         <rect>
-         <x>82</x>
-         <y>341</y>
+         <x>80</x>
+         <y>380</y>
          <width>71</width>
          <height>24</height>
         </rect>
@@ -296,8 +296,8 @@
       <widget class="QLabel" name="label_f_imp">
        <property name="geometry">
         <rect>
-         <x>11</x>
-         <y>366</y>
+         <x>10</x>
+         <y>410</y>
          <width>71</width>
          <height>24</height>
         </rect>
@@ -309,8 +309,8 @@
       <widget class="param_ed" name="ed_f_imp">
        <property name="geometry">
         <rect>
-         <x>82</x>
-         <y>367</y>
+         <x>80</x>
+         <y>410</y>
          <width>71</width>
          <height>24</height>
         </rect>
@@ -328,7 +328,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>450</y>
+         <y>480</y>
          <width>70</width>
          <height>17</height>
         </rect>
@@ -371,8 +371,8 @@
       <widget class="QPushButton" name="pushButt_debug">
        <property name="geometry">
         <rect>
-         <x>81</x>
-         <y>449</y>
+         <x>80</x>
+         <y>520</y>
          <width>73</width>
          <height>31</height>
         </rect>
@@ -504,7 +504,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>400</y>
+         <y>440</y>
          <width>131</width>
          <height>17</height>
         </rect>
@@ -517,13 +517,26 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>422</y>
+         <y>460</y>
          <width>131</width>
          <height>17</height>
         </rect>
        </property>
        <property name="text">
         <string>Ослабление 40 дБ</string>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_Gen">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>360</y>
+         <width>151</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Gen</string>
        </property>
       </widget>
      </widget>

@@ -1,13 +1,13 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Mon Dec 30 21:25:15 2019
--- Host        : DESKTOP-XEON running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub -rename_top sparrow_ps_processing_system7_0_0 -prefix
---               sparrow_ps_processing_system7_0_0_ sparrow_ps_processing_system7_0_0_stub.vhdl
+-- Tool Version: Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
+-- Date        : Mon Jan 20 00:01:00 2025
+-- Host        : vovag running 64-bit major release  (build 9200)
+-- Command     : write_vhdl -force -mode synth_stub
+--               D:/proj/velograph/sparrow_w/xil/sparrow/sparrow_smos.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_stub.vhdl
 -- Design      : sparrow_ps_processing_system7_0_0
 -- Purpose     : Stub declaration of top-level module interface
--- Device      : xc7z010clg225-1
+-- Device      : xc7z007sclg225-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
