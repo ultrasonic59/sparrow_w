@@ -1,0 +1,892 @@
+#-----------------------------------------------------------
+# Vivado v2019.1.3 (64-bit)
+# SW Build 2644227 on Wed Sep  4 09:45:24 MDT 2019
+# IP Build 2633630 on Wed Sep  4 12:30:14 MDT 2019
+# Start of session at: Mon Mar 31 00:27:58 2025
+# Process ID: 1704
+# Current directory: D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3
+# Command line: vivado.exe -log sparrow5_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source sparrow5_top.tcl
+# Log file: D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/sparrow5_top.vds
+# Journal file: D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3\vivado.jou
+#-----------------------------------------------------------
+source sparrow5_top.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository 'd:/proj/umka2/xil/octopuz3a/my_ip/axi_udef_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.1/data/ip'.
+WARNING: [BD 41-1661] One or more IPs have been locked in the design 'sparrow_ps.bd'. Please run report_ip_status for more details and recommendations on how to fix this issue.
+List of locked IPs:
+sparrow_ps_processing_system7_0_0
+sparrow_ps_xadc_wiz_0_0
+sparrow_ps_rst_ps7_0_50M_0
+sparrow_ps_ps7_0_axi_periph_0
+sparrow_ps_xbar_0
+sparrow_ps_auto_pc_0
+
+Command: synth_design -top sparrow5_top -part xc7z007sclg225-1
+Starting synth_design
+WARNING: [Vivado_Tcl 4-393] The 'Synthesis' target of the following IPs are stale, please generate the output products using the generate_target or synth_ip command before running synth_design.
+D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/ila_0/ila_0.xci
+D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/pll24_80/pll24_80.xci
+D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/mem_2kx16/mem_2kx16.xci
+
+WARNING: [Vivado_Tcl 4-393] The 'Implementation' target of the following IPs are stale, please generate the output products using the generate_target or synth_ip command before running synth_design.
+D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/ila_0/ila_0.xci
+D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/pll24_80/pll24_80.xci
+
+INFO: [IP_Flow 19-2162] IP 'ila_0' is locked:
+* Current project part 'xc7z007sclg225-1' and the part 'xc7z010clg225-1' used to customize the IP 'ila_0' do not match.
+INFO: [IP_Flow 19-2162] IP 'pll24_80' is locked:
+* Current project part 'xc7z007sclg225-1' and the part 'xc7z010clg225-1' used to customize the IP 'pll24_80' do not match.
+INFO: [IP_Flow 19-2162] IP 'mem_2kx16' is locked:
+* Current project part 'xc7z007sclg225-1' and the part 'xc7z010clg225-1' used to customize the IP 'mem_2kx16' do not match.
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
+INFO: [Device 21-403] Loading part xc7z007sclg225-1
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 20600 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 844.145 ; gain = 178.445
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'sparrow5_top' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/sparrow5_top.v:14]
+INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_v' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/sparrow_ps_v.v:12]
+INFO: [Synth 8-6157] synthesizing module 'BUFG' [C:/Xilinx/Vivado/2019.1/scripts/rt/data/unisim_comp.v:1075]
+INFO: [Synth 8-6155] done synthesizing module 'BUFG' (1#1) [C:/Xilinx/Vivado/2019.1/scripts/rt/data/unisim_comp.v:1075]
+INFO: [Synth 8-6157] synthesizing module 'axi_slave' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:3]
+	Parameter AXI_DW bound to: 32 - type: integer 
+	Parameter AXI_AW bound to: 32 - type: integer 
+	Parameter AXI_SW bound to: 4 - type: integer 
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:136]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:138]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:140]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:142]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:146]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:148]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:150]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:152]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:155]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:157]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:159]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:161]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:163]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:165]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:167]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:171]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:173]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:177]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:179]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:182]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:184]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:186]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:188]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:190]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:192]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:194]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:205]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:208]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:214]
+INFO: [Synth 8-6155] done synthesizing module 'axi_slave' (2#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:3]
+INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_wrapper' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/hdl/sparrow_ps_wrapper.v:12]
+INFO: [Synth 8-6157] synthesizing module 'sparrow_ps' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:596]
+INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_processing_system7_0_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/sparrow_ps_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_processing_system7_0_0' (3#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/sparrow_ps_processing_system7_0_0_stub.v:6]
+WARNING: [Synth 8-7023] instance 'processing_system7_0' of module 'sparrow_ps_processing_system7_0_0' has 69 connections declared, but only 67 given [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:821]
+INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_ps7_0_axi_periph_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:1004]
+INFO: [Synth 8-6157] synthesizing module 'm00_couplers_imp_13NPGDN' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'm00_couplers_imp_13NPGDN' (4#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:12]
+INFO: [Synth 8-6157] synthesizing module 'm01_couplers_imp_1TCPY7H' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:158]
+INFO: [Synth 8-6155] done synthesizing module 'm01_couplers_imp_1TCPY7H' (5#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:158]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_1TO1A0A' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:290]
+INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_auto_pc_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/sparrow_ps_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_auto_pc_0' (6#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/sparrow_ps_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_1TO1A0A' (7#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:290]
+INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_xbar_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/sparrow_ps_xbar_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_xbar_0' (8#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/sparrow_ps_xbar_0_stub.v:6]
+WARNING: [Synth 8-689] width (3) of port connection 'm_axi_arprot' does not match port width (6) of module 'sparrow_ps_xbar_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:1538]
+WARNING: [Synth 8-689] width (3) of port connection 'm_axi_awprot' does not match port width (6) of module 'sparrow_ps_xbar_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:1542]
+INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_ps7_0_axi_periph_0' (9#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:1004]
+INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_rst_ps7_0_50M_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/sparrow_ps_rst_ps7_0_50M_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_rst_ps7_0_50M_0' (10#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/sparrow_ps_rst_ps7_0_50M_0_stub.v:6]
+WARNING: [Synth 8-7023] instance 'rst_ps7_0_50M' of module 'sparrow_ps_rst_ps7_0_50M_0' has 10 connections declared, but only 7 given [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:972]
+INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_xadc_wiz_0_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/sparrow_ps_xadc_wiz_0_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_xadc_wiz_0_0' (11#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/sparrow_ps_xadc_wiz_0_0_stub.v:5]
+WARNING: [Synth 8-7023] instance 'xadc_wiz_0' of module 'sparrow_ps_xadc_wiz_0_0' has 27 connections declared, but only 21 given [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:980]
+INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps' (12#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:596]
+INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_wrapper' (13#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/hdl/sparrow_ps_wrapper.v:12]
+WARNING: [Synth 8-7023] instance 'system_i' of module 'sparrow_ps_wrapper' has 47 connections declared, but only 46 given [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/sparrow_ps_v.v:273]
+INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_v' (14#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/sparrow_ps_v.v:12]
+WARNING: [Synth 8-7023] instance 'i_ps' of module 'sparrow_ps_v' has 34 connections declared, but only 32 given [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/sparrow5_top.v:182]
+INFO: [Synth 8-6157] synthesizing module 'pll24_80' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/pll24_80_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'pll24_80' (15#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/pll24_80_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'sepia_time' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/utrk/sepia_time.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'sepia_time' (16#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/utrk/sepia_time.v:2]
+WARNING: [Synth 8-689] width (2) of port connection 'i_psk' does not match port width (1) of module 'sepia_time' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/sparrow5_top.v:306]
+INFO: [Synth 8-6157] synthesizing module 'u_dac' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/u_dac.v:3]
+INFO: [Synth 8-6157] synthesizing module 'dac_data_out' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/dac/dac_data_out.v:4]
+INFO: [Synth 8-6157] synthesizing module 'ODDR' [C:/Xilinx/Vivado/2019.1/scripts/rt/data/unisim_comp.v:49468]
+	Parameter DDR_CLK_EDGE bound to: SAME_EDGE - type: string 
+	Parameter INIT bound to: 1'b0 
+	Parameter IS_C_INVERTED bound to: 1'b0 
+	Parameter IS_D1_INVERTED bound to: 1'b0 
+	Parameter IS_D2_INVERTED bound to: 1'b0 
+	Parameter SRTYPE bound to: SYNC - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'ODDR' (17#1) [C:/Xilinx/Vivado/2019.1/scripts/rt/data/unisim_comp.v:49468]
+INFO: [Synth 8-6157] synthesizing module 'OBUFDS' [C:/Xilinx/Vivado/2019.1/scripts/rt/data/unisim_comp.v:46012]
+	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
+	Parameter IOSTANDARD bound to: LVDS_25 - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'OBUFDS' (18#1) [C:/Xilinx/Vivado/2019.1/scripts/rt/data/unisim_comp.v:46012]
+INFO: [Synth 8-6155] done synthesizing module 'dac_data_out' (19#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/dac/dac_data_out.v:4]
+INFO: [Synth 8-6157] synthesizing module 'mem_2kx16' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/mem_2kx16_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'mem_2kx16' (20#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/mem_2kx16_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'phase_acc' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/phase_acc.v:4]
+	Parameter MAX_CNT_BL bound to: 1000 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_acc' (21#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/phase_acc.v:4]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/u_dac.v:174]
+INFO: [Synth 8-6157] synthesizing module 'ila_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/ila_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'ila_0' (22#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-1704-vovag/realtime/ila_0_stub.v:6]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ila0'. This will prevent further optimization [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/u_dac.v:174]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ph_acc'. This will prevent further optimization [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/u_dac.v:163]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'mem_dac'. This will prevent further optimization [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/u_dac.v:147]
+WARNING: [Synth 8-6014] Unused sequential element z_sync_reg was removed.  [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/u_dac.v:122]
+INFO: [Synth 8-6155] done synthesizing module 'u_dac' (23#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/u_dac.v:3]
+WARNING: [Synth 8-689] width (32) of port connection 'i_addr' does not match port width (16) of module 'u_dac' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/sparrow5_top.v:347]
+WARNING: [Synth 8-689] width (2) of port connection 'i_sync' does not match port width (1) of module 'u_dac' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/sparrow5_top.v:354]
+INFO: [Synth 8-6157] synthesizing module 'u_spi' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/u_spi.v:3]
+INFO: [Synth 8-6157] synthesizing module 'spi_master3p' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/lib/spi_master3p.v:3]
+	Parameter LEN bound to: 8 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'spi_master3p' (24#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/lib/spi_master3p.v:3]
+INFO: [Synth 8-155] case statement is not full and has no default [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/u_spi.v:117]
+INFO: [Synth 8-6155] done synthesizing module 'u_spi' (25#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/u_spi.v:3]
+INFO: [Synth 8-155] case statement is not full and has no default [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/sparrow5_top.v:413]
+WARNING: [Synth 8-3848] Net o_zz in module/entity sparrow5_top does not have driver. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/sparrow5_top.v:98]
+WARNING: [Synth 8-3848] Net ug_irq in module/entity sparrow5_top does not have driver. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/sparrow5_top.v:146]
+WARNING: [Synth 8-3848] Net odat_us in module/entity sparrow5_top does not have driver. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/sparrow5_top.v:403]
+INFO: [Synth 8-6155] done synthesizing module 'sparrow5_top' (26#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/sparrow5_top.v:14]
+WARNING: [Synth 8-3331] design u_spi has unconnected port i_data[15]
+WARNING: [Synth 8-3331] design u_spi has unconnected port i_data[14]
+WARNING: [Synth 8-3331] design u_spi has unconnected port i_data[13]
+WARNING: [Synth 8-3331] design u_spi has unconnected port i_data[12]
+WARNING: [Synth 8-3331] design u_spi has unconnected port i_data[11]
+WARNING: [Synth 8-3331] design u_spi has unconnected port i_data[10]
+WARNING: [Synth 8-3331] design u_spi has unconnected port i_data[9]
+WARNING: [Synth 8-3331] design u_spi has unconnected port i_data[8]
+WARNING: [Synth 8-3331] design u_dac has unconnected port i_addr[0]
+WARNING: [Synth 8-3331] design u_dac has unconnected port i_sync
+WARNING: [Synth 8-3331] design s00_couplers_imp_1TO1A0A has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design s00_couplers_imp_1TO1A0A has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design m01_couplers_imp_1TCPY7H has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design m01_couplers_imp_1TCPY7H has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design m01_couplers_imp_1TCPY7H has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design m01_couplers_imp_1TCPY7H has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design m00_couplers_imp_13NPGDN has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design m00_couplers_imp_13NPGDN has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design m00_couplers_imp_13NPGDN has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design m00_couplers_imp_13NPGDN has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design sparrow_ps has unconnected port spi0_miso
+WARNING: [Synth 8-3331] design sparrow_ps_v has unconnected port sys_err_i
+WARNING: [Synth 8-3331] design sparrow_ps_v has unconnected port sys_ack_i
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[15]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[14]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[13]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[12]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[11]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[10]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[9]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[8]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[7]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[6]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[5]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[4]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[3]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[2]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[1]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[0]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[11]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[10]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[9]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[8]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[7]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[6]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[5]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[4]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[3]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[2]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[1]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[0]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port i_sync[1]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 913.309 ; gain = 247.609
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 913.309 ; gain = 247.609
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 913.309 ; gain = 247.609
+---------------------------------------------------------------------------------
+INFO: [Netlist 29-17] Analyzing 16 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc] for cell 'i_ps/system_i/sparrow_ps_i/processing_system7_0'
+Finished Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc] for cell 'i_ps/system_i/sparrow_ps_i/processing_system7_0'
+Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_rst_ps7_0_50M_0/sparrow_ps_rst_ps7_0_50M_0/sparrow_ps_rst_ps7_0_50M_0_in_context.xdc] for cell 'i_ps/system_i/sparrow_ps_i/rst_ps7_0_50M'
+Finished Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_rst_ps7_0_50M_0/sparrow_ps_rst_ps7_0_50M_0/sparrow_ps_rst_ps7_0_50M_0_in_context.xdc] for cell 'i_ps/system_i/sparrow_ps_i/rst_ps7_0_50M'
+Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_xadc_wiz_0_0/sparrow_ps_xadc_wiz_0_0/sparrow_ps_xadc_wiz_0_0_in_context.xdc] for cell 'i_ps/system_i/sparrow_ps_i/xadc_wiz_0'
+Finished Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_xadc_wiz_0_0/sparrow_ps_xadc_wiz_0_0/sparrow_ps_xadc_wiz_0_0_in_context.xdc] for cell 'i_ps/system_i/sparrow_ps_i/xadc_wiz_0'
+Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_xbar_0/sparrow_ps_xbar_0/sparrow_ps_xbar_0_in_context.xdc] for cell 'i_ps/system_i/sparrow_ps_i/ps7_0_axi_periph/xbar'
+Finished Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_xbar_0/sparrow_ps_xbar_0/sparrow_ps_xbar_0_in_context.xdc] for cell 'i_ps/system_i/sparrow_ps_i/ps7_0_axi_periph/xbar'
+Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_auto_pc_0/sparrow_ps_auto_pc_0/sparrow_ps_auto_pc_0_in_context.xdc] for cell 'i_ps/system_i/sparrow_ps_i/ps7_0_axi_periph/s00_couplers/auto_pc'
+Finished Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_auto_pc_0/sparrow_ps_auto_pc_0/sparrow_ps_auto_pc_0_in_context.xdc] for cell 'i_ps/system_i/sparrow_ps_i/ps7_0_axi_periph/s00_couplers/auto_pc'
+Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/ila_0/ila_0/ila_0_in_context.xdc] for cell 'u_dac_/ila0'
+Finished Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/ila_0/ila_0/ila_0_in_context.xdc] for cell 'u_dac_/ila0'
+Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/pll24_80/pll24_80/pll24_80_in_context.xdc] for cell 'pll1'
+Finished Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/pll24_80/pll24_80/pll24_80_in_context.xdc] for cell 'pll1'
+Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/mem_2kx16/mem_2kx16/mem_2kx16_in_context.xdc] for cell 'u_dac_/mem_dac'
+Finished Parsing XDC File [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/mem_2kx16/mem_2kx16/mem_2kx16_in_context.xdc] for cell 'u_dac_/mem_dac'
+Parsing XDC File [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc]
+INFO: [Constraints 18-483] create_clock: no pin(s)/port(s)/net(s) specified as objects, only virtual clock 'VIRTUAL_clk_out1_pll24_80' will be created. If you don't want this, please specify pin(s)/ports(s)/net(s) as objects to the command. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:2]
+INFO: [Constraints 18-483] create_clock: no pin(s)/port(s)/net(s) specified as objects, only virtual clock 'VIRTUAL_clk_out2_pll24_80' will be created. If you don't want this, please specify pin(s)/ports(s)/net(s) as objects to the command. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:11]
+WARNING: [Vivado 12-627] No clocks matched 'clk_fpga_0'. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:40]
+INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:40]
+WARNING: [Vivado 12-627] No clocks matched 'clk_fpga_1'. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:40]
+INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:40]
+WARNING: [Vivado 12-627] No clocks matched 'clk_fpga_1'. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:41]
+INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:41]
+WARNING: [Vivado 12-627] No clocks matched 'clk_fpga_0'. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:41]
+INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:41]
+WARNING: [Vivado 12-627] No clocks matched 'clk_fpga_0'. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:42]
+INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:42]
+WARNING: [Vivado 12-508] No pins matched 'pll1/inst/plle2_adv_inst/CLKOUT0'. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:42]
+WARNING: [Vivado 12-627] No clocks matched 'clk_fpga_1'. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:43]
+INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:43]
+WARNING: [Vivado 12-508] No pins matched 'pll1/inst/plle2_adv_inst/CLKOUT0'. [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc:43]
+Finished Parsing XDC File [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/sparrow5_top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+Parsing XDC File [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/sparrow5_top.xdc]
+Finished Parsing XDC File [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/sparrow5_top.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/sparrow5_top.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/sparrow5_top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/sparrow5_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/dont_touch.xdc]
+Finished Parsing XDC File [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1043.773 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1043.773 ; gain = 0.000
+WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'i_ps/system_i/sparrow_ps_i/xadc_wiz_0' at clock pin 's_axi_aclk' is different from the actual clock period '5.250', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'u_dac_/ila0' at clock pin 'clk' is different from the actual clock period '3.968', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'u_dac_/mem_dac' at clock pin 'clka' is different from the actual clock period '5.250', this can lead to different synthesis results.
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1046.727 ; gain = 381.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z007sclg225-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1046.727 ; gain = 381.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[0]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 5).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[0]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 6).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[10]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 7).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[10]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 8).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[11]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 9).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[11]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 10).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[12]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 11).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[12]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 12).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[13]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 13).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[13]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 14).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[14]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 15).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[14]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 16).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[1]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 17).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[1]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 18).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[2]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 19).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[2]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 20).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[3]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 21).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[3]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 22).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[4]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 23).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[4]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 24).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[5]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 25).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[5]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 26).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[6]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 27).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[6]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 28).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[7]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 29).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[7]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 30).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[8]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 31).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[8]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 32).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[9]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 33).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[9]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 34).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_ba[0]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 35).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_ba[0]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 36).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_ba[1]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 37).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_ba[1]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 38).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_ba[2]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 39).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_ba[2]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 40).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_cas_n. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 41).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_cas_n. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 42).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_cke. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 43).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_cke. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 44).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_cs_n. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 45).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_cs_n. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 46).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_ck_p. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 47).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_ck_p. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 48).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_ck_n. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 49).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_ck_n. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 50).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dm[0]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 51).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dm[0]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 52).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dm[1]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 53).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dm[1]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 54).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dqs_p[0]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 55).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dqs_p[0]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 56).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dqs_p[1]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 57).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dqs_p[1]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 58).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dqs_n[0]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 59).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dqs_n[0]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 60).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dqs_n[1]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 61).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dqs_n[1]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 62).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[0]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 63).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[0]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 64).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[10]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 65).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[10]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 66).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[11]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 67).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[11]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 68).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[12]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 69).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[12]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 70).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[13]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 71).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[13]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 72).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[14]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 73).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[14]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 74).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[15]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 75).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[15]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 76).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[1]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 77).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[1]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 78).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[2]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 79).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[2]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 80).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[3]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 81).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[3]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 82).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[4]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 83).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[4]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 84).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[5]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 85).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[5]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 86).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[6]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 87).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[6]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 88).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[7]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 89).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[7]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 90).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[8]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 91).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[8]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 92).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[9]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 93).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[9]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 94).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_reset_n. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 95).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_reset_n. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 96).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_odt. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 97).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_odt. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 98).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_ras_n. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 99).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_ras_n. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 100).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ddr_vrn. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 101).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ddr_vrn. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 102).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ddr_vrp. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 103).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ddr_vrp. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 104).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_we_n. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 105).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_we_n. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 106).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[0]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 107).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[0]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 108).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[10]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 109).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[10]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 110).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[11]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 111).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[11]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 112).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[12]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 113).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[12]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 114).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[13]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 115).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[13]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 116).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[14]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 117).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[14]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 118).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[15]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 119).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[15]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 120).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[16]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 121).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[16]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 122).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[17]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 123).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[17]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 124).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[18]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 125).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[18]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 126).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[19]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 127).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[19]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 128).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[1]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 129).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[1]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 130).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[20]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 131).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[20]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 132).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[21]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 133).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[21]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 134).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[22]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 135).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[22]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 136).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[23]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 137).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[23]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 138).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[24]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 139).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[24]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 140).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[25]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 141).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[25]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 142).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[26]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 143).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[26]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 144).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[27]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 145).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[27]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 146).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[28]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 147).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[28]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 148).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[29]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 149).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[29]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 150).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[2]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 151).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[2]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 152).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[30]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 153).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[30]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 154).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[31]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 155).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[31]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 156).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[3]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 157).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[3]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 158).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[4]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 159).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[4]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 160).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[5]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 161).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[5]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 162).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[6]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 163).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[6]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 164).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[7]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 165).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[7]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 166).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[8]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 167).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[8]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 168).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[9]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 169).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[9]. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 170).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ps_clk. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 171).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ps_clk. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 172).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ps_porb. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 173).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ps_porb. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 174).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ps_srstb. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 175).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ps_srstb. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_in_context.xdc, line 176).
+Applied set_property IO_BUFFER_TYPE = NONE for i_clk24. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/pll24_80/pll24_80/pll24_80_in_context.xdc, line 6).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for i_clk24. (constraint file  d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/pll24_80/pll24_80/pll24_80_in_context.xdc, line 7).
+Applied set_property DONT_TOUCH = true for i_ps/system_i/sparrow_ps_i. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for i_ps/system_i/sparrow_ps_i/processing_system7_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for i_ps/system_i/sparrow_ps_i/rst_ps7_0_50M. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for i_ps/system_i/sparrow_ps_i/xadc_wiz_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for i_ps/system_i/sparrow_ps_i/ps7_0_axi_periph/xbar. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for i_ps/system_i/sparrow_ps_i/ps7_0_axi_periph. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for i_ps/system_i/sparrow_ps_i/ps7_0_axi_periph/s00_couplers/auto_pc. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for u_dac_/ila0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pll1. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for u_dac_/mem_dac. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1046.727 ; gain = 381.027
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4471] merging register 'o_busy_reg' into 'enCntD_reg' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/lib/spi_master3p.v:115]
+INFO: [Synth 8-5546] ROM "rdata" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-327] inferring latch for variable 'o_data_reg' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/u_spi.v:119]
+WARNING: [Synth 8-327] inferring latch for variable 'rdata_reg' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/sparrow5_top.v:290]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1046.727 ; gain = 381.027
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     14 Bit       Adders := 1     
+	   2 Input     10 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 4     
+	               16 Bit    Registers := 8     
+	               14 Bit    Registers := 1     
+	               10 Bit    Registers := 1     
+	                8 Bit    Registers := 5     
+	                6 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 3     
+	                2 Bit    Registers := 3     
+	                1 Bit    Registers := 17    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 4     
+	   2 Input     16 Bit        Muxes := 8     
+	   4 Input     16 Bit        Muxes := 1     
+	   5 Input     16 Bit        Muxes := 1     
+	   2 Input     14 Bit        Muxes := 5     
+	   2 Input     13 Bit        Muxes := 1     
+	   2 Input     10 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 2     
+	   3 Input      4 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 21    
+	   6 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module sparrow5_top 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input     16 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 4     
+	   5 Input     16 Bit        Muxes := 1     
+Module axi_slave 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 4     
+	                4 Bit    Registers := 3     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 7     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 4     
+	   3 Input      4 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 4     
+Module sepia_time 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module phase_acc 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 1     
++---Registers : 
+	               10 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     10 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+Module u_dac 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     14 Bit       Adders := 1     
++---Registers : 
+	               16 Bit    Registers := 8     
+	               14 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 4     
+	   2 Input     14 Bit        Muxes := 5     
+	   2 Input     13 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 8     
+Module spi_master3p 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      6 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 1     
++---Registers : 
+	                8 Bit    Registers := 2     
+	                6 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 6     
+Module u_spi 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      1 Bit         XORs := 1     
++---Registers : 
+	                8 Bit    Registers := 3     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+	   6 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 66 (col length:40)
+BRAMs: 100 (col length: RAMB18 40 RAMB36 20)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+WARNING: [Synth 8-3331] design u_dac has unconnected port i_addr[0]
+WARNING: [Synth 8-3331] design u_dac has unconnected port i_sync
+WARNING: [Synth 8-3331] design sparrow_ps_ps7_0_axi_periph_0 has unconnected port M00_ACLK
+WARNING: [Synth 8-3331] design sparrow_ps_ps7_0_axi_periph_0 has unconnected port M00_ARESETN
+WARNING: [Synth 8-3331] design sparrow_ps_ps7_0_axi_periph_0 has unconnected port M01_ACLK
+WARNING: [Synth 8-3331] design sparrow_ps_ps7_0_axi_periph_0 has unconnected port M01_ARESETN
+WARNING: [Synth 8-3331] design sparrow_ps has unconnected port spi0_miso
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[15]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[14]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[13]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[12]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[11]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[10]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[9]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[8]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[7]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[6]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[5]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[4]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[3]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[2]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[1]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port o_zz[0]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[11]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[10]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[9]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[8]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[7]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[6]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[5]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[4]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[3]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[2]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[1]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[0]
+WARNING: [Synth 8-3331] design sparrow5_top has unconnected port i_sync[1]
+INFO: [Synth 8-3886] merging instance 'u_spi_/o_data_reg[8]' (LD) to 'u_spi_/o_data_reg[15]'
+INFO: [Synth 8-3886] merging instance 'u_spi_/o_data_reg[9]' (LD) to 'u_spi_/o_data_reg[15]'
+INFO: [Synth 8-3886] merging instance 'u_spi_/o_data_reg[10]' (LD) to 'u_spi_/o_data_reg[15]'
+INFO: [Synth 8-3886] merging instance 'u_spi_/o_data_reg[11]' (LD) to 'u_spi_/o_data_reg[15]'
+INFO: [Synth 8-3886] merging instance 'u_spi_/o_data_reg[12]' (LD) to 'u_spi_/o_data_reg[15]'
+INFO: [Synth 8-3886] merging instance 'u_spi_/o_data_reg[13]' (LD) to 'u_spi_/o_data_reg[15]'
+INFO: [Synth 8-3886] merging instance 'u_spi_/o_data_reg[14]' (LD) to 'u_spi_/o_data_reg[15]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\u_spi_/o_data_reg[15] )
+WARNING: [Synth 8-3332] Sequential element (u_spi_/o_data_reg[15]) is unused and will be removed from module sparrow5_top.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1046.727 ; gain = 381.027
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5578] Moved timing constraint from pin 'i_ps/system_i/sparrow_ps_i/processing_system7_0/FCLK_CLK0' to pin 'i_ps/system_i/sparrow_ps_i/processing_system7_0/bbstub_FCLK_CLK0/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'i_ps/system_i/sparrow_ps_i/processing_system7_0/FCLK_CLK1' to pin 'i_ps/system_i/sparrow_ps_i/processing_system7_0/bbstub_FCLK_CLK1/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'i_ps/system_i/sparrow_ps_i/processing_system7_0/FCLK_CLK2' to pin 'i_ps/system_i/sparrow_ps_i/processing_system7_0/bbstub_FCLK_CLK2/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'i_ps/system_i/sparrow_ps_i/processing_system7_0/FCLK_CLK3' to pin 'i_ps/system_i/sparrow_ps_i/processing_system7_0/bbstub_FCLK_CLK3/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'pll1/clk_out1' to pin 'pll1/bbstub_clk_out1/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'pll1/clk_out2' to pin 'pll1/bbstub_clk_out2/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'pll1/clk_out3' to pin 'pll1/bbstub_clk_out3/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'pll1/clk_out4' to pin 'pll1/bbstub_clk_out4/O'
+INFO: [Synth 8-5819] Moved 8 constraints on hierarchical pins to their respective driving/loading pins
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1046.727 ; gain = 381.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1046.727 ; gain = 381.027
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1046.727 ; gain = 381.027
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3295] tying undriven pin tt_odat_inferred:in0 to constant 0
+INFO: [Synth 8-4560] design has 4 instantiated BUFGs while the available bufg limit from the part is 3
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1046.727 ; gain = 381.027
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1046.727 ; gain = 381.027
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1046.727 ; gain = 381.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1046.727 ; gain = 381.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1046.727 ; gain = 381.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1046.727 ; gain = 381.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+----------------------------------+----------+
+|      |BlackBox name                     |Instances |
++------+----------------------------------+----------+
+|1     |mem_2kx16                         |         1|
+|2     |ila_0                             |         1|
+|3     |pll24_80                          |         1|
+|4     |sparrow_ps_xbar_0                 |         1|
+|5     |sparrow_ps_auto_pc_0              |         1|
+|6     |sparrow_ps_processing_system7_0_0 |         1|
+|7     |sparrow_ps_rst_ps7_0_50M_0        |         1|
+|8     |sparrow_ps_xadc_wiz_0_0           |         1|
++------+----------------------------------+----------+
+
+Report Cell Usage: 
++------+----------------------------------+------+
+|      |Cell                              |Count |
++------+----------------------------------+------+
+|1     |ila_0                             |     1|
+|2     |mem_2kx16                         |     1|
+|3     |pll24_80                          |     1|
+|4     |sparrow_ps_auto_pc_0              |     1|
+|5     |sparrow_ps_processing_system7_0_0 |     1|
+|6     |sparrow_ps_rst_ps7_0_50M_0        |     1|
+|7     |sparrow_ps_xadc_wiz_0_0           |     1|
+|8     |sparrow_ps_xbar_0                 |     1|
+|9     |BUFG                              |     4|
+|10    |CARRY4                            |    14|
+|11    |LUT1                              |     7|
+|12    |LUT2                              |    34|
+|13    |LUT3                              |    93|
+|14    |LUT4                              |    60|
+|15    |LUT5                              |    28|
+|16    |LUT6                              |   165|
+|17    |ODDR                              |     7|
+|18    |FDCE                              |    51|
+|19    |FDE_1                             |    16|
+|20    |FDRE                              |   329|
+|21    |LD                                |    24|
+|22    |IOBUF                             |     1|
+|23    |OBUF                              |     2|
+|24    |OBUFDS                            |     9|
+|25    |OBUFT                             |    16|
++------+----------------------------------+------+
+
+Report Instance Areas: 
++------+----------------------------+------------------------------+------+
+|      |Instance                    |Module                        |Cells |
++------+----------------------------+------------------------------+------+
+|1     |top                         |                              |  1587|
+|2     |  u_dac_                    |u_dac                         |   468|
+|3     |    ph_acc                  |phase_acc                     |   131|
+|4     |    \dac_data[0].dac_data_  |dac_data_out                  |     6|
+|5     |    \dac_data[1].dac_data_  |dac_data_out_0                |     6|
+|6     |    \dac_data[2].dac_data_  |dac_data_out_1                |     6|
+|7     |    \dac_data[3].dac_data_  |dac_data_out_2                |     6|
+|8     |    \dac_data[4].dac_data_  |dac_data_out_3                |     6|
+|9     |    \dac_data[5].dac_data_  |dac_data_out_4                |     6|
+|10    |    \dac_data[6].dac_data_  |dac_data_out_5                |     5|
+|11    |  i_ps                      |sparrow_ps_v                  |   969|
+|12    |    i_gp0_slave             |axi_slave                     |   232|
+|13    |    system_i                |sparrow_ps_wrapper            |   691|
+|14    |      sparrow_ps_i          |sparrow_ps                    |   690|
+|15    |        ps7_0_axi_periph    |sparrow_ps_ps7_0_axi_periph_0 |   440|
+|16    |          s00_couplers      |s00_couplers_imp_1TO1A0A      |   177|
+|17    |  u_spi_                    |u_spi                         |   110|
+|18    |    spi_                    |spi_master3p                  |    72|
++------+----------------------------+------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1046.727 ; gain = 381.027
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 40 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 1046.727 ; gain = 247.609
+Synthesis Optimization Complete : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1046.727 ; gain = 381.027
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 71 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1052.746 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 41 instances were transformed.
+  FDE_1 => FDRE (inverted pins: C): 16 instances
+  IOBUF => IOBUF (IBUF, OBUFT): 1 instances
+  LD => LDCE: 24 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+133 Infos, 123 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1052.746 ; gain = 637.359
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1052.746 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/sparrow5_top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file sparrow5_top_utilization_synth.rpt -pb sparrow5_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Mon Mar 31 00:28:20 2025...
