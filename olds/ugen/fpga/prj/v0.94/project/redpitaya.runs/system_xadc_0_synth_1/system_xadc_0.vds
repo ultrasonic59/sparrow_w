@@ -1,0 +1,118 @@
+#-----------------------------------------------------------
+# Vivado v2016.4 (64-bit)
+# SW Build 1733598 on Wed Dec 14 22:35:42 MST 2016
+# IP Build 1731160 on Wed Dec 14 23:47:21 MST 2016
+# Start of session at: Thu Mar 16 19:17:44 2017
+# Process ID: 6539
+# Current directory: /home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.runs/system_xadc_0_synth_1
+# Command line: vivado -log system_xadc_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_xadc_0.tcl
+# Log file: /home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.runs/system_xadc_0_synth_1/system_xadc_0.vds
+# Journal file: /home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.runs/system_xadc_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source system_xadc_0.tcl -notrace
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:17 . Memory (MB): peak = 1076.426 ; gain = 152.082 ; free physical = 239 ; free virtual = 2167
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/system_xadc_0.v:53]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_axi_xadc' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/system_xadc_0_axi_xadc.vhd:246]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_axi_lite_ipif' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/axi_lite_ipif_v1_01_a/hdl/src/vhdl/system_xadc_0_axi_lite_ipif.vhd:241]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_slave_attachment' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/axi_lite_ipif_v1_01_a/hdl/src/vhdl/system_xadc_0_slave_attachment.vhd:227]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_address_decoder' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/axi_lite_ipif_v1_01_a/hdl/src/vhdl/system_xadc_0_address_decoder.vhd:176]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized0' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized0' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized1' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized1' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized2' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized2' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized3' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized3' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized4' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized4' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized5' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized5' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized6' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized6' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized7' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized7' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized8' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized8' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized9' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized9' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized10' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized10' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized11' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized11' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized12' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized12' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized13' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized13' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized14' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized14' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized15' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized15' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized16' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized16' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized17' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized17' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized18' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized18' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized19' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized19' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized20' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized20' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized21' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized21' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized22' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized22' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized23' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized23' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized24' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized24' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_pselect_f__parameterized25' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_pselect_f__parameterized25' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_address_decoder' (2#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/axi_lite_ipif_v1_01_a/hdl/src/vhdl/system_xadc_0_address_decoder.vhd:176]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_slave_attachment' (3#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/axi_lite_ipif_v1_01_a/hdl/src/vhdl/system_xadc_0_slave_attachment.vhd:227]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_axi_lite_ipif' (4#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/axi_lite_ipif_v1_01_a/hdl/src/vhdl/system_xadc_0_axi_lite_ipif.vhd:241]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_xadc_core_drp' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/system_xadc_0_xadc_core_drp.vhd:194]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_xadc_core_drp' (5#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/system_xadc_0_xadc_core_drp.vhd:194]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_soft_reset' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_soft_reset.vhd:142]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_soft_reset' (6#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/proc_common_v3_30_a/hdl/src/vhdl/system_xadc_0_soft_reset.vhd:142]
+INFO: [Synth 8-638] synthesizing module 'system_xadc_0_interrupt_control' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/interrupt_control_v2_01_a/hdl/src/vhdl/system_xadc_0_interrupt_control.vhd:240]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_interrupt_control' (7#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/interrupt_control_v2_01_a/hdl/src/vhdl/system_xadc_0_interrupt_control.vhd:240]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0_axi_xadc' (8#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/system_xadc_0_axi_xadc.vhd:246]
+INFO: [Synth 8-256] done synthesizing module 'system_xadc_0' (9#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_xadc_0/system_xadc_0.v:53]
+Finished RTL Elaboration : Time (s): cpu = 00:00:15 ; elapsed = 00:00:24 . Memory (MB): peak = 1145.902 ; gain = 221.559 ; free physical = 167 ; free virtual = 2097
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:24 . Memory (MB): peak = 1145.902 ; gain = 221.559 ; free physical = 167 ; free virtual = 2097
+INFO: [Device 21-403] Loading part xc7z010clg400-1
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.06 . Memory (MB): peak = 1395.844 ; gain = 0.004 ; free physical = 67 ; free virtual = 1930
+Finished Constraint Validation : Time (s): cpu = 00:00:26 ; elapsed = 00:00:39 . Memory (MB): peak = 1395.844 ; gain = 471.500 ; free physical = 77 ; free virtual = 1929
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:26 ; elapsed = 00:00:39 . Memory (MB): peak = 1395.844 ; gain = 471.500 ; free physical = 77 ; free virtual = 1929
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:40 . Memory (MB): peak = 1395.844 ; gain = 471.500 ; free physical = 76 ; free virtual = 1930
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:27 ; elapsed = 00:00:41 . Memory (MB): peak = 1395.844 ; gain = 471.500 ; free physical = 70 ; free virtual = 1927
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:29 ; elapsed = 00:00:43 . Memory (MB): peak = 1395.848 ; gain = 471.504 ; free physical = 71 ; free virtual = 1907
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:38 ; elapsed = 00:00:54 . Memory (MB): peak = 1395.848 ; gain = 471.504 ; free physical = 63 ; free virtual = 1868
+Finished Timing Optimization : Time (s): cpu = 00:00:39 ; elapsed = 00:00:55 . Memory (MB): peak = 1411.848 ; gain = 487.504 ; free physical = 72 ; free virtual = 1840
+Finished Technology Mapping : Time (s): cpu = 00:00:39 ; elapsed = 00:00:56 . Memory (MB): peak = 1411.848 ; gain = 487.504 ; free physical = 67 ; free virtual = 1835
+Finished IO Insertion : Time (s): cpu = 00:00:40 ; elapsed = 00:00:56 . Memory (MB): peak = 1411.852 ; gain = 487.508 ; free physical = 67 ; free virtual = 1835
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:40 ; elapsed = 00:00:56 . Memory (MB): peak = 1411.852 ; gain = 487.508 ; free physical = 66 ; free virtual = 1835
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:40 ; elapsed = 00:00:56 . Memory (MB): peak = 1411.852 ; gain = 487.508 ; free physical = 66 ; free virtual = 1835
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:40 ; elapsed = 00:00:56 . Memory (MB): peak = 1411.852 ; gain = 487.508 ; free physical = 66 ; free virtual = 1835
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:40 ; elapsed = 00:00:56 . Memory (MB): peak = 1411.852 ; gain = 487.508 ; free physical = 66 ; free virtual = 1835
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:40 ; elapsed = 00:00:56 . Memory (MB): peak = 1411.852 ; gain = 487.508 ; free physical = 66 ; free virtual = 1835
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT1 |     2|
+|2     |LUT2 |    37|
+|3     |LUT3 |    23|
+|4     |LUT4 |    21|
+|5     |LUT5 |    50|
+|6     |LUT6 |    63|
+|7     |XADC |     1|
+|8     |FDRE |   205|
+|9     |FDSE |    30|
++------+-----+------+
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:40 ; elapsed = 00:00:56 . Memory (MB): peak = 1411.852 ; gain = 487.508 ; free physical = 66 ; free virtual = 1835
+synth_design: Time (s): cpu = 00:00:38 ; elapsed = 00:00:48 . Memory (MB): peak = 1411.855 ; gain = 417.008 ; free physical = 71 ; free virtual = 1837

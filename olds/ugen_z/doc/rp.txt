@@ -1,0 +1,1 @@
+C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\promgen -w -b -p bin -o fpga.bin -u 0 red_pitaya_top.bit -data_width 32

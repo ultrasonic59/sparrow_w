@@ -1,0 +1,63 @@
+#-----------------------------------------------------------
+# Vivado v2016.4 (64-bit)
+# SW Build 1733598 on Wed Dec 14 22:35:42 MST 2016
+# IP Build 1731160 on Wed Dec 14 23:47:21 MST 2016
+# Start of session at: Thu Mar 16 19:13:39 2017
+# Process ID: 6214
+# Current directory: /home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.runs/system_proc_sys_reset_0_synth_1
+# Command line: vivado -log system_proc_sys_reset_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_proc_sys_reset_0.tcl
+# Log file: /home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.runs/system_proc_sys_reset_0_synth_1/system_proc_sys_reset_0.vds
+# Journal file: /home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.runs/system_proc_sys_reset_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source system_proc_sys_reset_0.tcl -notrace
+Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:15 . Memory (MB): peak = 1074.430 ; gain = 150.082 ; free physical = 177 ; free virtual = 2182
+INFO: [Synth 8-638] synthesizing module 'system_proc_sys_reset_0' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_proc_sys_reset_0/synth/system_proc_sys_reset_0.vhd:71]
+INFO: [Synth 8-638] synthesizing module 'proc_sys_reset' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/04b4/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1323]
+INFO: [Synth 8-638] synthesizing module 'lpf' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/04b4/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:816]
+INFO: [Synth 8-638] synthesizing module 'SRL16' [/opt/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:43312]
+INFO: [Synth 8-256] done synthesizing module 'SRL16' (1#1) [/opt/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:43312]
+INFO: [Synth 8-638] synthesizing module 'cdc_sync' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/52cb/hdl/lib_cdc_v1_0_rfs.vhd:106]
+INFO: [Synth 8-256] done synthesizing module 'cdc_sync' (2#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/52cb/hdl/lib_cdc_v1_0_rfs.vhd:106]
+INFO: [Synth 8-256] done synthesizing module 'lpf' (3#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/04b4/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:816]
+INFO: [Synth 8-638] synthesizing module 'sequence_psr' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/04b4/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:301]
+INFO: [Synth 8-638] synthesizing module 'upcnt_n' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/04b4/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:125]
+INFO: [Synth 8-256] done synthesizing module 'upcnt_n' (4#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/04b4/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:125]
+INFO: [Synth 8-256] done synthesizing module 'sequence_psr' (5#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/04b4/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:301]
+INFO: [Synth 8-256] done synthesizing module 'proc_sys_reset' (6#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/04b4/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1323]
+INFO: [Synth 8-256] done synthesizing module 'system_proc_sys_reset_0' (7#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_proc_sys_reset_0/synth/system_proc_sys_reset_0.vhd:71]
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:16 . Memory (MB): peak = 1115.906 ; gain = 191.559 ; free physical = 133 ; free virtual = 2140
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:16 . Memory (MB): peak = 1115.906 ; gain = 191.559 ; free physical = 133 ; free virtual = 2140
+INFO: [Device 21-403] Loading part xc7z010clg400-1
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.04 . Memory (MB): peak = 1388.887 ; gain = 0.004 ; free physical = 73 ; free virtual = 1989
+Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:32 . Memory (MB): peak = 1388.887 ; gain = 464.539 ; free physical = 71 ; free virtual = 1988
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:32 . Memory (MB): peak = 1388.887 ; gain = 464.539 ; free physical = 71 ; free virtual = 1989
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:32 . Memory (MB): peak = 1388.887 ; gain = 464.539 ; free physical = 70 ; free virtual = 1989
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:22 ; elapsed = 00:00:32 . Memory (MB): peak = 1388.887 ; gain = 464.539 ; free physical = 76 ; free virtual = 1983
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:33 . Memory (MB): peak = 1388.887 ; gain = 464.539 ; free physical = 79 ; free virtual = 1967
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:33 ; elapsed = 00:00:46 . Memory (MB): peak = 1388.887 ; gain = 464.539 ; free physical = 75 ; free virtual = 1931
+Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:46 . Memory (MB): peak = 1388.887 ; gain = 464.539 ; free physical = 74 ; free virtual = 1931
+Finished Technology Mapping : Time (s): cpu = 00:00:33 ; elapsed = 00:00:46 . Memory (MB): peak = 1388.887 ; gain = 464.539 ; free physical = 73 ; free virtual = 1914
+Finished IO Insertion : Time (s): cpu = 00:00:33 ; elapsed = 00:00:46 . Memory (MB): peak = 1388.887 ; gain = 464.539 ; free physical = 73 ; free virtual = 1914
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:33 ; elapsed = 00:00:46 . Memory (MB): peak = 1388.887 ; gain = 464.539 ; free physical = 73 ; free virtual = 1914
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:33 ; elapsed = 00:00:46 . Memory (MB): peak = 1388.887 ; gain = 464.539 ; free physical = 73 ; free virtual = 1914
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:33 ; elapsed = 00:00:46 . Memory (MB): peak = 1388.887 ; gain = 464.539 ; free physical = 73 ; free virtual = 1914
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:33 ; elapsed = 00:00:47 . Memory (MB): peak = 1388.887 ; gain = 464.539 ; free physical = 73 ; free virtual = 1914
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:33 ; elapsed = 00:00:47 . Memory (MB): peak = 1388.887 ; gain = 464.539 ; free physical = 73 ; free virtual = 1914
+
+Report Cell Usage: 
++------+------+------+
+|      |Cell  |Count |
++------+------+------+
+|1     |LUT1  |     5|
+|2     |LUT2  |     9|
+|3     |LUT3  |     1|
+|4     |LUT4  |     6|
+|5     |LUT5  |     2|
+|6     |LUT6  |     1|
+|7     |SRL16 |     1|
+|8     |FDR   |     8|
+|9     |FDRE  |    25|
+|10    |FDSE  |     4|
++------+------+------+
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:33 ; elapsed = 00:00:47 . Memory (MB): peak = 1388.887 ; gain = 464.539 ; free physical = 73 ; free virtual = 1914
+synth_design: Time (s): cpu = 00:00:31 ; elapsed = 00:00:40 . Memory (MB): peak = 1388.891 ; gain = 394.039 ; free physical = 71 ; free virtual = 1908

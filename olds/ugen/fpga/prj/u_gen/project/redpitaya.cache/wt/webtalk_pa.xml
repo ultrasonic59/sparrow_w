@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+<!--The data in this file is primarily intended for consumption by Xilinx tools.
+The structure and the elements are likely to change over the next few releases.
+This means code written to parse this file will need to be revisited each subsequent release.-->
+<application name="pa" timeStamp="Thu Feb 18 21:54:54 2021">
+<section name="Project Information" visible="false">
+<property name="ProjectID" value="f75bda1e618b40b28ef29c0158a365fa" type="ProjectID"/>
+<property name="ProjectIteration" value="76" type="ProjectIteration"/>
+</section>
+<section name="PlanAhead Usage" visible="true">
+<item name="Project Data">
+<property name="SrcSetCount" value="1" type="SrcSetCount"/>
+<property name="ConstraintSetCount" value="1" type="ConstraintSetCount"/>
+<property name="DesignMode" value="RTL" type="DesignMode"/>
+<property name="SynthesisStrategy" value="Vivado Synthesis Defaults" type="SynthesisStrategy"/>
+<property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
+</item>
+<item name="Java Command Handlers">
+<property name="AddSources" value="8" type="JavaHandler"/>
+<property name="AutoConnectTarget" value="7" type="JavaHandler"/>
+<property name="CloseProject" value="1" type="JavaHandler"/>
+<property name="EditCopy" value="1" type="JavaHandler"/>
+<property name="EditDelete" value="22" type="JavaHandler"/>
+<property name="FlipToViewTaskImplementation" value="2" type="JavaHandler"/>
+<property name="LaunchProgramFpga" value="51" type="JavaHandler"/>
+<property name="OpenFile" value="2" type="JavaHandler"/>
+<property name="OpenHardwareManager" value="18" type="JavaHandler"/>
+<property name="OpenRecentTarget" value="2" type="JavaHandler"/>
+<property name="ProgramDevice" value="6" type="JavaHandler"/>
+<property name="ProjectSettingsCmdHandler" value="2" type="JavaHandler"/>
+<property name="RefreshDevice" value="1" type="JavaHandler"/>
+<property name="ReportIPStatus" value="1" type="JavaHandler"/>
+<property name="RunBitgen" value="71" type="JavaHandler"/>
+<property name="RunImplementation" value="6" type="JavaHandler"/>
+<property name="SaveAllFiles" value="3" type="JavaHandler"/>
+<property name="SaveFileProxyHandler" value="6" type="JavaHandler"/>
+<property name="ShowView" value="19" type="JavaHandler"/>
+<property name="UpgradeIP" value="1" type="JavaHandler"/>
+<property name="ViewTaskImplementation" value="6" type="JavaHandler"/>
+<property name="ViewTaskProgramandDebug" value="12" type="JavaHandler"/>
+<property name="ViewTaskProjectManager" value="19" type="JavaHandler"/>
+</item>
+<item name="Gui Handlers">
+<property name="BaseDialog_OK" value="2" type="GuiHandlerData"/>
+<property name="FileSetPanel_FILE_SET_PANEL_TREE" value="20" type="GuiHandlerData"/>
+<property name="FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE" value="1" type="GuiHandlerData"/>
+<property name="IPStatusSectionPanel_UPGRADE_SELECTED" value="1" type="GuiHandlerData"/>
+<property name="PAViews_PROJECT_SUMMARY" value="1" type="GuiHandlerData"/>
+<property name="RDICommands_SAVE_FILE" value="1" type="GuiHandlerData"/>
+<property name="ReportIPStatusInfoDialog_REPORT_IP_STATUS" value="1" type="GuiHandlerData"/>
+<property name="SimpleOutputProductDialog_GENERATE_OUTPUT_PRODUCTS_IMMEDIATELY" value="1" type="GuiHandlerData"/>
+</item>
+<item name="Other">
+<property name="GuiMode" value="469" type="GuiMode"/>
+<property name="BatchMode" value="0" type="BatchMode"/>
+<property name="TclMode" value="421" type="TclMode"/>
+</item>
+</section>
+</application>
+</document>

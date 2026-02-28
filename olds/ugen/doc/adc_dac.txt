@@ -1,0 +1,16 @@
+
+Can you put the chips?
+
+
+1. DAC5675A   	4pcs
+2. DAC3171		4pcs
+3. DAC3161		4pcs
+4. DAC3162		4pcs
+5. DAC3172		4pcs
+
+6. ADS4129		4pcs
+7. ADS4149		4pcs
+
+
+DAC3171IRGCT
+ADS4129IRGZT

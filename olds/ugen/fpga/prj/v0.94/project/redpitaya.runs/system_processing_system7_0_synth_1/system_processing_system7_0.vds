@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2016.4 (64-bit)
+# SW Build 1733598 on Wed Dec 14 22:35:39 MST 2016
+# IP Build 1731160 on Wed Dec 14 23:47:21 MST 2016
+# Start of session at: Fri Mar 31 16:59:19 2017
+# Process ID: 7224
+# Current directory: D:/proj/velograph/rp_test/fpga/prj/v0.94/project/redpitaya.runs/system_processing_system7_0_synth_1
+# Command line: vivado.exe -log system_processing_system7_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_processing_system7_0.tcl
+# Log file: D:/proj/velograph/rp_test/fpga/prj/v0.94/project/redpitaya.runs/system_processing_system7_0_synth_1/system_processing_system7_0.vds
+# Journal file: D:/proj/velograph/rp_test/fpga/prj/v0.94/project/redpitaya.runs/system_processing_system7_0_synth_1\vivado.jou
+#-----------------------------------------------------------
+source system_processing_system7_0.tcl -notrace
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP system_processing_system7_0, cache-ID = 4bdcad630fb17de6.

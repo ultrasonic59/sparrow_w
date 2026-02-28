@@ -1,0 +1,112 @@
+#-----------------------------------------------------------
+# Vivado v2016.4 (64-bit)
+# SW Build 1733598 on Wed Dec 14 22:35:42 MST 2016
+# IP Build 1731160 on Wed Dec 14 23:47:21 MST 2016
+# Start of session at: Thu Mar 16 19:14:55 2017
+# Process ID: 6322
+# Current directory: /home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.runs/system_axi_protocol_converter_0_0_synth_1
+# Command line: vivado -log system_axi_protocol_converter_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_axi_protocol_converter_0_0.tcl
+# Log file: /home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.runs/system_axi_protocol_converter_0_0_synth_1/system_axi_protocol_converter_0_0.vds
+# Journal file: /home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.runs/system_axi_protocol_converter_0_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source system_axi_protocol_converter_0_0.tcl -notrace
+Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:15 . Memory (MB): peak = 1081.430 ; gain = 157.086 ; free physical = 181 ; free virtual = 2187
+INFO: [Synth 8-638] synthesizing module 'system_axi_protocol_converter_0_0' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_axi_protocol_converter_0_0/synth/system_axi_protocol_converter_0_0.v:58]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_11_axi_protocol_converter' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4806]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_11_b2s' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4224]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_11_b2s_aw_channel' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3969]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_11_b2s_cmd_translator' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3467]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_11_b2s_incr_cmd' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3093]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_11_b2s_incr_cmd' (1#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3093]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_11_b2s_wrap_cmd' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2903]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_11_b2s_wrap_cmd' (2#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2903]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_11_b2s_cmd_translator' (3#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3467]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_11_b2s_wr_cmd_fsm' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3225]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_11_b2s_wr_cmd_fsm' (4#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3225]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_11_b2s_aw_channel' (5#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3969]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_11_b2s_b_channel' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3609]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_11_b2s_simple_fifo' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_11_b2s_simple_fifo' (6#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_11_b2s_simple_fifo__parameterized0' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_11_b2s_simple_fifo__parameterized0' (6#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_11_b2s_b_channel' (7#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3609]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_11_b2s_ar_channel' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4080]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_11_b2s_rd_cmd_fsm' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3336]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_11_b2s_rd_cmd_fsm' (8#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3336]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_11_b2s_ar_channel' (9#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4080]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_11_b2s_r_channel' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3809]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_11_b2s_simple_fifo__parameterized1' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_11_b2s_simple_fifo__parameterized1' (9#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_11_b2s_simple_fifo__parameterized2' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_11_b2s_simple_fifo__parameterized2' (9#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_11_b2s_r_channel' (10#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3809]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_11_axi_register_slice' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:791]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' (11#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice' (12#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized0' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized0' (12#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized1' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized1' (12#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized2' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized2' (12#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' (13#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_11_axi_register_slice' (14#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:791]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_11_axi_register_slice__parameterized0' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:791]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector__parameterized0' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector__parameterized0' (14#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized3' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized3' (14#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized4' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized4' (14#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized5' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized5' (14#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized6' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized6' (14#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized7' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_11_axic_register_slice__parameterized7' (14#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi__parameterized0' [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi__parameterized0' (14#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_11_axi_register_slice__parameterized0' (14#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/0b6b/hdl/axi_register_slice_v2_1_vl_rfs.v:791]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_11_b2s' (15#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4224]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_11_axi_protocol_converter' (16#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ipshared/df1b/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4806]
+INFO: [Synth 8-256] done synthesizing module 'system_axi_protocol_converter_0_0' (17#1) [/home/vovag/proj/rp_tst/RedPitaya-master/fpga/prj/v0.94/project/redpitaya.srcs/sources_1/bd/system/ip/system_axi_protocol_converter_0_0/synth/system_axi_protocol_converter_0_0.v:58]
+Finished RTL Elaboration : Time (s): cpu = 00:00:36 ; elapsed = 00:00:43 . Memory (MB): peak = 1202.902 ; gain = 278.559 ; free physical = 64 ; free virtual = 2057
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:36 ; elapsed = 00:00:44 . Memory (MB): peak = 1202.902 ; gain = 278.559 ; free physical = 64 ; free virtual = 2057
+INFO: [Device 21-403] Loading part xc7z010clg400-1
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.10 . Memory (MB): peak = 1408.523 ; gain = 0.004 ; free physical = 66 ; free virtual = 1970
+Finished Constraint Validation : Time (s): cpu = 00:00:48 ; elapsed = 00:00:58 . Memory (MB): peak = 1408.523 ; gain = 484.180 ; free physical = 66 ; free virtual = 1970
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:48 ; elapsed = 00:00:58 . Memory (MB): peak = 1408.523 ; gain = 484.180 ; free physical = 66 ; free virtual = 1970
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:48 ; elapsed = 00:00:58 . Memory (MB): peak = 1408.523 ; gain = 484.180 ; free physical = 66 ; free virtual = 1970
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:48 ; elapsed = 00:00:58 . Memory (MB): peak = 1408.523 ; gain = 484.180 ; free physical = 75 ; free virtual = 1963
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:51 ; elapsed = 00:01:01 . Memory (MB): peak = 1408.527 ; gain = 484.184 ; free physical = 71 ; free virtual = 1931
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:00 ; elapsed = 00:01:13 . Memory (MB): peak = 1408.527 ; gain = 484.184 ; free physical = 63 ; free virtual = 1895
+Finished Timing Optimization : Time (s): cpu = 00:01:02 ; elapsed = 00:01:15 . Memory (MB): peak = 1425.121 ; gain = 500.777 ; free physical = 67 ; free virtual = 1856
+Finished Technology Mapping : Time (s): cpu = 00:01:03 ; elapsed = 00:01:16 . Memory (MB): peak = 1433.129 ; gain = 508.785 ; free physical = 65 ; free virtual = 1848
+Finished IO Insertion : Time (s): cpu = 00:01:03 ; elapsed = 00:01:16 . Memory (MB): peak = 1433.133 ; gain = 508.789 ; free physical = 65 ; free virtual = 1848
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:03 ; elapsed = 00:01:16 . Memory (MB): peak = 1433.133 ; gain = 508.789 ; free physical = 65 ; free virtual = 1848
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:03 ; elapsed = 00:01:16 . Memory (MB): peak = 1433.133 ; gain = 508.789 ; free physical = 65 ; free virtual = 1848
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:03 ; elapsed = 00:01:16 . Memory (MB): peak = 1433.133 ; gain = 508.789 ; free physical = 65 ; free virtual = 1848
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:03 ; elapsed = 00:01:17 . Memory (MB): peak = 1433.133 ; gain = 508.789 ; free physical = 65 ; free virtual = 1848
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:03 ; elapsed = 00:01:17 . Memory (MB): peak = 1433.133 ; gain = 508.789 ; free physical = 65 ; free virtual = 1848
+
+Report Cell Usage: 
++------+--------+------+
+|      |Cell    |Count |
++------+--------+------+
+|1     |CARRY4  |    18|
+|2     |LUT1    |    38|
+|3     |LUT2    |    18|
+|4     |LUT3    |   235|
+|5     |LUT4    |    41|
+|6     |LUT5    |    70|
+|7     |LUT6    |   106|
+|8     |SRL16E  |    18|
+|9     |SRLC32E |    47|
+|10    |FDRE    |   548|
+|11    |FDSE    |    51|
++------+--------+------+
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:03 ; elapsed = 00:01:17 . Memory (MB): peak = 1433.133 ; gain = 508.789 ; free physical = 65 ; free virtual = 1848
+synth_design: Time (s): cpu = 00:01:01 ; elapsed = 00:01:12 . Memory (MB): peak = 1433.137 ; gain = 438.289 ; free physical = 63 ; free virtual = 1850

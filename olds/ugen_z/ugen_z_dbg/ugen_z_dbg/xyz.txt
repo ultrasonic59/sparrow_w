@@ -1,0 +1,304 @@
+#if 0
+extern BOOL get_zamer( void );
+extern BOOL get_osc0( void );
+////extern HANDLE hEventStopZamerThr;
+extern DWORD g_flg_chng_par;
+////extern HANDLE hEventZamerReady;
+
+BOOL g_on_tune_thr=FALSE;
+HANDLE hEventChngParam;
+////DWORD g_flg_upr_cmd=0;
+HANDLE g_hEventUprCmd;
+HANDLE g_hEventStopTune;
+HANDLE g_ev_GetOsc;
+////extern CFile dbgFile3;
+///send_par_gen_t * 
+extern BOOL save_txt_zamer_file(CFile *pFile,void* i_buff,int num);
+////		m_p_param_trk->takts[curr_num_tact].gens[curr_num_gen].len_imp=tune_par.m_len_imp;
+////		g_flg_chng_par |= (0x1<<OFFS_CHNG_GEN_PAR);
+///===============================================
+void copy_vrch(par_vrch_t *p_target, par_vrch_t *p_source)
+{
+int ii;
+p_target->on_vrch=p_source->on_vrch;
+
+if(p_target->on_vrch)
+	{
+////	Trace("on_vrch\n");
+///	p_target->num_p=p_source->num_p;
+///	if(p_target->num_p==0)
+///		p_target->num_p=1;
+///	if(p_target->num_p>MAX_NUM_PVRCH)
+	p_target->num_p=MAX_NUM_PVRCH;
+	for(ii=0;ii<p_target->num_p;ii++)
+		{
+		p_target->kus[ii]=p_source->kus[ii];
+		p_target->time[ii]=p_source->time[ii];
+		}
+	}
+////else
+////	Trace("off_vrch\n");
+
+}
+///===============================================
+#define CMAX_NUM_OSC		1
+UINT udp_tune_thr(void *pdata)
+{
+////	int ii;
+static DWORD t_cnt1=0;
+static int c_num_osc=0;
+CString ts;
+BYTE t_mux;
+
+static int xxx=0;
+////static 
+BOOL prev_conn_state=FALSE;
+BOOL curr_conn_state=FALSE;
+HANDLE hwait[5];
+DWORD dwRes=0;	///
+BOOL get_osc_rez;
+Cwin_tempoDlg *t_dlg= (Cwin_tempoDlg *)pdata;
+CParamTuneDlg *t_tune_dlg;
+t_tune_dlg=(CParamTuneDlg *)t_dlg->tune_dlg;
+Trace("udp_tune_thr\n");
+SetEvent(t_dlg->hEventControlStarted);
+g_on_tune_thr=TRUE;
+do
+	{
+////	hwait[0] = t_dlg->hEventOnTimerGetZamer;
+	hwait[0] = hEventOscRdy;
+	hwait[1] = g_hEventUprCmd;
+///	hwait[2] = t_dlg->hEventOnTimerGetOsc;
+	hwait[2] = g_ev_GetOsc;
+	hwait[3] = hEventChngParam;
+	hwait[4] = g_hEventStopTune;
+	dwRes=WaitForMultipleObjects( 5, hwait, FALSE, INFINITE /*IGNORE*/) ;
+	switch(dwRes )
+		{
+		case WAIT_OBJECT_0:		// 
+			ResetEvent(hEventOscRdy);
+			t_tune_dlg->draw_oscs();
+///===================================
+			curr_conn_state=TRUE;
+///===================================
+////			ResetEvent(t_dlg->hEventOnTimerGetZamer);
+/*
+			if(get_zamer())
+				{
+				curr_conn_state=TRUE;
+				}
+			else
+				{
+				curr_conn_state=FALSE;
+////				ts.Format("xy_scale %d[%d:%d:%d])  \n" ,t_num_x_points
+				ts.Format("get_zamer() FALSE  \n" );
+				Trace(ts);
+
+				}
+*/
+			break;
+		case WAIT_OBJECT_0+1:	// 
+				ResetEvent(g_hEventUprCmd);
+				break;
+		case WAIT_OBJECT_0+2:	///get osc
+////				ResetEvent(t_dlg->hEventOnTimerGetOsc);
+				ResetEvent(g_ev_GetOsc);
+				switch(c_num_osc&0x3)
+				{
+				case 1:
+////					get_osc_rez=t_dlg->udp_get_osc1();
+////					break;
+////				case 2:
+					get_osc_rez=t_dlg->udp_get_amp_tim();
+					break;
+				default:
+					get_osc_rez=t_dlg->udp_get_osc0();
+					break;
+				}
+				if(get_osc_rez)
+					{
+					curr_conn_state=TRUE;
+					}
+				else
+					{
+					curr_conn_state=FALSE;
+					}
+				c_num_osc++;
+				if(c_num_osc>CMAX_NUM_OSC)
+					c_num_osc=0;
+				break;
+		case WAIT_OBJECT_0+3:		/// hEventChngParam
+				send_par_gen_t t_send_par_gen;
+				send_par_us_t t_send_par_us;
+				ResetEvent(hEventChngParam);
+				
+				if(g_flg_chng_par & (0x1<<OFFS_SET_ALL_PAR))
+					{
+					g_flg_chng_par &= ~(0x1<<OFFS_SET_ALL_PAR);
+
+					}
+				else if(g_flg_chng_par & (0x1<<OFFS_CHNG_US_PAR))
+					{
+					g_flg_chng_par &= ~(0x1<<OFFS_CHNG_US_PAR);
+					t_send_par_us.num_osc=0;
+					t_send_par_us.view_rej =t_tune_dlg->tune_par.m_view_rej;
+
+					t_send_par_us.num_us =t_tune_dlg->tune_par.m_nus&MASK_NUM_USS;
+					t_send_par_us.num_tact=t_tune_dlg->tune_par.m_nTact;
+					t_mux=
+						t_tune_dlg->m_p_param_trk->par_trk.takts[t_tune_dlg->tune_par.m_nTact].mux_us;
+					t_send_par_us.mux_us =t_mux;
+					t_send_par_us.par_us.ots=t_tune_dlg->tune_par.m_ots;
+					t_send_par_us.par_us.kus1=t_tune_dlg->tune_par.m_kus;
+					t_send_par_us.par_us.stp_r=t_tune_dlg->tune_par.m_stpr;
+					t_send_par_us.par_us.beg_r = t_tune_dlg->tune_par.m_begr*K_BEG_R;
+					if(t_send_par_us.par_us.beg_r==0)
+						t_send_par_us.par_us.beg_r=1;
+////					t_send_par_us.par_us.beg_r = t_tune_dlg->tune_par.m_begr;////*40;
+					t_send_par_us.par_us.taut= t_tune_dlg->tune_par.m_tt;
+					t_send_par_us.par_us.tauv= t_tune_dlg->tune_par.m_tv;
+					t_send_par_us.par_us.strb[t_tune_dlg->tune_par.m_nstr].beg= t_tune_dlg->tune_par.m_bstr;
+					t_send_par_us.par_us.strb[t_tune_dlg->tune_par.m_nstr].len= t_tune_dlg->tune_par.m_lstr;
+					t_send_par_us.par_us.strb[t_tune_dlg->tune_par.m_nstr].por= t_tune_dlg->tune_par.m_pstr;
+DWORD t_kk;
+DWORD t_bstr;
+t_kk=t_tune_dlg->tune_par.m_stpr+1;
+t_kk*=TIME_KV*2;
+t_bstr=t_tune_dlg->tune_par.m_bstr;
+t_bstr*= 100;
+t_bstr/=t_kk;
+				t_send_par_us.par_us.strb[t_tune_dlg->tune_par.m_nstr].offs_type=t_bstr&0x3ff;
+					t_send_par_us.par_us.on_us=
+						t_tune_dlg->m_p_param_trk->par_trk.takts[t_send_par_us.num_tact].uss[t_send_par_us.num_us].on_us ;
+					copy_vrch(&t_send_par_us.par_us.vrch,&t_tune_dlg->m_p_param_trk->par_trk.takts[t_send_par_us.num_tact].uss[t_send_par_us.num_us].vrch);
+					t_dlg->udp_cmd_put_par_us(&t_send_par_us);
+				////	TRACE("sizeof(send_par_us_t)=[%x][%x]\n",sizeof(send_par_us_t),sizeof(send_par_gen_t));
+
+					}
+				else if(g_flg_chng_par & (0x1<<OFFS_CHNG_GEN_PAR))
+					{
+					g_flg_chng_par &= ~(0x1<<OFFS_CHNG_GEN_PAR);
+					t_send_par_gen.num_osc=0;
+
+					t_send_par_gen.num_gen =t_tune_dlg->tune_par.m_ngen;
+					t_send_par_gen.num_tact=t_tune_dlg->tune_par.m_nTact;
+					t_send_par_gen.par_gen.len_imp=t_tune_dlg->tune_par.m_len_imp;
+					t_send_par_gen.par_gen.on_gen=
+						t_tune_dlg->m_p_param_trk->par_trk.takts[t_send_par_gen.num_tact].gens[t_send_par_gen.num_gen].on_gen ;
+					t_dlg->udp_cmd_put_par_gen(&t_send_par_gen);
+					}
+
+				else if(g_flg_chng_par & (0x1<<OFFS_CHNG_US_PAR2))
+					{
+					g_flg_chng_par &= ~(0x1<<OFFS_CHNG_US_PAR2);
+/*
+					t_send_par_us.view_rej =t_tune_dlg->tune_par.m_view_rej2;
+					t_send_par_us.num_osc=1;
+
+					t_send_par_us.num_us =t_tune_dlg->tune_par.m_nus2;
+					t_send_par_us.num_tact=t_tune_dlg->tune_par.m_nTact2;
+					t_send_par_us.mux_us =0;
+					t_send_par_us.par_us.kus1=t_tune_dlg->tune_par.m_kus2;
+					t_send_par_us.par_us.stp_r=t_tune_dlg->tune_par.m_stpr2;
+					t_send_par_us.par_us.beg_r = t_tune_dlg->tune_par.m_begr2;////*40;
+					t_send_par_us.par_us.on_us=
+						t_tune_dlg->m_p_param_trk->takts[t_send_par_us.num_tact].uss[t_send_par_us.num_us].on_us ;
+					copy_vrch(&t_send_par_us.par_us.vrch,&t_tune_dlg->m_p_param_trk->takts[t_send_par_us.num_tact].uss[t_send_par_us.num_us].vrch);
+					cmd_put_par_us(&t_send_par_us);
+*/
+					}
+				else if(g_flg_chng_par & (0x1<<OFFS_CHNG_GEN_PAR2))
+					{
+					g_flg_chng_par &= ~(0x1<<OFFS_CHNG_GEN_PAR2);
+/*
+					t_send_par_gen.num_osc=1;
+
+					t_send_par_gen.num_gen =t_tune_dlg->tune_par.m_ngen2;
+					t_send_par_gen.num_tact=t_tune_dlg->tune_par.m_nTact2;
+					t_send_par_gen.par_gen.len_imp=t_tune_dlg->tune_par.m_len_imp2;
+					t_send_par_gen.par_gen.on_gen=
+						t_tune_dlg->m_p_param_trk->takts[t_send_par_gen.num_tact].gens[t_send_par_gen.num_gen].on_gen ;
+					cmd_put_par_gen(&t_send_par_gen);
+*/
+					}
+
+				if(g_flg_chng_par & (0x1<<OFFS_CHNG_POW_PAR))
+					{
+					send_par_pow_t t_send_par_pow;
+					g_flg_chng_par &= ~(0x1<<OFFS_CHNG_POW_PAR);
+
+					t_send_par_pow.num_pow =t_tune_dlg->tune_par.m_npow;
+					t_send_par_pow.par_pow.val=t_tune_dlg->tune_par.m_pow_val;
+					t_send_par_pow.par_pow.on_pow=
+						t_tune_dlg->m_p_param_trk->par_trk.pow_gen[t_send_par_pow.num_pow].on_pow;
+					t_dlg->udp_cmd_put_par_pow(&t_send_par_pow);
+					}
+				if(g_flg_chng_par & (0x1<<OFFS_SEND_SPI_ADC))
+					{
+					g_flg_chng_par &= ~(0x1<<OFFS_SEND_SPI_ADC);
+					t_dlg->udp_cmd_send_spi_adc();
+					}
+				if(g_flg_chng_par & (0x1<<OFFS_REQ_SPI_ADC))
+					{
+					g_flg_chng_par &= ~(0x1<<OFFS_REQ_SPI_ADC);
+					t_dlg->udp_cmd_send_spi_req();
+					t_dlg->udp_req_spi_adc();
+					}
+///======================================================
+				if(g_flg_chng_par & (0x1<<OFFS_SEND_ALT_DAT))
+					{
+					g_flg_chng_par &= ~(0x1<<OFFS_SEND_ALT_DAT);
+					t_dlg->udp_cmd_send_alt_dat();
+					}
+				if(g_flg_chng_par & (0x1<<OFFS_REQ_ALT_DAT))
+					{
+					g_flg_chng_par &= ~(0x1<<OFFS_REQ_ALT_DAT);
+					t_dlg->udp_cmd_send_alt_req();
+					t_dlg->udp_req_alt();
+					}
+/*
+				if(g_flg_chng_par & (0x1<<OFFS_SEND_MOD_CMD))
+					{
+					g_flg_chng_par &= ~(0x1<<OFFS_SEND_MOD_CMD);
+					t_dlg->udp_cmd_send_mod_cmd();
+					}
+				if(g_flg_chng_par & (0x1<<OFFS_REQ_MOD_DAT))
+					{
+					g_flg_chng_par &= ~(0x1<<OFFS_REQ_MOD_DAT);
+					t_dlg->udp_req_mod_dat();
+					}
+*/
+				break;
+		case WAIT_OBJECT_0+4:	// 
+				g_on_tune_thr=FALSE;
+				ResetEvent(g_hEventStopTune);
+				break;
+		case WAIT_FAILED:
+			break;
+		}
+		if(prev_conn_state!=curr_conn_state)
+			{
+			prev_conn_state=curr_conn_state;
+			if(curr_conn_state)
+				t_tune_dlg->SetWindowText("Connected ");
+			else
+				t_tune_dlg->SetWindowText("No Connect ");
+
+			}
+////			Sleep(10);
+////		se.Format(cct->req_stop?"tr":"fl");
+///		AfxMessageBox(se);
+////		theApp.m_pMainWnd->SetWindowText(se);
+///		xxx++;
+		} while( g_on_tune_thr);
+
+
+SetEvent(t_dlg->hEventTuneFinished);
+///==============================
+///ts.Empty();
+
+///AfxEndThread(0);
+///==============================
+return 0;
+}
+#endif
