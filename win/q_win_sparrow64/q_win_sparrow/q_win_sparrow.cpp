@@ -94,7 +94,6 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 
     osc_prop(),
     plotter(this, &osc_prop),
-	plotter_osc(this, &osc_prop),
 	dev_obj(this)
 {
 	qRegisterMetaTypeStreamOperators< QList<int> >("QList<int>");
@@ -254,11 +253,6 @@ void q_win_sparrow::NoConnection()
 }
 
 
-void q_win_sparrow::slot_draw_osc()
-{
-	plotter_osc.PlotRespond(&dev_obj.osc_struct);
-}
-
 void q_win_sparrow::slot_new_ampl()
 {
 	QString ampl_str;
@@ -312,24 +306,14 @@ void q_win_sparrow::Tdef_changed()
 void q_win_sparrow::NumPeriods_changed()
 {
 	par_contr_t &par_contr = dev_obj.curr_par_contr;
-
-
 	float curr_period_len = COEF_PERIOD_TRANSF / par_contr.dev_frequency;
 	curr_period_len *= par_contr.num_periods;
-
-
 	par_contr.sent_par.Timp_len = curr_period_len;		// число тиков после изменения
 	dev_obj.ApplyImpAmlToPar();
-
 	ui.ed_t_imp_len->show_par();
-
-
 	RecalculateImpulse();
 	ImpulseToPlot();
-
 	plotter.PlotRespond(plot_array.data(), plot_arr_length);
-
-
 	dev_obj.g_changed_param |= CHNG_TIMP_LEN | CHNG_IMP_POINTS;
 }
 
@@ -339,7 +323,6 @@ void q_win_sparrow::Aimp_changed()
 	RecalculateImpulse();
 	ImpulseToPlot();
 	plotter.PlotRespond(plot_array.data(), plot_arr_length);
-
 	dev_obj.g_changed_param |= CHNG_IMP_POINTS;
 }
 
@@ -351,20 +334,13 @@ void q_win_sparrow::DevFreq_changed()
 	par_contr.dev_frequency = static_cast<float>(dev_freq) / COEF_DEV_FREQ;
 	float curr_period_len = COEF_PERIOD_TRANSF / par_contr.dev_frequency;
 	curr_period_len *= par_contr.num_periods;
-
-
 	par_contr.sent_par.Timp_len = curr_period_len;		// число тиков после изменения
 	dev_obj.ApplyImpAmlToPar();
 
 	ui.ed_t_imp_len->show_par();
-
-
 	RecalculateImpulse();
 	ImpulseToPlot();
-
 	plotter.PlotRespond(plot_array.data(), plot_arr_length);
-
-
 	dev_obj.g_changed_param |= CHNG_TIMP_LEN | CHNG_IMP_POINTS;
 }
 

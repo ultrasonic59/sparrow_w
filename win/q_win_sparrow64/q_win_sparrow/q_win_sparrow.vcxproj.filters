@@ -95,9 +95,6 @@
     <ClCompile Include="dial_debug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OscillogramPlotterSetter2.cpp">
-      <Filter>Source Files\Plotters</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="OscillogramPlotterSetter.h">
@@ -136,9 +133,6 @@
     <QtUic Include="dial_debug.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <CustomBuild Include="OscillogramPlotterSetter2.h">
-      <Filter>Header Files\Plotters</Filter>
-    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstactPlotter.h">

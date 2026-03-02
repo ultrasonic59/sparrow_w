@@ -59,8 +59,6 @@ c_obj_cmd::c_obj_cmd(QObject *parent)
 	connect(p_tune_thr, SIGNAL(ConnectionAttempt()), parent, SLOT(SetConnStatus()), Qt::QueuedConnection);
 	connect(p_tune_thr, SIGNAL(ConnectionSetted()), parent, SLOT(EndInitConnection()), Qt::QueuedConnection);
 
-	connect(p_tune_thr, SIGNAL(signal_draw_osc()), parent, SLOT(slot_draw_osc()), Qt::QueuedConnection);
-
 	connect(p_tune_thr, SIGNAL(signal_new_ampl()), parent, SLOT(slot_new_ampl()), Qt::QueuedConnection);
 
 

@@ -406,19 +406,6 @@
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QGroupBox" name="groupBox_Gen">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>360</y>
-         <width>151</width>
-         <height>151</height>
-        </rect>
-       </property>
-       <property name="title">
-        <string>Gen</string>
-       </property>
-      </widget>
      </widget>
     </item>
    </layout>

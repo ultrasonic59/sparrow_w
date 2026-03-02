@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "OscillogramPlotterSetter.h"
-#include "OscillogramPlotterSetter2.h"
+///#include "OscillogramPlotterSetter2.h"
 #include "ui_q_win_sparrow.h"
 
 #include "obj_cmd.h"
@@ -18,84 +18,39 @@ class q_win_sparrow : public QMainWindow
 
 protected:
     Ui::q_win_sparrow ui;
-
-
 	quint16 plot_arr_length;
 	QVector<qint16> plot_array;
-
     OscillogramProperties osc_prop;
     OscillogramPlotterSetter plotter;
-
-
 	quint32 dev_freq;
-
-
 	DialDebug dial_dbg;
-
-
-
 	inline void saveSettings();
 	inline void loadSettings();
-
-
 	inline void RecalculateImpulse();
-
-
 	inline void ImpulseToPlot();
-
-
 public:
     q_win_sparrow(QWidget *parent = 0);
     ~q_win_sparrow();
 
-
-
 protected slots:
-
     void OnStartStop();
-
-
 	void InitPlot();
-
-
-
 	void osc_length_changed();
-
 	void Timp_len_changed();
 	void Timp_offset_changed();
 	void Tcycle_changed();
 	void Tdef_changed();
-
-	void kus_changed();
-	void beg_osc_changed();
-	void step_osc_changed();
-
-
-
 	void NumPeriods_changed();
-
-
 	void Aimp_changed();
 	void DevFreq_changed();
-
-
-	void AttenLev0Clicked();
-	void AttenLev1Clicked();
-
-
 	void GaussClicked();
-
-
 public slots:
 
 	void SetConnStatus();
 	void EndInitConnection();
 	void NoConnection();
 
-	void slot_draw_osc();
 	void slot_new_ampl();
-
-
 
 protected slots:
 
@@ -108,17 +63,11 @@ protected slots:
 	void slot_rd_adc_dat(adc_spi_req_t* idat);
 
 signals:
-
 	void put_xil_dat_dial(xil_dat_req_t*);
 	void put_dac_dat_dial(dac_spi_req_t*);
 	void put_adc_dat_dial(adc_spi_req_t*);
-
-
 public:
-
 	c_obj_cmd dev_obj;
-
-
 };
 
 #endif // MAINWINDOW_H

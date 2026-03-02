@@ -261,7 +261,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="obj_cmd.cpp" />
     <ClCompile Include="OscillogramPlotterSetter.cpp" />
-    <ClCompile Include="OscillogramPlotterSetter2.cpp" />
     <ClCompile Include="OscillogramProperties.cpp" />
     <ClCompile Include="params.cpp" />
     <ClCompile Include="param_ed.cpp" />
@@ -284,36 +283,6 @@
     <ClInclude Include="dev_interf.h" />
     <QtMoc Include="obj_cmd.h" />
     <QtMoc Include="dial_debug.h" />
-    <CustomBuild Include="OscillogramPlotterSetter2.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalInputs)</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalInputs)</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </Command>
-    </CustomBuild>
     <ClInclude Include="OscillogramProperties.h" />
     <ClInclude Include="params.h" />
     <QtMoc Include="param_ed.h" />

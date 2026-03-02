@@ -93,8 +93,8 @@ void OscillogramPlotterSetter::PaintBackground(void)
 
         DrawGrid(painter);
 
-    //    PlotVerticalSignature(painter);
-        //PlotHorizontalSignature(painter, Old_dop_par, OldUsParam);
+    //    PlotVerticalAxi(painter);
+        //PlotHorizontalAxi(painter, Old_dop_par, OldUsParam);
 
 
         UpdatePlot();
@@ -123,7 +123,6 @@ void OscillogramPlotterSetter::DrawGrid(QPainter & painter)
 		QLine line( x_b + x_step * i, y_b, x_b + x_step * i, y_b + height);
 		painter.drawLine(line);
 	}
-
 }
 
 
@@ -138,7 +137,6 @@ void OscillogramPlotterSetter::PlotRespond(QPainter & painter, qint16 *point_arr
     float plot_x_step = static_cast<float>(width) / (num_points - 1);
     float plot_y_step = static_cast<float>(height) / (MAX_OSC_VAL - MIN_OSC_VAL);
 
-
     painter.setRenderHints(QPainter::Antialiasing, true);
 
     QLine line;
@@ -149,10 +147,8 @@ void OscillogramPlotterSetter::PlotRespond(QPainter & painter, qint16 *point_arr
             , x_b + plot_x_step * (i + 1), y_b + height - plot_y_step * (point_arr[i+1] - MIN_OSC_VAL));
 			painter.drawLine(line);
     }
-
     painter.setRenderHints(QPainter::Antialiasing, false);
 }
-
 
 
 void OscillogramPlotterSetter::PlotRespond(qint16 *point_arr, quint16 num_points)
@@ -169,8 +165,9 @@ void OscillogramPlotterSetter::PlotRespond(qint16 *point_arr, quint16 num_points
 
 		DrawGrid(painter);						// ??? нужно сделать подстраивающуюся ось Х
 
-		PlotVerticalSignature(painter);
-//		PlotHorizontalSignature(painter, num_points);
+		PlotVerticalAxi(painter);
+		PlotHorizontalAxi(painter);
+		//		PlotHorizontalSignature(painter, num_points);
 		
         PlotRespond(painter, point_arr, num_points);
 		painter.end();
@@ -188,7 +185,7 @@ void OscillogramPlotterSetter::OutFrameText(QPainter & painter, const QString & 
 }
 
 
-void OscillogramPlotterSetter::PlotVerticalSignature(QPainter & painter)
+void OscillogramPlotterSetter::PlotVerticalAxi(QPainter & painter)
 {
 	int count_y =  y_sign_step / y_step + 1;
 
@@ -225,13 +222,9 @@ void OscillogramPlotterSetter::PlotVerticalSignature(QPainter & painter)
 }
 
 
-
-/*
-=========================================================================================
-
-
-void OscillogramPlotterSetter::PlotHorizontalSignature(QPainter & painternum_points)
+void OscillogramPlotterSetter::PlotHorizontalAxi(QPainter & painternum_points)
 {
+/*
 		float FullOscLen=(curr_dop_par.curr_step_r + 1) * LEN_OSC * STEP_KOEF;
 		float x_val = curr_dop_par.curr_begr/TEN_F; 
 
@@ -458,7 +451,7 @@ void OscillogramPlotterSetter::PlotHorizontalSignature(QPainter & painternum_poi
 			break;
 		}
 		
-
-}
 */
+}
+
 
