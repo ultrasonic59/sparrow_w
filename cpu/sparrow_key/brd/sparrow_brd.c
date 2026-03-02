@@ -8,7 +8,6 @@
 #include "uart.h"
 #include "timers.h"
 #include "softuart.h"
-#include "i2c.h"
 
 
 void init_gpio(void)
@@ -34,10 +33,10 @@ GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;///GPIO_Speed_50MHz;
 GPIO_Init(LED_GPIO, &GPIO_InitStructure);
 ///=============RT==================================
-GPIO_InitStructure.GPIO_Pin = RT_PIN;
-GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
+GPIO_InitStructure.GPIO_Pin = KEY_PIN;
+GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;///GPIO_Speed_50MHz;
-GPIO_Init(RT_GPIO, &GPIO_InitStructure);
+GPIO_Init(KEY_GPIO, &GPIO_InitStructure);
 }
 ///=============== led =======================================
 void set_led(uint8_t on_off)
@@ -48,17 +47,19 @@ void set_led(uint8_t on_off)
      GPIO_WriteBit(LED_GPIO,LED_PIN, Bit_RESET);
 }
 ////extern void IIC_Init(u32 bound, u16 address);
+uint8_t get_key()
+{
+    return GPIO_ReadInputDataBit(KEY_GPIO,KEY_PIN);
+}
 
 void init_hw(void)
 {
 init_gpio();
-DMA_INIT();
 USART1_CFG();
 
 TIM1_Config(); ///for softuart
-SoftUartInit(SOFT_TX_GPIO,SOFT_TX_PIN
-                  ,SOFT_RX_GPIO,SOFT_RX_PIN);
-SoftUartEnableRx();
+SoftUartTxInit(SOFT_TX_GPIO,SOFT_TX_PIN);
+///SoftUartEnableRx();
 ///============================================
 
 }

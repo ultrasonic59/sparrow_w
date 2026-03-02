@@ -1,6 +1,9 @@
 `ifndef __SPARROW5_MMAP__
 `define __SPARROW5_MMAP__
 ///==================================
+`define  VERS0    16'h2026
+`define  VERS1    16'h0203
+
 ///=======  a[15:14]===========================
 `define  ADDR_COMMON		     2'h0		
 `define  ADDR_DAC_RAM 		   	 2'h1   ///A[15:14]
@@ -10,8 +13,8 @@
 `define  ADDR_DAC_REGS 		   	 2'h1   ///
 ///========ADDR_COMMON_REGS==============
 ///==============ug A[6:1]===============		
-///`define  OFFS_CONF 		        6'h00		
-///`define  OFFS_UPR 			    6'h01
+`define  OFFS_VERS0 		        6'h00		
+`define  OFFS_VERS1			        6'h01
 ///`define  OFFS_STAT 		        6'h02
 ///`define  OFFS_PSK               6'h03
 ///`define  OFFS_CLR_IRQ           6'h04
@@ -46,30 +49,5 @@
 `define  B_EXT_SYNC             4   ///=1 ext sync
 `define  B_EXT_FAL              5   ///=1 falling edge
 ///==============================
-///=========== ADDR_ADC_REGS ===================
-///==============ug A[6:1]===============		
-		
-`define  OFFS_ADC_CHECK 		    6'h07     /// for check connect a3a3
-`define  OFFS_DELAY_WDAT0            6'h08	
-`define  OFFS_DELAY_WDAT1            6'h09	
-`define  OFFS_DELAY_WDAT2            6'h0a	
-`define  OFFS_DELAY_WDAT3            6'h0b	
-`define  OFFS_DELAY_WDAT4            6'h0c	
-`define  OFFS_DELAY_WDAT5            6'h0d	
-`define  OFFS_DELAY_WDAT6            6'h0e
-	
-`define  OFFS_DELAY_RDAT0            6'h10	
-`define  OFFS_DELAY_RDAT1            6'h11	
-`define  OFFS_DELAY_RDAT2            6'h12	
-`define  OFFS_DELAY_RDAT3            6'h13	
-`define  OFFS_DELAY_RDAT4            6'h14	
-`define  OFFS_DELAY_RDAT5            6'h15	
-`define  OFFS_DELAY_RDAT6            6'h16	
-///===========================================
-///========= OFFS_CONF ADC==========
-`define  B_ON_TST               0   ///DAC_OUT -> DAC
-`define  B_EXT_SYNC             4   ///=1 ext sync
-`define  B_EXT_FAL              5   ///=1 falling edge
-
 ///=======================================
 `endif ///__SPARROW5_MMAP__

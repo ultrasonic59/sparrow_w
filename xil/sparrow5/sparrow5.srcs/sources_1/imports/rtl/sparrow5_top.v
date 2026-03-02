@@ -411,14 +411,18 @@ case (ps_sys_addr[15:14])
 	  rdata[15:0]<=udac_odata[15:0];						// 
     `ADDR_COMMON:
         case (ps_sys_addr[13:12])
-        `ADDR_DAC_REGS:
-	       rdata[15:0]<=udac_odata[15:0];						// 
+         `ADDR_DAC_REGS:
+	         rdata[15:0]<=udac_odata[15:0];						// 
         `ADDR_COMMON_REGS:
             case (ps_sys_addr[6:5])
             `OFFS_CS_USPI:
 	               rdata[15:0]<=uspi_odata;	
-                default:
+             default:
     	           case (ps_sys_addr[6:1])
+                     `OFFS_VERS0:
+	                    rdata[15:0]<=`VERS0;	
+                     `OFFS_VERS1:
+	                     rdata[15:0]<=`VERS1;	
                     `OFFS_RD_C0:
 	                   rdata[15:0]<=16'ha5a5;	
                     `OFFS_RD_C1:

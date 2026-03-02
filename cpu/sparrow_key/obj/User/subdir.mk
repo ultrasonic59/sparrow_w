@@ -9,21 +9,27 @@ C_SRCS += \
 ../User/main.c \
 ../User/ringbuffer.c \
 ../User/softuart.c \
-../User/system_ch32v00x.c 
+../User/system_ch32v00x.c \
+../User/timers.c \
+../User/uart.c 
 
 OBJS += \
 ./User/ch32v00x_it.o \
 ./User/main.o \
 ./User/ringbuffer.o \
 ./User/softuart.o \
-./User/system_ch32v00x.o 
+./User/system_ch32v00x.o \
+./User/timers.o \
+./User/uart.o 
 
 C_DEPS += \
 ./User/ch32v00x_it.d \
 ./User/main.d \
 ./User/ringbuffer.d \
 ./User/softuart.d \
-./User/system_ch32v00x.d 
+./User/system_ch32v00x.d \
+./User/timers.d \
+./User/uart.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

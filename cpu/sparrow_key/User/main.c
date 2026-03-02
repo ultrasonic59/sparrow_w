@@ -18,13 +18,9 @@
  *
  */
 
+#include "../brd/sparrow_brd.h"
 #include "debug.h"
-
-/* Global typedef */
-
-/* Global define */
-
-/* Global Variable */
+#include "softuart.h"
 
 /*********************************************************************
  * @fn      main
@@ -38,16 +34,14 @@ int main(void)
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
     SystemCoreClockUpdate();
     Delay_Init();
-#if (SDI_PRINT == SDI_PR_OPEN)
-    SDI_Printf_Enable();
-#else
-    USART_Printf_Init(115200);
-#endif
+    init_hw();
     printf("SystemClk:%d\r\n", SystemCoreClock);
     printf( "ChipID:%08x\r\n", DBGMCU_GetCHIPID() );
     printf("This is printf example\r\n");
 
     while(1)
     {
+        send_char_suart('5');
+        Delay_Ms(200);
     }
 }

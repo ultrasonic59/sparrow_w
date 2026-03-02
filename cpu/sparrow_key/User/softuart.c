@@ -29,33 +29,20 @@ void SoftUartGpioWritePin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, BitAction PinS
 }
 
 // Initial Soft Uart
-SoftUartState_E SoftUartInit(GPIO_TypeDef *TxPort,uint16_t TxPin,GPIO_TypeDef *RxPort,uint16_t RxPin)
+SoftUartState_E SoftUartTxInit(GPIO_TypeDef *TxPort,uint16_t TxPin)
 {
 SUart.TxNComplated=0;
 
-SUart.RxBitCounter=0;
-SUart.RxBitShift=0;
-SUart.RxIndex=0;
-
 SUart.tx_ena=0;
-SUart.RxEnable=0;
 
 SUart.TxBitCounter=0;
 SUart.TxBitShift=0;
-////SUart[SoftUartNumber].TxIndex=0;
-
-/////SUart[SoftUartNumber].TxSize=0;
 
 SUart.Buffer=&SUBuffer;
-
-SUart.RxPort=RxPort;
-SUart.RxPin=RxPin;
 
 SUart.TxPort=TxPort;
 SUart.TxPin=TxPin;
 
-SUart.RxTimingFlag=0;
-SUart.RxBitOffset=0;
 if(ringbuffer_init(&SUart.tx_buffer,SUART_TX_BUFF_SIZE)==0)
   {
 ////  printk("\r\n+++ringbuffer_init[rx_msp_buffer] error!!! +++\r\n");
@@ -64,6 +51,7 @@ if(ringbuffer_init(&SUart.tx_buffer,SUART_TX_BUFF_SIZE)==0)
 
 return SoftUart_OK;
 }
+
 void TIM1_UP_IRQHandler(void)
 ////void TIM7_IRQHandler(void)
 {
@@ -84,41 +72,6 @@ void SoftUartTransmitBit(SoftUart_S *SU,uint8_t Bit0_1)
     SoftUartGpioWritePin(SU->TxPort,SU->TxPin,(BitAction)Bit0_1);
 }
 
-// Enable Soft Uart Receiving
-SoftUartState_E SoftUartEnableRx(void)
-{
-	SUart.RxEnable=1;
-	return SoftUart_OK;
-}
-
-// Disable Soft Uart Receiving
-SoftUartState_E SoftUartDisableRx(void)
-{
-SUart.RxEnable=0;
-return SoftUart_OK;
-}
-
-// Read Size of Received Data in buffer
-uint8_t SoftUartRxAlavailable(void)
-{
-	return SUart.RxIndex;
-}
-
-// Move Received Data to Another Buffer
-SoftUartState_E SoftUartReadRxBuffer(uint8_t *Buffer,uint8_t Len)
-{
-	int i;
-	for(i=0;i<Len;i++)
-	{
-		Buffer[i]=SUart.Buffer->Rx[i];
-	}
-	for(i=0;i<SUart.RxIndex;i++)
-	{
-		SUart.Buffer->Rx[i]=SUart.Buffer->Rx[i+Len];
-	}
-	SUart.RxIndex-=Len;
-	return SoftUart_OK;
-}
 ////volatile uint8_t vtmp;
 // Soft Uart Transmit Data Process
 void SoftUartTxProcess(SoftUart_S *SU)
@@ -178,47 +131,6 @@ if(SU->tx_ena != 0)
 	}
 }
 
-// Soft Uart Receive Data Process
-void SoftUartRxDataBitProcess(SoftUart_S *SU,uint8_t B0_1)
-{
-if(SU->RxEnable)
-  {
-// Start
-  if(SU->RxBitCounter==0)
-    {
-    // Start Bit is 0
-    if(B0_1)
-       return;
-
-    SU->RxBitShift=0;
-    SU->RxBitCounter++;
-    SU->Buffer->Rx[SU->RxIndex]=0;
-    }
-		// Data
-		else if(SU->RxBitCounter<SoftUart_DATA_LEN_C1)
-		{
-			SU->Buffer->Rx[SU->RxIndex]|=((B0_1&0x01)<<SU->RxBitShift);
-			SU->RxBitCounter++;
-			SU->RxBitShift++;
-		}
-		// Stop and Complete
-		else if(SU->RxBitCounter==SoftUart_DATA_LEN_C1)
-		{
-			SU->RxBitCounter=0;
-			SU->RxTimingFlag=0;
-
-			//Stop Bit must be 1
-			if(B0_1)
-			{
-				// Received successfully
-				// Change RX Buffer Index
-				if((SU->RxIndex)<(SoftUartRxBufferSize-1))(SU->RxIndex)++;
-			}
-			// if not : ERROR -> Overwrite data
-		}
-	}
-}
-
 // Wait Until Transmit Completed
 // You do not usually need to use this function!
 void SoftUartWaitUntilTxComplate(void)
@@ -264,37 +176,13 @@ void send_char_suart(char ch)
  SoftUartWaitUntilTxComplate();
 }
 
-// Capture RX and Get BitOffset
-uint8_t SoftUartScanRxPorts(void)
-{
-	uint8_t Buffer=0x00,Bit;
-
-		// Read RX GPIO Value
-		Bit=SoftUartGpioReadPin(SUart.RxPort,SUart.RxPin);
-
-		// Starting conditions
-		if(!SUart.RxBitCounter && !SUart.RxTimingFlag && !Bit)
-		{
-			// Save RX Bit Offset
-			// Calculate middle position of data puls
-			SUart.RxBitOffset=((SU_Timer+2)%5);
-
-			// Timing Offset is Set
-			SUart.RxTimingFlag=1;
-		}
-
-		// Add all RX GPIO State to Buffer
-		Buffer|=((Bit&0x01)<<0);
-
-	return Buffer;
-}
 
 // SoftUartHandler must call in interrupt every 0.2*(1/BR)
 // if BR=9600 then 0.2*(1/9600)=20.8333333 uS
 void SoftUartHandler(void)
 {
-	uint8_t 	SU_DBuffer;
-
+///	uint8_t 	SU_DBuffer;
+#if 0
 	// Capture RX and Get BitOffset
 	SU_DBuffer = SoftUartScanRxPorts();
 
@@ -303,8 +191,7 @@ void SoftUartHandler(void)
 		{
 			SoftUartRxDataBitProcess(&SUart,((SU_DBuffer>>0)&0x01));
 		}
-
-
+#endif
 	// Sending always happens in the first time slot
 	if(SU_Timer==0)
 	{
@@ -316,18 +203,6 @@ void SoftUartHandler(void)
 	SU_Timer++;
 	if(SU_Timer >= 5)
           SU_Timer=0;
-}
-////===========================================
-uint8_t get_char(void)
-{
-    uint8_t ch;
-    while(SoftUartRxAlavailable()==0);
-    SoftUartReadRxBuffer(&ch,1);
-    return ch;
-}
-uint8_t check_rx_rdy(void)
-{
-return SoftUartRxAlavailable();
 }
 
 ////===========================================

@@ -1,7 +1,13 @@
 eclipse.preferences.version=1
 encoding//Debug/debug.c=GBK
+encoding//Debug/debug.h=GBK
+encoding//Peripheral/inc/ch32v00x_gpio.h=GBK
 encoding//User/main.c=GBK
+encoding//User/softuart.c=GBK
 encoding//User/softuart.h=GBK
 encoding//User/system_ch32v00x.c=GBK
+encoding//User/timers.c=GBK
+encoding//User/uart.c=GBK
+encoding//User/uart.h=GBK
 encoding//brd/sparrow_brd.c=GBK
 encoding//brd/sparrow_brd.h=GBK

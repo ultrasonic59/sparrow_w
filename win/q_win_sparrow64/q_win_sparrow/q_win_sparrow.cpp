@@ -106,12 +106,6 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
     plotter.ConnectToWidget(ui.widget_setted);
     ui.widget_setted->SetPlotter(&plotter);
 
-
-    plotter_osc.ConnectToWidget(ui.widget_osc);
-    ui.widget_osc->SetPlotter(&plotter_osc);
-
-
-
 	Params::SetDefaultPar(dev_obj.curr_par_contr);
 
 	loadSettings();
@@ -121,18 +115,12 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 
 	ui.lineEdit_ip->setText(dev_obj.ip_addr);
 
-
-
-
 	//ui.pushButt_debug->hide();
 	connect(ui.pushButt_debug, SIGNAL(clicked()), this, SLOT(butt_debug()));
 
 	connect(this, SIGNAL(put_xil_dat_dial(xil_dat_req_t*)), &dial_dbg, SLOT(req_data_rdy(xil_dat_req_t*)));
 	connect(this, SIGNAL(put_dac_dat_dial(dac_spi_req_t*)), &dial_dbg, SLOT(req_data_rdy(dac_spi_req_t*)));
 	connect(this, SIGNAL(put_adc_dat_dial(adc_spi_req_t*)), &dial_dbg, SLOT(req_data_rdy(adc_spi_req_t*)));
-
-
-
 
 	connect(&dial_dbg, SIGNAL(req_rd_xil(xil_dat_req_t*)), this, SLOT(slot_rd_xil_dat(xil_dat_req_t*)));
 	connect(&dial_dbg, SIGNAL(req_wr_xil(xil_dat_req_t*)), this, SLOT(slot_wr_xil_dat(xil_dat_req_t*)));
@@ -141,20 +129,14 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 	connect(&dial_dbg, SIGNAL(req_wr_adc(adc_spi_req_t*)), this, SLOT(slot_wr_adc_dat(adc_spi_req_t*)));
 	connect(&dial_dbg, SIGNAL(req_rd_adc(adc_spi_req_t*)), this, SLOT(slot_rd_adc_dat(adc_spi_req_t*)));
 
-	
-
 	ui.ed_osc_length->set_num_dig(NUM_DIG_QUINT16);
 	ui.ed_osc_length->set_data(reinterpret_cast<unsigned short*>(&plot_arr_length));
 	ui.ed_osc_length->set_min_max(MIN_LENGTH, MAX_LENGTH);
 	ui.ed_osc_length->show_par();
 	connect(ui.ed_osc_length, SIGNAL(param_changed()), this, SLOT(osc_length_changed()));
 
-
-
 	par_contr_t *p_par_contr = &dev_obj.curr_par_contr;
 	par_sent_t *p_sent_par = &p_par_contr->sent_par;
-
-
 
 	ui.ed_t_imp_len->set_num_dig(NUM_DIG_QUINT16);
 	ui.ed_t_imp_len->set_data(reinterpret_cast<unsigned short*>(&p_sent_par->Timp_len));
@@ -179,32 +161,6 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 	ui.ed_t_def->set_min_max(MIN_TDEF, MAX_TDEF);
 	ui.ed_t_def->show_par();
 	connect(ui.ed_t_def, SIGNAL(param_changed()), this, SLOT(Tdef_changed()));
-
-
-
-	ui.ed_kus->set_num_dig(NUM_DIG_QUINT16);
-	ui.ed_kus->set_data(reinterpret_cast<unsigned short*>(&p_sent_par->kus));
-	ui.ed_kus->set_min_max(MIN_KUS, MAX_KUS);
-	ui.ed_kus->show_par();
-	connect(ui.ed_kus, SIGNAL(param_changed()), this, SLOT(kus_changed()));
-
-
-
-	ui.ed_beg_osc->set_num_dig(NUM_DIG_QUINT16);
-	ui.ed_beg_osc->set_data(reinterpret_cast<unsigned short*>(&p_sent_par->beg_osc));
-	ui.ed_beg_osc->set_min_max(MIN_BEG_OSC, MAX_BEG_OSC);
-	ui.ed_beg_osc->show_par();
-	connect(ui.ed_beg_osc, SIGNAL(param_changed()), this, SLOT(beg_osc_changed()));
-
-	ui.ed_step_osc->set_num_dig(NUM_DIG_QUINT16);
-	ui.ed_step_osc->set_data(reinterpret_cast<unsigned short*>(&p_sent_par->step_osc));
-	ui.ed_step_osc->set_min_max(MIN_STEP_OSC, MAX_STEP_OSC);
-	ui.ed_step_osc->show_par();
-	connect(ui.ed_t_def, SIGNAL(param_changed()), this, SLOT(step_osc_changed()));
-
-
-
-
 
 
 
@@ -235,14 +191,6 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 	
 	ui.checkBox_gauss->setChecked(p_par_contr->gaus_enable);
 	connect(ui.checkBox_gauss, SIGNAL(clicked()), this, SLOT(GaussClicked()));
-
-
-	ui.checkBox_attenuation_lev0->setChecked(p_sent_par->attenuator & FLAG_ATTENUAT_LEV_0);
-	connect(ui.checkBox_attenuation_lev0, SIGNAL(clicked()), this, SLOT(AttenLev0Clicked()));
-
-	ui.checkBox_attenuation_lev1->setChecked(p_sent_par->attenuator & FLAG_ATTENUAT_LEV_1);
-	connect(ui.checkBox_attenuation_lev1, SIGNAL(clicked()), this, SLOT(AttenLev1Clicked()));
-
 
 	plot_array.fill(0);
 	plot_array.resize(plot_arr_length);
@@ -360,22 +308,6 @@ void q_win_sparrow::Tdef_changed()
 	dev_obj.g_changed_param |= CHNG_TDEF;
 }
 
-void q_win_sparrow::kus_changed()
-{
-	dev_obj.g_changed_param |= CHNG_KUS;
-}
-
-void q_win_sparrow::beg_osc_changed()
-{
-	dev_obj.g_changed_param |= CHNG_BEG_OSC;
-}
-
-void q_win_sparrow::step_osc_changed()
-{
-	dev_obj.g_changed_param |= CHNG_STEP_OSC;
-}
-
-
 
 void q_win_sparrow::NumPeriods_changed()
 {
@@ -435,25 +367,6 @@ void q_win_sparrow::DevFreq_changed()
 
 	dev_obj.g_changed_param |= CHNG_TIMP_LEN | CHNG_IMP_POINTS;
 }
-
-
-
-void q_win_sparrow::AttenLev0Clicked()
-{
-	par_sent_t &sent_par = dev_obj.curr_par_contr.sent_par;
-	sent_par.attenuator = (sent_par.attenuator & ~FLAG_ATTENUAT_LEV_0) | (ui.checkBox_attenuation_lev0->isChecked() ? FLAG_ATTENUAT_LEV_0 : 0);
-
-	dev_obj.g_changed_param |= CHNG_ATTENUATOR;
-}
-
-void q_win_sparrow::AttenLev1Clicked()
-{
-	par_sent_t &sent_par = dev_obj.curr_par_contr.sent_par;
-	sent_par.attenuator = (sent_par.attenuator & ~FLAG_ATTENUAT_LEV_1) | (ui.checkBox_attenuation_lev1->isChecked() ? FLAG_ATTENUAT_LEV_1 : 0);
-
-	dev_obj.g_changed_param |= CHNG_ATTENUATOR;
-}
-
 
 
 void q_win_sparrow::GaussClicked()

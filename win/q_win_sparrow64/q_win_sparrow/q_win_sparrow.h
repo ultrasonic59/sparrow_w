@@ -25,7 +25,6 @@ protected:
 
     OscillogramProperties osc_prop;
     OscillogramPlotterSetter plotter;
-	OscillogramPlotterSetter2 plotter_osc;
 
 
 	quint32 dev_freq;

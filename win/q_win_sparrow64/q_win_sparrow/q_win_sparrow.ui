@@ -36,7 +36,6 @@
        <enum>Qt::Vertical</enum>
       </property>
       <widget class="PlotterWidget" name="widget_setted" native="true"/>
-      <widget class="PlotterWidget" name="widget_osc" native="true"/>
      </widget>
     </item>
     <item>
@@ -386,99 +385,6 @@
         <string>Debug</string>
        </property>
       </widget>
-      <widget class="param_ed" name="ed_kus">
-       <property name="geometry">
-        <rect>
-         <x>82</x>
-         <y>253</y>
-         <width>71</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_kus">
-       <property name="geometry">
-        <rect>
-         <x>11</x>
-         <y>252</y>
-         <width>71</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Усиление</string>
-       </property>
-      </widget>
-      <widget class="param_ed" name="ed_beg_osc">
-       <property name="geometry">
-        <rect>
-         <x>82</x>
-         <y>284</y>
-         <width>71</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_beg_osc">
-       <property name="geometry">
-        <rect>
-         <x>11</x>
-         <y>283</y>
-         <width>71</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Нач. развёрт</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_step_osc">
-       <property name="geometry">
-        <rect>
-         <x>11</x>
-         <y>309</y>
-         <width>71</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Шаг развёрт</string>
-       </property>
-      </widget>
-      <widget class="param_ed" name="ed_step_osc">
-       <property name="geometry">
-        <rect>
-         <x>82</x>
-         <y>310</y>
-         <width>71</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_ampl_val">
        <property name="geometry">
         <rect>
@@ -498,32 +404,6 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QCheckBox" name="checkBox_attenuation_lev0">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>440</y>
-         <width>131</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Ослабление 20 дБ</string>
-       </property>
-      </widget>
-      <widget class="QCheckBox" name="checkBox_attenuation_lev1">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>460</y>
-         <width>131</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Ослабление 40 дБ</string>
        </property>
       </widget>
       <widget class="QGroupBox" name="groupBox_Gen">
