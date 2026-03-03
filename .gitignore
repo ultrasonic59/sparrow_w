@@ -43,4 +43,4 @@ xil/sparrow/sparrow_smos.runs/
 *.suo
 *.opensdf
 *.tmp
-
+./vs
