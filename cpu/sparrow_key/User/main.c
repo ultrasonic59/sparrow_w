@@ -21,6 +21,13 @@
 #include "../brd/sparrow_brd.h"
 #include "debug.h"
 #include "softuart.h"
+#define NUM_CNT_PUSH 8
+static uint8_t prev_pow_on=0;
+static uint8_t pow_on=0;
+
+static uint8_t cnt_push=0;
+static uint8_t cur_key=0;
+static uint8_t prev_key=0xff;
 
 /*********************************************************************
  * @fn      main
@@ -31,17 +38,49 @@
  */
 int main(void)
 {
+   uint8_t ena_change=0;
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
     SystemCoreClockUpdate();
     Delay_Init();
     init_hw();
-    printf("SystemClk:%d\r\n", SystemCoreClock);
-    printf( "ChipID:%08x\r\n", DBGMCU_GetCHIPID() );
-    printf("This is printf example\r\n");
+///    printf("SystemClk:%d\r\n", SystemCoreClock);
+///    printf( "ChipID:%08x\r\n", DBGMCU_GetCHIPID() );
+///    printf("This is printf example\r\n");
+    prev_pow_on=0;
+   pow_on=0;
+
+   cnt_push=0;
+   cur_key=0;
+   prev_key=0xff;
+    set_led(pow_on);
+    set_on_pow(pow_on);
 
     while(1)
     {
-        send_char_suart('5');
+        cur_key=  get_key();
+        if(prev_key!=cur_key){
+            prev_key=cur_key;
+            cnt_push=0;
+        }
+        else if(!cur_key) {
+             if(cnt_push<NUM_CNT_PUSH){
+                cnt_push++;
+                set_led(cnt_push);
+                ena_change=1;
+             }
+             else if(ena_change){
+                 pow_on=~pow_on;
+                 if(prev_pow_on!=pow_on){
+                     prev_pow_on=pow_on;
+                     set_led(pow_on);
+                     set_on_pow(pow_on);
+                     ena_change=0;
+                 }
+             }
+ ///       }
         Delay_Ms(200);
+       }
+///      send_char_suart('5');
+
     }
 }

@@ -17,7 +17,7 @@
 ////============= dbg_tx ==================================
   #define SOFT_TX_PIN          GPIO_Pin_2
   #define SOFT_TX_GPIO         GPIOA
- #define SOFT_TX_TIM           TIM2
+  #define SOFT_TX_TIM           TIM2
 ////=============led==================================
   #define LED_PIN          GPIO_Pin_1
   #define LED_GPIO         GPIOC
@@ -38,6 +38,9 @@
 
 extern void init_gpio(void);
 extern void set_led(uint8_t on_off);
+extern void set_tx(uint8_t on_off);
+extern void set_on_pow(uint8_t on_off);
+extern uint8_t get_key();
 extern void init_hw(void);
 
 #endif /* _SPARROW_BRD_H__ */

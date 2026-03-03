@@ -1,0 +1,7 @@
+//arch = zynq; split = false; format = BIN
+the_ROM_image:
+{
+	[bootloader]D:\proj\velograph\baloo\xil\for_boot\otter_fsbl400.elf
+	D:\proj\velograph\sparrow_w\xil\for_boot\sparrow5_top.bit
+	D:\proj\velograph\otter\xil\for_boot\u-boot.elf
+}

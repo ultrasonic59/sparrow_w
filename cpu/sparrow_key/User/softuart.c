@@ -31,14 +31,14 @@ void SoftUartGpioWritePin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, BitAction PinS
 // Initial Soft Uart
 SoftUartState_E SoftUartTxInit(GPIO_TypeDef *TxPort,uint16_t TxPin)
 {
-SUart.TxNComplated=0;
+SUart.TxNotComplated=0;
 
 SUart.tx_ena=0;
 
 SUart.TxBitCounter=0;
 SUart.TxBitShift=0;
 
-SUart.Buffer=&SUBuffer;
+///SUart.Buffer=&SUBuffer;
 
 SUart.TxPort=TxPort;
 SUart.TxPin=TxPin;
@@ -48,7 +48,6 @@ if(ringbuffer_init(&SUart.tx_buffer,SUART_TX_BUFF_SIZE)==0)
 ////  printk("\r\n+++ringbuffer_init[rx_msp_buffer] error!!! +++\r\n");
   return SoftUart_Error;
   }
-
 return SoftUart_OK;
 }
 
@@ -83,7 +82,7 @@ if(SU->tx_ena != 0)
   /// Start
   if(SU->TxBitCounter==0)
     {
-    SU->TxNComplated=1;
+    SU->TxNotComplated=1;
 ////    SU->TxBitShift=0;
     SoftUartTransmitBit(SU,0);
     SU->TxBitCounter++;
@@ -108,23 +107,25 @@ if(SU->tx_ena != 0)
     ////Complete
     else if(SU->TxBitCounter==SoftUart_DATA_LEN_C2)
       {
+        uint16_t t_cnt=0;
       //// Reset Bit Counter
       SU->TxBitCounter=0;
       //// Ready To Send Another Data
  ////     SU->TxIndex++;
-      if(get_ringbuffer_cnt(&SU->tx_buffer))
-        
+      t_cnt=get_ringbuffer_cnt(&SU->tx_buffer);
+      if(t_cnt)
+
 			// Check Size of Data
 ///			if(SU->TxSize > SU->TxIndex)
 			{
 				// Continue Sending
-				SU->TxNComplated=1;
+				SU->TxNotComplated=1;
 				SU->tx_ena=1;
 			}
 			else
 			{
 				// Finish
-				SU->TxNComplated=0;
+				SU->TxNotComplated=0;
 				SU->tx_ena=0;
 			}
 		}
@@ -135,7 +136,7 @@ if(SU->tx_ena != 0)
 // You do not usually need to use this function!
 void SoftUartWaitUntilTxComplate(void)
 {
-	while(SUart.TxNComplated);
+	while(SUart.TxNotComplated);
 }
 
 // Copy Data to Transmit Buffer and Start Sending
@@ -143,7 +144,7 @@ SoftUartState_E SoftUartPuts(uint8_t *Str,uint8_t Len)
 {
 	int i;
 
-	if(SUart.TxNComplated)
+	if(SUart.TxNotComplated)
           return SoftUart_Error;
 
 ////	SUart[SoftUartNumber].TxIndex=0;
@@ -155,18 +156,18 @@ SoftUartState_E SoftUartPuts(uint8_t *Str,uint8_t Len)
         ringbuffer_putc(&SUart.tx_buffer,Str[i]);
 	}
         
-	SUart.TxNComplated=1;
+	SUart.TxNotComplated=1;
 	SUart.tx_ena=1;
 
 	return SoftUart_OK;
 }
 SoftUartState_E SUartPutChar(uint8_t idat)
 {
-if(SUart.TxNComplated)
+if(SUart.TxNotComplated)
   return SoftUart_Error;
 ringbuffer_putc(&SUart.tx_buffer,idat);
   
-SUart.TxNComplated=1;
+SUart.TxNotComplated=1;
 SUart.tx_ena=1;
 return SoftUart_OK;
 }

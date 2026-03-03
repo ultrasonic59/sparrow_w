@@ -1,0 +1,5 @@
+//arch = zynq; split = false; format = MCS
+the_ROM_image:
+{
+	[bootloader]D:\proj\velograph\otter\xil\for_boot\otter_fsbl400.elf
+}
