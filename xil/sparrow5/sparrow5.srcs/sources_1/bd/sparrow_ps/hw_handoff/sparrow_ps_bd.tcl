@@ -43,7 +43,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 set list_projs [get_projects -quiet]
 if { $list_projs eq "" } {
-   create_project project_1 myproj -part xc7z010clg225-1
+   create_project project_1 myproj -part xc7z007sclg225-1
 }
 
 
@@ -904,10 +904,12 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.ACQUISITION_TIME {10} \
    CONFIG.ADC_CONVERSION_RATE {100} \
+   CONFIG.ENABLE_RESET {false} \
    CONFIG.ENABLE_VCCDDRO_ALARM {false} \
    CONFIG.ENABLE_VCCPAUX_ALARM {false} \
    CONFIG.ENABLE_VCCPINT_ALARM {false} \
    CONFIG.EXTERNAL_MUX_CHANNEL {VP_VN} \
+   CONFIG.INTERFACE_SELECTION {Enable_AXI} \
    CONFIG.OT_ALARM {false} \
    CONFIG.SINGLE_CHANNEL_ACQUISITION_TIME {true} \
    CONFIG.SINGLE_CHANNEL_SELECTION {VP_VN} \

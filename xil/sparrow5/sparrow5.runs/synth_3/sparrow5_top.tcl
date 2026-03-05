@@ -61,6 +61,9 @@ set_property used_in_implementation false [get_files -all d:/proj/velograph/spar
 set_property used_in_implementation false [get_files -all d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_auto_pc_0/sparrow_ps_auto_pc_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/sparrow_ps_ooc.xdc]
 
+read_ip -quiet D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/mem_2kx16/mem_2kx16.xci
+set_property used_in_implementation false [get_files -all d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/mem_2kx16/mem_2kx16_ooc.xdc]
+
 read_ip -quiet D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/ila_0/ila_0.xci
 set_property used_in_synthesis false [get_files -all d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila_impl.xdc]
 set_property used_in_implementation false [get_files -all d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila_impl.xdc]
@@ -71,9 +74,6 @@ read_ip -quiet D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/
 set_property used_in_implementation false [get_files -all d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/pll24_80/pll24_80_board.xdc]
 set_property used_in_implementation false [get_files -all d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/pll24_80/pll24_80.xdc]
 set_property used_in_implementation false [get_files -all d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/pll24_80/pll24_80_ooc.xdc]
-
-read_ip -quiet D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/mem_2kx16/mem_2kx16.xci
-set_property used_in_implementation false [get_files -all d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/mem_2kx16/mem_2kx16_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

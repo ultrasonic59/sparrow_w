@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
-// Date        : Mon Jan 20 00:01:00 2025
+// Date        : Thu Mar  5 01:19:02 2026
 // Host        : vovag running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
-//               D:/proj/velograph/sparrow_w/xil/sparrow/sparrow_smos.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_stub.v
+//               D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0_stub.v
 // Design      : sparrow_ps_processing_system7_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z007sclg225-1
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* X_CORE_INFO = "processing_system7_v5_5_processing_system7,Vivado 2019.1" *)
+(* X_CORE_INFO = "processing_system7_v5_5_processing_system7,Vivado 2019.1.3" *)
 module sparrow_ps_processing_system7_0_0(USB0_PORT_INDCTL, USB0_VBUS_PWRSELECT, 
   USB0_VBUS_PWRFAULT, M_AXI_GP0_ARVALID, M_AXI_GP0_AWVALID, M_AXI_GP0_BREADY, 
   M_AXI_GP0_RREADY, M_AXI_GP0_WLAST, M_AXI_GP0_WVALID, M_AXI_GP0_ARID, M_AXI_GP0_AWID, 

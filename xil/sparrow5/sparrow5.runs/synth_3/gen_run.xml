@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_3" LaunchPart="xc7z007sclg225-1" LaunchTime="1772471088">
+<GenRun Id="synth_3" LaunchPart="xc7z007sclg225-1" LaunchTime="1772662706">
   <File Type="PA-TCL" Name="sparrow5_top.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="sparrow5_top_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="sparrow5_top_reports.tcl"/>
@@ -167,8 +167,12 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="sparrow_ps_processing_system7_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="ila_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="pll24_80"/>
   <BlockFileSet Type="BlockSrcs" Name="mem_2kx16"/>
+  <BlockFileSet Type="BlockSrcs" Name="sparrow_ps_rst_ps7_0_50M_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="sparrow_ps_xadc_wiz_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="ila_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="sparrow_ps_processing_system7_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="sparrow_ps_xbar_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="pll24_80"/>
+  <BlockFileSet Type="BlockSrcs" Name="sparrow_ps_auto_pc_0"/>
 </GenRun>

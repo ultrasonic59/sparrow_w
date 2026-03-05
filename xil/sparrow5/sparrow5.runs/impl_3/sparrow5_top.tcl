@@ -65,7 +65,7 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param chipscope.maxJobs 6
+  set_param chipscope.maxJobs 5
   create_project -in_memory -part xc7z007sclg225-1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
@@ -80,9 +80,9 @@ set rc [catch {
   set_msg_config -source 4 -id {BD 41-1661} -limit 0
   set_param project.isImplRun true
   add_files D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/sparrow_ps.bd
+  read_ip -quiet D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/mem_2kx16/mem_2kx16.xci
   read_ip -quiet D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/ila_0/ila_0.xci
   read_ip -quiet D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/pll24_80/pll24_80.xci
-  read_ip -quiet D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/mem_2kx16/mem_2kx16.xci
   set_param project.isImplRun false
   read_xdc D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc
   read_xdc D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/sparrow5_top.xdc

@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='D:/proj/velograph/sparrow_w/xil/sparrow/sparrow_smos.runs/sparrow_ps_processing_system7_0_0_synth_1'
+HD_PWD='D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/sparrow_ps_processing_system7_0_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

@@ -17,11 +17,11 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==sparrow_ps_rst_
 # IP: bd/sparrow_ps/ip/sparrow_ps_xadc_wiz_0_0/sparrow_ps_xadc_wiz_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==sparrow_ps_xadc_wiz_0_0 || ORIG_REF_NAME==sparrow_ps_xadc_wiz_0_0} -quiet] -quiet
 
-# IP: bd/sparrow_ps/ip/sparrow_ps_xbar_0/sparrow_ps_xbar_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==sparrow_ps_xbar_0 || ORIG_REF_NAME==sparrow_ps_xbar_0} -quiet] -quiet
-
 # IP: bd/sparrow_ps/ip/sparrow_ps_ps7_0_axi_periph_0/sparrow_ps_ps7_0_axi_periph_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==sparrow_ps_ps7_0_axi_periph_0 || ORIG_REF_NAME==sparrow_ps_ps7_0_axi_periph_0} -quiet] -quiet
+
+# IP: bd/sparrow_ps/ip/sparrow_ps_xbar_0/sparrow_ps_xbar_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==sparrow_ps_xbar_0 || ORIG_REF_NAME==sparrow_ps_xbar_0} -quiet] -quiet
 
 # IP: bd/sparrow_ps/ip/sparrow_ps_auto_pc_0/sparrow_ps_auto_pc_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==sparrow_ps_auto_pc_0 || ORIG_REF_NAME==sparrow_ps_auto_pc_0} -quiet] -quiet

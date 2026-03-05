@@ -34,7 +34,7 @@ set_property ip_repo_paths d:/proj/umka2/xil/octopuz3a/my_ip/axi_udef_1.0 [curre
 update_ip_catalog
 set_property ip_output_repo d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
-set_property include_dirs D:/proj/velograph/sparrow_w/sepia/rtl [current_fileset]
+set_property include_dirs D:/proj/velograph/sparrow_w/xil/sparrow/sparrow.srcs/sources_1 [current_fileset]
 read_ip -quiet D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/ila_0/ila_0.xci
 set_property used_in_synthesis false [get_files -all d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila_impl.xdc]
 set_property used_in_implementation false [get_files -all d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila_impl.xdc]

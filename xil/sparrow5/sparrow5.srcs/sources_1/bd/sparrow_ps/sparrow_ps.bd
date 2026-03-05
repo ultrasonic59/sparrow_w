@@ -2,16 +2,14 @@
   "design": {
     "design_info": {
       "boundary_crc": "0x6BC07D640F853DC7",
-      "device": "xc7z010clg225-1",
+      "device": "xc7z007sclg225-1",
       "name": "sparrow_ps",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2019.1",
+      "tool_version": "2019.1.3",
       "validated": "true"
     },
     "design_tree": {
       "processing_system7_0": "",
-      "rst_ps7_0_50M": "",
-      "xadc_wiz_0": "",
       "ps7_0_axi_periph": {
         "xbar": "",
         "s00_couplers": {
@@ -19,7 +17,9 @@
         },
         "m00_couplers": {},
         "m01_couplers": {}
-      }
+      },
+      "rst_ps7_0_50M": "",
+      "xadc_wiz_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -1498,18 +1498,6 @@
           "PCW_SPI_PERIPHERAL_VALID": {
             "value": "0"
           },
-          "PCW_S_AXI_HP0_DATA_WIDTH": {
-            "value": "64"
-          },
-          "PCW_S_AXI_HP1_DATA_WIDTH": {
-            "value": "64"
-          },
-          "PCW_S_AXI_HP2_DATA_WIDTH": {
-            "value": "64"
-          },
-          "PCW_S_AXI_HP3_DATA_WIDTH": {
-            "value": "64"
-          },
           "PCW_TPIU_PERIPHERAL_CLKSRC": {
             "value": "External"
           },
@@ -1893,52 +1881,6 @@
           }
         }
       },
-      "rst_ps7_0_50M": {
-        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
-        "xci_name": "sparrow_ps_rst_ps7_0_50M_0"
-      },
-      "xadc_wiz_0": {
-        "vlnv": "xilinx.com:ip:xadc_wiz:3.3",
-        "xci_name": "sparrow_ps_xadc_wiz_0_0",
-        "parameters": {
-          "ACQUISITION_TIME": {
-            "value": "10"
-          },
-          "ADC_CONVERSION_RATE": {
-            "value": "100"
-          },
-          "ENABLE_VCCDDRO_ALARM": {
-            "value": "false"
-          },
-          "ENABLE_VCCPAUX_ALARM": {
-            "value": "false"
-          },
-          "ENABLE_VCCPINT_ALARM": {
-            "value": "false"
-          },
-          "EXTERNAL_MUX_CHANNEL": {
-            "value": "VP_VN"
-          },
-          "OT_ALARM": {
-            "value": "false"
-          },
-          "SINGLE_CHANNEL_ACQUISITION_TIME": {
-            "value": "true"
-          },
-          "SINGLE_CHANNEL_SELECTION": {
-            "value": "VP_VN"
-          },
-          "USER_TEMP_ALARM": {
-            "value": "false"
-          },
-          "VCCAUX_ALARM": {
-            "value": "false"
-          },
-          "VCCINT_ALARM": {
-            "value": "false"
-          }
-        }
-      },
       "ps7_0_axi_periph": {
         "vlnv": "xilinx.com:ip:axi_interconnect:2.1",
         "xci_name": "sparrow_ps_ps7_0_axi_periph_0",
@@ -2241,22 +2183,16 @@
           }
         },
         "interface_nets": {
-          "xbar_to_m01_couplers": {
-            "interface_ports": [
-              "xbar/M01_AXI",
-              "m01_couplers/S_AXI"
-            ]
-          },
-          "m00_couplers_to_ps7_0_axi_periph": {
-            "interface_ports": [
-              "M00_AXI",
-              "m00_couplers/M_AXI"
-            ]
-          },
           "ps7_0_axi_periph_to_s00_couplers": {
             "interface_ports": [
               "S00_AXI",
               "s00_couplers/S_AXI"
+            ]
+          },
+          "xbar_to_m01_couplers": {
+            "interface_ports": [
+              "xbar/M01_AXI",
+              "m01_couplers/S_AXI"
             ]
           },
           "xbar_to_m00_couplers": {
@@ -2275,6 +2211,12 @@
             "interface_ports": [
               "s00_couplers/M_AXI",
               "xbar/S00_AXI"
+            ]
+          },
+          "m00_couplers_to_ps7_0_axi_periph": {
+            "interface_ports": [
+              "M00_AXI",
+              "m00_couplers/M_AXI"
             ]
           }
         },
@@ -2334,6 +2276,58 @@
             ]
           }
         }
+      },
+      "rst_ps7_0_50M": {
+        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
+        "xci_name": "sparrow_ps_rst_ps7_0_50M_0"
+      },
+      "xadc_wiz_0": {
+        "vlnv": "xilinx.com:ip:xadc_wiz:3.3",
+        "xci_name": "sparrow_ps_xadc_wiz_0_0",
+        "parameters": {
+          "ACQUISITION_TIME": {
+            "value": "10"
+          },
+          "ADC_CONVERSION_RATE": {
+            "value": "100"
+          },
+          "ENABLE_RESET": {
+            "value": "false"
+          },
+          "ENABLE_VCCDDRO_ALARM": {
+            "value": "false"
+          },
+          "ENABLE_VCCPAUX_ALARM": {
+            "value": "false"
+          },
+          "ENABLE_VCCPINT_ALARM": {
+            "value": "false"
+          },
+          "EXTERNAL_MUX_CHANNEL": {
+            "value": "VP_VN"
+          },
+          "INTERFACE_SELECTION": {
+            "value": "Enable_AXI"
+          },
+          "OT_ALARM": {
+            "value": "false"
+          },
+          "SINGLE_CHANNEL_ACQUISITION_TIME": {
+            "value": "true"
+          },
+          "SINGLE_CHANNEL_SELECTION": {
+            "value": "VP_VN"
+          },
+          "USER_TEMP_ALARM": {
+            "value": "false"
+          },
+          "VCCAUX_ALARM": {
+            "value": "false"
+          },
+          "VCCINT_ALARM": {
+            "value": "false"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -2355,16 +2349,16 @@
           "processing_system7_0/DDR"
         ]
       },
-      "processing_system7_0_FIXED_IO": {
-        "interface_ports": [
-          "FIXED_IO",
-          "processing_system7_0/FIXED_IO"
-        ]
-      },
       "ps7_0_axi_periph_M00_AXI": {
         "interface_ports": [
           "M_AXI",
           "ps7_0_axi_periph/M00_AXI"
+        ]
+      },
+      "processing_system7_0_FIXED_IO": {
+        "interface_ports": [
+          "FIXED_IO",
+          "processing_system7_0/FIXED_IO"
         ]
       }
     },
@@ -2374,12 +2368,12 @@
           "processing_system7_0/FCLK_CLK0",
           "fclk0",
           "processing_system7_0/M_AXI_GP0_ACLK",
-          "rst_ps7_0_50M/slowest_sync_clk",
-          "xadc_wiz_0/s_axi_aclk",
           "ps7_0_axi_periph/ACLK",
           "ps7_0_axi_periph/S00_ACLK",
           "ps7_0_axi_periph/M00_ACLK",
-          "ps7_0_axi_periph/M01_ACLK"
+          "ps7_0_axi_periph/M01_ACLK",
+          "rst_ps7_0_50M/slowest_sync_clk",
+          "xadc_wiz_0/s_axi_aclk"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {
@@ -2404,10 +2398,10 @@
       "rst_ps7_0_50M_peripheral_aresetn": {
         "ports": [
           "rst_ps7_0_50M/peripheral_aresetn",
-          "xadc_wiz_0/s_axi_aresetn",
           "ps7_0_axi_periph/S00_ARESETN",
           "ps7_0_axi_periph/M00_ARESETN",
-          "ps7_0_axi_periph/M01_ARESETN"
+          "ps7_0_axi_periph/M01_ARESETN",
+          "xadc_wiz_0/s_axi_aresetn"
         ]
       },
       "rst_ps7_0_50M_interconnect_aresetn": {

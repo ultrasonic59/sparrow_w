@@ -1,13 +1,13 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Sun Jul 21 18:23:54 2019
--- Host        : vovag-PC running 64-bit Service Pack 1  (build 7601)
--- Command     : write_vhdl -force -mode synth_stub -rename_top sparrow_ps_xbar_0 -prefix
---               sparrow_ps_xbar_0_ sparrow_ps_xbar_0_stub.vhdl
+-- Tool Version: Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
+-- Date        : Thu Mar  5 01:19:09 2026
+-- Host        : vovag running 64-bit major release  (build 9200)
+-- Command     : write_vhdl -force -mode synth_stub
+--               d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_xbar_0/sparrow_ps_xbar_0_stub.vhdl
 -- Design      : sparrow_ps_xbar_0
 -- Purpose     : Stub declaration of top-level module interface
--- Device      : xc7z010clg225-1
+-- Device      : xc7z007sclg225-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -64,6 +64,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "aclk,aresetn,s_axi_awaddr[31:0],s_axi_awprot[2:0],s_axi_awvalid[0:0],s_axi_awready[0:0],s_axi_wdata[31:0],s_axi_wstrb[3:0],s_axi_wvalid[0:0],s_axi_wready[0:0],s_axi_bresp[1:0],s_axi_bvalid[0:0],s_axi_bready[0:0],s_axi_araddr[31:0],s_axi_arprot[2:0],s_axi_arvalid[0:0],s_axi_arready[0:0],s_axi_rdata[31:0],s_axi_rresp[1:0],s_axi_rvalid[0:0],s_axi_rready[0:0],m_axi_awaddr[63:0],m_axi_awprot[5:0],m_axi_awvalid[1:0],m_axi_awready[1:0],m_axi_wdata[63:0],m_axi_wstrb[7:0],m_axi_wvalid[1:0],m_axi_wready[1:0],m_axi_bresp[3:0],m_axi_bvalid[1:0],m_axi_bready[1:0],m_axi_araddr[63:0],m_axi_arprot[5:0],m_axi_arvalid[1:0],m_axi_arready[1:0],m_axi_rdata[63:0],m_axi_rresp[3:0],m_axi_rvalid[1:0],m_axi_rready[1:0]";
 attribute X_CORE_INFO : string;
-attribute X_CORE_INFO of stub : architecture is "axi_crossbar_v2_1_20_axi_crossbar,Vivado 2019.1";
+attribute X_CORE_INFO of stub : architecture is "axi_crossbar_v2_1_20_axi_crossbar,Vivado 2019.1.3";
 begin
 end;

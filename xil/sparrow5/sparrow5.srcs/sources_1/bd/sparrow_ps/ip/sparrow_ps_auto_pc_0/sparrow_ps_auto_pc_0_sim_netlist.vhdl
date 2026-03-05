@@ -1,14 +1,14 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Sun Jul 21 18:26:26 2019
--- Host        : vovag-PC running 64-bit Service Pack 1  (build 7601)
--- Command     : write_vhdl -force -mode funcsim -rename_top sparrow_ps_auto_pc_0 -prefix
---               sparrow_ps_auto_pc_0_ sparrow_ps_auto_pc_0_sim_netlist.vhdl
+-- Tool Version: Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
+-- Date        : Thu Mar  5 01:19:26 2026
+-- Host        : vovag running 64-bit major release  (build 9200)
+-- Command     : write_vhdl -force -mode funcsim
+--               d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_auto_pc_0/sparrow_ps_auto_pc_0_sim_netlist.vhdl
 -- Design      : sparrow_ps_auto_pc_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7z010clg225-1
+-- Device      : xc7z007sclg225-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -43,6 +43,8 @@ entity sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_incr_cmd is
     \axlen_cnt_reg[4]_0\ : in STD_LOGIC;
     \axlen_cnt_reg[8]_0\ : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_incr_cmd : entity is "axi_protocol_converter_v2_1_19_b2s_incr_cmd";
 end sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_incr_cmd;
 
 architecture STRUCTURE of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_incr_cmd is
@@ -1931,6 +1933,8 @@ entity sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_rd_cmd_fsm is
     r_full : in STD_LOGIC;
     aclk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_rd_cmd_fsm : entity is "axi_protocol_converter_v2_1_19_b2s_rd_cmd_fsm";
 end sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_rd_cmd_fsm;
 
 architecture STRUCTURE of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_rd_cmd_fsm is
@@ -2343,6 +2347,8 @@ entity sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_simple_fifo is
     \in\ : in STD_LOGIC_VECTOR ( 15 downto 0 );
     aclk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_simple_fifo : entity is "axi_protocol_converter_v2_1_19_b2s_simple_fifo";
 end sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_simple_fifo;
 
 architecture STRUCTURE of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_simple_fifo is
@@ -4073,6 +4079,8 @@ entity sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_wr_cmd_fsm is
     cnt_read : in STD_LOGIC_VECTOR ( 1 downto 0 );
     aclk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_wr_cmd_fsm : entity is "axi_protocol_converter_v2_1_19_b2s_wr_cmd_fsm";
 end sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_wr_cmd_fsm;
 
 architecture STRUCTURE of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_wr_cmd_fsm is
@@ -4311,6 +4319,8 @@ entity sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_wrap_cmd is
     \wrap_cnt_r_reg[3]_0\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
     \wrap_boundary_axaddr_r_reg[6]_0\ : in STD_LOGIC_VECTOR ( 6 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_wrap_cmd : entity is "axi_protocol_converter_v2_1_19_b2s_wrap_cmd";
 end sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_wrap_cmd;
 
 architecture STRUCTURE of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_wrap_cmd is
@@ -5756,6 +5766,8 @@ entity sparrow_ps_auto_pc_0_axi_register_slice_v2_1_19_axic_register_slice is
     \m_axi_araddr[11]_2\ : in STD_LOGIC;
     \m_payload_i_reg[0]_0\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of sparrow_ps_auto_pc_0_axi_register_slice_v2_1_19_axic_register_slice : entity is "axi_register_slice_v2_1_19_axic_register_slice";
 end sparrow_ps_auto_pc_0_axi_register_slice_v2_1_19_axic_register_slice;
 
 architecture STRUCTURE of sparrow_ps_auto_pc_0_axi_register_slice_v2_1_19_axic_register_slice is
@@ -12168,6 +12180,8 @@ entity sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_b_channel is
     \in\ : in STD_LOGIC_VECTOR ( 15 downto 0 );
     m_axi_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_b_channel : entity is "axi_protocol_converter_v2_1_19_b2s_b_channel";
 end sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_b_channel;
 
 architecture STRUCTURE of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_b_channel is
@@ -12515,6 +12529,8 @@ entity sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_cmd_translator is
     \wrap_cnt_r_reg[3]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
     \wrap_boundary_axaddr_r_reg[6]\ : in STD_LOGIC_VECTOR ( 6 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_cmd_translator : entity is "axi_protocol_converter_v2_1_19_b2s_cmd_translator";
 end sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_cmd_translator;
 
 architecture STRUCTURE of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_cmd_translator is
@@ -12855,6 +12871,8 @@ entity sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_r_channel is
     D : in STD_LOGIC_VECTOR ( 11 downto 0 );
     areset_d1 : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_r_channel : entity is "axi_protocol_converter_v2_1_19_b2s_r_channel";
 end sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_r_channel;
 
 architecture STRUCTURE of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_r_channel is
@@ -13098,6 +13116,8 @@ entity sparrow_ps_auto_pc_0_axi_register_slice_v2_1_19_axi_register_slice is
     E : in STD_LOGIC_VECTOR ( 0 to 0 );
     \m_payload_i_reg[0]\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of sparrow_ps_auto_pc_0_axi_register_slice_v2_1_19_axi_register_slice : entity is "axi_register_slice_v2_1_19_axi_register_slice";
 end sparrow_ps_auto_pc_0_axi_register_slice_v2_1_19_axi_register_slice;
 
 architecture STRUCTURE of sparrow_ps_auto_pc_0_axi_register_slice_v2_1_19_axi_register_slice is
@@ -13267,6 +13287,8 @@ entity sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_ar_channel is
     \wrap_cnt_r_reg[3]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
     \wrap_boundary_axaddr_r_reg[6]\ : in STD_LOGIC_VECTOR ( 6 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_ar_channel : entity is "axi_protocol_converter_v2_1_19_b2s_ar_channel";
 end sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_ar_channel;
 
 architecture STRUCTURE of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_ar_channel is
@@ -13607,6 +13629,8 @@ entity sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_aw_channel is
     \wrap_cnt_r_reg[3]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
     \wrap_boundary_axaddr_r_reg[6]\ : in STD_LOGIC_VECTOR ( 6 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_aw_channel : entity is "axi_protocol_converter_v2_1_19_b2s_aw_channel";
 end sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_aw_channel;
 
 architecture STRUCTURE of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s_aw_channel is
@@ -13881,6 +13905,8 @@ entity sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s is
     s_axi_bready : in STD_LOGIC;
     aresetn : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s : entity is "axi_protocol_converter_v2_1_19_b2s";
 end sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s;
 
 architecture STRUCTURE of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_b2s is
@@ -14431,6 +14457,8 @@ entity sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_axi_protocol_converte
   attribute C_TRANSLATION_MODE of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_axi_protocol_converter : entity is 2;
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_axi_protocol_converter : entity is "yes";
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_axi_protocol_converter : entity is "axi_protocol_converter_v2_1_19_axi_protocol_converter";
   attribute P_AXI3 : integer;
   attribute P_AXI3 of sparrow_ps_auto_pc_0_axi_protocol_converter_v2_1_19_axi_protocol_converter : entity is 1;
   attribute P_AXI4 : integer;
@@ -14691,7 +14719,7 @@ entity sparrow_ps_auto_pc_0 is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of sparrow_ps_auto_pc_0 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of sparrow_ps_auto_pc_0 : entity is "axi_protocol_converter_v2_1_19_axi_protocol_converter,Vivado 2019.1";
+  attribute X_CORE_INFO of sparrow_ps_auto_pc_0 : entity is "axi_protocol_converter_v2_1_19_axi_protocol_converter,Vivado 2019.1.3";
 end sparrow_ps_auto_pc_0;
 
 architecture STRUCTURE of sparrow_ps_auto_pc_0 is

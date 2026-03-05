@@ -1,0 +1,5 @@
+//arch = zynq; split = false; format = MCS
+the_ROM_image:
+{
+	[bootloader]D:\proj\velograph\sparrow_w\xil\for_boot\sparrow5_fsbl.elf
+}

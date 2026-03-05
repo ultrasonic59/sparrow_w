@@ -6,8 +6,8 @@
 ##
 ##  Details :     Constraints file
 ##                    FPGA family:       zynq
-##                    FPGA:              xc7z010clg225-1
-##                    Device Size:        xc7z010
+##                    FPGA:              xc7z007sclg225-1
+##                    Device Size:        xc7z007s
 ##                    Package:            clg225
 ##                    Speedgrade:         -1
 ##
@@ -17,9 +17,6 @@
 ############################################################################
 # Clock constraints                                                        #
 ############################################################################
-create_clock -name clk_fpga_3 -period "20.25" [get_pins "PS7_i/FCLKCLK[3]"]
-set_input_jitter clk_fpga_3 0.6075
-#The clocks are asynchronous, user should constrain them appropriately.#
 create_clock -name clk_fpga_0 -period "5.25" [get_pins "PS7_i/FCLKCLK[0]"]
 set_input_jitter clk_fpga_0 0.1575
 #The clocks are asynchronous, user should constrain them appropriately.#
@@ -28,6 +25,9 @@ set_input_jitter clk_fpga_1 0.15
 #The clocks are asynchronous, user should constrain them appropriately.#
 create_clock -name clk_fpga_2 -period "12.75" [get_pins "PS7_i/FCLKCLK[2]"]
 set_input_jitter clk_fpga_2 0.3825
+#The clocks are asynchronous, user should constrain them appropriately.#
+create_clock -name clk_fpga_3 -period "20.25" [get_pins "PS7_i/FCLKCLK[3]"]
+set_input_jitter clk_fpga_3 0.6075
 #The clocks are asynchronous, user should constrain them appropriately.#
 
 

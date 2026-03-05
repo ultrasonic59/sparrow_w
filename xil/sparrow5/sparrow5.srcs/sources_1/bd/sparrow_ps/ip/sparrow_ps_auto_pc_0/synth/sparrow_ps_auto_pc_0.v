@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2019 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2026 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -50,10 +50,10 @@
 // IP VLNV: xilinx.com:ip:axi_protocol_converter:2.1
 // IP Revision: 19
 
-(* X_CORE_INFO = "axi_protocol_converter_v2_1_19_axi_protocol_converter,Vivado 2019.1" *)
+(* X_CORE_INFO = "axi_protocol_converter_v2_1_19_axi_protocol_converter,Vivado 2019.1.3" *)
 (* CHECK_LICENSE_TYPE = "sparrow_ps_auto_pc_0,axi_protocol_converter_v2_1_19_axi_protocol_converter,{}" *)
-(* CORE_GENERATION_INFO = "sparrow_ps_auto_pc_0,axi_protocol_converter_v2_1_19_axi_protocol_converter,{x_ipProduct=Vivado 2019.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_protocol_converter,x_ipVersion=2.1,x_ipCoreRevision=19,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_FAMILY=zynq,C_M_AXI_PROTOCOL=2,C_S_AXI_PROTOCOL=1,C_IGNORE_ID=0,C_AXI_ID_WIDTH=12,C_AXI_ADDR_WIDTH=32,C_AXI_DATA_WIDTH=32,C_AXI_SUPPORTS_WRITE=1,C_AXI_SUPPORTS_READ=1,C_AXI_SUPPORTS_USER_SIGNALS=0,C_AXI_AWUSER_WIDTH=1,C_AXI_ARUSER_WIDTH=1,C_AXI_WUS\
-ER_WIDTH=1,C_AXI_RUSER_WIDTH=1,C_AXI_BUSER_WIDTH=1,C_TRANSLATION_MODE=2}" *)
+(* CORE_GENERATION_INFO = "sparrow_ps_auto_pc_0,axi_protocol_converter_v2_1_19_axi_protocol_converter,{x_ipProduct=Vivado 2019.1.3,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_protocol_converter,x_ipVersion=2.1,x_ipCoreRevision=19,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_FAMILY=zynq,C_M_AXI_PROTOCOL=2,C_S_AXI_PROTOCOL=1,C_IGNORE_ID=0,C_AXI_ID_WIDTH=12,C_AXI_ADDR_WIDTH=32,C_AXI_DATA_WIDTH=32,C_AXI_SUPPORTS_WRITE=1,C_AXI_SUPPORTS_READ=1,C_AXI_SUPPORTS_USER_SIGNALS=0,C_AXI_AWUSER_WIDTH=1,C_AXI_ARUSER_WIDTH=1,C_AXI_W\
+USER_WIDTH=1,C_AXI_RUSER_WIDTH=1,C_AXI_BUSER_WIDTH=1,C_TRANSLATION_MODE=2}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module sparrow_ps_auto_pc_0 (
   aclk,

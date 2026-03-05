@@ -1,7 +1,7 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Mon Mar  2 20:06:26 2026
+-- Tool Version: Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
+-- Date        : Thu Mar  5 01:20:05 2026
 -- Host        : vovag running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/ila_0/ila_0_stub.vhdl
@@ -31,6 +31,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "clk,probe0[15:0],probe1[13:0],probe2[12:0],probe3[15:0],probe4[12:0],probe5[13:0]";
 attribute X_CORE_INFO : string;
-attribute X_CORE_INFO of stub : architecture is "ila,Vivado 2019.1";
+attribute X_CORE_INFO of stub : architecture is "ila,Vivado 2019.1.3";
 begin
 end;

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<webTalkData  fileName='usage_statistics_webtalk.xml'  majorVersion='1' minorVersion='0' timeStamp='Mon Mar  2 20:09:31 2026'>
+<webTalkData  fileName='usage_statistics_webtalk.xml'  majorVersion='1' minorVersion='0' timeStamp='Thu Mar  5 01:22:22 2026'>
 <section name="__ROOT__" level="0" order="1" description="">
  <section name="software_version_and_target_device" level="1" order="1" description="">
   <keyValuePair key="beta" value="FALSE" description="" />
-  <keyValuePair key="build_version" value="2552052" description="" />
-  <keyValuePair key="date_generated" value="Mon Mar  2 20:09:31 2026" description="" />
+  <keyValuePair key="build_version" value="2644227" description="" />
+  <keyValuePair key="date_generated" value="Thu Mar  5 01:22:22 2026" description="" />
   <keyValuePair key="os_platform" value="WIN64" description="" />
-  <keyValuePair key="product_version" value="Vivado v2019.1 (64-bit)" description="" />
+  <keyValuePair key="product_version" value="Vivado v2019.1.3 (64-bit)" description="" />
   <keyValuePair key="project_id" value="fd4564b1150441c990fc1a411977d79d" description="" />
-  <keyValuePair key="project_iteration" value="7" description="" />
-  <keyValuePair key="random_id" value="f8294bd1588a54f7a4f09d0187491b2c" description="" />
-  <keyValuePair key="registration_id" value="f8294bd1588a54f7a4f09d0187491b2c" description="" />
+  <keyValuePair key="project_iteration" value="8" description="" />
+  <keyValuePair key="random_id" value="2a58c0c3c34e528fa03c0712d9254a2a" description="" />
+  <keyValuePair key="registration_id" value="2a58c0c3c34e528fa03c0712d9254a2a" description="" />
   <keyValuePair key="route_design" value="TRUE" description="" />
   <keyValuePair key="target_device" value="xc7z007s" description="" />
   <keyValuePair key="target_family" value="zynq" description="" />
@@ -19,8 +19,8 @@
   <keyValuePair key="tool_flow" value="Vivado" description="" />
  </section>
  <section name="user_environment" level="1" order="2" description="">
-  <keyValuePair key="cpu_name" value="12th Gen Intel(R) Core(TM) i9-12900K" description="" />
-  <keyValuePair key="cpu_speed" value="3187 MHz" description="" />
+  <keyValuePair key="cpu_name" value="12th Gen Intel(R) Core(TM) i9-12900H" description="" />
+  <keyValuePair key="cpu_speed" value="2918 MHz" description="" />
   <keyValuePair key="os_name" value="Windows Server 2016 or Windows 10" description="" />
   <keyValuePair key="os_release" value="major release  (build 9200)" description="" />
   <keyValuePair key="system_ram" value="34.000 GB" description="" />
@@ -83,7 +83,7 @@
    <keyValuePair key="x_iplanguage" value="VERILOG" description="" />
    <keyValuePair key="x_iplibrary" value="ip" description="" />
    <keyValuePair key="x_ipname" value="axi_crossbar" description="" />
-   <keyValuePair key="x_ipproduct" value="Vivado 2019.1" description="" />
+   <keyValuePair key="x_ipproduct" value="Vivado 2019.1.3" description="" />
    <keyValuePair key="x_ipsimlanguage" value="MIXED" description="" />
    <keyValuePair key="x_ipvendor" value="xilinx.com" description="" />
    <keyValuePair key="x_ipversion" value="2.1" description="" />
@@ -111,7 +111,7 @@
    <keyValuePair key="x_iplanguage" value="VERILOG" description="" />
    <keyValuePair key="x_iplibrary" value="ip" description="" />
    <keyValuePair key="x_ipname" value="axi_protocol_converter" description="" />
-   <keyValuePair key="x_ipproduct" value="Vivado 2019.1" description="" />
+   <keyValuePair key="x_ipproduct" value="Vivado 2019.1.3" description="" />
    <keyValuePair key="x_ipsimlanguage" value="MIXED" description="" />
    <keyValuePair key="x_ipvendor" value="xilinx.com" description="" />
    <keyValuePair key="x_ipversion" value="2.1" description="" />
@@ -198,7 +198,7 @@
    <keyValuePair key="x_iplanguage" value="VERILOG" description="" />
    <keyValuePair key="x_iplibrary" value="ip" description="" />
    <keyValuePair key="x_ipname" value="blk_mem_gen" description="" />
-   <keyValuePair key="x_ipproduct" value="Vivado 2019.1" description="" />
+   <keyValuePair key="x_ipproduct" value="Vivado 2019.1.3" description="" />
    <keyValuePair key="x_ipsimlanguage" value="MIXED" description="" />
    <keyValuePair key="x_ipvendor" value="xilinx.com" description="" />
    <keyValuePair key="x_ipversion" value="8.4" description="" />
@@ -3343,7 +3343,7 @@
    <keyValuePair key="x_iplanguage" value="VERILOG" description="" />
    <keyValuePair key="x_iplibrary" value="ip" description="" />
    <keyValuePair key="x_ipname" value="ila" description="" />
-   <keyValuePair key="x_ipproduct" value="Vivado 2019.1" description="" />
+   <keyValuePair key="x_ipproduct" value="Vivado 2019.1.3" description="" />
    <keyValuePair key="x_ipvendor" value="xilinx.com" description="" />
    <keyValuePair key="x_ipversion" value="6.2" description="" />
   </section>
@@ -3378,7 +3378,7 @@
    <keyValuePair key="x_iplanguage" value="VERILOG" description="" />
    <keyValuePair key="x_iplibrary" value="ip" description="" />
    <keyValuePair key="x_ipname" value="proc_sys_reset" description="" />
-   <keyValuePair key="x_ipproduct" value="Vivado 2019.1" description="" />
+   <keyValuePair key="x_ipproduct" value="Vivado 2019.1.3" description="" />
    <keyValuePair key="x_ipsimlanguage" value="MIXED" description="" />
    <keyValuePair key="x_ipvendor" value="xilinx.com" description="" />
    <keyValuePair key="x_ipversion" value="5.0" description="" />
@@ -3689,7 +3689,9 @@
    <keyValuePair key="c_fclk_clk1_buf" value="TRUE" description="" />
    <keyValuePair key="c_fclk_clk2_buf" value="TRUE" description="" />
    <keyValuePair key="c_fclk_clk3_buf" value="TRUE" description="" />
+   <keyValuePair key="c_gp0_en_modifiable_txn" value="1" description="" />
    <keyValuePair key="c_gp1_en_modifiable_txn" value="1" description="" />
+   <keyValuePair key="c_include_acp_trans_check" value="0" description="" />
    <keyValuePair key="c_include_trace_buffer" value="0" description="" />
    <keyValuePair key="c_irq_f2p_mode" value="DIRECT" description="" />
    <keyValuePair key="c_m_axi_gp0_enable_static_remap" value="0" description="" />
@@ -3732,13 +3734,12 @@
    <keyValuePair key="c_use_s_axi_hp3" value="0" description="" />
    <keyValuePair key="core_container" value="NA" description="" />
    <keyValuePair key="iptotal" value="1" description="" />
-   <keyValuePair key="pcw_wdt_peripheral_freqmhz" value="133.333333" description="" />
    <keyValuePair key="use_trace_data_edge_detector" value="0" description="" />
    <keyValuePair key="x_ipcorerevision" value="6" description="" />
    <keyValuePair key="x_iplanguage" value="VERILOG" description="" />
    <keyValuePair key="x_iplibrary" value="ip" description="" />
    <keyValuePair key="x_ipname" value="processing_system7" description="" />
-   <keyValuePair key="x_ipproduct" value="Vivado 2019.1" description="" />
+   <keyValuePair key="x_ipproduct" value="Vivado 2019.1.3" description="" />
    <keyValuePair key="x_ipsimlanguage" value="MIXED" description="" />
    <keyValuePair key="x_ipvendor" value="xilinx.com" description="" />
    <keyValuePair key="x_ipversion" value="5.5" description="" />
@@ -3907,7 +3908,7 @@
    <keyValuePair key="output_load" value="5.000000" description="" />
    <keyValuePair key="output_toggle" value="12.500000" description="" />
    <keyValuePair key="package" value="clg225" description="" />
-   <keyValuePair key="pct_clock_constrained" value="1.000000" description="" />
+   <keyValuePair key="pct_clock_constrained" value="3.000000" description="" />
    <keyValuePair key="pct_inputs_defined" value="50" description="" />
    <keyValuePair key="platform" value="nt64" description="" />
    <keyValuePair key="pll" value="0.127022" description="" />
@@ -3999,7 +4000,7 @@
    <keyValuePair key="vccpll_static_current" value="0.003000" description="" />
    <keyValuePair key="vccpll_total_current" value="0.016878" description="" />
    <keyValuePair key="vccpll_voltage" value="1.800000" description="" />
-   <keyValuePair key="version" value="2019.1" description="" />
+   <keyValuePair key="version" value="2019.1.3" description="" />
    <keyValuePair key="xadc" value="0.003695" description="" />
   </section>
  </section>
@@ -4312,13 +4313,18 @@
    <keyValuePair key="-verilog_define" value="default::[not_specified]" description="" />
   </section>
   <section name="usage" level="2" order="2" description="">
-   <keyValuePair key="elapsed" value="00:00:24s" description="" />
+   <keyValuePair key="elapsed" value="00:00:18s" description="" />
    <keyValuePair key="hls_ip" value="0" description="" />
-   <keyValuePair key="memory_gain" value="625.996MB" description="" />
-   <keyValuePair key="memory_peak" value="1054.277MB" description="" />
+   <keyValuePair key="memory_gain" value="624.441MB" description="" />
+   <keyValuePair key="memory_peak" value="1053.422MB" description="" />
   </section>
  </section>
- <section name="unisim_transformation" level="1" order="10" description="">
+ <section name="tclstore" level="1" order="10" description="">
+  <section name="usage" level="2" order="1" description="">
+   <keyValuePair key="app_install_count::ultrafast" value="1" description="" />
+  </section>
+ </section>
+ <section name="unisim_transformation" level="1" order="11" description="">
   <section name="post_unisim_transformation" level="2" order="1" description="">
    <keyValuePair key="bibuf" value="86" description="" />
    <keyValuePair key="bufg" value="13" description="" />
@@ -4384,15 +4390,18 @@
    <keyValuePair key="xadc" value="1" description="" />
   </section>
  </section>
- <section name="vivado_usage" level="1" order="11" description="">
+ <section name="vivado_usage" level="1" order="12" description="">
   <section name="gui_handlers" level="2" order="1" description="">
-   <keyValuePair key="basedialog_ok" value="43" description="" />
-   <keyValuePair key="basedialog_yes" value="17" description="" />
+   <keyValuePair key="basedialog_ok" value="48" description="" />
+   <keyValuePair key="basedialog_yes" value="18" description="" />
+   <keyValuePair key="basereporttab_rerun" value="1" description="" />
    <keyValuePair key="constraintschooserpanel_add_files" value="1" description="" />
    <keyValuePair key="constraintschooserpanel_file_table" value="1" description="" />
-   <keyValuePair key="filesetpanel_file_set_panel_tree" value="85" description="" />
-   <keyValuePair key="flownavigatortreepanel_flow_navigator_tree" value="20" description="" />
+   <keyValuePair key="filesetpanel_file_set_panel_tree" value="103" description="" />
+   <keyValuePair key="flownavigatortreepanel_flow_navigator_tree" value="25" description="" />
+   <keyValuePair key="hardwaretreepanel_hardware_tree_table" value="3" description="" />
    <keyValuePair key="hcodeeditor_search_text_combo_box" value="2" description="" />
+   <keyValuePair key="ipstatussectionpanel_upgrade_selected" value="1" description="" />
    <keyValuePair key="mainmenumgr_checkpoint" value="2" description="" />
    <keyValuePair key="mainmenumgr_edit" value="6" description="" />
    <keyValuePair key="mainmenumgr_export" value="3" description="" />
@@ -4407,16 +4416,22 @@
    <keyValuePair key="mainmenumgr_tools" value="4" description="" />
    <keyValuePair key="mainmenumgr_window" value="4" description="" />
    <keyValuePair key="mainwinmenumgr_layout" value="2" description="" />
+   <keyValuePair key="miotablepagepanel_mio_table" value="2" description="" />
    <keyValuePair key="msgtreepanel_message_severity" value="1" description="" />
    <keyValuePair key="msgtreepanel_message_view_tree" value="19" description="" />
    <keyValuePair key="pacommandnames_add_sources" value="1" description="" />
+   <keyValuePair key="pacommandnames_auto_connect_target" value="1" description="" />
    <keyValuePair key="pacommandnames_auto_update_hier" value="2" description="" />
+   <keyValuePair key="pacommandnames_close_server" value="1" description="" />
+   <keyValuePair key="pacommandnames_close_target" value="1" description="" />
    <keyValuePair key="pacommandnames_open_hardware_manager" value="1" description="" />
    <keyValuePair key="pacommandnames_reports_window" value="4" description="" />
    <keyValuePair key="pacommandnames_run_bitgen" value="1" description="" />
    <keyValuePair key="pacommandnames_save_project_as" value="1" description="" />
    <keyValuePair key="pacommandnames_set_as_top" value="1" description="" />
    <keyValuePair key="paviews_code" value="8" description="" />
+   <keyValuePair key="paviews_project_summary" value="2" description="" />
+   <keyValuePair key="programfpgadialog_program" value="1" description="" />
    <keyValuePair key="projectnamechooser_project_name" value="1" description="" />
    <keyValuePair key="rdicommands_cut" value="2" description="" />
    <keyValuePair key="rdicommands_delete" value="5" description="" />
@@ -4428,19 +4443,33 @@
    <keyValuePair key="srcchoosertable_src_chooser_table" value="1" description="" />
    <keyValuePair key="srcmenu_ip_hierarchy" value="5" description="" />
    <keyValuePair key="srcmenu_refresh_hierarchy" value="1" description="" />
+   <keyValuePair key="systemtab_report_ip_status" value="1" description="" />
    <keyValuePair key="touchpointsurveydialog_no" value="1" description="" />
+   <keyValuePair key="upgradeip_convert_ip_to_core_container_and_set" value="1" description="" />
   </section>
   <section name="java_command_handlers" level="2" order="2" description="">
    <keyValuePair key="addsources" value="2" description="" />
+   <keyValuePair key="autoconnecttarget" value="1" description="" />
+   <keyValuePair key="closeserver" value="1" description="" />
+   <keyValuePair key="closetarget" value="1" description="" />
+   <keyValuePair key="customizersbblock" value="1" description="" />
    <keyValuePair key="editdelete" value="5" description="" />
-   <keyValuePair key="runbitgen" value="17" description="" />
+   <keyValuePair key="launchprogramfpga" value="1" description="" />
+   <keyValuePair key="openblockdesign" value="1" description="" />
+   <keyValuePair key="openhardwaremanager" value="3" description="" />
+   <keyValuePair key="openrecenttarget" value="1" description="" />
+   <keyValuePair key="programdevice" value="1" description="" />
+   <keyValuePair key="recustomizecore" value="1" description="" />
+   <keyValuePair key="reportipstatus" value="1" description="" />
+   <keyValuePair key="runbitgen" value="18" description="" />
    <keyValuePair key="runimplementation" value="1" description="" />
    <keyValuePair key="saveprojectas" value="1" description="" />
    <keyValuePair key="settopnode" value="1" description="" />
    <keyValuePair key="showview" value="16" description="" />
+   <keyValuePair key="upgradeip" value="1" description="" />
   </section>
   <section name="other_data" level="2" order="3" description="">
-   <keyValuePair key="guimode" value="4" description="" />
+   <keyValuePair key="guimode" value="7" description="" />
   </section>
   <section name="project_data" level="2" order="4" description="">
    <keyValuePair key="constraintsetcount" value="2" description="" />
@@ -4469,8 +4498,8 @@
    <keyValuePair key="synthesisstrategy" value="Vivado Synthesis Defaults" description="" />
    <keyValuePair key="target_language" value="Verilog" description="" />
    <keyValuePair key="target_simulator" value="XSim" description="" />
-   <keyValuePair key="totalimplruns" value="5" description="" />
-   <keyValuePair key="totalsynthesisruns" value="5" description="" />
+   <keyValuePair key="totalimplruns" value="9" description="" />
+   <keyValuePair key="totalsynthesisruns" value="9" description="" />
   </section>
  </section>
 </section>

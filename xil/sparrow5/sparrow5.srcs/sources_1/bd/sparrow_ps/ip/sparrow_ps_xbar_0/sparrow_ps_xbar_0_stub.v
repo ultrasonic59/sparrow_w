@@ -1,19 +1,19 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Sun Jul 21 18:23:54 2019
-// Host        : vovag-PC running 64-bit Service Pack 1  (build 7601)
-// Command     : write_verilog -force -mode synth_stub -rename_top sparrow_ps_xbar_0 -prefix
-//               sparrow_ps_xbar_0_ sparrow_ps_xbar_0_stub.v
+// Tool Version: Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
+// Date        : Thu Mar  5 01:19:09 2026
+// Host        : vovag running 64-bit major release  (build 9200)
+// Command     : write_verilog -force -mode synth_stub
+//               d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/ip/sparrow_ps_xbar_0/sparrow_ps_xbar_0_stub.v
 // Design      : sparrow_ps_xbar_0
 // Purpose     : Stub declaration of top-level module interface
-// Device      : xc7z010clg225-1
+// Device      : xc7z007sclg225-1
 // --------------------------------------------------------------------------------
 
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* X_CORE_INFO = "axi_crossbar_v2_1_20_axi_crossbar,Vivado 2019.1" *)
+(* X_CORE_INFO = "axi_crossbar_v2_1_20_axi_crossbar,Vivado 2019.1.3" *)
 module sparrow_ps_xbar_0(aclk, aresetn, s_axi_awaddr, s_axi_awprot, 
   s_axi_awvalid, s_axi_awready, s_axi_wdata, s_axi_wstrb, s_axi_wvalid, s_axi_wready, 
   s_axi_bresp, s_axi_bvalid, s_axi_bready, s_axi_araddr, s_axi_arprot, s_axi_arvalid, 
