@@ -1,0 +1,146 @@
+#include "xparameters.h"
+#include "xil_printf.h"
+#include "xiicps.h"
+#include "sleep.h"
+
+// Адрес устройства MCP4725 на шине I2C (7-битный)
+// Обычно 0x60 или 0x61, зависит от состояния пина A0
+#define MCP4725_I2C_ADDR 	0x60
+
+// ID устройства I2C в Vivado (обычно 0 для I2C0, 1 для I2C1)
+// Проверьте xparameters.h для точного значения (XPAR_XIICPS_0_DEVICE_ID)
+#define I2C_DEVICE_ID		XPAR_XIICPS_0_DEVICE_ID
+
+// Функция для записи напряжения в MCP4725
+// input_value: значение от 0 до 4095 (12 бит)
+int MappedMCP4725_SetVoltage(XIicPs *IicInstance, u16 input_value) {
+    u8 Buffer[2];
+    int Status;
+
+    // Ограничиваем диапазон 12 бит (0-4095)
+    if (input_value > 4095) input_value = 4095;
+
+    // Формируем посылку для MCP4725 (Fast Mode)
+    // Byte 0: C2+C1+C0 (команда) + D11..D8 (старшие биты данных)
+    // Команда 0x00 означает запись в DAC Register (Fast Mode)
+    Buffer[0] = (u8)((input_value >> 8) & 0x0F);
+
+    // Byte 1: D7..D0 (младшие 8 бит данных)
+    Buffer[1] = (u8)(input_value & 0xFF);
+
+    // Отправка 2 байт по I2C
+    // Функция MasterSendPolled блокирует выполнение, пока отправка не завершится
+    Status = XIicPs_MasterSendPolled(IicInstance, Buffer, 2, MCP4725_I2C_ADDR);
+
+    if (Status != XST_SUCCESS) {
+        xil_printf("Failed to Send Data to I2C\r\n");
+        return XST_FAILURE;
+    }
+
+    // Небольшая задержка для завершения передачи на шине (хотя Polled функция это гарантирует)
+    usleep(1000);
+
+    return XST_SUCCESS;
+}
+//========================================================
+int main(void) {
+    XIicPs Iic;
+    XIicPs_Config *IicConfig;
+    int Status;
+
+    xil_printf("--- MCP4725 Debug Start ---\r\n");
+
+    // 1. Lookup Config
+    IicConfig = XIicPs_LookupConfig(I2C_DEVICE_ID);
+    if (NULL == IicConfig) {
+        xil_printf("ERROR: LookupConfig failed (wrong Device ID?)\r\n");
+        return XST_FAILURE;
+    }
+    xil_printf("I2C Config found. Input Clock: %d Hz\r\n", IicConfig->InputClockHz);
+
+    // 2. CfgInitialize
+    Status = XIicPs_CfgInitialize(&Iic, IicConfig, IicConfig->BaseAddress);
+    if (Status != XST_SUCCESS) {
+        xil_printf("ERROR: CfgInitialize failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // 3. Set Options (Иногда нужно сбросить устройство)
+    XIicPs_Reset(&Iic);
+
+    // 4. Set SClk (НАСТРОЙКА СКОРОСТИ)
+    // Проверяем возвращаемое значение!
+    Status = XIicPs_SetSClk(&Iic, 100000);
+    if (Status != XST_SUCCESS) {
+        xil_printf("ERROR: SetSClk failed. Check Input Clock Freq.\r\n");
+        return XST_FAILURE;
+    }
+    xil_printf("I2C Clock set to 100kHz\r\n");
+
+    // Основной цикл
+    while (1) {
+        Status = MappedMCP4725_SetVoltage(&Iic, 2048); // Пытаемся записать 1.65V
+
+        if (Status == XST_SUCCESS) {
+            xil_printf("OK: Sent data\r\n");
+        } else {
+            // Распечатываем код ошибки
+            xil_printf("FAIL: Send error code: %d\r\n", Status);
+
+            // Если код ошибки 2, это обычно XST_IIC_BUS_BUSY (шина занята)
+            if (Status == 2) xil_printf("HINT: Bus is busy (SCL/SDA stuck low?)\r\n");
+        }
+
+        sleep(2);
+    }
+}
+
+
+///=======================================================
+#if 0
+int main(void) {
+    XIicPs Iic;
+    XIicPs_Config *IicConfig;
+    int Status;
+    u16 dac_value = 0;
+
+    xil_printf("MCP4725 I2C Test Started\r\n");
+
+    // 1. Инициализация конфигурации I2C
+    IicConfig = XIicPs_LookupConfig(I2C_DEVICE_ID);
+    if (NULL == IicConfig) {
+        xil_printf("XIicPs_LookupConfig failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // 2. Инициализация драйвера I2C
+    Status = XIicPs_CfgInitialize(&Iic, IicConfig, IicConfig->BaseAddress);
+    if (Status != XST_SUCCESS) {
+        xil_printf("XIicPs_CfgInitialize failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // 3. Настройка скорости работы (100 кГц или 400 кГц)
+    XIicPs_SetSClk(&Iic, 100000); // 100kHz
+
+    while (1) {
+        // Пример: Устанавливаем значение (0-4095)
+        // Половина шкалы (2048) ~ это половина опорного напряжения (VCC)
+        MappedMCP4725_SetVoltage(&Iic, dac_value);
+
+        xil_printf("Sent DAC Value: %d\r\n", dac_value);
+
+        // Меняем значение для теста (создаем треугольный сигнал)
+        if (dac_value >= 4095) {
+            dac_value = 0;
+        } else {
+            dac_value += 500; // Прибавляем шаг
+        }
+
+        // Задержка 2 секунды
+        sleep(2);
+    }
+
+    return 0;
+}
+#endif

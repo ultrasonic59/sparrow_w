@@ -1,0 +1,945 @@
+#include "xparameters.h"
+#include "xil_printf.h"
+#include "xiicps.h"
+#include "sleep.h"
+
+// ==========================================
+// НАСТРОЙКИ
+// ==========================================
+
+#define I2C_DEVICE_ID    XPAR_XIICPS_0_DEVICE_ID // Или 1, если нужно
+#define SSD1315_ADDR     0x3C                    // Или 0x3D
+
+#define SSD1315_WIDTH    72
+#define SSD1315_HEIGHT   40
+
+// Настройки шрифта
+#define FONT_WIDTH       6
+#define FONT_HEIGHT      8
+
+XIicPs Iic;
+
+// ==========================================
+// ТАБЛИЦА ШРИФТОВ (Font 6x8, ASCII 0x20 - 0x7F)
+// ==========================================
+// Каждый символ - это 6 байт (столбцов). Каждый байт - это 8 пикселей по вертикали.
+const u8 font6x8[] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // space (0x20)
+    0x00, 0x00, 0x5F, 0x00, 0x00, 0x00, // !
+    0x00, 0x07, 0x00, 0x07, 0x00, 0x00, // "
+    0x14, 0x7F, 0x14, 0x7F, 0x14, 0x00, // #
+    0x24, 0x2A, 0x7F, 0x2A, 0x12, 0x00, // $     0x23, 0x13, 0x08, 0x64, 0x62, 0x00, // %
+    0x36, 0x49, 0x55, 0x22, 0x50, 0x00, // &
+    0x00, 0x05, 0x03, 0x00, 0x00, 0x00, // '
+    0x00, 0x1C, 0x22, 0x41, 0x00, 0x00, // (
+    0x00, 0x41, 0x22, 0x1C, 0x00, 0x00, // )
+    0x14, 0x08, 0x3E, 0x08, 0x14, 0x00, // *
+    0x08, 0x08, 0x3E, 0x08, 0x08, 0x00, // +
+    0x00, 0x50, 0x30, 0x00, 0x00, 0x00, // ,
+    0x08, 0x08, 0x08, 0x08, 0x08, 0x00, // -
+    0x00, 0x60, 0x60, 0x00, 0x00, 0x00, // .
+    0x20, 0x10, 0x08, 0x04, 0x02, 0x00, // /
+    0x3E, 0x51, 0x49, 0x45, 0x3E, 0x00, // 0
+    0x00, 0x42, 0x7F, 0x40, 0x00, 0x00, // 1
+    0x42, 0x61, 0x51, 0x49, 0x46, 0x00, // 2
+    0x21, 0x41, 0x45, 0x4B, 0x31, 0x00, // 3
+    0x18, 0x14, 0x12, 0x7F, 0x10, 0x00, // 4
+    0x27, 0x45, 0x45, 0x45, 0x39, 0x00, // 5
+    0x3C, 0x4A, 0x49, 0x49, 0x30, 0x00, // 6
+    0x01, 0x71, 0x09, 0x05, 0x03, 0x00, // 7
+    0x36, 0x49, 0x49, 0x49, 0x36, 0x00, // 8
+    0x06, 0x49, 0x49, 0x29, 0x1E, 0x00, // 9
+    0x00, 0x36, 0x36, 0x00, 0x00, 0x00, // :
+    0x00, 0x56, 0x36, 0x00, 0x00, 0x00, // ;
+    0x08, 0x14, 0x22, 0x41, 0x00, 0x00, // <
+    0x14, 0x14, 0x14, 0x14, 0x14, 0x00, // =
+    0x00, 0x41, 0x22, 0x14, 0x08, 0x00, // >
+    0x02, 0x01, 0x51, 0x09, 0x06, 0x00, // ?
+    0x32, 0x49, 0x79, 0x41, 0x3E, 0x00, // @
+    0x7E, 0x11, 0x11, 0x11, 0x7E, 0x00, // A
+    0x7F, 0x49, 0x49, 0x49, 0x36, 0x00, // B
+    0x3E, 0x41, 0x41, 0x41, 0x22, 0x00, // C
+    0x7F, 0x41, 0x41, 0x22, 0x1C, 0x00, // D
+    0x7F, 0x49, 0x49, 0x49, 0x41, 0x00, // E
+    0x7F, 0x09, 0x09, 0x09, 0x01, 0x00, // F
+    0x3E, 0x41, 0x49, 0x49, 0x7A, 0x00, // G
+    0x7F, 0x08, 0x08, 0x08, 0x7F, 0x00, // H
+    0x00, 0x41, 0x7F, 0x41, 0x00, 0x00, // I
+    0x20, 0x40, 0x41, 0x3F, 0x01, 0x00, // J
+    0x7F, 0x08, 0x14, 0x22, 0x41, 0x00, // K
+    0x7F, 0x40, 0x40, 0x40, 0x40, 0x00, // L
+    0x7F, 0x02, 0x0C, 0x02, 0x7F, 0x00, // M
+    0x7F, 0x04, 0x08, 0x10, 0x7F, 0x00, // N
+    0x3E, 0x41, 0x41, 0x41, 0x3E, 0x00, // O
+    0x7F, 0x09, 0x09, 0x09, 0x06, 0x00, // P
+    0x3E, 0x41, 0x51, 0x21, 0x5E, 0x00, // Q
+    0x7F, 0x09, 0x19, 0x29, 0x46, 0x00, // R
+    0x46, 0x49, 0x49, 0x49, 0x31, 0x00, // S
+    0x01, 0x01, 0x7F, 0x01, 0x01, 0x00, // T
+    0x3F, 0x40, 0x40, 0x40, 0x3F, 0x00, // U
+    0x1F, 0x20, 0x40, 0x20, 0x1F, 0x00, // V
+    0x3F, 0x40, 0x38, 0x40, 0x3F, 0x00, // W
+    0x63, 0x14, 0x08, 0x14, 0x63, 0x00, // X
+    0x07, 0x08, 0x70, 0x08, 0x07, 0x00, // Y
+    0x61, 0x51, 0x49, 0x45, 0x43, 0x00, // Z
+    0x00, 0x7F, 0x41, 0x41, 0x00, 0x00, // [
+    0x02, 0x04, 0x08, 0x10, 0x20, 0x00, // backslash
+    0x00, 0x41, 0x41, 0x7F, 0x00, 0x00, // ]
+    0x04, 0x02, 0x01, 0x02, 0x04, 0x00, // ^
+    0x40, 0x40, 0x40, 0x40, 0x40, 0x00, // _
+    0x00, 0x01, 0x02, 0x04, 0x00, 0x00, // `
+    0x20, 0x54, 0x54, 0x54, 0x78, 0x00, // a
+    0x7F, 0x48, 0x44, 0x44, 0x38, 0x00, // b
+    0x38, 0x44, 0x44, 0x44, 0x20, 0x00, // c
+    0x38, 0x44, 0x44, 0x48, 0x7F, 0x00, // d
+    0x38, 0x54, 0x54, 0x54, 0x18, 0x00, // e
+    0x08, 0x7E, 0x09, 0x01, 0x02, 0x00, // f
+    0x0C, 0x52, 0x52, 0x52, 0x3E, 0x00, // g
+    0x7F, 0x08, 0x04, 0x04, 0x78, 0x00, // h
+    0x00, 0x44, 0x7D, 0x40, 0x00, 0x00, // i
+    0x20, 0x40, 0x44, 0x3D, 0x00, 0x00, // j
+    0x7F, 0x10, 0x28, 0x44, 0x00, 0x00, // k
+    0x00, 0x41, 0x7F, 0x40, 0x00, 0x00, // l
+    0x7C, 0x04, 0x18, 0x04, 0x78, 0x00, // m
+    0x7C, 0x08, 0x04, 0x04, 0x78, 0x00, // n
+    0x38, 0x44, 0x44, 0x44, 0x38, 0x00, // o
+    0x7C, 0x14, 0x14, 0x14, 0x08, 0x00, // p
+    0x08, 0x14, 0x14, 0x18, 0x7C, 0x00, // q
+    0x7C, 0x08, 0x04, 0x04, 0x08, 0x00, // r
+    0x48, 0x54, 0x54, 0x54, 0x20, 0x00, // s
+    0x04, 0x3F, 0x44, 0x40, 0x20, 0x00, // t
+    0x3C, 0x40, 0x40, 0x20, 0x7C, 0x00, // u
+    0x1C, 0x20, 0x40, 0x20, 0x1C, 0x00, // v
+    0x3C, 0x40, 0x30, 0x40, 0x3C, 0x00, // w
+    0x44, 0x28, 0x10, 0x28, 0x44, 0x00, // x
+    0x0C, 0x50, 0x50, 0x50, 0x3C, 0x00, // y
+    0x44, 0x64, 0x54, 0x4C, 0x44, 0x00, // z
+    0x00, 0x08, 0x36, 0x41, 0x00, 0x00, // {
+    0x00, 0x00, 0x7F, 0x00, 0x00, 0x00, // |
+    0x00, 0x41, 0x36, 0x08, 0x00, 0x00, // }
+    0x10, 0x08, 0x08, 0x10, 0x08, 0x00, // ~
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00  // DEL
+};
+
+// ==========================================
+// НИЗКОУРОВНЕВЫЕ ФУНКЦИИ I2C & SSD1315
+// ==========================================
+void I2C_WaitBusy(void) {
+    while (XIicPs_BusIsBusy(&Iic));
+}
+
+void SSD1315_WriteCommand(u8 cmd) {
+    u8 buf[2] = {0x00, cmd};
+    XIicPs_MasterSendPolled(&Iic, buf, 2, SSD1315_ADDR);
+    I2C_WaitBusy();
+}
+
+void SSD1315_WriteData(u8 *data, int len) {
+    u8 buf[2];
+    buf[0] = 0x40;
+
+    // Отправляем данные по 1 байту для надежности (медленно, но просто)
+    for (int i = 0; i < len; i++) {
+        buf[1] = data[i];
+        XIicPs_MasterSendPolled(&Iic, buf, 2, SSD1315_ADDR);
+        I2C_WaitBusy();
+    }
+}
+#if 0
+void SSD1315_SetCursor(u8 col, u8 page) {
+    SSD1315_WriteCommand(0xB0 | page);
+    SSD1315_WriteCommand(col & 0x0F);
+    SSD1315_WriteCommand(0x10 | (col >> 4));
+}
+#endif
+void SSD1315_SetCursor(u8 col, u8 page) {
+    SSD1315_WriteCommand(0xB0 | page);       // Установка страницы (Y)
+    SSD1315_WriteCommand(col & 0x0F);        // Нижние биты колонки (X Low)
+    SSD1315_WriteCommand(0x10 | (col >> 4)); // Верхние биты колонки (X High)
+}
+#if 0
+void SSD1315_Init(void) {
+    SSD1315_WriteCommand(0xAE); // Off
+    SSD1315_WriteCommand(0xD5); SSD1315_WriteCommand(0x80);
+    SSD1315_WriteCommand(0xA8); SSD1315_WriteCommand(0x27); // MUX 40
+    SSD1315_WriteCommand(0xD3); SSD1315_WriteCommand(0x00);
+    SSD1315_WriteCommand(0x40);
+    SSD1315_WriteCommand(0x8D); SSD1315_WriteCommand(0x14);
+    SSD1315_WriteCommand(0x20); SSD1315_WriteCommand(0x00); // Horiz mode
+    SSD1315_WriteCommand(0xA1); // Flip X
+    SSD1315_WriteCommand(0xC8); // Flip Y
+    SSD1315_WriteCommand(0xDA); SSD1315_WriteCommand(0x02); // Comp pins
+    SSD1315_WriteCommand(0x81); SSD1315_WriteCommand(0x7F); // Contrast
+    SSD1315_WriteCommand(0xD9); SSD1315_WriteCommand(0xF1);
+    SSD1315_WriteCommand(0xDB); SSD1315_WriteCommand(0x40);
+    SSD1315_WriteCommand(0xA4);
+    SSD1315_WriteCommand(0xA6);
+    SSD1315_WriteCommand(0xAF); // On
+}
+#endif
+#if 0
+void SSD1315_Init(void) {
+    xil_printf("Initializing SSD1315 (Page Mode)...\r\n");
+
+    // 1. Базовые настройки (общие)
+    SSD1315_WriteCommand(0xAE); // Display OFF
+    SSD1315_WriteCommand(0xD5); // Set Display Clock Divide
+    SSD1315_WriteCommand(0x80); // Recommended Ratio
+    SSD1315_WriteCommand(0xA8); // Set Multiplex Ratio
+    SSD1315_WriteCommand(0x27); // 0x27 = 39 для высоты 40 пикселей
+    SSD1315_WriteCommand(0xD3); // Set Display Offset
+    SSD1315_WriteCommand(0x00); // No offset
+    SSD1315_WriteCommand(0x40); // Set Display Start Line (Line 0)
+
+    // 2. Настройка памяти (ИСПРАВЛЕНИЕ)
+    SSD1315_WriteCommand(0x20); // Set Memory Addressing Mode
+    SSD1315_WriteCommand(0x02); // 0x02 = Page Addressing Mode (ВАЖНО!)
+
+    // 3. Настройка сканирования и компоновки
+    SSD1315_WriteCommand(0xA1); // Segment Remap (Column 127 mapped to SEG0)
+    SSD1315_WriteCommand(0xC8); // COM Output Scan Direction (Remapped mode)
+
+    // 4. Настройка пинов (COM Pins)
+    // Для экранов высотой 40px часто нужно 0x02, но может быть 0x12
+    SSD1315_WriteCommand(0xDA);
+    SSD1315_WriteCommand(0x02);
+
+    // 5. Контраст и заряд
+    SSD1315_WriteCommand(0x81); // Set Contrast Control
+    SSD1315_WriteCommand(0x7F); // Contrast
+
+    SSD1315_WriteCommand(0xD9); // Set Pre-charge Period
+    SSD1315_WriteCommand(0xF1); //
+
+    SSD1315_WriteCommand(0xDB); // Set VCOMH Deselect Level
+    SSD1315_WriteCommand(0x40); //
+
+    SSD1315_WriteCommand(0xA4); // Resume Display (Content follows RAM)
+    SSD1315_WriteCommand(0xA6); // Normal Display
+    SSD1315_WriteCommand(0xAF); // Display ON
+}
+#endif
+void SSD1315_Init(void) {
+    SSD1315_WriteCommand(0xAE); // Display OFF
+    SSD1315_WriteCommand(0xD5); // Set Display Clock Divide
+    SSD1315_WriteCommand(0x80); // Recommended Ratio
+    SSD1315_WriteCommand(0xA8); // Set Multiplex Ratio
+    SSD1315_WriteCommand(0x27); // 39 для высоты 40
+    SSD1315_WriteCommand(0xD3); // Set Display Offset
+    SSD1315_WriteCommand(0x00); // No offset
+    SSD1315_WriteCommand(0x40); // Set Display Start Line (Line 0)
+
+    // ! ВАЖНО: Page Addressing Mode (0x02)
+    SSD1315_WriteCommand(0x20);
+    SSD1315_WriteCommand(0x02); // 0x02 = Page Addressing Mode
+
+    SSD1315_WriteCommand(0xA1); // Segment Remap
+    SSD1315_WriteCommand(0xC8); // COM Output Scan Direction
+    SSD1315_WriteCommand(0xDA); // Set COM Pins
+    SSD1315_WriteCommand(0x02); // Для 40px дисплеев
+    SSD1315_WriteCommand(0x81); // Set Contrast
+    SSD1315_WriteCommand(0x7F);
+    SSD1315_WriteCommand(0xD9); // Set Pre-charge
+    SSD1315_WriteCommand(0xF1);
+    SSD1315_WriteCommand(0xDB); // Set VCOMH
+    SSD1315_WriteCommand(0x40);
+    SSD1315_WriteCommand(0xA4); // Resume Display
+    SSD1315_WriteCommand(0xA6); // Normal
+    SSD1315_WriteCommand(0xAF); // Display ON
+}
+// Очистка экрана
+/*
+void SSD1315_Clear(void) {
+    SSD1315_WriteCommand(0x21); SSD1315_WriteCommand(0); SSD1315_WriteCommand(SSD1315_WIDTH-1);
+    SSD1315_WriteCommand(0x22); SSD1315_WriteCommand(0); SSD1315_WriteCommand(4);
+
+    u8 zero = 0x00;
+    for(int i=0; i<SSD1315_WIDTH * 5; i++) {
+        SSD1315_WriteData(&zero, 1);
+    }
+}
+*/
+void SSD1315_Clear(void) {
+    // Устанавливаем диапазон столбцов на весь буфер (0 - 127)
+    SSD1315_WriteCommand(0x21);
+    SSD1315_WriteCommand(0);
+    SSD1315_WriteCommand(127); // 127 (0x7F) — это максимальная ширина буфера SSD1315
+
+    // Устанавливаем диапазон страниц на весь буфер (0 - 7)
+    SSD1315_WriteCommand(0x22);
+    SSD1315_WriteCommand(0);
+    SSD1315_WriteCommand(7);  // 7 (0x07) — это 8 страниц по 8 пикселей (64 пикселя высотой)
+
+    u8 zero = 0x00;
+
+    // Чистим 128 * 8 = 1024 байта (весь RAM контроллера)
+    for(int i = 0; i < 1024; i++) {
+        SSD1315_WriteData(&zero, 1);
+    }
+}
+// ==========================================
+// ФУНКЦИИ ТЕКСТА
+// ==========================================
+// ==========================================
+// НАСТРОЙКИ СМЕЩЕНИЯ
+// ==========================================
+// Для экрана 72x40 данные часто начинаются с 28-го столбца RAM
+#define OLED_OFFSET_X 28
+// Если текст все еще не влезает или уехал влево, меняйте это число (0, 10, 20, 28, 32...)
+
+// ==========================================
+// ИСПРАВЛЕННАЯ ФУНКЦИЯ ВЫВОДА СИМВОЛА
+// ==========================================
+void SSD1315_WriteChar(char ch, int x, int y) {
+    // 1. Добавляем смещение, чтобы попасть в видимую зону
+    x += OLED_OFFSET_X;
+
+    // Проверка границ (с учетом смещения)
+    // Мы не можем рисовать правее 127 столбца
+    if (x >= 128 || y >= (SSD1315_HEIGHT/8)) return;
+
+    // Получаем индекс символа
+    if (ch < 0x20 || ch > 0x7F) ch = 0x20;
+    int char_index = (ch - 0x20) * FONT_WIDTH;
+
+    // Устанавливаем курсор
+    SSD1315_SetCursor(x, y);
+
+    // 2. Используем static буфер (ИСПРАВЛЕНИЕ МУСОРА/ПОЛОС)
+    // Это гарантирует, что данные будут видны контроллеру I2C
+    static u8 buffer[FONT_WIDTH + 1];
+
+    buffer[0] = 0x40; // Control byte
+
+    for (int i = 0; i < FONT_WIDTH; i++) {
+        buffer[i+1] = font6x8[char_index + i];
+    }
+
+    // Отправка
+    XIicPs_MasterSendPolled(&Iic, buffer, FONT_WIDTH + 1, SSD1315_ADDR);
+    I2C_WaitBusy();
+}
+#if 0
+// Исправленная функция вывода символа
+void SSD1315_WriteChar(char ch, int x, int y) {
+    // Проверка границ
+    if (x >= SSD1315_WIDTH || y >= (SSD1315_HEIGHT/8)) return;
+
+    // Получаем индекс символа (если вне таблицы - пробел)
+    if (ch < 0x20 || ch > 0x7F) ch = 0x20;
+
+    int char_index = (ch - 0x20) * FONT_WIDTH;
+
+    // 1. Устанавливаем курсор
+    SSD1315_SetCursor(x, y);
+
+    // 2. Формируем буфер для ОДНОЙ транзакции
+    // Нам нужно отправить: [0x40] [байт1] [байт2] ... [байт6]
+    u8 buffer[FONT_WIDTH + 1];
+    buffer[0] = 0x40; // Control byte: Data stream
+
+    for (int i = 0; i < FONT_WIDTH; i++) {
+        buffer[i+1] = font6x8[char_index + i];
+    }
+
+    // 3. Отправляем весь символ одним махом!
+    // Теперь между байтами не будет STOP, и столбец будет двигаться правильно
+    XIicPs_MasterSendPolled(&Iic, buffer, FONT_WIDTH + 1, SSD1315_ADDR);
+    I2C_WaitBusy();
+}
+#endif
+#if 0
+// Вывод одного символа
+// x - колонка (0..71), y - страница (0..4)
+void SSD1315_WriteChar(char ch, int x, int y) {
+    // Проверка выхода за границы экрана
+    if (x >= SSD1315_WIDTH || y >= (SSD1315_HEIGHT/8)) return;
+
+    // Получаем индекс в таблице шрифта (смещение от пробела 0x20)
+    // Если символ вне таблицы, рисуем пробел
+    if (ch < 0x20 || ch > 0x7F) ch = 0x20;
+
+    int char_index = (ch - 0x20) * FONT_WIDTH;
+
+    // Устанавливаем курсор в начало символа
+    SSD1315_SetCursor(x, y);
+
+    // Отправляем 6 байт (столбцов) символа
+    // Используем horizontal addressing mode, поэтому просто шлем байты подряд
+    for (int i = 0; i < FONT_WIDTH; i++) {
+        u8 data = font6x8[char_index + i];
+        SSD1315_WriteData(&data, 1);
+    }
+}
+#endif
+// Вывод строки
+void SSD1315_DrawString(char *str, int x, int y) {
+    int cursor_x = x;
+    int cursor_y = y;
+
+    while (*str) {
+        // Обработка переноса строки
+        if (*str == '\n') {
+            cursor_y++;
+            cursor_x = x;
+            str++; // Переход к след символу ТОЛЬКО при обработке \n
+            continue;
+        }
+
+        // Перенос если вышли за ширину
+        if (cursor_x + FONT_WIDTH > 128) {
+            cursor_y++;
+            cursor_x = x;
+        }
+
+        // Если вышли за высоту - стоп
+        if (cursor_y >= 8) break;
+
+        // Рисуем СЕЙЧАСШНИЙ символ
+        SSD1315_WriteChar(*str, cursor_x, cursor_y);
+
+        // Сдвигаем курсор
+        cursor_x += FONT_WIDTH;
+
+        // Переходим к СЛЕДУЮЩЕМУ символу (ИСПРАВЛЕНИЕ)
+        str++;
+    }
+}
+#if 0
+void SSD1315_DrawString(char *str, int x, int y) {
+    int cursor_x = x;
+    int cursor_y = y;
+
+    while (*str) {
+        // Обработка переноса строки
+        if (*str == '\n') {
+            cursor_y++;
+            cursor_x = x;
+            str++;
+            continue;
+        }
+
+        // Если достигли края экрана
+        if (cursor_x + FONT_WIDTH > SSD1315_WIDTH) {
+            cursor_y++;
+            cursor_x = x;
+        }
+
+        // Если вышли за нижний край - прекращаем рисовать
+        if (cursor_y >= (SSD1315_HEIGHT / 8)) {
+            break;
+        }
+
+        SSD1315_WriteChar(*str, cursor_x, cursor_y);
+
+        cursor_x += FONT_WIDTH;
+        str++;
+    }
+}
+#endif
+// ==========================================
+// MAIN
+// ==========================================
+int main(void) {
+    XIicPs_Config *IicConfig;
+    int Status;
+
+    xil_printf("\r\n--- FINAL SSD1315 TEST ---\r\n");
+
+    IicConfig = XIicPs_LookupConfig(I2C_DEVICE_ID);
+    XIicPs_CfgInitialize(&Iic, IicConfig, IicConfig->BaseAddress);
+    XIicPs_SetSClk(&Iic, 100000);
+
+    SSD1315_Init();
+    SSD1315_Clear(); // Чистим весь буфер 128x64
+
+    while (1) {
+        // ТЕСТ 1: Рисуем одну букву "A" в левом верхнем углу
+        SSD1315_Clear();
+        SSD1315_WriteChar('A', 0, 0);
+
+        xil_printf("Testing 'A' character...\r\n");
+        sleep(3);
+
+        // ТЕСТ 2: Рисуем "B"
+        SSD1315_Clear();
+        SSD1315_WriteChar('B', 0, 0);
+
+        xil_printf("Testing 'B' character...\r\n");
+        sleep(3);
+
+        // ТЕСТ 3: Печатаем слово (если с буквами все ок)
+        SSD1315_Clear();
+        SSD1315_DrawString("HELLO", 0, 0);
+
+        xil_printf("Testing String...\r\n");
+        sleep(3);
+    }
+
+    return 0;
+}
+#if 0
+int main(void) {
+    XIicPs_Config *IicConfig;
+    int Status;
+
+    xil_printf("\r\n--- SSD1315 Text Test ---\r\n");
+
+    // Инит I2C
+    IicConfig = XIicPs_LookupConfig(I2C_DEVICE_ID);
+    XIicPs_CfgInitialize(&Iic, IicConfig, IicConfig->BaseAddress);
+    XIicPs_SetSClk(&Iic, 100000);
+
+    // Инит Дисплея
+    SSD1315_Init();
+
+    while (1) {
+        SSD1315_Clear();
+
+        // Рисуем текст по центру (примерно)
+        // 72 пикселя шириной. Символ 6 пикселей. 12 символов в строке.
+        // "Hello Zynq!" (12 символов) - как раз влезет.
+
+  ///      SSD1315_DrawString("Hello Zynq!", 0, 0);
+        SSD1315_DrawString("1112345ABC", 0, 0);
+   ///     SSD1315_DrawString("I2C OK", 24, 1); // Смещаем вправо для красоты
+   ///     SSD1315_DrawString("Line 3", 0, 2);
+   ///     SSD1315_DrawString("Line 4", 0, 3);
+
+        xil_printf("Text displayed\r\n");
+        sleep(2);
+
+        // Эффект инверсии для проверки
+        SSD1315_WriteCommand(0xA7); // Invert On
+        sleep(1);
+        SSD1315_WriteCommand(0xA6); // Invert Off
+    }
+
+    return 0;
+}
+#endif
+#if 0
+//==========================================================
+#include "xparameters.h"
+#include "xil_printf.h"
+#include "xiicps.h"
+#include "sleep.h"
+
+// ==========================================
+// НАСТРОЙКИ
+// ==========================================
+
+// Укажите тот ID, который сработал в I2C Scanner (обычно 0 или 1)
+#define I2C_DEVICE_ID    XPAR_XIICPS_0_DEVICE_ID
+
+// Адрес SSD1315 (обычно 0x3C, иногда 0x3D)
+#define SSD1315_ADDR     0x3C
+
+// Размеры экрана
+#define SSD1315_WIDTH    72
+#define SSD1315_HEIGHT   40
+
+// ==========================================
+// ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+// ==========================================
+XIicPs Iic;
+
+// ==========================================
+// ФУНКЦИИ НИЗКОГО УРОВНЯ
+// ==========================================
+
+// Ожидание завершения передачи на шине (защита от зависаний)
+void I2C_WaitBusy(void) {
+    while (XIicPs_BusIsBusy(&Iic)) {
+        /* Wait */
+    }
+}
+
+// Отправка команды в дисплей
+// Команда посылается с префиксом 0x00
+void SSD1315_WriteCommand(u8 cmd) {
+    u8 buf[2] = {0x00, cmd}; // 0x00 означает Co=0, D/C#=0 (Command)
+    XIicPs_MasterSendPolled(&Iic, buf, 2, SSD1315_ADDR);
+    I2C_WaitBusy();
+}
+
+// Отправка данных (пикселей) в дисплей
+// Данные посылаются с префиксом 0x40
+// Чтобы ускорить, мы можем отправлять пачку байт, но сначала нужно отправить 0x40
+void SSD1315_WriteData(u8 *data, int len) {
+    // Формируем буфер: первый байт 0x40, затем данные
+    // Внимание: буфер должен быть достаточно большим!
+    // Для простоты примера будем слать по 1 байту данных (медленно, но надежно для теста)
+    // Для оптимизации лучше использовать DMA или больший буфер.
+
+    u8 buf[2];
+    buf[0] = 0x40; // Control byte for Data stream
+
+    for (int i = 0; i < len; i++) {
+        buf[1] = data[i];
+        XIicPs_MasterSendPolled(&Iic, buf, 2, SSD1315_ADDR);
+        I2C_WaitBusy();
+    }
+}
+
+// ==========================================
+// ИНИЦИАЛИЗАЦИЯ ДИСПЛЕЯ
+// ==========================================
+void SSD1315_Init(void) {
+    xil_printf("Initializing SSD1315...\r\n");
+
+    // Soft Reset
+    SSD1315_WriteCommand(0xAE); // Display OFF
+    SSD1315_WriteCommand(0xD5); // Set Display Clock Divide
+    SSD1315_WriteCommand(0x80); // Recommended Ratio
+    SSD1315_WriteCommand(0xA8); // Set Multiplex Ratio
+    SSD1315_WriteCommand(0x27); // 0x27 = 39 (40-1) для высоты 40
+    SSD1315_WriteCommand(0xD3); // Set Display Offset
+    SSD1315_WriteCommand(0x00); // No offset
+    SSD1315_WriteCommand(0x40); // Set Display Start Line (Line 0)
+
+    // Charge Pump
+    SSD1315_WriteCommand(0x8D);
+    SSD1315_WriteCommand(0x14); // Enable charge pump
+
+    // Memory Addressing Mode
+    SSD1315_WriteCommand(0x20);
+    SSD1315_WriteCommand(0x00); // Horizontal Addressing Mode
+
+    // Segment Remap и COM Scan Direction
+    // Эти настройки зависят от ориентации экрана.
+    // Если экран перевернут, поменяйте 0xA1 на 0xA0 и 0xC8 на 0xC0.
+    SSD1315_WriteCommand(0xA1); // Segment Remap (Column 127 mapped to SEG0)
+    SSD1315_WriteCommand(0xC8); // COM Output Scan Direction (Remapped mode)
+
+    // Компенсация емкостей
+    SSD1315_WriteCommand(0xDA);
+    SSD1315_WriteCommand(0x02); // For 40px height usually 0x12 is default, but try 0x02
+
+    // Contrast
+    SSD1315_WriteCommand(0x81);
+  ///  SSD1315_WriteCommand(0x7F); // Half contrast
+    SSD1315_WriteCommand(0xFF); // Half contrast
+
+    // Set Pre-charge Period
+    SSD1315_WriteCommand(0xD9);
+    SSD1315_WriteCommand(0xF1);
+
+    // Set VCOMH Deselect Level
+    SSD1315_WriteCommand(0xDB);
+    SSD1315_WriteCommand(0x40);
+
+    SSD1315_WriteCommand(0xA4); // Resume Display (Content follows RAM)
+    SSD1315_WriteCommand(0xA6); // Normal Display (not inverted)
+    SSD1315_WriteCommand(0xAF); // Display ON
+
+    xil_printf("Init Done.\r\n");
+}
+
+// Установка положения курсора (Column, Page)
+void SSD1315_SetCursor(u8 col, u8 page) {
+    SSD1315_WriteCommand(0xB0 | page); // Set Page Address
+    SSD1315_WriteCommand(col & 0x0F);  // Set Lower Column Address
+    SSD1315_WriteCommand(0x10 | (col >> 4)); // Set Higher Column Address
+}
+
+// Заполнение экрана цветом (0x00 - выкл, 0xFF - вкл)
+void SSD1315_Fill(u8 color) {
+    // Устанавливаем адресацию в начало
+    SSD1315_WriteCommand(0x21); // Column addr
+    SSD1315_WriteCommand(0);
+    SSD1315_WriteCommand(SSD1315_WIDTH - 1);
+
+    SSD1315_WriteCommand(0x22); // Page addr
+    SSD1315_WriteCommand(0);
+    SSD1315_WriteCommand((SSD1315_HEIGHT / 8) - 1);
+
+    // Отправляем данные
+    int total_pixels = SSD1315_WIDTH * (SSD1315_HEIGHT / 8);
+    for (int i = 0; i < total_pixels; i++) {
+        u8 data = color;
+        SSD1315_WriteData(&data, 1);
+    }
+}
+
+// Рисование тестового паттерна (шахматная доска)
+void SSD1315_TestPattern(void) {
+    SSD1315_SetCursor(0, 0);
+
+    SSD1315_WriteCommand(0x21); // Column addr
+    SSD1315_WriteCommand(0);
+    SSD1315_WriteCommand(SSD1315_WIDTH - 1);
+
+    SSD1315_WriteCommand(0x22); // Page addr
+    SSD1315_WriteCommand(0);
+    SSD1315_WriteCommand(4); // 5 pages (0..4)
+
+    int total_pixels = SSD1315_WIDTH * 5;
+    for (int i = 0; i < total_pixels; i++) {
+        u8 data = (i % 2 == 0) ? 0xAA : 0x55;
+        SSD1315_WriteData(&data, 1);
+    }
+}
+
+// ==========================================
+// MAIN
+// ==========================================
+int main(void) {
+    XIicPs_Config *IicConfig;
+    int Status;
+
+    xil_printf("\r\n--- SSD1315 OLED Test ---\r\n");
+
+    // 1. Инит I2C
+    IicConfig = XIicPs_LookupConfig(I2C_DEVICE_ID);
+    if (NULL == IicConfig) {
+        xil_printf("I2C Lookup Config failed\r\n");
+        return XST_FAILURE;
+    }
+
+    Status = XIicPs_CfgInitialize(&Iic, IicConfig, IicConfig->BaseAddress);
+    if (Status != XST_SUCCESS) {
+        xil_printf("I2C Cfg Initialize failed\r\n");
+        return XST_FAILURE;
+    }
+
+    Status = XIicPs_SetSClk(&Iic, 100000); // 100kHz
+    if (Status != XST_SUCCESS) {
+        xil_printf("I2C SetSClk failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // 2. Инит Дисплея
+    SSD1315_Init();
+
+    // 3. Цикл тестов
+    while (1) {
+        xil_printf("Step 1: Clear Screen (Black)\r\n");
+        SSD1315_Fill(0x00);
+        sleep(2);
+
+        xil_printf("Step 2: Fill Screen (White)\r\n");
+        SSD1315_Fill(0xFF);
+        sleep(2);
+
+        xil_printf("Step 3: Checkers Pattern\r\n");
+        SSD1315_TestPattern();
+        sleep(2);
+    }
+
+    return 0;
+}
+//==========================================================
+#endif
+#if 0
+
+#include "xparameters.h"
+#include "xil_printf.h"
+#include "xiicps.h"
+#include "sleep.h"
+
+// Адрес устройства MCP4725 на шине I2C (7-битный)
+// Обычно 0x60 или 0x61, зависит от состояния пина A0
+#define MCP4725_I2C_ADDR 	0x60
+
+// ID устройства I2C в Vivado (обычно 0 для I2C0, 1 для I2C1)
+// Проверьте xparameters.h для точного значения (XPAR_XIICPS_0_DEVICE_ID)
+#define I2C_DEVICE_ID		XPAR_XIICPS_0_DEVICE_ID
+
+// Функция для записи напряжения в MCP4725
+// input_value: значение от 0 до 4095 (12 бит)
+int MappedMCP4725_SetVoltage(XIicPs *IicInstance, u16 input_value) {
+    u8 Buffer[2];
+    int Status;
+
+    // Ограничиваем диапазон 12 бит (0-4095)
+    if (input_value > 4095) input_value = 4095;
+
+    // Формируем посылку для MCP4725 (Fast Mode)
+    // Byte 0: C2+C1+C0 (команда) + D11..D8 (старшие биты данных)
+    // Команда 0x00 означает запись в DAC Register (Fast Mode)
+    Buffer[0] = (u8)((input_value >> 8) & 0x0F);
+
+    // Byte 1: D7..D0 (младшие 8 бит данных)
+    Buffer[1] = (u8)(input_value & 0xFF);
+
+    // Отправка 2 байт по I2C
+    // Функция MasterSendPolled блокирует выполнение, пока отправка не завершится
+    Status = XIicPs_MasterSendPolled(IicInstance, Buffer, 2, MCP4725_I2C_ADDR);
+
+    if (Status != XST_SUCCESS) {
+        xil_printf("Failed to Send Data to I2C\r\n");
+        return XST_FAILURE;
+    }
+
+    // Небольшая задержка для завершения передачи на шине (хотя Polled функция это гарантирует)
+    usleep(1000);
+
+    return XST_SUCCESS;
+}
+
+//========================================================
+#include "xparameters.h"
+#include "xil_printf.h"
+#include "xiicps.h"
+#include "sleep.h"
+
+#define I2C_DEVICE_ID XPAR_XIICPS_0_DEVICE_ID //
+
+int main(void) {
+    XIicPs Iic;
+    XIicPs_Config *IicConfig;
+    int Status;
+    u8 Buffer[1]; // Буфер фиктивный, нам важен только адрес
+    int found_devices = 0;
+
+    xil_printf("\r\n--- I2C Scanner Start ---\r\n");
+
+    // Стандартная инициализация
+    IicConfig = XIicPs_LookupConfig(I2C_DEVICE_ID);
+    if (NULL == IicConfig) {
+        xil_printf("Config Lookup failed\r\n");
+        return XST_FAILURE;
+    }
+
+    Status = XIicPs_CfgInitialize(&Iic, IicConfig, IicConfig->BaseAddress);
+    if (Status != XST_SUCCESS) {
+        xil_printf("CfgInit failed\r\n");
+        return XST_FAILURE;
+    }
+
+    XIicPs_SetSClk(&Iic, 100000); // 100 kHz
+
+    // Цикл по всем возможным 7-битным адресам (от 0x03 до 0x77)
+    for (int addr = 0x03; addr < 0x78; addr++) {
+
+        // Пытаемся отправить 0 байт данных (только адрес)
+        // Если MCP4725 на линии, он ответит ACK
+        Status = XIicPs_MasterSendPolled(&Iic, Buffer, 0, (u8)addr);
+
+        if (Status == XST_SUCCESS) {
+            xil_printf("Device found at address: 0x%02X\r\n", addr);
+            found_devices++;
+        }
+
+        // Небольшая пауза, чтобы не спамить шину слишком быстро
+        usleep(1000);
+    }
+
+    if (found_devices == 0) {
+        xil_printf("No I2C devices found.\r\n");
+        xil_printf("Check:\r\n");
+        xil_printf("1. GND connection\r\n");
+        xil_printf("2. Pull-up resistors on SDA/SCL\r\n");
+        xil_printf("3. Correct I2C pins (MIO)\r\n");
+    } else {
+        xil_printf("Scan complete. Found %d devices.\r\n", found_devices);
+    }
+
+    while(1); // Стоп
+    return 0;
+}
+//========================================================
+#endif
+#if 0
+int main(void) {
+    XIicPs Iic;
+    XIicPs_Config *IicConfig;
+    int Status;
+
+    xil_printf("--- MCP4725 Debug Start ---\r\n");
+
+    // 1. Lookup Config
+    IicConfig = XIicPs_LookupConfig(I2C_DEVICE_ID);
+    if (NULL == IicConfig) {
+        xil_printf("ERROR: LookupConfig failed (wrong Device ID?)\r\n");
+        return XST_FAILURE;
+    }
+    xil_printf("I2C Config found. Input Clock: %d Hz\r\n", IicConfig->InputClockHz);
+
+    // 2. CfgInitialize
+    Status = XIicPs_CfgInitialize(&Iic, IicConfig, IicConfig->BaseAddress);
+    if (Status != XST_SUCCESS) {
+        xil_printf("ERROR: CfgInitialize failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // 3. Set Options (Иногда нужно сбросить устройство)
+    XIicPs_Reset(&Iic);
+
+    // 4. Set SClk (НАСТРОЙКА СКОРОСТИ)
+    // Проверяем возвращаемое значение!
+    Status = XIicPs_SetSClk(&Iic, 100000);
+    if (Status != XST_SUCCESS) {
+        xil_printf("ERROR: SetSClk failed. Check Input Clock Freq.\r\n");
+        return XST_FAILURE;
+    }
+    xil_printf("I2C Clock set to 100kHz\r\n");
+
+    // Основной цикл
+    while (1) {
+        Status = MappedMCP4725_SetVoltage(&Iic, 2048); // Пытаемся записать 1.65V
+
+        if (Status == XST_SUCCESS) {
+            xil_printf("OK: Sent data\r\n");
+        } else {
+            // Распечатываем код ошибки
+            xil_printf("FAIL: Send error code: %d\r\n", Status);
+
+            // Если код ошибки 2, это обычно XST_IIC_BUS_BUSY (шина занята)
+            if (Status == 2) xil_printf("HINT: Bus is busy (SCL/SDA stuck low?)\r\n");
+        }
+
+        sleep(2);
+    }
+}
+#endif
+
+///=======================================================
+#if 0
+int main(void) {
+    XIicPs Iic;
+    XIicPs_Config *IicConfig;
+    int Status;
+    u16 dac_value = 0;
+
+    xil_printf("MCP4725 I2C Test Started\r\n");
+
+    // 1. Инициализация конфигурации I2C
+    IicConfig = XIicPs_LookupConfig(I2C_DEVICE_ID);
+    if (NULL == IicConfig) {
+        xil_printf("XIicPs_LookupConfig failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // 2. Инициализация драйвера I2C
+    Status = XIicPs_CfgInitialize(&Iic, IicConfig, IicConfig->BaseAddress);
+    if (Status != XST_SUCCESS) {
+        xil_printf("XIicPs_CfgInitialize failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // 3. Настройка скорости работы (100 кГц или 400 кГц)
+    XIicPs_SetSClk(&Iic, 100000); // 100kHz
+
+    while (1) {
+        // Пример: Устанавливаем значение (0-4095)
+        // Половина шкалы (2048) ~ это половина опорного напряжения (VCC)
+        MappedMCP4725_SetVoltage(&Iic, dac_value);
+
+        xil_printf("Sent DAC Value: %d\r\n", dac_value);
+
+        // Меняем значение для теста (создаем треугольный сигнал)
+        if (dac_value >= 4095) {
+            dac_value = 0;
+        } else {
+            dac_value += 500; // Прибавляем шаг
+        }
+
+        // Задержка 2 секунды
+        sleep(2);
+    }
+
+    return 0;
+}
+#endif

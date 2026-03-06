@@ -1,0 +1,424 @@
+//==========================================================
+#include "xparameters.h"
+#include "xil_printf.h"
+#include "xiicps.h"
+#include "sleep.h"
+
+// ==========================================
+// НАСТРОЙКИ
+// ==========================================
+
+// Укажите тот ID, который сработал в I2C Scanner (обычно 0 или 1)
+#define I2C_DEVICE_ID    XPAR_XIICPS_0_DEVICE_ID
+
+// Адрес SSD1315 (обычно 0x3C, иногда 0x3D)
+#define SSD1315_ADDR     0x3C
+
+// Размеры экрана
+#define SSD1315_WIDTH    72
+#define SSD1315_HEIGHT   40
+
+// ==========================================
+// ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+// ==========================================
+XIicPs Iic;
+
+// ==========================================
+// ФУНКЦИИ НИЗКОГО УРОВНЯ
+// ==========================================
+
+// Ожидание завершения передачи на шине (защита от зависаний)
+void I2C_WaitBusy(void) {
+    while (XIicPs_BusIsBusy(&Iic)) {
+        /* Wait */
+    }
+}
+
+// Отправка команды в дисплей
+// Команда посылается с префиксом 0x00
+void SSD1315_WriteCommand(u8 cmd) {
+    u8 buf[2] = {0x00, cmd}; // 0x00 означает Co=0, D/C#=0 (Command)
+    XIicPs_MasterSendPolled(&Iic, buf, 2, SSD1315_ADDR);
+    I2C_WaitBusy();
+}
+
+// Отправка данных (пикселей) в дисплей
+// Данные посылаются с префиксом 0x40
+// Чтобы ускорить, мы можем отправлять пачку байт, но сначала нужно отправить 0x40
+void SSD1315_WriteData(u8 *data, int len) {
+    // Формируем буфер: первый байт 0x40, затем данные
+    // Внимание: буфер должен быть достаточно большим!
+    // Для простоты примера будем слать по 1 байту данных (медленно, но надежно для теста)
+    // Для оптимизации лучше использовать DMA или больший буфер.
+
+    u8 buf[2];
+    buf[0] = 0x40; // Control byte for Data stream
+
+    for (int i = 0; i < len; i++) {
+        buf[1] = data[i];
+        XIicPs_MasterSendPolled(&Iic, buf, 2, SSD1315_ADDR);
+        I2C_WaitBusy();
+    }
+}
+
+// ==========================================
+// ИНИЦИАЛИЗАЦИЯ ДИСПЛЕЯ
+// ==========================================
+void SSD1315_Init(void) {
+    xil_printf("Initializing SSD1315...\r\n");
+
+    // Soft Reset
+    SSD1315_WriteCommand(0xAE); // Display OFF
+    SSD1315_WriteCommand(0xD5); // Set Display Clock Divide
+    SSD1315_WriteCommand(0x80); // Recommended Ratio
+    SSD1315_WriteCommand(0xA8); // Set Multiplex Ratio
+    SSD1315_WriteCommand(0x27); // 0x27 = 39 (40-1) для высоты 40
+    SSD1315_WriteCommand(0xD3); // Set Display Offset
+    SSD1315_WriteCommand(0x00); // No offset
+    SSD1315_WriteCommand(0x40); // Set Display Start Line (Line 0)
+
+    // Charge Pump
+    SSD1315_WriteCommand(0x8D);
+    SSD1315_WriteCommand(0x14); // Enable charge pump
+
+    // Memory Addressing Mode
+    SSD1315_WriteCommand(0x20);
+    SSD1315_WriteCommand(0x00); // Horizontal Addressing Mode
+
+    // Segment Remap и COM Scan Direction
+    // Эти настройки зависят от ориентации экрана.
+    // Если экран перевернут, поменяйте 0xA1 на 0xA0 и 0xC8 на 0xC0.
+    SSD1315_WriteCommand(0xA1); // Segment Remap (Column 127 mapped to SEG0)
+    SSD1315_WriteCommand(0xC8); // COM Output Scan Direction (Remapped mode)
+
+    // Компенсация емкостей
+    SSD1315_WriteCommand(0xDA);
+    SSD1315_WriteCommand(0x02); // For 40px height usually 0x12 is default, but try 0x02
+
+    // Contrast
+    SSD1315_WriteCommand(0x81);
+  ///  SSD1315_WriteCommand(0x7F); // Half contrast
+    SSD1315_WriteCommand(0xFF); // Half contrast
+
+    // Set Pre-charge Period
+    SSD1315_WriteCommand(0xD9);
+    SSD1315_WriteCommand(0xF1);
+
+    // Set VCOMH Deselect Level
+    SSD1315_WriteCommand(0xDB);
+    SSD1315_WriteCommand(0x40);
+
+    SSD1315_WriteCommand(0xA4); // Resume Display (Content follows RAM)
+    SSD1315_WriteCommand(0xA6); // Normal Display (not inverted)
+    SSD1315_WriteCommand(0xAF); // Display ON
+
+    xil_printf("Init Done.\r\n");
+}
+
+// Установка положения курсора (Column, Page)
+void SSD1315_SetCursor(u8 col, u8 page) {
+    SSD1315_WriteCommand(0xB0 | page); // Set Page Address
+    SSD1315_WriteCommand(col & 0x0F);  // Set Lower Column Address
+    SSD1315_WriteCommand(0x10 | (col >> 4)); // Set Higher Column Address
+}
+
+// Заполнение экрана цветом (0x00 - выкл, 0xFF - вкл)
+void SSD1315_Fill(u8 color) {
+    // Устанавливаем адресацию в начало
+    SSD1315_WriteCommand(0x21); // Column addr
+    SSD1315_WriteCommand(0);
+    SSD1315_WriteCommand(SSD1315_WIDTH - 1);
+
+    SSD1315_WriteCommand(0x22); // Page addr
+    SSD1315_WriteCommand(0);
+    SSD1315_WriteCommand((SSD1315_HEIGHT / 8) - 1);
+
+    // Отправляем данные
+    int total_pixels = SSD1315_WIDTH * (SSD1315_HEIGHT / 8);
+    for (int i = 0; i < total_pixels; i++) {
+        u8 data = color;
+        SSD1315_WriteData(&data, 1);
+    }
+}
+
+// Рисование тестового паттерна (шахматная доска)
+void SSD1315_TestPattern(void) {
+    SSD1315_SetCursor(0, 0);
+
+    SSD1315_WriteCommand(0x21); // Column addr
+    SSD1315_WriteCommand(0);
+    SSD1315_WriteCommand(SSD1315_WIDTH - 1);
+
+    SSD1315_WriteCommand(0x22); // Page addr
+    SSD1315_WriteCommand(0);
+    SSD1315_WriteCommand(4); // 5 pages (0..4)
+
+    int total_pixels = SSD1315_WIDTH * 5;
+    for (int i = 0; i < total_pixels; i++) {
+        u8 data = (i % 2 == 0) ? 0xAA : 0x55;
+        SSD1315_WriteData(&data, 1);
+    }
+}
+
+// ==========================================
+// MAIN
+// ==========================================
+int main(void) {
+    XIicPs_Config *IicConfig;
+    int Status;
+
+    xil_printf("\r\n--- SSD1315 OLED Test ---\r\n");
+
+    // 1. Инит I2C
+    IicConfig = XIicPs_LookupConfig(I2C_DEVICE_ID);
+    if (NULL == IicConfig) {
+        xil_printf("I2C Lookup Config failed\r\n");
+        return XST_FAILURE;
+    }
+
+    Status = XIicPs_CfgInitialize(&Iic, IicConfig, IicConfig->BaseAddress);
+    if (Status != XST_SUCCESS) {
+        xil_printf("I2C Cfg Initialize failed\r\n");
+        return XST_FAILURE;
+    }
+
+    Status = XIicPs_SetSClk(&Iic, 100000); // 100kHz
+    if (Status != XST_SUCCESS) {
+        xil_printf("I2C SetSClk failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // 2. Инит Дисплея
+    SSD1315_Init();
+
+    // 3. Цикл тестов
+    while (1) {
+        xil_printf("Step 1: Clear Screen (Black)\r\n");
+        SSD1315_Fill(0x00);
+        sleep(2);
+
+        xil_printf("Step 2: Fill Screen (White)\r\n");
+        SSD1315_Fill(0xFF);
+        sleep(2);
+
+        xil_printf("Step 3: Checkers Pattern\r\n");
+        SSD1315_TestPattern();
+        sleep(2);
+    }
+
+    return 0;
+}
+//==========================================================
+
+#if 0
+
+#include "xparameters.h"
+#include "xil_printf.h"
+#include "xiicps.h"
+#include "sleep.h"
+
+// Адрес устройства MCP4725 на шине I2C (7-битный)
+// Обычно 0x60 или 0x61, зависит от состояния пина A0
+#define MCP4725_I2C_ADDR 	0x60
+
+// ID устройства I2C в Vivado (обычно 0 для I2C0, 1 для I2C1)
+// Проверьте xparameters.h для точного значения (XPAR_XIICPS_0_DEVICE_ID)
+#define I2C_DEVICE_ID		XPAR_XIICPS_0_DEVICE_ID
+
+// Функция для записи напряжения в MCP4725
+// input_value: значение от 0 до 4095 (12 бит)
+int MappedMCP4725_SetVoltage(XIicPs *IicInstance, u16 input_value) {
+    u8 Buffer[2];
+    int Status;
+
+    // Ограничиваем диапазон 12 бит (0-4095)
+    if (input_value > 4095) input_value = 4095;
+
+    // Формируем посылку для MCP4725 (Fast Mode)
+    // Byte 0: C2+C1+C0 (команда) + D11..D8 (старшие биты данных)
+    // Команда 0x00 означает запись в DAC Register (Fast Mode)
+    Buffer[0] = (u8)((input_value >> 8) & 0x0F);
+
+    // Byte 1: D7..D0 (младшие 8 бит данных)
+    Buffer[1] = (u8)(input_value & 0xFF);
+
+    // Отправка 2 байт по I2C
+    // Функция MasterSendPolled блокирует выполнение, пока отправка не завершится
+    Status = XIicPs_MasterSendPolled(IicInstance, Buffer, 2, MCP4725_I2C_ADDR);
+
+    if (Status != XST_SUCCESS) {
+        xil_printf("Failed to Send Data to I2C\r\n");
+        return XST_FAILURE;
+    }
+
+    // Небольшая задержка для завершения передачи на шине (хотя Polled функция это гарантирует)
+    usleep(1000);
+
+    return XST_SUCCESS;
+}
+
+//========================================================
+#include "xparameters.h"
+#include "xil_printf.h"
+#include "xiicps.h"
+#include "sleep.h"
+
+#define I2C_DEVICE_ID XPAR_XIICPS_0_DEVICE_ID //
+
+int main(void) {
+    XIicPs Iic;
+    XIicPs_Config *IicConfig;
+    int Status;
+    u8 Buffer[1]; // Буфер фиктивный, нам важен только адрес
+    int found_devices = 0;
+
+    xil_printf("\r\n--- I2C Scanner Start ---\r\n");
+
+    // Стандартная инициализация
+    IicConfig = XIicPs_LookupConfig(I2C_DEVICE_ID);
+    if (NULL == IicConfig) {
+        xil_printf("Config Lookup failed\r\n");
+        return XST_FAILURE;
+    }
+
+    Status = XIicPs_CfgInitialize(&Iic, IicConfig, IicConfig->BaseAddress);
+    if (Status != XST_SUCCESS) {
+        xil_printf("CfgInit failed\r\n");
+        return XST_FAILURE;
+    }
+
+    XIicPs_SetSClk(&Iic, 100000); // 100 kHz
+
+    // Цикл по всем возможным 7-битным адресам (от 0x03 до 0x77)
+    for (int addr = 0x03; addr < 0x78; addr++) {
+
+        // Пытаемся отправить 0 байт данных (только адрес)
+        // Если MCP4725 на линии, он ответит ACK
+        Status = XIicPs_MasterSendPolled(&Iic, Buffer, 0, (u8)addr);
+
+        if (Status == XST_SUCCESS) {
+            xil_printf("Device found at address: 0x%02X\r\n", addr);
+            found_devices++;
+        }
+
+        // Небольшая пауза, чтобы не спамить шину слишком быстро
+        usleep(1000);
+    }
+
+    if (found_devices == 0) {
+        xil_printf("No I2C devices found.\r\n");
+        xil_printf("Check:\r\n");
+        xil_printf("1. GND connection\r\n");
+        xil_printf("2. Pull-up resistors on SDA/SCL\r\n");
+        xil_printf("3. Correct I2C pins (MIO)\r\n");
+    } else {
+        xil_printf("Scan complete. Found %d devices.\r\n", found_devices);
+    }
+
+    while(1); // Стоп
+    return 0;
+}
+//========================================================
+#endif
+#if 0
+int main(void) {
+    XIicPs Iic;
+    XIicPs_Config *IicConfig;
+    int Status;
+
+    xil_printf("--- MCP4725 Debug Start ---\r\n");
+
+    // 1. Lookup Config
+    IicConfig = XIicPs_LookupConfig(I2C_DEVICE_ID);
+    if (NULL == IicConfig) {
+        xil_printf("ERROR: LookupConfig failed (wrong Device ID?)\r\n");
+        return XST_FAILURE;
+    }
+    xil_printf("I2C Config found. Input Clock: %d Hz\r\n", IicConfig->InputClockHz);
+
+    // 2. CfgInitialize
+    Status = XIicPs_CfgInitialize(&Iic, IicConfig, IicConfig->BaseAddress);
+    if (Status != XST_SUCCESS) {
+        xil_printf("ERROR: CfgInitialize failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // 3. Set Options (Иногда нужно сбросить устройство)
+    XIicPs_Reset(&Iic);
+
+    // 4. Set SClk (НАСТРОЙКА СКОРОСТИ)
+    // Проверяем возвращаемое значение!
+    Status = XIicPs_SetSClk(&Iic, 100000);
+    if (Status != XST_SUCCESS) {
+        xil_printf("ERROR: SetSClk failed. Check Input Clock Freq.\r\n");
+        return XST_FAILURE;
+    }
+    xil_printf("I2C Clock set to 100kHz\r\n");
+
+    // Основной цикл
+    while (1) {
+        Status = MappedMCP4725_SetVoltage(&Iic, 2048); // Пытаемся записать 1.65V
+
+        if (Status == XST_SUCCESS) {
+            xil_printf("OK: Sent data\r\n");
+        } else {
+            // Распечатываем код ошибки
+            xil_printf("FAIL: Send error code: %d\r\n", Status);
+
+            // Если код ошибки 2, это обычно XST_IIC_BUS_BUSY (шина занята)
+            if (Status == 2) xil_printf("HINT: Bus is busy (SCL/SDA stuck low?)\r\n");
+        }
+
+        sleep(2);
+    }
+}
+#endif
+
+///=======================================================
+#if 0
+int main(void) {
+    XIicPs Iic;
+    XIicPs_Config *IicConfig;
+    int Status;
+    u16 dac_value = 0;
+
+    xil_printf("MCP4725 I2C Test Started\r\n");
+
+    // 1. Инициализация конфигурации I2C
+    IicConfig = XIicPs_LookupConfig(I2C_DEVICE_ID);
+    if (NULL == IicConfig) {
+        xil_printf("XIicPs_LookupConfig failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // 2. Инициализация драйвера I2C
+    Status = XIicPs_CfgInitialize(&Iic, IicConfig, IicConfig->BaseAddress);
+    if (Status != XST_SUCCESS) {
+        xil_printf("XIicPs_CfgInitialize failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // 3. Настройка скорости работы (100 кГц или 400 кГц)
+    XIicPs_SetSClk(&Iic, 100000); // 100kHz
+
+    while (1) {
+        // Пример: Устанавливаем значение (0-4095)
+        // Половина шкалы (2048) ~ это половина опорного напряжения (VCC)
+        MappedMCP4725_SetVoltage(&Iic, dac_value);
+
+        xil_printf("Sent DAC Value: %d\r\n", dac_value);
+
+        // Меняем значение для теста (создаем треугольный сигнал)
+        if (dac_value >= 4095) {
+            dac_value = 0;
+        } else {
+            dac_value += 500; // Прибавляем шаг
+        }
+
+        // Задержка 2 секунды
+        sleep(2);
+    }
+
+    return 0;
+}
+#endif
