@@ -747,7 +747,7 @@ XIicPs Iic;  // экземпляр
 
 // Чтение 6 байт: DAC volatile (2B) + EEPROM (4B)
 int MCP4725_Read(void) {
-    u8 Cmd = 0;//0xC0;  // Read DAC + EEPROM
+    u8 Cmd = 0xC0;  // Read DAC + EEPROM
     u8 RxBuf[6];
     int Status;
 
@@ -869,7 +869,7 @@ int MappedMCP4725_SetVoltage(XIicPs *IicInstance, u16 input_value) {
 #define I2C_DEVICE_ID XPAR_XIICPS_0_DEVICE_ID //
 
 int main(void) {
-///    XIicPs Iic;
+    XIicPs Iic;
     XIicPs_Config *IicConfig;
     int Status;
     u8 Buffer[1]; // Буфер фиктивный, нам важен только адрес
@@ -891,8 +891,7 @@ int main(void) {
     }
 
     XIicPs_SetSClk(&Iic, 100000); // 100 kHz
-///for(;;)
-{
+for(;;){
     // Цикл по всем возможным 7-битным адресам (от 0x03 до 0x77)
     int addr = 0x60;
  ///   for (int addr = 0x03; addr < 0x78; addr++) {

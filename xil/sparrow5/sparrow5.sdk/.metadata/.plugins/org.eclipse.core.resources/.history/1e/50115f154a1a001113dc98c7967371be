@@ -747,7 +747,7 @@ XIicPs Iic;  // экземпляр
 
 // Чтение 6 байт: DAC volatile (2B) + EEPROM (4B)
 int MCP4725_Read(void) {
-    u8 Cmd = 0;//0xC0;  // Read DAC + EEPROM
+    u8 Cmd = 0xC0;  // Read DAC + EEPROM
     u8 RxBuf[6];
     int Status;
 

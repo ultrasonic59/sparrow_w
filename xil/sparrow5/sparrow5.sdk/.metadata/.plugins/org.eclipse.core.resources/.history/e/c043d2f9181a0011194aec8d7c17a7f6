@@ -480,7 +480,7 @@ int main(void) {
     return 0;
 }
 #endif
-#if 0  /// <----
+#if 1
 int main(void) {
     XIicPs_Config *IicConfig;
     int Status;
@@ -733,87 +733,7 @@ int main(void) {
 }
 //==========================================================
 #endif
-
-///===============================================================
-#include "xparameters.h"
-#include "xiicps.h"
-#include "xstatus.h"
-#include "xil_printf.h"
-
-#define IIC_DEVICE_ID  0   ///XPAR_XIICPS_1_DEVICE_ID  // или 0 для I2C1
-#define MCP4725_ADDR   0x60  // A0=GND
-
-XIicPs Iic;  // экземпляр
-
-// Чтение 6 байт: DAC volatile (2B) + EEPROM (4B)
-int MCP4725_Read(void) {
-    u8 Cmd = 0;//0xC0;  // Read DAC + EEPROM
-    u8 RxBuf[6];
-    int Status;
-
-    // Write команды чтения
-    Status = XIicPs_MasterSendPolled(&Iic, &Cmd, 1, MCP4725_ADDR);
-    if (Status != XST_SUCCESS) {
-        xil_printf("Read CMD FAIL: 0x%08X\r\n", Status);
-        return Status;
-    }
-
-    // Repeated Start + Read 6B
-    Status = XIicPs_MasterRecvPolled(&Iic, RxBuf, 6, MCP4725_ADDR);
-    if (Status != XST_SUCCESS) {
-        xil_printf("Read DATA FAIL: 0x%08X\r\n", Status);
-        return Status;
-    }
-
-    // DAC volatile: RxBuf[0:1] = C2 C1 C0 PD1 PD0 X X X | D11..D4
-    u16 dac_vol = ((RxBuf[1] & 0x0F) << 8) | RxBuf[2];
-    xil_printf("DAC Volatile: %d / 4095 (0x%03X)\r\n", dac_vol, dac_vol);
-
-    // EEPROM DAC: RxBuf[3:4]
-    u16 dac_eep = (RxBuf[3] << 4) | ((RxBuf[4] >> 4) & 0x0F);
-    xil_printf("EEPROM DAC:   %d / 4095 (0x%03X)\r\n", dac_eep, dac_eep);
-
-    return XST_SUCCESS;
-}
-
-int _main() {
-    XIicPs_Config *Config;
-    int Status;
-    u8 Buffer[1]; // Буфер фиктивный, нам важен только адрес
-
-    xil_printf("MCP4725 Reader SDK 2019\r\n");
-
-    // Инициализация I2C
-    Config = XIicPs_LookupConfig(IIC_DEVICE_ID);
-    if (!Config) { xil_printf("Config FAIL\r\n"); return XST_FAILURE; }
-
-    Status = XIicPs_CfgInitialize(&Iic, Config, Config->BaseAddress);
-    if (Status != XST_SUCCESS) { xil_printf("Init FAIL: 0x%08X\r\n", Status); return XST_FAILURE; }
-    XIicPs_SetOptions(&Iic, XIICPS_REP_START_OPTION);
-///    XIicPs_SetOptions(&Iic, XIICPS_MASTER_OPTION | XIICPS_REPEATED_START_OPTION);
- ///   XIicPs_SetSClk(&Iic, XPAR_XIICPS_1_CLK_FREQ_HZ / 10);  // 100kHz
- ////   XIicPs_SetSClk(&Iic, XPAR_XIICPS_0_I2C_CLK_FREQ_HZ / 10);  // 100kHz
-    XIicPs_SetSClk(&Iic, 100000); // 100 kHz
-
-    // Полный I2C Scan (опционально)
-    xil_printf("I2C Scan:\r\n");
-    for (u8 addr=0x08; addr<0x77; addr++) {
-        Status = XIicPs_MasterSendPolled(&Iic, Buffer, 0, addr);
-        if (Status == XST_SUCCESS)
-        	xil_printf("ACK: 0x%02X\r\n", addr);
-    }
-
-    // Чтение MCP4725
-    Status = MCP4725_Read();
-    if (Status == XST_SUCCESS) xil_printf("MCP4725 READ OK\r\n");
-
-    return 0;
-}
-
-
-///===============================================================
-
-#if 1
+#if 0
 
 #include "xparameters.h"
 #include "xil_printf.h"
@@ -869,7 +789,7 @@ int MappedMCP4725_SetVoltage(XIicPs *IicInstance, u16 input_value) {
 #define I2C_DEVICE_ID XPAR_XIICPS_0_DEVICE_ID //
 
 int main(void) {
-///    XIicPs Iic;
+    XIicPs Iic;
     XIicPs_Config *IicConfig;
     int Status;
     u8 Buffer[1]; // Буфер фиктивный, нам важен только адрес
@@ -891,11 +811,9 @@ int main(void) {
     }
 
     XIicPs_SetSClk(&Iic, 100000); // 100 kHz
-///for(;;)
-{
+
     // Цикл по всем возможным 7-битным адресам (от 0x03 до 0x77)
-    int addr = 0x60;
- ///   for (int addr = 0x03; addr < 0x78; addr++) {
+    for (int addr = 0x03; addr < 0x78; addr++) {
 
         // Пытаемся отправить 0 байт данных (только адрес)
         // Если MCP4725 на линии, он ответит ACK
@@ -908,13 +826,8 @@ int main(void) {
 
         // Небольшая пауза, чтобы не спамить шину слишком быстро
         usleep(1000);
-        // Чтение MCP4725
-        Status = MCP4725_Read();
-        if (Status == XST_SUCCESS)
-        	xil_printf("MCP4725 READ OK\r\n");
+    }
 
-///    }
-}
     if (found_devices == 0) {
         xil_printf("No I2C devices found.\r\n");
         xil_printf("Check:\r\n");

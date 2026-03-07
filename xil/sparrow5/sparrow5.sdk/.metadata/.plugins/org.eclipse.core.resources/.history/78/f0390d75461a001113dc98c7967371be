@@ -747,7 +747,7 @@ XIicPs Iic;  // экземпляр
 
 // Чтение 6 байт: DAC volatile (2B) + EEPROM (4B)
 int MCP4725_Read(void) {
-    u8 Cmd = 0;//0xC0;  // Read DAC + EEPROM
+    u8 Cmd = 0xC0;  // Read DAC + EEPROM
     u8 RxBuf[6];
     int Status;
 
@@ -776,10 +776,9 @@ int MCP4725_Read(void) {
     return XST_SUCCESS;
 }
 
-int _main() {
+int main() {
     XIicPs_Config *Config;
     int Status;
-    u8 Buffer[1]; // Буфер фиктивный, нам важен только адрес
 
     xil_printf("MCP4725 Reader SDK 2019\r\n");
 
@@ -789,18 +788,15 @@ int _main() {
 
     Status = XIicPs_CfgInitialize(&Iic, Config, Config->BaseAddress);
     if (Status != XST_SUCCESS) { xil_printf("Init FAIL: 0x%08X\r\n", Status); return XST_FAILURE; }
-    XIicPs_SetOptions(&Iic, XIICPS_REP_START_OPTION);
-///    XIicPs_SetOptions(&Iic, XIICPS_MASTER_OPTION | XIICPS_REPEATED_START_OPTION);
- ///   XIicPs_SetSClk(&Iic, XPAR_XIICPS_1_CLK_FREQ_HZ / 10);  // 100kHz
- ////   XIicPs_SetSClk(&Iic, XPAR_XIICPS_0_I2C_CLK_FREQ_HZ / 10);  // 100kHz
-    XIicPs_SetSClk(&Iic, 100000); // 100 kHz
+
+    XIicPs_SetOptions(&Iic, XIICPS_MASTER_OPTION | XIICPS_REPEATED_START_OPTION);
+    XIicPs_SetSClk(&Iic, XPAR_XIICPS_1_CLK_FREQ_HZ / 10);  // 100kHz
 
     // Полный I2C Scan (опционально)
     xil_printf("I2C Scan:\r\n");
-    for (u8 addr=0x08; addr<0x77; addr++) {
-        Status = XIicPs_MasterSendPolled(&Iic, Buffer, 0, addr);
-        if (Status == XST_SUCCESS)
-        	xil_printf("ACK: 0x%02X\r\n", addr);
+    for (u8 addr=0x08; addr<0x78; addr++) {
+        Status = XIicPs_MasterSendPolled(&Iic, NULL, 0, addr);
+        if (Status == XST_SUCCESS) xil_printf("ACK: 0x%02X\r\n", addr);
     }
 
     // Чтение MCP4725
@@ -813,7 +809,7 @@ int _main() {
 
 ///===============================================================
 
-#if 1
+#if 0
 
 #include "xparameters.h"
 #include "xil_printf.h"
@@ -869,7 +865,7 @@ int MappedMCP4725_SetVoltage(XIicPs *IicInstance, u16 input_value) {
 #define I2C_DEVICE_ID XPAR_XIICPS_0_DEVICE_ID //
 
 int main(void) {
-///    XIicPs Iic;
+    XIicPs Iic;
     XIicPs_Config *IicConfig;
     int Status;
     u8 Buffer[1]; // Буфер фиктивный, нам важен только адрес
@@ -891,8 +887,7 @@ int main(void) {
     }
 
     XIicPs_SetSClk(&Iic, 100000); // 100 kHz
-///for(;;)
-{
+for(;;){
     // Цикл по всем возможным 7-битным адресам (от 0x03 до 0x77)
     int addr = 0x60;
  ///   for (int addr = 0x03; addr < 0x78; addr++) {
@@ -908,11 +903,6 @@ int main(void) {
 
         // Небольшая пауза, чтобы не спамить шину слишком быстро
         usleep(1000);
-        // Чтение MCP4725
-        Status = MCP4725_Read();
-        if (Status == XST_SUCCESS)
-        	xil_printf("MCP4725 READ OK\r\n");
-
 ///    }
 }
     if (found_devices == 0) {
