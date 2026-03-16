@@ -672,28 +672,19 @@ void pc_udp::obr_cmd(req_cmd_t&req_cmd)
 
 void pc_udp::req_timer_timeout()
 {
+#if 0
 //	qDebug() << "                             ++++++++++++++                                ";
 //	qDebug() << "------------------------Called req_timer_timeout-------------------------" ;
 //	el_timer_2.start();
 if (!socket_run)
 		return;
-/*
-for (;;)
-{
-	int aa;
-	aa++;
-}
-*/
 if(initing)
 	{
 	if(apply_params())
 		{
 		initing = false;
-		////if(on_tune_thr)
 		emit signal_connect_setted();
 		}
-///	else ////if(on_tune_thr)
-///		emit signal_unsuccesfull();
 	}
 else
 	{
@@ -749,7 +740,7 @@ else
 	}
 
 //qDebug() << "-----------------------End fuc req_timer, elapsed time:" << el_timer_2.elapsed() << "-------------------";
-
+#endif
 }
 void pc_udp::SlotSetIniting(bool ini)
 {
@@ -807,8 +798,8 @@ void pc_udp::dev_put_req_xil(xil_dat_req_t ireq)
 
 void pc_udp::dev_get_xil(void)
 {
+#if 0
 	bool rez;
-	///	xil_dat_req_t t_req = ireq;
 	if (p_dev_data->odata)
 	{
 		xil_dat_req_t *odat= (xil_dat_req_t*)p_dev_data->odata;
@@ -823,6 +814,7 @@ void pc_udp::dev_get_xil(void)
 		}
 ///		qDebug() << " dev_get_xil " << odat->addr << odat.data[0];
 	}
+#endif
 }
 void pc_udp::dev_put_xil(xil_dat_req_t ireq)
 {

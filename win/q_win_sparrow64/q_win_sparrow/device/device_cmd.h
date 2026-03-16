@@ -22,6 +22,7 @@ public:
 	pc_udp *p_pc_udp;
 	int tim_dt;	// в мс
 	quint32 g_changed_param;
+	par_contr_t curr_par_contr;
 
 	bool is_connected()
 	{

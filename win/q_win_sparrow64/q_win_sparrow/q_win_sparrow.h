@@ -62,7 +62,7 @@ signals:
 	///void put_dac_dat_dial(dac_spi_req_t*);
 public:
 ///	c_obj_cmd dev_obj;
-	c_device_cmd device_CMD;
+	c_device_cmd device_cmd;
 
 };
 

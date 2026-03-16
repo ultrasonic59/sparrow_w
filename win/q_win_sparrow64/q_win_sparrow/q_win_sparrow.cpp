@@ -10,10 +10,10 @@ void q_win_sparrow::saveSettings()
 	settings.setValue("plot_arr_length", plot_arr_length);
 
 
-	settings.setValue("ip_addr", dev_obj.ip_addr);
+	settings.setValue("ip_addr", device_cmd.ip_addr);
 	 
 
-	const par_contr_t &par_contr = dev_obj.curr_par_contr;
+	const par_contr_t &par_contr = device_cmd.curr_par_contr;
 	const par_sent_t &sent_par = par_contr.sent_par;
 
 	settings.setValue("Timp_len", sent_par.Timp_len);
@@ -47,10 +47,10 @@ void q_win_sparrow::loadSettings()
 	plot_arr_length = settings.value("plot_arr_length", plot_arr_length).toInt();
 
 
-	dev_obj.ip_addr = settings.value("ip_addr", "192.168.1.117").toString();
+	device_cmd.ip_addr = settings.value("ip_addr", "192.168.1.117").toString();
 
 
-	par_contr_t &par_contr = dev_obj.curr_par_contr;
+	par_contr_t &par_contr = device_cmd.curr_par_contr;
 	par_sent_t &sent_par = par_contr.sent_par;
 
 	sent_par.Timp_len = settings.value("Timp_len", sent_par.Timp_len).toInt();
@@ -94,7 +94,7 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 
     osc_prop(),
     plotter(this, &osc_prop),
-	dev_obj(this)
+	device_cmd(this)
 {
 	qRegisterMetaTypeStreamOperators< QList<int> >("QList<int>");
     ui.setupUi(this);
@@ -105,14 +105,14 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
     plotter.ConnectToWidget(ui.widget_setted);
     ui.widget_setted->SetPlotter(&plotter);
 
-	Params::SetDefaultPar(dev_obj.curr_par_contr);
+	Params::SetDefaultPar(device_cmd.curr_par_contr);
 
 	loadSettings();
-	dev_obj.ApplyImpAmlToPar();
+	device_cmd.ApplyImpAmlToPar();
 	RecalculateImpulse();
 
 
-	ui.lineEdit_ip->setText(dev_obj.ip_addr);
+	ui.lineEdit_ip->setText(device_cmd.ip_addr);
 
 	//ui.pushButt_debug->hide();
 	connect(ui.pushButt_debug, SIGNAL(clicked()), this, SLOT(butt_debug()));
@@ -131,7 +131,7 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 	ui.ed_osc_length->show_par();
 	connect(ui.ed_osc_length, SIGNAL(param_changed()), this, SLOT(osc_length_changed()));
 
-	par_contr_t *p_par_contr = &dev_obj.curr_par_contr;
+	par_contr_t *p_par_contr = &device_cmd.curr_par_contr;
 	par_sent_t *p_sent_par = &p_par_contr->sent_par;
 
 	ui.ed_t_imp_len->set_num_dig(NUM_DIG_QUINT16);
@@ -199,7 +199,7 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 
 q_win_sparrow::~q_win_sparrow()
 {
-	dev_obj.ip_addr = ui.lineEdit_ip->text();
+///	device_cmd.ip_addr = ui.lineEdit_ip->text();
 	saveSettings();
 	plot_array.clear();
 }
@@ -214,17 +214,17 @@ void q_win_sparrow::InitPlot()
 
 void q_win_sparrow::OnStartStop()
 {
-	if(dev_obj.IsAttached())
+	if(device_cmd.IsAttached())
 	{
-		dev_obj.StopDevice();
+		device_cmd.StopDevice();
 		ui.pushButton_start_stop->setChecked(false);
 		ui.pushButton_start_stop->setText(QString::fromLocal8Bit("Пуск"));
 		ui.label_con_state->setText(QString::fromLocal8Bit("Не соед."));
 	}
 	else
 	{
-		dev_obj.ip_addr = ui.lineEdit_ip->text();
-		dev_obj.SetupDevice();
+		device_cmd.ip_addr = ui.lineEdit_ip->text();
+		device_cmd.SetupDevice();
 		ui.pushButton_start_stop->setChecked(true);
 		ui.pushButton_start_stop->setText(QString::fromLocal8Bit("Стоп"));
 		ui.label_con_state->setText(QString::fromLocal8Bit("Соед."));
@@ -242,7 +242,7 @@ void q_win_sparrow::EndInitConnection()		// ???
 
 void q_win_sparrow::NoConnection()
 {
-	dev_obj.StopDevice();
+	device_cmd.StopDevice();
 
 	ui.pushButton_start_stop->setChecked(false);
 	ui.pushButton_start_stop->setText(QString::fromLocal8Bit("Пуск"));
@@ -260,14 +260,14 @@ void q_win_sparrow::osc_length_changed()
 
 void q_win_sparrow::Timp_len_changed()
 {
-	dev_obj.ApplyImpAmlToPar();
+////	dev_obj.ApplyImpAmlToPar();
 	RecalculateImpulse();
 	ImpulseToPlot();
 
 	plotter.PlotRespond(plot_array.data(), plot_arr_length);
 
 
-	dev_obj.g_changed_param |= CHNG_TIMP_LEN | CHNG_IMP_POINTS;
+	device_cmd.g_changed_param |= CHNG_TIMP_LEN | CHNG_IMP_POINTS;
 }
 
 void q_win_sparrow::Timp_offset_changed()
@@ -275,32 +275,32 @@ void q_win_sparrow::Timp_offset_changed()
 	ImpulseToPlot();
 	plotter.PlotRespond(plot_array.data(), plot_arr_length);
 
-	dev_obj.g_changed_param |= CHNG_TIMP_OFFSET;
+	device_cmd.g_changed_param |= CHNG_TIMP_OFFSET;
 }
 
 void q_win_sparrow::Tcycle_changed()
 {
-	dev_obj.g_changed_param |= CHNG_TCYCLE;
+	device_cmd.g_changed_param |= CHNG_TCYCLE;
 }
 
 void q_win_sparrow::Tdef_changed()
 {
-	dev_obj.g_changed_param |= CHNG_TDEF;
+	device_cmd.g_changed_param |= CHNG_TDEF;
 }
 
 
 void q_win_sparrow::NumPeriods_changed()
 {
-	par_contr_t &par_contr = dev_obj.curr_par_contr;
+	par_contr_t &par_contr = device_cmd.curr_par_contr;
 	float curr_period_len = COEF_PERIOD_TRANSF / par_contr.dev_frequency;
 	curr_period_len *= par_contr.num_periods;
 	par_contr.sent_par.Timp_len = curr_period_len;		// число тиков после изменения
-	dev_obj.ApplyImpAmlToPar();
+///	device_cmd.ApplyImpAmlToPar();
 	ui.ed_t_imp_len->show_par();
 	RecalculateImpulse();
 	ImpulseToPlot();
 	plotter.PlotRespond(plot_array.data(), plot_arr_length);
-	dev_obj.g_changed_param |= CHNG_TIMP_LEN | CHNG_IMP_POINTS;
+	device_cmd.g_changed_param |= CHNG_TIMP_LEN | CHNG_IMP_POINTS;
 }
 
 
