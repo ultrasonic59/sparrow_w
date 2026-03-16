@@ -46,11 +46,11 @@ int main(void)
 ///    printf("SystemClk:%d\r\n", SystemCoreClock);
 ///    printf( "ChipID:%08x\r\n", DBGMCU_GetCHIPID() );
 ///    printf("This is printf example\r\n");
-    prev_pow_on=0;
+    prev_pow_on=0xfe;
    pow_on=0;
 
    cnt_push=0;
-   cur_key=0;
+   cur_key=0xfe;
    prev_key=0xff;
     set_led(pow_on);
     set_on_pow(pow_on);

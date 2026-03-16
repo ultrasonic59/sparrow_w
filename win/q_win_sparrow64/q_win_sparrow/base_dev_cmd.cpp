@@ -7,19 +7,13 @@ c_base_dev_cmd::c_base_dev_cmd(QObject *parent):
 		QObject(parent),
 		attached(false),
 		curr_cmd(nullptr),
-
-
 		p_send_dat(nullptr),
 		p_char_send_dat(nullptr),
 		SendMutex(),
-
 		p_resv_dat(nullptr),
-
-		unsuccesfull_conn(0),
-		max_unsuccesfull_conn(10),
-
+	///	unsuccesfull_conn(0),
+	///	max_unsuccesfull_conn(10),
 		el_timer(),
-
 		time_count(0)
 {
 
@@ -37,7 +31,7 @@ void c_base_dev_cmd::AttachToCMD(c_base_cmd *base_cmd)
 	if(attached)
 		return;
 
-	unsuccesfull_conn = 0;
+///	unsuccesfull_conn = 0;
 
 
 	curr_cmd = base_cmd;
@@ -52,7 +46,6 @@ void c_base_dev_cmd::AttachToCMD(c_base_cmd *base_cmd)
 	connect(this, SIGNAL(signal_write()), curr_cmd, SLOT(slot_write()), Qt::QueuedConnection);
 	connect(this, SIGNAL(signal_start()), curr_cmd, SLOT(slot_start()), Qt::QueuedConnection);
 	connect(this, SIGNAL(signal_stop()), curr_cmd, SLOT(slot_stop()), Qt::QueuedConnection);
-
 
 	attached = true;
 	curr_cmd->SetAttached(true);
@@ -114,6 +107,9 @@ void c_base_dev_cmd::gen_send_dat(const quint8 type, const quint8 cmd, const qui
 	addfcs16(p_char_send_dat, len);	
 }
 
+
+
+
 bool c_base_dev_cmd::send_and_wait(const quint8 type, const quint8 cmd, const quint8 *in_dat, quint16 len, quint8 *out_dat)
 {
 	if(!attached)
@@ -143,24 +139,21 @@ bool c_base_dev_cmd::send_and_wait(const quint8 type, const quint8 cmd, const qu
 			if(attached)
 				memcpy(out_dat, p_resv_dat->buff, p_resv_dat->len);
 		}
-		unsuccesfull_conn = 0;
+///		unsuccesfull_conn = 0;
 
 		if(attached)
 			result = true;
 	}
 	else
 	{
-		unsuccesfull_conn++;
+///		unsuccesfull_conn++;
 		result = false;
 	}
 
-	if(unsuccesfull_conn > max_unsuccesfull_conn)
-		emit NoConnection();
-
+///	if(unsuccesfull_conn > max_unsuccesfull_conn)
+///		emit NoConnection();
 	SendMutex.unlock();
-
 	time_count = el_timer.elapsed();
-
 	return result;
 }
 
@@ -169,15 +162,6 @@ bool c_base_dev_cmd::send_and_wait(const quint8 type, const quint8 cmd, quint8 *
 	return send_and_wait(type, cmd, nullptr, 0, out_dat);
 }
 
-void c_base_dev_cmd::ResetConnCount()
-{
-	unsuccesfull_conn = 0;
-}
-
-int c_base_dev_cmd::GetUnSuccesfullCount() const
-{
-	return unsuccesfull_conn;
-}
 
 bool c_base_dev_cmd::IsAttached() const
 {

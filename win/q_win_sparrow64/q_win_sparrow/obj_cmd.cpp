@@ -59,7 +59,7 @@ c_obj_cmd::c_obj_cmd(QObject *parent)
 	connect(p_tune_thr, SIGNAL(ConnectionAttempt()), parent, SLOT(SetConnStatus()), Qt::QueuedConnection);
 	connect(p_tune_thr, SIGNAL(ConnectionSetted()), parent, SLOT(EndInitConnection()), Qt::QueuedConnection);
 
-	connect(p_tune_thr, SIGNAL(signal_new_ampl()), parent, SLOT(slot_new_ampl()), Qt::QueuedConnection);
+	///connect(p_tune_thr, SIGNAL(signal_new_ampl()), parent, SLOT(slot_new_ampl()), Qt::QueuedConnection);
 
 
 //	connect(p_tune_thr, SIGNAL(signal_unsuccesfull()), parent, SLOT(slot_unsuccesfull()), Qt::QueuedConnection);
@@ -89,16 +89,12 @@ c_obj_cmd::~c_obj_cmd()
 
 void c_obj_cmd::SetupDevice()
 {
-	p_tune_thr->dev_cmd.ResetConnCount();
+///	p_tune_thr->dev_cmd.ResetConnCount();
 	g_changed_param = 0;
-
-	
 	p_tune_thr->is_initing = true;
 
 	p_udp_cmd->set_host(ip_addr,port);
 	p_tune_thr->dev_cmd.AttachToCMD(p_udp_cmd);
-
-
 	UpdateDevice(true);
 }
 

@@ -174,8 +174,8 @@ struct osc_struct_t
 
 #define CHNG_KUS				(0x1<<6)
 
-#define CHNG_BEG_OSC			(0x1<<7)
-#define CHNG_STEP_OSC			(0x1<<8)
+///#define CHNG_BEG_OSC			(0x1<<7)
+///#define CHNG_STEP_OSC			(0x1<<8)
 
 #define CHNG_ATTENUATOR			(0x1<<9)
 

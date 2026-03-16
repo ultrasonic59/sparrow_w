@@ -26,16 +26,12 @@ public:
 	bool on_tune_thr;
 	quint8 *par_trk_buff;
 	quint8 *data_buff;
-
 	c_dev_cmd dev_cmd;
 
 	bool send_params();
 
 
 	bool is_initing;
-
-
-
 protected:
 
 
@@ -49,13 +45,7 @@ protected:
 
 	osc_struct_t *p_osc_struct;
 	quint16 *p_ampl_val;
-
-
-
 	QTimer req_timer;
-
-
-
 	bool send_param();
 
 signals:
@@ -65,8 +55,8 @@ signals:
 
 /*	void signal_draw_all();*/
 
-	void signal_draw_osc();
-	void signal_new_ampl();
+///	void signal_draw_osc();
+///	void signal_new_ampl();
 
 	void signal_unsuccesfull();
 
@@ -77,7 +67,6 @@ protected slots:
 	void req_timer_timeout();
 
 public slots:
-
 	void on_off_timer(bool on_off);
 
 

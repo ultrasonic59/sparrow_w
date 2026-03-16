@@ -143,7 +143,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>UNICODE;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\device;.;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -253,36 +253,31 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstactPlotter.cpp" />
-    <ClCompile Include="base_cmd.cpp" />
-    <ClCompile Include="base_dev_cmd.cpp" />
-    <ClCompile Include="dev_cmd.cpp" />
+    <ClCompile Include="device\device_cmd.cpp" />
+    <ClCompile Include="device\Fcs16.cpp" />
+    <ClCompile Include="device\pc_udp.cpp" />
+    <ClCompile Include="device\udp_send_res.cpp" />
     <ClCompile Include="dial_debug.cpp" />
-    <ClCompile Include="Fcs16.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="obj_cmd.cpp" />
     <ClCompile Include="OscillogramPlotterSetter.cpp" />
     <ClCompile Include="OscillogramProperties.cpp" />
     <ClCompile Include="params.cpp" />
     <ClCompile Include="param_ed.cpp" />
     <ClCompile Include="PlotterWidget.cpp" />
     <ClCompile Include="q_win_sparrow.cpp" />
-    <ClCompile Include="tune_thr.cpp" />
-    <ClCompile Include="udp_cmd.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="q_win_sparrow.qrc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstactPlotter.h" />
-    <QtMoc Include="udp_cmd.h" />
-    <QtMoc Include="tune_thr.h" />
-    <QtMoc Include="base_cmd.h" />
-    <QtMoc Include="base_dev_cmd.h" />
     <ClInclude Include="cmdreq.h" />
-    <ClInclude Include="dev_cmd.h" />
-    <ClInclude Include="dev_interf.h" />
+    <QtMoc Include="device\device_cmd.h" />
+    <QtMoc Include="device\udp_send_res.h" />
     <QtMoc Include="obj_cmd.h" />
     <QtMoc Include="dial_debug.h" />
+    <ClInclude Include="device\dev_interf.h" />
+    <QtMoc Include="device\pc_udp.h" />
     <ClInclude Include="OscillogramProperties.h" />
     <ClInclude Include="params.h" />
     <QtMoc Include="param_ed.h" />

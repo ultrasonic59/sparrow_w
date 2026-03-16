@@ -2,11 +2,12 @@
 ////#include <stdio.h>
 #include "uart.h"
 #include "../brd/sparrow_brd.h"
+volatile uint8_t tdat;
 
 ////===================================
 void uart1_rx_handler(void)
 {
-uint8_t tdat;
+///uint8_t tdat;
 tdat=(uint8_t)USART1->DATAR;
 ///hdlc_on_bytein(tdat);
 }

@@ -7,9 +7,6 @@
 class param_ed: public QLineEdit
 {
 Q_OBJECT
-
-
-
 protected:
 
 	virtual void mouseDoubleClickEvent(QMouseEvent* pe);
@@ -32,8 +29,6 @@ protected:
 
 	bool ena_enter_on_off;
 	bool ena_edit;
-
-
 	inline void ApplyNewText();
 
 	inline int GetMinimalWidth() const;
@@ -42,22 +37,14 @@ private:
 
 	template<typename T> inline void inc_par_val(T *value, const int count);
 	template<typename T> inline void dec_par_val(T *value, const int count);
-
-
 public:
-
     param_ed(QWidget *parent=0);
 
 	virtual QSize minimumSizeHint() const;
 	virtual QSize sizeHint() const;
-
-
 	void set_ena_edit(bool iena_edit);
-
 	void inc_par(const int count = 1);
 	void dec_par(const int count = 1);
-
-
 	void set_ena_enter_on_off(bool ena);
 	void set_min_max(int i_min,int i_max);
 	void set_inc_step(int istep);

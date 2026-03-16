@@ -6,11 +6,9 @@
 ///#include "OscillogramPlotterSetter2.h"
 #include "ui_q_win_sparrow.h"
 
-#include "obj_cmd.h"
+#include "device_cmd.h"
 
 #include "dial_debug.h"
-
-
 
 class q_win_sparrow : public QMainWindow
 {
@@ -50,24 +48,22 @@ public slots:
 	void EndInitConnection();
 	void NoConnection();
 
-	void slot_new_ampl();
 
 protected slots:
 
 	void butt_debug();
-	void slot_rd_xil_dat(xil_dat_req_t* odat);
-	void slot_wr_xil_dat(xil_dat_req_t* idat);
-	void slot_rd_dac_dat(dac_spi_req_t* odat);
-	void slot_wr_dac_dat(dac_spi_req_t* idat);
-	void slot_wr_adc_dat(adc_spi_req_t* idat);
-	void slot_rd_adc_dat(adc_spi_req_t* idat);
+	///void slot_rd_xil_dat(xil_dat_req_t* odat);
+	///void slot_wr_xil_dat(xil_dat_req_t* idat);
+	///void slot_rd_dac_dat(dac_spi_req_t* odat);
+	///void slot_wr_dac_dat(dac_spi_req_t* idat);
 
 signals:
-	void put_xil_dat_dial(xil_dat_req_t*);
-	void put_dac_dat_dial(dac_spi_req_t*);
-	void put_adc_dat_dial(adc_spi_req_t*);
+	///void put_xil_dat_dial(xil_dat_req_t*);
+	///void put_dac_dat_dial(dac_spi_req_t*);
 public:
-	c_obj_cmd dev_obj;
+///	c_obj_cmd dev_obj;
+	c_device_cmd device_CMD;
+
 };
 
 #endif // MAINWINDOW_H

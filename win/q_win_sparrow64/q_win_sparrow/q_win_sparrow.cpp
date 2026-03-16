@@ -119,14 +119,11 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 
 	connect(this, SIGNAL(put_xil_dat_dial(xil_dat_req_t*)), &dial_dbg, SLOT(req_data_rdy(xil_dat_req_t*)));
 	connect(this, SIGNAL(put_dac_dat_dial(dac_spi_req_t*)), &dial_dbg, SLOT(req_data_rdy(dac_spi_req_t*)));
-	connect(this, SIGNAL(put_adc_dat_dial(adc_spi_req_t*)), &dial_dbg, SLOT(req_data_rdy(adc_spi_req_t*)));
 
 	connect(&dial_dbg, SIGNAL(req_rd_xil(xil_dat_req_t*)), this, SLOT(slot_rd_xil_dat(xil_dat_req_t*)));
 	connect(&dial_dbg, SIGNAL(req_wr_xil(xil_dat_req_t*)), this, SLOT(slot_wr_xil_dat(xil_dat_req_t*)));
 	connect(&dial_dbg, SIGNAL(req_rd_dac(dac_spi_req_t*)), this, SLOT(slot_rd_dac_dat(dac_spi_req_t*)));
 	connect(&dial_dbg, SIGNAL(req_wr_dac(dac_spi_req_t*)), this, SLOT(slot_wr_dac_dat(dac_spi_req_t*)));
-	connect(&dial_dbg, SIGNAL(req_wr_adc(adc_spi_req_t*)), this, SLOT(slot_wr_adc_dat(adc_spi_req_t*)));
-	connect(&dial_dbg, SIGNAL(req_rd_adc(adc_spi_req_t*)), this, SLOT(slot_rd_adc_dat(adc_spi_req_t*)));
 
 	ui.ed_osc_length->set_num_dig(NUM_DIG_QUINT16);
 	ui.ed_osc_length->set_data(reinterpret_cast<unsigned short*>(&plot_arr_length));
@@ -221,16 +218,16 @@ void q_win_sparrow::OnStartStop()
 	{
 		dev_obj.StopDevice();
 		ui.pushButton_start_stop->setChecked(false);
-		ui.pushButton_start_stop->setText(tr("\320\237\321\203\321\201\320\272"));
-		ui.label_con_state->setText(tr("\320\222\320\253\320\232\320\233"));
+		ui.pushButton_start_stop->setText(QString::fromLocal8Bit("Пуск"));
+		ui.label_con_state->setText(QString::fromLocal8Bit("Не соед."));
 	}
 	else
 	{
 		dev_obj.ip_addr = ui.lineEdit_ip->text();
 		dev_obj.SetupDevice();
 		ui.pushButton_start_stop->setChecked(true);
-		ui.pushButton_start_stop->setText(tr("\320\241\321\202\320\276\320\277"));
-		ui.label_con_state->setText(tr("\320\241\320\236\320\225\320\224"));
+		ui.pushButton_start_stop->setText(QString::fromLocal8Bit("Стоп"));
+		ui.label_con_state->setText(QString::fromLocal8Bit("Соед."));
 	}
 }
 
@@ -240,7 +237,7 @@ void q_win_sparrow::SetConnStatus()
 
 void q_win_sparrow::EndInitConnection()		// ???
 {
-	ui.label_con_state->setText(tr("\320\222\320\232\320\233"));
+	ui.label_con_state->setText(tr("vvv5\320\222\320\232\320\233"));
 }
 
 void q_win_sparrow::NoConnection()
@@ -248,20 +245,9 @@ void q_win_sparrow::NoConnection()
 	dev_obj.StopDevice();
 
 	ui.pushButton_start_stop->setChecked(false);
-	ui.pushButton_start_stop->setText(tr("\320\237\321\203\321\201\320\272"));
-	ui.label_con_state->setText(tr("\320\222\320\253\320\232\320\233"));
+	ui.pushButton_start_stop->setText(QString::fromLocal8Bit("Пуск"));
+	ui.label_con_state->setText(QString::fromLocal8Bit("Выкл"));
 }
-
-
-void q_win_sparrow::slot_new_ampl()
-{
-	QString ampl_str;
-	ampl_str.sprintf("%x",dev_obj.ampl_val);
-
-	ui.label_ampl_val->setText(ampl_str);
-}
-
-
 
 
 void q_win_sparrow::osc_length_changed()
@@ -380,9 +366,6 @@ void q_win_sparrow::RecalculateImpulse()
 
 }
 
-
-
-
 void q_win_sparrow::ImpulseToPlot()
 {
 	const par_contr_t &par_contr = dev_obj.curr_par_contr;
@@ -412,10 +395,6 @@ void q_win_sparrow::butt_debug()
 {
 	dial_dbg.show();
 }
-
-
-
-
 
 void q_win_sparrow::slot_rd_xil_dat(xil_dat_req_t* odat)
 {
@@ -472,34 +451,6 @@ void q_win_sparrow::slot_wr_dac_dat(dac_spi_req_t* idat)
 	dev_obj.p_tune_thr->dev_cmd.dev_put_dac(idat);
 	dev_obj.UpdateDevice(true );
 }
-
-void q_win_sparrow::slot_wr_adc_dat(adc_spi_req_t* idat)
-{
-	if(!dev_obj.IsAttached())
-		return;
-
-	dev_obj.UpdateDevice(false );
-	dev_obj.p_tune_thr->dev_cmd.dev_put_adc(idat);
-	dev_obj.UpdateDevice(true );
-}
-
-void q_win_sparrow::slot_rd_adc_dat(adc_spi_req_t* odat)
-{
-	if(!dev_obj.IsAttached())
-		return;
-
-	dev_obj.UpdateDevice(false );
-	adc_spi_req_t adc_req;
-	adc_req.addr=odat->addr;
-	///alt_req.nbytes=odat->nbytes;
-	if(dev_obj.p_tune_thr->dev_cmd.dev_put_req_adc(&adc_req))
-	{
-		if(dev_obj.p_tune_thr->dev_cmd.dev_get_adc(odat))
-			emit put_adc_dat_dial(odat);
-	}
-	dev_obj.UpdateDevice(true );
-}
-
 
 
 

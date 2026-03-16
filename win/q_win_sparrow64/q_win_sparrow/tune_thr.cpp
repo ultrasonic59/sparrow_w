@@ -113,20 +113,6 @@ bool c_tune_thr::send_param()
 		tnum_bytes+=sizeof(quint16);
 		m_changed_param&=~CHNG_KUS;
 	}
-	if(m_changed_param&CHNG_BEG_OSC)
-	{
-		memcpy(par_trk_buff+t_offs, &m_sent_par.beg_osc, sizeof(quint16));
-		t_offs+=sizeof(quint16);
-		tnum_bytes+=sizeof(quint16);
-		m_changed_param&=~CHNG_BEG_OSC;
-	}
-	if(m_changed_param&CHNG_STEP_OSC)
-	{
-		memcpy(par_trk_buff+t_offs, &m_sent_par.step_osc, sizeof(quint16));
-		t_offs+=sizeof(quint16);
-		tnum_bytes+=sizeof(quint16);
-		m_changed_param&=~CHNG_STEP_OSC;
-	}
 	if(m_changed_param&CHNG_ATTENUATOR)
 	{
 		memcpy(par_trk_buff+t_offs, &m_sent_par.attenuator, sizeof(quint8));
@@ -140,11 +126,8 @@ bool c_tune_thr::send_param()
 	tnum_bytes1=tnum_bytes+OFFS_FLG_CHNG;
 	memcpy(par_trk_buff,&tnum_bytes,sizeof(quint16));
 
-
 	return dev_cmd.dev_put_param(par_trk_buff,tnum_bytes);
 }
-
-
 
 void c_tune_thr::req_timer_timeout()
 {
@@ -169,25 +152,6 @@ void c_tune_thr::req_timer_timeout()
 		}
 		else
 		{
-
-
-
-			if(dev_cmd.dev_get_osc( data_buff ))
-			{
-				memcpy(p_osc_struct, data_buff, sizeof(osc_struct_t));
-				emit signal_draw_osc();
-			}
-			else if(on_tune_thr)
-				emit signal_unsuccesfull();
-
-
-
-			if(dev_cmd.dev_get_ampl(p_ampl_val))
-				emit signal_new_ampl();
-			else if(on_tune_thr)
-				emit signal_unsuccesfull();
-
-
 
 
 
@@ -220,7 +184,7 @@ bool c_tune_thr::send_params()
 {
 	bool result = true;
 
-	m_changed_param = CHNG_TIMP_LEN | CHNG_TIMP_OFFSET | CHNG_TCYCLE | CHNG_TDEF | CHNG_IMP_POINTS | CHNG_BEG_OSC | CHNG_STEP_OSC | CHNG_KUS | CHNG_ATTENUATOR;
+	m_changed_param = CHNG_TIMP_LEN | CHNG_TIMP_OFFSET | CHNG_TCYCLE | CHNG_TDEF | CHNG_IMP_POINTS | CHNG_KUS | CHNG_ATTENUATOR;
 	result = send_param();
 
 	return result;

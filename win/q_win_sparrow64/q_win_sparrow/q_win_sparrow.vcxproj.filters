@@ -62,28 +62,7 @@
     <ClCompile Include="PlotterWidget.cpp">
       <Filter>Source Files\Plotters</Filter>
     </ClCompile>
-    <ClCompile Include="base_cmd.cpp">
-      <Filter>Source Files\device</Filter>
-    </ClCompile>
-    <ClCompile Include="base_dev_cmd.cpp">
-      <Filter>Source Files\device</Filter>
-    </ClCompile>
-    <ClCompile Include="dev_cmd.cpp">
-      <Filter>Source Files\device</Filter>
-    </ClCompile>
-    <ClCompile Include="Fcs16.cpp">
-      <Filter>Source Files\device</Filter>
-    </ClCompile>
-    <ClCompile Include="obj_cmd.cpp">
-      <Filter>Source Files\device</Filter>
-    </ClCompile>
     <ClCompile Include="params.cpp">
-      <Filter>Source Files\device</Filter>
-    </ClCompile>
-    <ClCompile Include="tune_thr.cpp">
-      <Filter>Source Files\device</Filter>
-    </ClCompile>
-    <ClCompile Include="udp_cmd.cpp">
       <Filter>Source Files\device</Filter>
     </ClCompile>
     <ClCompile Include="param_ed.cpp">
@@ -95,24 +74,24 @@
     <ClCompile Include="dial_debug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="device\Fcs16.cpp">
+      <Filter>Header Files\device</Filter>
+    </ClCompile>
+    <ClCompile Include="device\device_cmd.cpp">
+      <Filter>Source Files\device</Filter>
+    </ClCompile>
+    <ClCompile Include="device\udp_send_res.cpp">
+      <Filter>Source Files\device</Filter>
+    </ClCompile>
+    <ClCompile Include="device\pc_udp.cpp">
+      <Filter>Source Files\device</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="OscillogramPlotterSetter.h">
       <Filter>Header Files\Plotters</Filter>
     </QtMoc>
-    <QtMoc Include="base_cmd.h">
-      <Filter>Header Files\device</Filter>
-    </QtMoc>
-    <QtMoc Include="base_dev_cmd.h">
-      <Filter>Header Files\device</Filter>
-    </QtMoc>
     <QtMoc Include="obj_cmd.h">
-      <Filter>Header Files\device</Filter>
-    </QtMoc>
-    <QtMoc Include="tune_thr.h">
-      <Filter>Header Files\device</Filter>
-    </QtMoc>
-    <QtMoc Include="udp_cmd.h">
       <Filter>Header Files\device</Filter>
     </QtMoc>
     <QtMoc Include="param_ed.h">
@@ -133,6 +112,15 @@
     <QtUic Include="dial_debug.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtMoc Include="device\udp_send_res.h">
+      <Filter>Header Files\device</Filter>
+    </QtMoc>
+    <QtMoc Include="device\pc_udp.h">
+      <Filter>Header Files\device</Filter>
+    </QtMoc>
+    <QtMoc Include="device\device_cmd.h">
+      <Filter>Header Files\device</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstactPlotter.h">
@@ -147,13 +135,10 @@
     <ClInclude Include="cmdreq.h">
       <Filter>Header Files\device</Filter>
     </ClInclude>
-    <ClInclude Include="dev_cmd.h">
-      <Filter>Header Files\device</Filter>
-    </ClInclude>
-    <ClInclude Include="dev_interf.h">
-      <Filter>Header Files\device</Filter>
-    </ClInclude>
     <ClInclude Include="params.h">
+      <Filter>Header Files\device</Filter>
+    </ClInclude>
+    <ClInclude Include="device\dev_interf.h">
       <Filter>Header Files\device</Filter>
     </ClInclude>
   </ItemGroup>
