@@ -91,9 +91,6 @@
     <QtMoc Include="OscillogramPlotterSetter.h">
       <Filter>Header Files\Plotters</Filter>
     </QtMoc>
-    <QtMoc Include="obj_cmd.h">
-      <Filter>Header Files\device</Filter>
-    </QtMoc>
     <QtMoc Include="param_ed.h">
       <Filter>Header Files</Filter>
     </QtMoc>

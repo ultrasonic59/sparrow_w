@@ -210,8 +210,6 @@ void q_win_sparrow::InitPlot()
 	plotter.PlotRespond(plot_array.data(), plot_arr_length);
 }
 
-
-
 void q_win_sparrow::OnStartStop()
 {
 	if(device_cmd.IsAttached())
@@ -224,7 +222,7 @@ void q_win_sparrow::OnStartStop()
 	else
 	{
 		device_cmd.ip_addr = ui.lineEdit_ip->text();
-		device_cmd.SetupDevice();
+	////	device_cmd.SetupDevice();
 		ui.pushButton_start_stop->setChecked(true);
 		ui.pushButton_start_stop->setText(QString::fromLocal8Bit("Стоп"));
 		ui.label_con_state->setText(QString::fromLocal8Bit("Соед."));
@@ -309,37 +307,37 @@ void q_win_sparrow::Aimp_changed()
 	RecalculateImpulse();
 	ImpulseToPlot();
 	plotter.PlotRespond(plot_array.data(), plot_arr_length);
-	dev_obj.g_changed_param |= CHNG_IMP_POINTS;
+	device_cmd.g_changed_param |= CHNG_IMP_POINTS;
 }
 
 
 void q_win_sparrow::DevFreq_changed()
 {
-	par_contr_t &par_contr = dev_obj.curr_par_contr;
+	par_contr_t &par_contr = device_cmd.curr_par_contr;
 
 	par_contr.dev_frequency = static_cast<float>(dev_freq) / COEF_DEV_FREQ;
 	float curr_period_len = COEF_PERIOD_TRANSF / par_contr.dev_frequency;
 	curr_period_len *= par_contr.num_periods;
 	par_contr.sent_par.Timp_len = curr_period_len;		// число тиков после изменения
-	dev_obj.ApplyImpAmlToPar();
+	device_cmd.ApplyImpAmlToPar();
 
 	ui.ed_t_imp_len->show_par();
 	RecalculateImpulse();
 	ImpulseToPlot();
 	plotter.PlotRespond(plot_array.data(), plot_arr_length);
-	dev_obj.g_changed_param |= CHNG_TIMP_LEN | CHNG_IMP_POINTS;
+	device_cmd.g_changed_param |= CHNG_TIMP_LEN | CHNG_IMP_POINTS;
 }
 
 
 void q_win_sparrow::GaussClicked()
 {
-	dev_obj.curr_par_contr.gaus_enable = ui.checkBox_gauss->isChecked();
+	device_cmd.curr_par_contr.gaus_enable = ui.checkBox_gauss->isChecked();
 
 	RecalculateImpulse();
 	ImpulseToPlot();
 	plotter.PlotRespond(plot_array.data(), plot_arr_length);
 
-	dev_obj.g_changed_param |= CHNG_IMP_POINTS;
+	device_cmd.g_changed_param |= CHNG_IMP_POINTS;
 }
 
 
@@ -348,7 +346,7 @@ void q_win_sparrow::GaussClicked()
 
 void q_win_sparrow::RecalculateImpulse()
 {
-	const par_contr_t &par_contr = dev_obj.curr_par_contr;
+	const par_contr_t &par_contr = device_cmd.curr_par_contr;
 	const par_sent_t &sent_par = par_contr.sent_par;
 
 	double k = 4.0*log(2.0*par_contr.Aimp)/(static_cast<double>(sent_par.Timp_len)*sent_par.Timp_len);
@@ -356,6 +354,7 @@ void q_win_sparrow::RecalculateImpulse()
 	// y = A * e^(-k*(x - len/2)^2)
 
 	int len_div2 = sent_par.Timp_len/2;
+	/*
 	for(quint16 i = 0; i < sent_par.Timp_len; i++)
 	{
 		if(par_contr.gaus_enable)
@@ -363,12 +362,12 @@ void q_win_sparrow::RecalculateImpulse()
 		else
 			dev_obj.imp_ampl[i] = par_contr.Aimp * sin(2* M_PI*i*par_contr.dev_frequency/COEF_PERIOD_TRANSF);
 	}
-
+*/
 }
 
 void q_win_sparrow::ImpulseToPlot()
 {
-	const par_contr_t &par_contr = dev_obj.curr_par_contr;
+	const par_contr_t &par_contr = device_cmd.curr_par_contr;
 	const par_sent_t &sent_par = par_contr.sent_par;
 
 	qint16 *plot_arr = plot_array.data();
@@ -376,13 +375,13 @@ void q_win_sparrow::ImpulseToPlot()
 	if(plot_arr_length > (sent_par.Timp_offset + sent_par.Timp_len))
 	{
 		memset(plot_arr, 0, sizeof(qint16)*sent_par.Timp_offset);
-		memcpy(plot_arr + sent_par.Timp_offset, dev_obj.imp_ampl.data(), sizeof(qint16)*sent_par.Timp_len);
+		////???memcpy(plot_arr + sent_par.Timp_offset, dev_obj.imp_ampl.data(), sizeof(qint16)*sent_par.Timp_len);
 		memset(plot_arr + sent_par.Timp_offset + sent_par.Timp_len, 0, sizeof(qint16)*(plot_arr_length - sent_par.Timp_offset - sent_par.Timp_len) );
 	}
 	else if(plot_arr_length > sent_par.Timp_offset)
 	{
 		memset(plot_arr, 0, sizeof(qint16)*sent_par.Timp_offset);
-		memcpy(plot_arr + sent_par.Timp_offset, dev_obj.imp_ampl.data(), sizeof(qint16)*(plot_arr_length - sent_par.Timp_offset));
+		////???memcpy(plot_arr + sent_par.Timp_offset, dev_obj.imp_ampl.data(), sizeof(qint16)*(plot_arr_length - sent_par.Timp_offset));
 	}
 	else
 		memset(plot_arr, 0, sizeof(qint16)*plot_arr_length);
@@ -398,13 +397,14 @@ void q_win_sparrow::butt_debug()
 
 void q_win_sparrow::slot_rd_xil_dat(xil_dat_req_t* odat)
 {
-	if(!dev_obj.IsAttached())
+	if(!device_cmd.IsAttached())
 		return;
 
-	dev_obj.UpdateDevice(false);
+///	device_cmd.UpdateDevice(false);
 	xil_dat_req_t xil_req;
 	xil_req.addr=odat->addr;
 	xil_req.nbytes=odat->nbytes;
+/*
 	if(dev_obj.p_tune_thr->dev_cmd.dev_put_req_xil(&xil_req))
 	{
 		if(dev_obj.p_tune_thr->dev_cmd.dev_get_xil(odat))
@@ -412,44 +412,44 @@ void q_win_sparrow::slot_rd_xil_dat(xil_dat_req_t* odat)
 	}
 	
 	dev_obj.UpdateDevice(true);
+	*/
 }
 
 void q_win_sparrow::slot_wr_xil_dat(xil_dat_req_t* idat)
 {
-	if(!dev_obj.IsAttached())
+	if(!device_cmd.IsAttached())
 		return;
 
 
-	dev_obj.UpdateDevice(false );
-	dev_obj.p_tune_thr->dev_cmd.dev_put_xil(idat);
-	dev_obj.UpdateDevice(true );
+///	dev_obj.UpdateDevice(false );
+///	dev_obj.p_tune_thr->dev_cmd.dev_put_xil(idat);
+///	dev_obj.UpdateDevice(true );
 }
 
 void q_win_sparrow::slot_rd_dac_dat(dac_spi_req_t* odat)
 {
-	if(!dev_obj.IsAttached())
+	if(!device_cmd.IsAttached())
 		return;
 
-	dev_obj.UpdateDevice(false );
+///	dev_obj.UpdateDevice(false );
 	dac_spi_req_t dac_req;
 	dac_req.addr=odat->addr;
 	///alt_req.nbytes=odat->nbytes;
-	if(dev_obj.p_tune_thr->dev_cmd.dev_put_req_dac(&dac_req))
+	if(device_cmd.dev_put_req_dac(&dac_req))
 	{
-		if(dev_obj.p_tune_thr->dev_cmd.dev_get_dac(odat))
+		if(device_cmd.dev_get_dac(odat))
 			emit put_dac_dat_dial(odat);
 	}
-	dev_obj.UpdateDevice(true );
+///	dev_obj.UpdateDevice(true );
 }
 
 void q_win_sparrow::slot_wr_dac_dat(dac_spi_req_t* idat)
 {
-	if(!dev_obj.IsAttached())
+	if(!device_cmd.IsAttached())
 		return;
-
-	dev_obj.UpdateDevice(false );
-	dev_obj.p_tune_thr->dev_cmd.dev_put_dac(idat);
-	dev_obj.UpdateDevice(true );
+///	dev_obj.UpdateDevice(false );
+	device_cmd.dev_put_dac(idat);
+///	dev_obj.UpdateDevice(true );
 }
 
 

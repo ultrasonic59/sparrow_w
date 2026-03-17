@@ -38,7 +38,51 @@ bool c_device_cmd::IsAttached() const
 {
 	return attached;
 }
+void c_device_cmd::StopDevice()
+{
+/*
+	UpdateDevice(false);
 
+	p_tune_thr->dev_cmd.DetachFromCMD();
+
+	if (p_tune_thr->is_initing)
+		p_tune_thr->is_initing = false;
+*/
+}
+void c_device_cmd::SetupDevice()
+{
+	g_changed_param = 0;
+	/*
+	p_tune_thr->is_initing = true;
+
+	p_udp_cmd->set_host(ip_addr, port);
+	p_tune_thr->dev_cmd.AttachToCMD(p_udp_cmd);
+	UpdateDevice(true);
+	*/
+}
+bool c_device_cmd::dev_put_req_dac(dac_spi_req_t* ireq)
+{
+///	return send_and_wait(CMD_PUT_DAT, NUM_SEND_SPI_DAC_REQ, reinterpret_cast<quint8*>(ireq), sizeof(dac_spi_req_t));
+	return false;
+}
+
+bool c_device_cmd::dev_get_dac(dac_spi_req_t* odat)
+{
+///	return send_and_wait(CMD_REQ_DAT, NUM_REQ_SPI_DAC_DAT, reinterpret_cast<quint8*>(odat));
+	return false;
+
+}
+
+bool c_device_cmd::dev_put_dac(dac_spi_req_t* ireq)
+{
+///	return send_and_wait(CMD_PUT_DAT, NUM_SEND_SPI_DAC_DAT, reinterpret_cast<quint8*>(ireq), sizeof(dac_spi_req_t));
+	return false;
+
+}
+void c_device_cmd::ApplyImpAmlToPar()
+{
+///	imp_ampl.resize(curr_par_contr.sent_par.Timp_len);
+}
 
 
 

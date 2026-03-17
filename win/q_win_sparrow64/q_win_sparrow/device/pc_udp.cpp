@@ -80,13 +80,10 @@ void pc_udp::sl_dev_set_cur_rej(quint8 rej)
 	dev_set_cur_rej(rej);
 }
 
-
 bool pc_udp::dev_put_param(quint8 *iparam, quint16 num_bytes)
 {
 	return _send_and_wait(CMD_PUT_DAT, REQ_PUT_PAR, reinterpret_cast<quint8 *>(iparam), num_bytes);
 }
-
-
 
 bool pc_udp::dev_get_version_str(quint8 *btmp)
 {

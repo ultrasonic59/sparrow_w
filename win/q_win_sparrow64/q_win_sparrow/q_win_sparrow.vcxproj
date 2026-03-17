@@ -274,7 +274,6 @@
     <ClInclude Include="cmdreq.h" />
     <QtMoc Include="device\device_cmd.h" />
     <QtMoc Include="device\udp_send_res.h" />
-    <QtMoc Include="obj_cmd.h" />
     <QtMoc Include="dial_debug.h" />
     <ClInclude Include="device\dev_interf.h" />
     <QtMoc Include="device\pc_udp.h" />

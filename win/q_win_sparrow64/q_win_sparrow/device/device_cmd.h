@@ -83,6 +83,10 @@ public:
 	bool dev_put_req_dac(dac_spi_req_t *ireq);
 	bool dev_get_dac(dac_spi_req_t *odat);
 	bool dev_put_dac(dac_spi_req_t *ireq);
+	void ApplyImpAmlToPar();
+	void StopDevice();
+	void SetupDevice();
+
 
 signals:
 
