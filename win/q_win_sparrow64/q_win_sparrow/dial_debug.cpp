@@ -49,13 +49,13 @@ void  DialDebug::butt_wr()
 		xil_dat_req.addr=ui.lineEdit_addr->text().toInt(0,16);
 		xil_dat_req.nbytes=1;
 		xil_dat_req.data[0]=ui.lineEdit_wr_dat->text().toInt(0,16);
-		emit req_wr_xil(&xil_dat_req);
+		emit req_wr_xil(xil_dat_req);
 		break;
 
 	case DAC_REJ:
 		dac_spi_req.addr=ui.lineEdit_addr->text().toInt(0,16);
 		dac_spi_req.data=ui.lineEdit_wr_dat->text().toInt(0,16);
-		emit req_wr_dac(&dac_spi_req);
+		emit req_wr_dac(dac_spi_req);
 		break;
 	default:;
 	}
@@ -88,6 +88,15 @@ void  DialDebug::req_data_rdy(dac_spi_req_t* p_dat)
 	tstr.sprintf("\naddr=%x->%x",p_dat->addr,p_dat->data);
 	ui.textEdit_rd_dat->append(tstr);
 
+	QTextCursor c = ui.textEdit_rd_dat->textCursor();
+	c.movePosition(QTextCursor::End);
+	ui.textEdit_rd_dat->setTextCursor(c);
+}
+void  DialDebug::req_str_rdy(char* istr)
+{
+	QString tstr;
+	tstr.sprintf("\n%s", istr);
+	ui.textEdit_rd_dat->append(tstr);
 	QTextCursor c = ui.textEdit_rd_dat->textCursor();
 	c.movePosition(QTextCursor::End);
 	ui.textEdit_rd_dat->setTextCursor(c);

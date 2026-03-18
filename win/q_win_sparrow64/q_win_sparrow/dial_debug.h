@@ -34,9 +34,9 @@ public:
 
 signals:
 	void req_rd_xil(xil_dat_req_t*);
-	void req_wr_xil(xil_dat_req_t*);
+	void req_wr_xil(xil_dat_req_t);
 	void req_rd_dac(dac_spi_req_t*);
-	void req_wr_dac(dac_spi_req_t*);
+	void req_wr_dac(dac_spi_req_t);
 
 //	void req_rd_test(alt_dat_req_t*);
 
@@ -46,6 +46,7 @@ private slots:
 
 	void  req_data_rdy(xil_dat_req_t*);
 	void  req_data_rdy(dac_spi_req_t*);
+	void  req_str_rdy(char*);
 
 private: 
 	xil_dat_req_t  xil_dat_req;

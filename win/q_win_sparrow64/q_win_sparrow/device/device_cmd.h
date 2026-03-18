@@ -17,13 +17,15 @@ class c_device_cmd : public QObject
 {
 Q_OBJECT
 public:
-	c_device_cmd(QObject *parent);
+	c_device_cmd(QObject *parent, quint8* odata);
 	virtual ~c_device_cmd();
 	pc_udp *p_pc_udp;
 	int tim_dt;	// в мс
 	quint32 g_changed_param;
 	par_contr_t curr_par_contr;
+	QVector<qint16> imp_ampl;
 
+	quint8* p_odata;
 	bool is_connected()
 	{
 		return dev_connected;
@@ -43,23 +45,14 @@ public:
 	bool  end_cmd;
 	quint8  last_cmd_good;
 	udp_stat_t udp_stat;
-
-///	volatile bool attached;
-///	c_base_cmd *curr_cmd;
-///	sent_dat_t *p_send_dat;
-///	char *p_char_send_dat;
-///	QMutex SendMutex;
-///	resv_dat_t *p_resv_dat;
-	///int unsuccesfull_conn;	
-	///int max_unsuccesfull_conn;
-
-///	QElapsedTimer el_timer;
-
-///	inline void gen_send_dat(const quint8 type, const quint8 cmd, const quint8 *in_dat, quint16 len);	// генерирование отправляемых данных
-///	bool send_and_wait(const quint8 type, const quint8 cmd, const quint8 *in_dat, quint16 len, quint8 *out_dat = nullptr);
-///	bool send_and_wait(const quint8 type, const quint8 cmd, quint8 *out_dat);
+	bool dbg_get_xil(xil_dat_req_t&, xil_dat_req_t* odat);
+	void dbg_put_xil(xil_dat_req_t& ireq);
+	void dbg_put_dac(dac_spi_req_t& ireq);
+	bool dbg_get_dac(dac_spi_req_t& req, dac_spi_req_t* o_dat);
+	bool dbg_get_stat(quint16* o_dat);
 
 public:
+	void StartStop(bool);
 
 ///	void AttachToCMD(c_base_cmd *base_cmd);
 ///	void DetachFromCMD();
@@ -75,20 +68,30 @@ public:
 ///	int GetRequestPeriod() const;
 public:
 
-	bool dev_put_param(quint8 *iparam, quint16 num_bytes);
+///	bool dev_put_param(quint8 *iparam, quint16 num_bytes);
 
-	bool dev_put_req_xil(xil_dat_req_t *ireq);
-	bool dev_get_xil(xil_dat_req_t *odat);
-	bool dev_put_xil(xil_dat_req_t *ireq);
-	bool dev_put_req_dac(dac_spi_req_t *ireq);
-	bool dev_get_dac(dac_spi_req_t *odat);
-	bool dev_put_dac(dac_spi_req_t *ireq);
+	///bool dev_put_req_xil(xil_dat_req_t *ireq);
+	///bool dev_get_xil(xil_dat_req_t *odat);
+	///bool dev_put_xil(xil_dat_req_t *ireq);
+///	bool dev_put_req_dac(dac_spi_req_t *ireq);
+///	bool dev_get_dac(dac_spi_req_t *odat);
+///	bool dev_put_dac(dac_spi_req_t *ireq);
 	void ApplyImpAmlToPar();
-	void StopDevice();
+///	void StopDevice();
 	void SetupDevice();
 
 
 signals:
+	void s_put_req_xil(xil_dat_req_t);
+	void s_get_xil();
+	void s_put_xil(xil_dat_req_t);
+	void s_put_req_dac(dac_spi_req_t);
+	void s_put_dac(dac_spi_req_t);
+	void s_get_dac();
+	void s_get_stat();
+	void s_start_timer(quint32);
+	void s_set_ip(QString, int);
+	void s_start(bool);
 
 ///	void signal_write();
 ///	void NoConnection();

@@ -32,11 +32,11 @@ class pc_udp : public QObject ///public c_base_dev_cmd
 {
  Q_OBJECT
 public:
-	pc_udp(int *pport,QString &_ip_addr
+	pc_udp(int *pport,QString &_ip_addr, quint8* o_data = nullptr
 		, bool* end_cmd=nullptr	, quint32* g_changed_param=nullptr,quint8* last_cmd_good = nullptr, udp_stat_t *udp_stat =nullptr);
 	virtual ~pc_udp();
 public:
-///	c_dev_data *p_dev_data;
+	quint8  *p_odata;
 	quint32* pg_changed_param;
 	void udp_pc_init(void);
 	QString ip_addr;
@@ -45,10 +45,11 @@ public:
 ///	void* p_odat;
 	QQueue<req_cmd_t> req_que;
 private:
-	void obr_cmd(req_cmd_t& t_req_cmd);
 	void dev_put_req_xil(xil_dat_req_t ireq);
 	void dev_get_xil(void);
 	void dev_put_xil(xil_dat_req_t ireq);
+	void dev_get_stat(void);
+
 protected:
 	void timerEvent(QTimerEvent* event) override;
 	int timer_id;
@@ -97,6 +98,8 @@ public:
 	int frames_sent;
 protected:
 	bool stop_def_rej;
+	void obr_cmd(req_cmd_t& t_req_cmd);
+
 /// for debug slots =================================
 public slots:
 	void sl_put_req_xil(xil_dat_req_t ireq);
@@ -105,6 +108,11 @@ public slots:
 	////void sl_set_out_a(void*);
 	bool send_all_par_to_dev();
 	void sl_set_stop_def_rej(bool on);
+	void sl_put_req_dac(dac_spi_req_t ireq);
+	void sl_put_dac(dac_spi_req_t ireq);
+	void sl_get_dac(void);
+	void sl_get_stat(void);
+
 public slots:
 	void req_timer_timeout();
 

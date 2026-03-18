@@ -78,29 +78,24 @@ void q_win_sparrow::loadSettings()
 
 }
 
-
-
-
 q_win_sparrow::q_win_sparrow(QWidget *parent) :
     QMainWindow(parent),
     ui(),
-
 	plot_arr_length(DEF_LENGTH),
 	plot_array(plot_arr_length),
 
 	dev_freq(COEF_DEV_FREQ),		// 1.0
-
 	dial_dbg(this),
-
     osc_prop(),
     plotter(this, &osc_prop),
-	device_cmd(this)
+	device_cmd(this,odata)
 {
 	qRegisterMetaTypeStreamOperators< QList<int> >("QList<int>");
+	qRegisterMetaType<xil_dat_req_t>("xil_dat_req_t");
+
     ui.setupUi(this);
 
     connect(ui.pushButton_start_stop, SIGNAL(clicked()), this, SLOT(OnStartStop()));
-
 
     plotter.ConnectToWidget(ui.widget_setted);
     ui.widget_setted->SetPlotter(&plotter);
@@ -110,20 +105,18 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 	loadSettings();
 	device_cmd.ApplyImpAmlToPar();
 	RecalculateImpulse();
-
-
 	ui.lineEdit_ip->setText(device_cmd.ip_addr);
 
 	//ui.pushButt_debug->hide();
 	connect(ui.pushButt_debug, SIGNAL(clicked()), this, SLOT(butt_debug()));
-
 	connect(this, SIGNAL(put_xil_dat_dial(xil_dat_req_t*)), &dial_dbg, SLOT(req_data_rdy(xil_dat_req_t*)));
 	connect(this, SIGNAL(put_dac_dat_dial(dac_spi_req_t*)), &dial_dbg, SLOT(req_data_rdy(dac_spi_req_t*)));
 
 	connect(&dial_dbg, SIGNAL(req_rd_xil(xil_dat_req_t*)), this, SLOT(slot_rd_xil_dat(xil_dat_req_t*)));
-	connect(&dial_dbg, SIGNAL(req_wr_xil(xil_dat_req_t*)), this, SLOT(slot_wr_xil_dat(xil_dat_req_t*)));
+	connect(&dial_dbg, SIGNAL(req_wr_xil(xil_dat_req_t)), this, SLOT(slot_wr_xil_dat(xil_dat_req_t)));
 	connect(&dial_dbg, SIGNAL(req_rd_dac(dac_spi_req_t*)), this, SLOT(slot_rd_dac_dat(dac_spi_req_t*)));
-	connect(&dial_dbg, SIGNAL(req_wr_dac(dac_spi_req_t*)), this, SLOT(slot_wr_dac_dat(dac_spi_req_t*)));
+	connect(&dial_dbg, SIGNAL(req_wr_dac(dac_spi_req_t)), this, SLOT(slot_wr_dac_dat(dac_spi_req_t)));
+	connect(this, SIGNAL(put_str_dial(char*)), &dial_dbg, SLOT(req_str_rdy(char*)));
 
 	ui.ed_osc_length->set_num_dig(NUM_DIG_QUINT16);
 	ui.ed_osc_length->set_data(reinterpret_cast<unsigned short*>(&plot_arr_length));
@@ -158,22 +151,17 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 	ui.ed_t_def->show_par();
 	connect(ui.ed_t_def, SIGNAL(param_changed()), this, SLOT(Tdef_changed()));
 
-
-
 	ui.ed_a_imp->set_num_dig(NUM_DIG_AIMP);
 	ui.ed_a_imp->set_data(reinterpret_cast<unsigned short*>(&p_par_contr->Aimp));
 	ui.ed_a_imp->set_min_max(MIN_AIMP, MAX_AIMP);
 	ui.ed_a_imp->show_par();
 	connect(ui.ed_a_imp, SIGNAL(param_changed()), this, SLOT(Aimp_changed()));
 
-
-
 	ui.ed_num_periods->set_num_dig(NUM_DIG_QUINT16);
 	ui.ed_num_periods->set_data(reinterpret_cast<unsigned short*>(&p_par_contr->num_periods));
 	ui.ed_num_periods->set_min_max(MIN_NUM_PER, MAX_NUM_PER);
 	ui.ed_num_periods->show_par();
 	connect(ui.ed_num_periods, SIGNAL(param_changed()), this, SLOT(NumPeriods_changed()));
-
 
 	dev_freq = COEF_DEV_FREQ * p_par_contr->dev_frequency;
 
@@ -184,16 +172,12 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 	ui.ed_f_imp->show_par();
 	connect(ui.ed_f_imp, SIGNAL(param_changed()), this, SLOT(DevFreq_changed()));
 
-	
 	ui.checkBox_gauss->setChecked(p_par_contr->gaus_enable);
 	connect(ui.checkBox_gauss, SIGNAL(clicked()), this, SLOT(GaussClicked()));
 
 	plot_array.fill(0);
 	plot_array.resize(plot_arr_length);
 	ImpulseToPlot();
-
-
-
 	QTimer::singleShot(10, this, SLOT(InitPlot()));
 }
 
@@ -214,7 +198,8 @@ void q_win_sparrow::OnStartStop()
 {
 	if(device_cmd.IsAttached())
 	{
-		device_cmd.StopDevice();
+
+		device_cmd.StartStop(false);
 		ui.pushButton_start_stop->setChecked(false);
 		ui.pushButton_start_stop->setText(QString::fromLocal8Bit("Пуск"));
 		ui.label_con_state->setText(QString::fromLocal8Bit("Не соед."));
@@ -222,7 +207,9 @@ void q_win_sparrow::OnStartStop()
 	else
 	{
 		device_cmd.ip_addr = ui.lineEdit_ip->text();
-	////	device_cmd.SetupDevice();
+		device_cmd.StartStop(true);
+
+		device_cmd.SetupDevice();
 		ui.pushButton_start_stop->setChecked(true);
 		ui.pushButton_start_stop->setText(QString::fromLocal8Bit("Стоп"));
 		ui.label_con_state->setText(QString::fromLocal8Bit("Соед."));
@@ -240,7 +227,7 @@ void q_win_sparrow::EndInitConnection()		// ???
 
 void q_win_sparrow::NoConnection()
 {
-	device_cmd.StopDevice();
+	device_cmd.StartStop(false);
 
 	ui.pushButton_start_stop->setChecked(false);
 	ui.pushButton_start_stop->setText(QString::fromLocal8Bit("Пуск"));
@@ -293,7 +280,7 @@ void q_win_sparrow::NumPeriods_changed()
 	float curr_period_len = COEF_PERIOD_TRANSF / par_contr.dev_frequency;
 	curr_period_len *= par_contr.num_periods;
 	par_contr.sent_par.Timp_len = curr_period_len;		// число тиков после изменения
-///	device_cmd.ApplyImpAmlToPar();
+	device_cmd.ApplyImpAmlToPar();
 	ui.ed_t_imp_len->show_par();
 	RecalculateImpulse();
 	ImpulseToPlot();
@@ -341,9 +328,6 @@ void q_win_sparrow::GaussClicked()
 }
 
 
-
-
-
 void q_win_sparrow::RecalculateImpulse()
 {
 	const par_contr_t &par_contr = device_cmd.curr_par_contr;
@@ -354,15 +338,15 @@ void q_win_sparrow::RecalculateImpulse()
 	// y = A * e^(-k*(x - len/2)^2)
 
 	int len_div2 = sent_par.Timp_len/2;
-	/*
+	
 	for(quint16 i = 0; i < sent_par.Timp_len; i++)
 	{
 		if(par_contr.gaus_enable)
-			dev_obj.imp_ampl[i] = par_contr.Aimp * exp(-k*(i - len_div2)*(i - len_div2)) * sin(2* M_PI*i*par_contr.dev_frequency/COEF_PERIOD_TRANSF);
+			device_cmd.imp_ampl[i] = par_contr.Aimp * exp(-k*(i - len_div2)*(i - len_div2)) * sin(2* M_PI*i*par_contr.dev_frequency/COEF_PERIOD_TRANSF);
 		else
-			dev_obj.imp_ampl[i] = par_contr.Aimp * sin(2* M_PI*i*par_contr.dev_frequency/COEF_PERIOD_TRANSF);
+			device_cmd.imp_ampl[i] = par_contr.Aimp * sin(2* M_PI*i*par_contr.dev_frequency/COEF_PERIOD_TRANSF);
 	}
-*/
+
 }
 
 void q_win_sparrow::ImpulseToPlot()
@@ -375,20 +359,17 @@ void q_win_sparrow::ImpulseToPlot()
 	if(plot_arr_length > (sent_par.Timp_offset + sent_par.Timp_len))
 	{
 		memset(plot_arr, 0, sizeof(qint16)*sent_par.Timp_offset);
-		////???memcpy(plot_arr + sent_par.Timp_offset, dev_obj.imp_ampl.data(), sizeof(qint16)*sent_par.Timp_len);
+		memcpy(plot_arr + sent_par.Timp_offset, device_cmd.imp_ampl.data(), sizeof(qint16)*sent_par.Timp_len);
 		memset(plot_arr + sent_par.Timp_offset + sent_par.Timp_len, 0, sizeof(qint16)*(plot_arr_length - sent_par.Timp_offset - sent_par.Timp_len) );
 	}
 	else if(plot_arr_length > sent_par.Timp_offset)
 	{
 		memset(plot_arr, 0, sizeof(qint16)*sent_par.Timp_offset);
-		////???memcpy(plot_arr + sent_par.Timp_offset, dev_obj.imp_ampl.data(), sizeof(qint16)*(plot_arr_length - sent_par.Timp_offset));
+		memcpy(plot_arr + sent_par.Timp_offset, device_cmd.imp_ampl.data(), sizeof(qint16)*(plot_arr_length - sent_par.Timp_offset));
 	}
 	else
 		memset(plot_arr, 0, sizeof(qint16)*plot_arr_length);
 }
-
-
-
 
 void q_win_sparrow::butt_debug()
 {
@@ -404,25 +385,27 @@ void q_win_sparrow::slot_rd_xil_dat(xil_dat_req_t* odat)
 	xil_dat_req_t xil_req;
 	xil_req.addr=odat->addr;
 	xil_req.nbytes=odat->nbytes;
-/*
-	if(dev_obj.p_tune_thr->dev_cmd.dev_put_req_xil(&xil_req))
+	if (device_cmd.dbg_get_xil(xil_req, odat))
 	{
-		if(dev_obj.p_tune_thr->dev_cmd.dev_get_xil(odat))
-			emit put_xil_dat_dial(odat);
+		emit put_xil_dat_dial(odat);
 	}
-	
+	else
+	{
+		emit put_str_dial((char*)"eroor dat ");
+	}
+	/*
 	dev_obj.UpdateDevice(true);
 	*/
 }
 
-void q_win_sparrow::slot_wr_xil_dat(xil_dat_req_t* idat)
+void q_win_sparrow::slot_wr_xil_dat(xil_dat_req_t idat)
 {
 	if(!device_cmd.IsAttached())
 		return;
 
 
 ///	dev_obj.UpdateDevice(false );
-///	dev_obj.p_tune_thr->dev_cmd.dev_put_xil(idat);
+	device_cmd.dbg_put_xil(idat);
 ///	dev_obj.UpdateDevice(true );
 }
 
@@ -434,21 +417,22 @@ void q_win_sparrow::slot_rd_dac_dat(dac_spi_req_t* odat)
 ///	dev_obj.UpdateDevice(false );
 	dac_spi_req_t dac_req;
 	dac_req.addr=odat->addr;
-	///alt_req.nbytes=odat->nbytes;
-	if(device_cmd.dev_put_req_dac(&dac_req))
+	if (device_cmd.dbg_get_dac(dac_req, odat))
 	{
-		if(device_cmd.dev_get_dac(odat))
-			emit put_dac_dat_dial(odat);
+		emit put_dac_dat_dial(odat);
+	}
+	else
+	{
+		emit put_str_dial((char*)"eroor dat ");
 	}
 ///	dev_obj.UpdateDevice(true );
 }
-
-void q_win_sparrow::slot_wr_dac_dat(dac_spi_req_t* idat)
+void q_win_sparrow::slot_wr_dac_dat(dac_spi_req_t idat)
 {
 	if(!device_cmd.IsAttached())
 		return;
 ///	dev_obj.UpdateDevice(false );
-	device_cmd.dev_put_dac(idat);
+	device_cmd.dbg_put_dac(idat);
 ///	dev_obj.UpdateDevice(true );
 }
 

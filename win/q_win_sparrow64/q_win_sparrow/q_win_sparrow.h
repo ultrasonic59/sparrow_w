@@ -29,6 +29,7 @@ protected:
 public:
     q_win_sparrow(QWidget *parent = 0);
     ~q_win_sparrow();
+	quint8 odata[512];
 
 protected slots:
     void OnStartStop();
@@ -53,13 +54,15 @@ protected slots:
 
 	void butt_debug();
 	void slot_rd_xil_dat(xil_dat_req_t* odat);
-	void slot_wr_xil_dat(xil_dat_req_t* idat);
+	void slot_wr_xil_dat(xil_dat_req_t idat);
 	void slot_rd_dac_dat(dac_spi_req_t* odat);
-	void slot_wr_dac_dat(dac_spi_req_t* idat);
+	void slot_wr_dac_dat(dac_spi_req_t idat);
 
 signals:
-	///void put_xil_dat_dial(xil_dat_req_t*);
+	void put_xil_dat_dial(xil_dat_req_t*);
 	void put_dac_dat_dial(dac_spi_req_t*);
+	void put_str_dial(char*);
+
 public:
 ///	c_obj_cmd dev_obj;
 	c_device_cmd device_cmd;
