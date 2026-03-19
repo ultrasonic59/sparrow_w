@@ -110,12 +110,12 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 	//ui.pushButt_debug->hide();
 	connect(ui.pushButt_debug, SIGNAL(clicked()), this, SLOT(butt_debug()));
 	connect(this, SIGNAL(put_xil_dat_dial(xil_dat_req_t*)), &dial_dbg, SLOT(req_data_rdy(xil_dat_req_t*)));
-	connect(this, SIGNAL(put_dac_dat_dial(dac_spi_req_t*)), &dial_dbg, SLOT(req_data_rdy(dac_spi_req_t*)));
+	connect(this, SIGNAL(put_dac_dat_dial(xil_dat_req_t*)), &dial_dbg, SLOT(req_data_rdy(xil_dat_req_t*)));
 
 	connect(&dial_dbg, SIGNAL(req_rd_xil(xil_dat_req_t*)), this, SLOT(slot_rd_xil_dat(xil_dat_req_t*)));
 	connect(&dial_dbg, SIGNAL(req_wr_xil(xil_dat_req_t)), this, SLOT(slot_wr_xil_dat(xil_dat_req_t)));
-	connect(&dial_dbg, SIGNAL(req_rd_dac(dac_spi_req_t*)), this, SLOT(slot_rd_dac_dat(dac_spi_req_t*)));
-	connect(&dial_dbg, SIGNAL(req_wr_dac(dac_spi_req_t)), this, SLOT(slot_wr_dac_dat(dac_spi_req_t)));
+	connect(&dial_dbg, SIGNAL(req_rd_dac(xil_dat_req_t*)), this, SLOT(slot_rd_dac_dat(xil_dat_req_t*)));
+	connect(&dial_dbg, SIGNAL(req_wr_dac(xil_dat_req_t)), this, SLOT(slot_wr_dac_dat(xil_dat_req_t)));
 	connect(this, SIGNAL(put_str_dial(char*)), &dial_dbg, SLOT(req_str_rdy(char*)));
 
 	ui.ed_osc_length->set_num_dig(NUM_DIG_QUINT16);
@@ -203,6 +203,7 @@ void q_win_sparrow::OnStartStop()
 		ui.pushButton_start_stop->setChecked(false);
 		ui.pushButton_start_stop->setText(QString::fromLocal8Bit("Пуск"));
 		ui.label_con_state->setText(QString::fromLocal8Bit("Не соед."));
+		ui.label_con_state->setStyleSheet("");
 	}
 	else
 	{
@@ -213,6 +214,7 @@ void q_win_sparrow::OnStartStop()
 		ui.pushButton_start_stop->setChecked(true);
 		ui.pushButton_start_stop->setText(QString::fromLocal8Bit("Стоп"));
 		ui.label_con_state->setText(QString::fromLocal8Bit("Соед."));
+		ui.label_con_state->setStyleSheet("background-color: green;");
 	}
 }
 
@@ -388,6 +390,7 @@ void q_win_sparrow::slot_rd_xil_dat(xil_dat_req_t* odat)
 	if (device_cmd.dbg_get_xil(xil_req, odat))
 	{
 		emit put_xil_dat_dial(odat);
+
 	}
 	else
 	{
@@ -409,14 +412,15 @@ void q_win_sparrow::slot_wr_xil_dat(xil_dat_req_t idat)
 ///	dev_obj.UpdateDevice(true );
 }
 
-void q_win_sparrow::slot_rd_dac_dat(dac_spi_req_t* odat)
+void q_win_sparrow::slot_rd_dac_dat(xil_dat_req_t* odat)
 {
 	if(!device_cmd.IsAttached())
 		return;
 
 ///	dev_obj.UpdateDevice(false );
-	dac_spi_req_t dac_req;
-	dac_req.addr=odat->addr;
+	xil_dat_req_t dac_req;
+	dac_req = *odat;
+
 	if (device_cmd.dbg_get_dac(dac_req, odat))
 	{
 		emit put_dac_dat_dial(odat);
@@ -427,7 +431,7 @@ void q_win_sparrow::slot_rd_dac_dat(dac_spi_req_t* odat)
 	}
 ///	dev_obj.UpdateDevice(true );
 }
-void q_win_sparrow::slot_wr_dac_dat(dac_spi_req_t idat)
+void q_win_sparrow::slot_wr_dac_dat(xil_dat_req_t idat)
 {
 	if(!device_cmd.IsAttached())
 		return;

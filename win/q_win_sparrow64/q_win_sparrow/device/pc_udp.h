@@ -32,22 +32,26 @@ class pc_udp : public QObject ///public c_base_dev_cmd
 {
  Q_OBJECT
 public:
-	pc_udp(int *pport,QString &_ip_addr, quint8* o_data = nullptr
+	pc_udp(int *pport,QString &_ip_addr, xil_dat_req_t* o_data = nullptr
 		, bool* end_cmd=nullptr	, quint32* g_changed_param=nullptr,quint8* last_cmd_good = nullptr, udp_stat_t *udp_stat =nullptr);
 	virtual ~pc_udp();
 public:
-	quint8  *p_odata;
+	xil_dat_req_t *p_odata;
 	quint32* pg_changed_param;
 	void udp_pc_init(void);
 	QString ip_addr;
 	bool* p_end_cmd;
-	quint8* p_last_cmd_good;
+	quint8* p_last_Cmd_good;
 ///	void* p_odat;
 	QQueue<req_cmd_t> req_que;
 private:
 	void dev_put_req_xil(xil_dat_req_t ireq);
 	void dev_get_xil(void);
 	void dev_put_xil(xil_dat_req_t ireq);
+	void dev_put_req_dac(xil_dat_req_t ireq);
+	void dev_get_dac(void);
+	void dev_put_dac(xil_dat_req_t ireq);
+
 	void dev_get_stat(void);
 
 protected:
@@ -108,8 +112,8 @@ public slots:
 	////void sl_set_out_a(void*);
 	bool send_all_par_to_dev();
 	void sl_set_stop_def_rej(bool on);
-	void sl_put_req_dac(dac_spi_req_t ireq);
-	void sl_put_dac(dac_spi_req_t ireq);
+	void sl_put_req_dac(xil_dat_req_t ireq);
+	void sl_put_dac(xil_dat_req_t ireq);
 	void sl_get_dac(void);
 	void sl_get_stat(void);
 

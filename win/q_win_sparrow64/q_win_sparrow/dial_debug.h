@@ -35,8 +35,8 @@ public:
 signals:
 	void req_rd_xil(xil_dat_req_t*);
 	void req_wr_xil(xil_dat_req_t);
-	void req_rd_dac(dac_spi_req_t*);
-	void req_wr_dac(dac_spi_req_t);
+	void req_rd_dac(xil_dat_req_t*);
+	void req_wr_dac(xil_dat_req_t);
 
 //	void req_rd_test(alt_dat_req_t*);
 
@@ -45,13 +45,18 @@ private slots:
 	void  butt_wr();
 
 	void  req_data_rdy(xil_dat_req_t*);
-	void  req_data_rdy(dac_spi_req_t*);
+	///void  req_data_rdy(dac_spi_req_t*);
 	void  req_str_rdy(char*);
 
 private: 
 	xil_dat_req_t  xil_dat_req;
 	xil_dat_req_t  xil_dat;
-	dac_spi_req_t dac_spi_req;
+	///dac_spi_req_t dac_spi_req;
+	xil_dat_req_t dac_spi_req;
+
+public slots:
+	void clear_textEdit();
+
 };
 
 #endif // DIAL_DEBUG_H

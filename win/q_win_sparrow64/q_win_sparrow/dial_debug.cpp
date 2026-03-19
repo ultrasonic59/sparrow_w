@@ -11,7 +11,6 @@ DialDebug::DialDebug(QWidget *parent):
 }
 
 
-
 void DialDebug::closeEvent( QCloseEvent * event )
 {
 	QDialog::closeEvent(event);
@@ -33,6 +32,7 @@ switch(ui.comboBox_rej->currentIndex())
 		break;
 	case DAC_REJ:
 		dac_spi_req.addr=ui.lineEdit_addr->text().toInt(0,16);
+		dac_spi_req.nbytes = 1;
 ///		dac_spi_req.nbytes=ui.lineEdit_count->text().toInt(0,16);
 		emit req_rd_dac(&dac_spi_req);
 		break;
@@ -43,6 +43,7 @@ switch(ui.comboBox_rej->currentIndex())
 }
 void  DialDebug::butt_wr()
 {
+	quint16 tmp = 0;
 	switch(ui.comboBox_rej->currentIndex())
 	{
 	case XIL_REJ:
@@ -54,14 +55,15 @@ void  DialDebug::butt_wr()
 
 	case DAC_REJ:
 		dac_spi_req.addr=ui.lineEdit_addr->text().toInt(0,16);
-		dac_spi_req.data=ui.lineEdit_wr_dat->text().toInt(0,16);
+		dac_spi_req.nbytes = 1;
+		dac_spi_req.data[0] = tmp = ui.lineEdit_wr_dat->text().toInt(0, 16);
 		emit req_wr_dac(dac_spi_req);
 		break;
-	default:;
+	default:
+		break;
 	}
-
-
 }
+
 void  DialDebug::req_data_rdy(xil_dat_req_t* p_dat)
 {
 	QString tstr;
@@ -82,16 +84,27 @@ void  DialDebug::req_data_rdy(xil_dat_req_t* p_dat)
 	ui.textEdit_rd_dat->setTextCursor(c);
 }
 
-void  DialDebug::req_data_rdy(dac_spi_req_t* p_dat)
+/*
+void  DialDebug::req_data_rdy(xil_dat_req_t* p_dat)
 {
 	QString tstr;
-	tstr.sprintf("\naddr=%x->%x",p_dat->addr,p_dat->data);
+	quint16 tmp;
+	if (p_dat->nbytes == 2) {
+		tmp = p_dat->data[1];
+		tmp <<= 8;
+		tmp += p_dat->data[0];
+	}
+	else {
+		tmp = p_dat->data[0];
+	}
+	tstr.sprintf("\naddr=%x->%x",p_dat->addr,tmp);
 	ui.textEdit_rd_dat->append(tstr);
 
 	QTextCursor c = ui.textEdit_rd_dat->textCursor();
 	c.movePosition(QTextCursor::End);
 	ui.textEdit_rd_dat->setTextCursor(c);
 }
+*/
 void  DialDebug::req_str_rdy(char* istr)
 {
 	QString tstr;
@@ -100,4 +113,8 @@ void  DialDebug::req_str_rdy(char* istr)
 	QTextCursor c = ui.textEdit_rd_dat->textCursor();
 	c.movePosition(QTextCursor::End);
 	ui.textEdit_rd_dat->setTextCursor(c);
+}
+void DialDebug::clear_textEdit()
+{
+	ui.textEdit_rd_dat->clear();
 }

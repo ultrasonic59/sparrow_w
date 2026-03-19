@@ -61,13 +61,115 @@ proc step_failed { step } {
 }
 
 
+start_step init_design
+set ACTIVE_STEP init_design
+set rc [catch {
+  create_msg_db init_design.pb
+  set_param tcl.collectionResultDisplayLimit 0
+  set_param chipscope.maxJobs 6
+  set_param xicom.use_bs_reader 1
+  create_project -in_memory -part xc7z007sclg225-1
+  set_property design_mode GateLvl [current_fileset]
+  set_param project.singleFileAddWarning.threshold 0
+  set_property webtalk.parent_dir D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.cache/wt [current_project]
+  set_property parent.project_path D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.xpr [current_project]
+  set_property ip_repo_paths D:/proj/umka2/xil/octopuz3a/my_ip/axi_udef_1.0 [current_project]
+  update_ip_catalog
+  set_property ip_output_repo D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.cache/ip [current_project]
+  set_property ip_cache_permissions {read write} [current_project]
+  set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
+  add_files -quiet D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/sparrow5_top.dcp
+  set_msg_config -source 4 -id {BD 41-1661} -limit 0
+  set_param project.isImplRun true
+  add_files D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/sparrow_ps.bd
+  read_ip -quiet D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/mem_2kx16/mem_2kx16.xci
+  read_ip -quiet D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/ila_0/ila_0.xci
+  read_ip -quiet D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/pll24_80/pll24_80.xci
+  set_param project.isImplRun false
+  read_xdc D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc
+  read_xdc D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/sparrow5_top.xdc
+  set_param project.isImplRun true
+  link_design -top sparrow5_top -part xc7z007sclg225-1
+  set_param project.isImplRun false
+  write_hwdef -force -file sparrow5_top.hwdef
+  close_msg_db -file init_design.pb
+} RESULT]
+if {$rc} {
+  step_failed init_design
+  return -code error $RESULT
+} else {
+  end_step init_design
+  unset ACTIVE_STEP 
+}
+
+start_step opt_design
+set ACTIVE_STEP opt_design
+set rc [catch {
+  create_msg_db opt_design.pb
+  opt_design 
+  write_checkpoint -force sparrow5_top_opt.dcp
+  create_report "impl_3_opt_report_drc_0" "report_drc -file sparrow5_top_drc_opted.rpt -pb sparrow5_top_drc_opted.pb -rpx sparrow5_top_drc_opted.rpx"
+  close_msg_db -file opt_design.pb
+} RESULT]
+if {$rc} {
+  step_failed opt_design
+  return -code error $RESULT
+} else {
+  end_step opt_design
+  unset ACTIVE_STEP 
+}
+
+start_step place_design
+set ACTIVE_STEP place_design
+set rc [catch {
+  create_msg_db place_design.pb
+  if { [llength [get_debug_cores -quiet] ] > 0 }  { 
+    implement_debug_core 
+  } 
+  place_design 
+  write_checkpoint -force sparrow5_top_placed.dcp
+  create_report "impl_3_place_report_io_0" "report_io -file sparrow5_top_io_placed.rpt"
+  create_report "impl_3_place_report_utilization_0" "report_utilization -file sparrow5_top_utilization_placed.rpt -pb sparrow5_top_utilization_placed.pb"
+  create_report "impl_3_place_report_control_sets_0" "report_control_sets -verbose -file sparrow5_top_control_sets_placed.rpt"
+  close_msg_db -file place_design.pb
+} RESULT]
+if {$rc} {
+  step_failed place_design
+  return -code error $RESULT
+} else {
+  end_step place_design
+  unset ACTIVE_STEP 
+}
+
+start_step route_design
+set ACTIVE_STEP route_design
+set rc [catch {
+  create_msg_db route_design.pb
+  route_design 
+  write_checkpoint -force sparrow5_top_routed.dcp
+  create_report "impl_3_route_report_drc_0" "report_drc -file sparrow5_top_drc_routed.rpt -pb sparrow5_top_drc_routed.pb -rpx sparrow5_top_drc_routed.rpx"
+  create_report "impl_3_route_report_methodology_0" "report_methodology -file sparrow5_top_methodology_drc_routed.rpt -pb sparrow5_top_methodology_drc_routed.pb -rpx sparrow5_top_methodology_drc_routed.rpx"
+  create_report "impl_3_route_report_power_0" "report_power -file sparrow5_top_power_routed.rpt -pb sparrow5_top_power_summary_routed.pb -rpx sparrow5_top_power_routed.rpx"
+  create_report "impl_3_route_report_route_status_0" "report_route_status -file sparrow5_top_route_status.rpt -pb sparrow5_top_route_status.pb"
+  create_report "impl_3_route_report_timing_summary_0" "report_timing_summary -max_paths 10 -file sparrow5_top_timing_summary_routed.rpt -pb sparrow5_top_timing_summary_routed.pb -rpx sparrow5_top_timing_summary_routed.rpx -warn_on_violation "
+  create_report "impl_3_route_report_incremental_reuse_0" "report_incremental_reuse -file sparrow5_top_incremental_reuse_routed.rpt"
+  create_report "impl_3_route_report_clock_utilization_0" "report_clock_utilization -file sparrow5_top_clock_utilization_routed.rpt"
+  create_report "impl_3_route_report_bus_skew_0" "report_bus_skew -warn_on_violation -file sparrow5_top_bus_skew_routed.rpt -pb sparrow5_top_bus_skew_routed.pb -rpx sparrow5_top_bus_skew_routed.rpx"
+  close_msg_db -file route_design.pb
+} RESULT]
+if {$rc} {
+  write_checkpoint -force sparrow5_top_routed_error.dcp
+  step_failed route_design
+  return -code error $RESULT
+} else {
+  end_step route_design
+  unset ACTIVE_STEP 
+}
+
 start_step write_bitstream
 set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
-  set_param chipscope.maxJobs 5
-  open_checkpoint sparrow5_top_routed.dcp
-  set_property webtalk.parent_dir D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.cache/wt [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
   catch { write_mem_info -force sparrow5_top.mmi }
   write_bitstream -force sparrow5_top.bit 

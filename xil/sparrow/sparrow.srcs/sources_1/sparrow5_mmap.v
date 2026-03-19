@@ -2,7 +2,7 @@
 `define __SPARROW5_MMAP__
 ///==================================
 `define  VERS0    16'h2026
-`define  VERS1    16'h0203
+`define  VERS1    16'h1903
 
 ///=======  a[15:14]===========================
 `define  ADDR_COMMON		     2'h0		

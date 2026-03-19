@@ -110,32 +110,19 @@ while(udpSocket->hasPendingDatagrams())
 				{
 					p_udp_stat->len_dat_bytes=p_hdlc_head->len_dat;
 					p_udp_stat->reseive_wait=false;
-					p_udp_stat->ans_cmd = p_hdlc_head->type_dat;
-				///	qDebug() << "CMD_PUT_REQ_DAT ok ";
-
-				}
-			}
-		else if(p_hdlc_head->type_send==CMD_PUT_REQ_DAT_ID)
-			{
-			if(p_hdlc_head->type_dat==p_udp_stat->req_cmd)
-				{
-					quint16 frame_received_id = (static_cast<quint16>(p_hdlc_head->frames_received) << 8) | static_cast<quint16>(p_hdlc_head->frames_received >> 8);
-				////	qDebug() << "AMP DATA - Received answer frame for ID:" << frame_received_id;
-
-					p_udp_stat->len_dat_bytes=p_hdlc_head->len_dat;
-					p_udp_stat->reseive_wait=false;
-					p_udp_stat->ans_cmd = p_hdlc_head->type_dat;
-
-				///	qDebug() << "CMD_PUT_REQ_DAT_ID ok ";
+					p_udp_stat->ans_Cmd = p_hdlc_head->type_dat;
+					qDebug() << "CMD_PUT_REQ_DAT : "<< QString::number(p_hdlc_head->type_dat, 16);
 
 				}
 			}
 		else if(p_hdlc_head->type_send == CMD_ACK)
 			{
-		////	qDebug() << " type_dat = " << QString::number( p_hdlc_head->type_dat, 16) << " req_cmd = " << QString::number( p_udp_stat->req_cmd, 16) ;;
+			qDebug() << "CMD_ACK : " << QString::number(p_hdlc_head->type_dat, 16);
+			////	qDebug() << " type_dat = " << QString::number( p_hdlc_head->type_dat, 16) << " req_cmd = " << QString::number( p_udp_stat->req_cmd, 16) ;;
 			p_udp_stat->len_dat_bytes=0;
 			p_udp_stat->reseive_wait=false;
-		///	qDebug() << "CMD_ACK ok ";
+			p_udp_stat->ans_Cmd = p_hdlc_head->type_dat;
+			///	qDebug() << "CMD_ACK ok ";
 
 			}
 	////???	emit s_res_dat();

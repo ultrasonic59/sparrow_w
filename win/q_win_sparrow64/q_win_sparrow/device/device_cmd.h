@@ -25,7 +25,7 @@ public:
 	par_contr_t curr_par_contr;
 	QVector<qint16> imp_ampl;
 
-	quint8* p_odata;
+	xil_dat_req_t* p_odata;
 	bool is_connected()
 	{
 		return dev_connected;
@@ -43,12 +43,12 @@ public:
 	QString ip_addr;		///
 	int port;				///
 	bool  end_cmd;
-	quint8  last_cmd_good;
+	quint8  last_Cmd_good;
 	udp_stat_t udp_stat;
 	bool dbg_get_xil(xil_dat_req_t&, xil_dat_req_t* odat);
 	void dbg_put_xil(xil_dat_req_t& ireq);
-	void dbg_put_dac(dac_spi_req_t& ireq);
-	bool dbg_get_dac(dac_spi_req_t& req, dac_spi_req_t* o_dat);
+	void dbg_put_dac(xil_dat_req_t& ireq);
+	bool dbg_get_dac(xil_dat_req_t& req, xil_dat_req_t* o_dat);
 	bool dbg_get_stat(quint16* o_dat);
 
 public:
@@ -85,8 +85,8 @@ signals:
 	void s_put_req_xil(xil_dat_req_t);
 	void s_get_xil();
 	void s_put_xil(xil_dat_req_t);
-	void s_put_req_dac(dac_spi_req_t);
-	void s_put_dac(dac_spi_req_t);
+	void s_put_req_dac(xil_dat_req_t);
+	void s_put_dac(xil_dat_req_t);
 	void s_get_dac();
 	void s_get_stat();
 	void s_start_timer(quint32);

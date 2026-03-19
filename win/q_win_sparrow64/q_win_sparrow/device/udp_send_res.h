@@ -20,7 +20,7 @@ struct hdlc_head_t
 quint8 type_send;
 quint8 type_dat;
 quint16 len_dat;
-quint16 frames_received;
+///quint16 frames_received;
 };
 
 struct udp_stat_t
@@ -37,7 +37,7 @@ quint8 	t_snd_buff2[MAX_FRAME_LEN];			//
 quint16	offs_snd_buf;
 quint16	snd_buff2_len;
 quint8 	req_cmd;					//
-quint8 	ans_cmd;
+quint8 	ans_Cmd;
 quint16 type_send;					//
 int	err_len;
 int	frames_received;

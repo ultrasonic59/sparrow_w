@@ -12,7 +12,7 @@ quint8 get_cur_rej(void)
 return CurRej;
 }
 
-pc_udp::pc_udp(int *pport,QString &_ip_addr, quint8* o_data
+pc_udp::pc_udp(int *pport,QString &_ip_addr, xil_dat_req_t* o_data
 	          , bool* end_cmd, quint32* g_changed_param,quint8* last_cmd_good, udp_stat_t* udp_stat)
 	: 
 	pUdpSendRes(nullptr), attached(false)
@@ -20,7 +20,7 @@ pc_udp::pc_udp(int *pport,QString &_ip_addr, quint8* o_data
 	,p_odata(o_data)
 	, p_end_cmd(end_cmd)
 	, pg_changed_param(g_changed_param)
-	, p_last_cmd_good(last_cmd_good)
+	, p_last_Cmd_good(last_cmd_good)
 	,p_udp_stat(udp_stat)
 	,req_cnt(0)
 	,m_changed_param(0)
@@ -111,10 +111,10 @@ while(p_udp_stat->reseive_wait)
 	//qDebug() << "Receive wait time: " << time_count << "milliseconds";
 	if(time_count>=timeout_resive)
 		{
-		qDebug() << "Receive timeout!!!!: " << time_count << "milliseconds";
+		qDebug() << "Receive timeout!!!!: " << time_count << "ms";
 		emit s_set_conn_stat(false);
 		*p_end_cmd = true;
-		*p_last_cmd_good = 0;
+		*p_last_Cmd_good = 0;
 		return false;
 		}
 	}
@@ -127,7 +127,8 @@ if(out_len != nullptr)
 	*out_len = p_udp_stat->len_dat_bytes;
 emit s_set_conn_stat(true);
 *p_end_cmd = true;
-*p_last_cmd_good = p_udp_stat->ans_cmd;
+*p_last_Cmd_good = p_udp_stat->ans_Cmd;
+qDebug() << "_send_and_wait: " << QString::number(*p_last_Cmd_good, 16);
 
 return true;
 }
@@ -660,6 +661,15 @@ void pc_udp::obr_cmd(req_cmd_t&req_cmd)
 	case NUM_REQ_XIL_DAT:
 		dev_get_xil();
 		break;
+	case NUM_SEND_SPI_DAC_DAT:
+		dev_put_dac(req_cmd.req);
+		break;
+	case NUM_SEND_SPI_DAC_REQ:
+		dev_put_req_dac(req_cmd.req);
+		break;
+	case NUM_REQ_SPI_DAC_DAT:
+		dev_get_dac();
+		break;
 	case NUM_REQ_STAT:
 		dev_get_stat();
 		break;
@@ -843,7 +853,7 @@ void pc_udp::dev_get_xil(void)
 			;
 		///	p_dev_data->odata
 		////		emit s_ready_xil_dat(odat);
-	///		qDebug() << " dev_get_xil " << odat->addr << odat->data[0];
+			qDebug() << " dev_get_xil " << odat->addr << odat->data[0];
 		}
 ///		qDebug() << " dev_get_xil " << odat->addr << odat.data[0];
 	}
@@ -854,6 +864,40 @@ void pc_udp::dev_put_xil(xil_dat_req_t ireq)
 	xil_dat_req_t t_req = ireq;
 	_send_and_wait(CMD_PUT_DAT, NUM_SEND_XIL_DAT, reinterpret_cast<quint8*>(&t_req), sizeof(xil_dat_req_t));
 }
+
+void pc_udp::dev_put_dac(xil_dat_req_t ireq)
+{
+	xil_dat_req_t t_req = ireq;
+	_send_and_wait(CMD_PUT_DAT, NUM_SEND_SPI_DAC_DAT, reinterpret_cast<quint8*>(&t_req), sizeof(xil_dat_req_t));
+}
+void pc_udp::dev_put_req_dac(xil_dat_req_t ireq)
+{
+	xil_dat_req_t t_req = ireq;
+	_send_and_wait(CMD_PUT_DAT, NUM_SEND_SPI_DAC_REQ, reinterpret_cast<quint8*>(&t_req), sizeof(xil_dat_req_t));
+	////	qDebug() << " dev_put_req_xil ";
+}
+
+void pc_udp::dev_get_dac(void)
+{
+#if 1
+	bool rez;
+	if (p_odata)
+	{
+		xil_dat_req_t* odat = (xil_dat_req_t*)p_odata;
+		///		rez = send_and_wait_get(CMD_REQ_DAT, NUM_REQ_XIL_DAT, reinterpret_cast<quint8*>(odat));
+		rez = send_and_wait_get(CMD_REQ_DAT, NUM_REQ_SPI_DAC_DAT, reinterpret_cast<quint8*>(p_odata));
+		if (rez)
+		{
+			;
+			///	p_dev_data->odata
+			////		emit s_ready_xil_dat(odat);
+			qDebug() << " dev_get_dac " << odat->addr << odat->data[0];
+		}
+		///		qDebug() << " dev_get_xil " << odat->addr << odat.data[0];
+	}
+#endif
+}
+
 
 void pc_udp::sl_put_xil(xil_dat_req_t ireq)
 {
@@ -872,6 +916,7 @@ void pc_udp::sl_put_req_xil(xil_dat_req_t ireq)
 	req_cmd_t  t_req;
 	t_req.cmd = NUM_SEND_XIL_REQ;
 	t_req.req = ireq;
+	*p_odata = ireq;
 	req_que.enqueue(t_req);
 ////	qDebug() << " sl_put_req_xil ";
 ////	int cnt = req_que.count();
@@ -903,14 +948,11 @@ void pc_udp::sl_set_stop_def_rej(bool on) {
 	stop_def_rej = on;
 }
 
-void pc_udp::sl_put_dac(dac_spi_req_t ireq)
+void pc_udp::sl_put_dac(xil_dat_req_t ireq)
 {
 	req_cmd_t  t_req;
 	t_req.cmd = NUM_SEND_SPI_DAC_DAT;
-	t_req.req.addr = ireq.addr;
-	t_req.req.nbytes = 2;
-	t_req.req.data[0]= ireq.data&0xff;
-	t_req.req.data[1] = (ireq.data>>8) & 0xff;
+	t_req.req = ireq;
 
 	req_que.enqueue(t_req);
 
@@ -918,13 +960,11 @@ void pc_udp::sl_put_dac(dac_spi_req_t ireq)
 
 	/// _send_and_wait(CMD_PUT_DAT, NUM_SEND_XIL_DAT, reinterpret_cast<quint8 *>(&t_req), sizeof(xil_dat_req_t));
 }
-void pc_udp::sl_put_req_dac(dac_spi_req_t ireq) {
+void pc_udp::sl_put_req_dac(xil_dat_req_t ireq) {
 	req_cmd_t  t_req;
-	t_req.cmd = NUM_REQ_SPI_DAC_DAT;
-	t_req.req.addr = ireq.addr;
-	t_req.req.nbytes = 2;
-	t_req.req.data[0] = ireq.data & 0xff;
-	t_req.req.data[1] = (ireq.data >> 8) & 0xff;
+	t_req.cmd = NUM_SEND_SPI_DAC_REQ;
+	t_req.req = ireq;
+	*p_odata = ireq;
 
 	req_que.enqueue(t_req);
 
@@ -932,7 +972,7 @@ void pc_udp::sl_put_req_dac(dac_spi_req_t ireq) {
 void pc_udp::sl_get_dac(void)
 {
 	req_cmd_t  t_req;
-	t_req.cmd = NUM_SEND_SPI_DAC_REQ;
+	t_req.cmd = NUM_REQ_SPI_DAC_DAT;
 	req_que.enqueue(t_req);
 }
 void pc_udp::sl_get_stat(void)

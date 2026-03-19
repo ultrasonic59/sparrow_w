@@ -124,7 +124,7 @@ else
 	z_sync <={z_sync[1:0],i_sync}; 
 
 assign tst= dac_cnt[3:0];
-///wire [13:0]tt_odat;
+wire [13:0]tt_odat;
 wire [13:0]t_odat;
 wire [13:0]dds_out;
 wire [31:0]curr_ph;
@@ -137,7 +137,7 @@ wire [15:0]dac_ram_odata;
 assign t_odat= (ena_tst_dac_out)?dac_odata[13:0]
                 :(on_dds)?(dds_ph_dat?dac_ram_addr:dds_out)
                 :dds_ph_dat?dac_cnt[13:0]:dac_ram_odata[13:0];
-///assign t_odat= tt_odat;
+assign tt_odat= t_odat;
 ///====================================
 
 assign dds_out=dac_ram_odata[13:0];

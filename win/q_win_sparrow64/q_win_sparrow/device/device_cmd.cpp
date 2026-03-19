@@ -3,31 +3,31 @@
 extern void addfcs16( char *cp, int len );
 
 
-c_device_cmd::c_device_cmd(QObject *parent,quint8 *odata): 
+c_device_cmd::c_device_cmd(QObject *parent, quint8* odata):
 		QObject(parent),
 	    tim_dt(DEF_TIMER_DT),
 	    attached(false),
 	    dev_connected(false),
 	    prev_connected(false),
 	    end_cmd(false),
-	    last_cmd_good(0),
+	    last_Cmd_good(0),
 	    p_thr_udp(nullptr),
 	    p_pc_udp(nullptr),
 	    g_changed_param(0),
-	    p_odata(odata),
+	    p_odata((xil_dat_req_t* )odata),
 	    ip_addr(),
 	    port(2000)
 {
 	p_thr_udp = new QThread();
-	p_pc_udp = new pc_udp(&port, ip_addr,p_odata,  &end_cmd, &g_changed_param, &last_cmd_good, &udp_stat);
+	p_pc_udp = new pc_udp(&port, ip_addr,p_odata,  &end_cmd, &g_changed_param, &last_Cmd_good, &udp_stat);
 	p_pc_udp->udp_pc_init();
 	p_pc_udp->moveToThread(p_thr_udp);
 	p_thr_udp->start();
 	connect(this, SIGNAL(s_put_req_xil(xil_dat_req_t)), p_pc_udp, SLOT(sl_put_req_xil(xil_dat_req_t)));
 	connect(this, SIGNAL(s_get_xil()), p_pc_udp, SLOT(sl_get_xil()));
 	connect(this, SIGNAL(s_put_xil(xil_dat_req_t)), p_pc_udp, SLOT(sl_put_xil(xil_dat_req_t)));
-	connect(this, SIGNAL(s_put_req_dac(dac_spi_req_t)), p_pc_udp, SLOT(sl_put_req_dac(dac_spi_req_t)));
-	connect(this, SIGNAL(s_put_dac(dac_spi_req_t)), p_pc_udp, SLOT(sl_put_dac(dac_spi_req_t)));
+	connect(this, SIGNAL(s_put_req_dac(xil_dat_req_t)), p_pc_udp, SLOT(sl_put_req_dac(xil_dat_req_t)));
+	connect(this, SIGNAL(s_put_dac(xil_dat_req_t)), p_pc_udp, SLOT(sl_put_dac(xil_dat_req_t)));
 	connect(this, SIGNAL(s_get_dac()), p_pc_udp, SLOT(sl_get_dac()));
 	connect(this, SIGNAL(s_get_stat()), p_pc_udp, SLOT(sl_get_stat()));
 	connect(this, SIGNAL(s_start_timer(quint32)), p_pc_udp, SLOT(sl_start_timer(quint32)));
@@ -130,19 +130,17 @@ void c_device_cmd::dbg_put_xil(xil_dat_req_t& req) {
 bool c_device_cmd::dbg_get_xil(xil_dat_req_t& req, xil_dat_req_t* o_dat) {
 	////	return false;
 	end_cmd = false;
-	last_cmd_good = 0;
-	////	xil_dat_req_t t_dat;
-		////p_dev_data->odata = (void*)&t_dat;
 	QElapsedTimer timer_wait_rdy;
 
 	emit s_put_req_xil(req);
 	end_cmd = false;
+	last_Cmd_good = 0;
 
 	emit s_get_xil();
 	timer_wait_rdy.start();
 	////	qDebug() << "timer_wait_rdy.start ";
 
-	while ((last_cmd_good != NUM_REQ_XIL_DAT))
+	while ((last_Cmd_good != NUM_REQ_XIL_DAT))
 	{
 		int	time_count = timer_wait_rdy.elapsed();
 		if (time_count >= MAX_WAIT_RDY)
@@ -152,19 +150,18 @@ bool c_device_cmd::dbg_get_xil(xil_dat_req_t& req, xil_dat_req_t* o_dat) {
 		}
 	};
 	memcpy(o_dat, p_odata, sizeof(xil_dat_req_t));
-
-	////qDebug() << "dbg_get_xil( "<< o_dat->addr<< o_dat->data[0];
+	qDebug() << "dbg_get_xil= " << QString::number(o_dat->addr<< o_dat->data[0], 16) <<"cmd =" << QString::number(last_Cmd_good, 16);
 
 	return true;
 }
-void c_device_cmd::dbg_put_dac(dac_spi_req_t& ireq) {
+void c_device_cmd::dbg_put_dac(xil_dat_req_t& ireq) {
 	emit s_put_dac(ireq);
 
 }
-bool c_device_cmd::dbg_get_dac(dac_spi_req_t& req, dac_spi_req_t* o_dat) {
+bool c_device_cmd::dbg_get_dac(xil_dat_req_t& req, xil_dat_req_t* o_dat) {
 	////	return false;
 	end_cmd = false;
-	last_cmd_good = 0;
+	last_Cmd_good = 0;
 	////	xil_dat_req_t t_dat;
 		////p_dev_data->odata = (void*)&t_dat;
 	QElapsedTimer timer_wait_rdy;
@@ -176,7 +173,7 @@ bool c_device_cmd::dbg_get_dac(dac_spi_req_t& req, dac_spi_req_t* o_dat) {
 	timer_wait_rdy.start();
 	////	qDebug() << "timer_wait_rdy.start ";
 
-	while ((last_cmd_good != NUM_REQ_SPI_DAC_DAT))
+	while ((last_Cmd_good != NUM_REQ_SPI_DAC_DAT))
 	{
 		int	time_count = timer_wait_rdy.elapsed();
 		if (time_count >= MAX_WAIT_RDY)
@@ -185,6 +182,7 @@ bool c_device_cmd::dbg_get_dac(dac_spi_req_t& req, dac_spi_req_t* o_dat) {
 			return false;
 		}
 	};
+
 	memcpy(o_dat, p_odata, sizeof(xil_dat_req_t));
 
 	////qDebug() << "dbg_get_xil( "<< o_dat->addr<< o_dat->data[0];
@@ -194,7 +192,7 @@ bool c_device_cmd::dbg_get_dac(dac_spi_req_t& req, dac_spi_req_t* o_dat) {
 bool c_device_cmd::dbg_get_stat(quint16* o_dat) {
 	////	return false;
 	end_cmd = false;
-	last_cmd_good = 0;
+	last_Cmd_good = 0;
 	////	xil_dat_req_t t_dat;
 		////p_dev_data->odata = (void*)&t_dat;
 	QElapsedTimer timer_wait_rdy;
@@ -206,7 +204,7 @@ bool c_device_cmd::dbg_get_stat(quint16* o_dat) {
 	timer_wait_rdy.start();
 	////	qDebug() << "timer_wait_rdy.start ";
 
-	while ((last_cmd_good != NUM_REQ_STAT))
+	while ((last_Cmd_good != NUM_REQ_STAT))
 	{
 		int	time_count = timer_wait_rdy.elapsed();
 		if (time_count >= MAX_WAIT_RDY)

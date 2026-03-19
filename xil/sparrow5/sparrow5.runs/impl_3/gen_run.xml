@@ -1,50 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_3" LaunchPart="xc7z007sclg225-1" LaunchTime="1772662706">
+<GenRun Id="impl_3" LaunchPart="xc7z007sclg225-1" LaunchTime="1773935077">
+  <File Type="BITSTR-BMM" Name="sparrow5_top_bd.bmm"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="sparrow5_top_methodology_drc_opted.rpt"/>
+  <File Type="INIT-TIMING" Name="sparrow5_top_timing_summary_init.rpt"/>
   <File Type="ROUTE-PWR" Name="sparrow5_top_power_routed.rpt"/>
   <File Type="PA-TCL" Name="sparrow5_top.tcl"/>
-  <File Type="BITSTR-BMM" Name="sparrow5_top_bd.bmm"/>
+  <File Type="OPT-TIMING" Name="sparrow5_top_timing_summary_opted.rpt"/>
+  <File Type="OPT-DCP" Name="sparrow5_top_opt.dcp"/>
   <File Type="ROUTE-PWR-SUM" Name="sparrow5_top_power_summary_routed.pb"/>
   <File Type="REPORTS-TCL" Name="sparrow5_top_reports.tcl"/>
-  <File Type="OPT-DCP" Name="sparrow5_top_opt.dcp"/>
   <File Type="OPT-DRC" Name="sparrow5_top_drc_opted.rpt"/>
   <File Type="OPT-HWDEF" Name="sparrow5_top.hwdef"/>
   <File Type="PWROPT-DCP" Name="sparrow5_top_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="sparrow5_top_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="sparrow5_top_timing_summary_pwropted.rpt"/>
   <File Type="PLACE-DCP" Name="sparrow5_top_placed.dcp"/>
   <File Type="PLACE-IO" Name="sparrow5_top_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="sparrow5_top_clock_utilization_placed.rpt"/>
   <File Type="PLACE-UTIL" Name="sparrow5_top_utilization_placed.rpt"/>
   <File Type="PLACE-UTIL-PB" Name="sparrow5_top_utilization_placed.pb"/>
   <File Type="PLACE-CTRL" Name="sparrow5_top_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="sparrow5_top_incremental_reuse_placed.rpt"/>
   <File Type="PLACE-PRE-SIMILARITY" Name="sparrow5_top_incremental_reuse_pre_placed.rpt"/>
   <File Type="BG-BGN" Name="sparrow5_top.bgn"/>
+  <File Type="PLACE-TIMING" Name="sparrow5_top_timing_summary_placed.rpt"/>
   <File Type="POSTPLACE-PWROPT-DCP" Name="sparrow5_top_postplace_pwropt.dcp"/>
   <File Type="BG-BIN" Name="sparrow5_top.bin"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="sparrow5_top_timing_summary_postplace_pwropted.rpt"/>
   <File Type="PHYSOPT-DCP" Name="sparrow5_top_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="sparrow5_top_drc_physopted.rpt"/>
   <File Type="BITSTR-MSK" Name="sparrow5_top.msk"/>
+  <File Type="PHYSOPT-TIMING" Name="sparrow5_top_timing_summary_physopted.rpt"/>
   <File Type="ROUTE-ERROR-DCP" Name="sparrow5_top_routed_error.dcp"/>
   <File Type="ROUTE-DCP" Name="sparrow5_top_routed.dcp"/>
   <File Type="ROUTE-BLACKBOX-DCP" Name="sparrow5_top_routed_bb.dcp"/>
   <File Type="ROUTE-DRC" Name="sparrow5_top_drc_routed.rpt"/>
   <File Type="ROUTE-DRC-PB" Name="sparrow5_top_drc_routed.pb"/>
-  <File Type="ROUTE-DRC-RPX" Name="sparrow5_top_drc_routed.rpx"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
   <File Type="BITSTR-LTX" Name="sparrow5_top.ltx"/>
-  <File Type="ROUTE-METHODOLOGY-DRC" Name="sparrow5_top_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-RPX" Name="sparrow5_top_drc_routed.rpx"/>
   <File Type="BITSTR-MMI" Name="sparrow5_top.mmi"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="sparrow5_top_methodology_drc_routed.rpt"/>
   <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="sparrow5_top_methodology_drc_routed.rpx"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="sparrow5_top_methodology_drc_routed.pb"/>
   <File Type="BITSTR-SYSDEF" Name="sparrow5_top.sysdef"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="sparrow5_top_methodology_drc_routed.pb"/>
   <File Type="ROUTE-PWR-RPX" Name="sparrow5_top_power_routed.rpx"/>
   <File Type="ROUTE-STATUS" Name="sparrow5_top_route_status.rpt"/>
   <File Type="ROUTE-STATUS-PB" Name="sparrow5_top_route_status.pb"/>
   <File Type="ROUTE-TIMINGSUMMARY" Name="sparrow5_top_timing_summary_routed.rpt"/>
   <File Type="ROUTE-TIMING-PB" Name="sparrow5_top_timing_summary_routed.pb"/>
   <File Type="ROUTE-TIMING-RPX" Name="sparrow5_top_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-SIMILARITY" Name="sparrow5_top_incremental_reuse_routed.rpt"/>
   <File Type="ROUTE-CLK" Name="sparrow5_top_clock_utilization_routed.rpt"/>
   <File Type="ROUTE-BUS-SKEW" Name="sparrow5_top_bus_skew_routed.rpt"/>
   <File Type="ROUTE-BUS-SKEW-PB" Name="sparrow5_top_bus_skew_routed.pb"/>
   <File Type="ROUTE-BUS-SKEW-RPX" Name="sparrow5_top_bus_skew_routed.rpx"/>
   <File Type="POSTROUTE-PHYSOPT-DCP" Name="sparrow5_top_postroute_physopt.dcp"/>
   <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="sparrow5_top_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="sparrow5_top_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="sparrow5_top_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="sparrow5_top_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="sparrow5_top_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="sparrow5_top_bus_skew_postroute_physopted.pb"/>
   <File Type="BG-BIT" Name="sparrow5_top.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="sparrow5_top_bus_skew_postroute_physopted.rpx"/>
   <File Type="BITSTR-RBT" Name="sparrow5_top.rbt"/>
   <File Type="BITSTR-NKY" Name="sparrow5_top.nky"/>
   <File Type="BG-DRC" Name="sparrow5_top.drc"/>
@@ -217,11 +236,11 @@
     <Step Id="write_bitstream"/>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="mem_2kx16"/>
-  <BlockFileSet Type="BlockSrcs" Name="sparrow_ps_xadc_wiz_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="sparrow_ps_rst_ps7_0_50M_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="sparrow_ps_processing_system7_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="sparrow_ps_xadc_wiz_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="ila_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="pll24_80"/>
+  <BlockFileSet Type="BlockSrcs" Name="sparrow_ps_processing_system7_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="sparrow_ps_xbar_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="pll24_80"/>
   <BlockFileSet Type="BlockSrcs" Name="sparrow_ps_auto_pc_0"/>
 </GenRun>

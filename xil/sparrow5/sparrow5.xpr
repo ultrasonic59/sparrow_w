@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Product Version: Vivado v2019.1.3 (64-bit)              -->
+<!-- Product Version: Vivado v2019.1 (64-bit)              -->
 <!--                                                         -->
 <!-- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.   -->
 
@@ -126,17 +126,17 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="sparrow_ps.bd" FileRelPathName="ip/sparrow_ps_rst_ps7_0_50M_0/sparrow_ps_rst_ps7_0_50M_0.xci">
-          <Proxy FileSetName="sparrow_ps_rst_ps7_0_50M_0"/>
-        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="sparrow_ps.bd" FileRelPathName="ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0.xci">
           <Proxy FileSetName="sparrow_ps_processing_system7_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="sparrow_ps.bd" FileRelPathName="ip/sparrow_ps_xadc_wiz_0_0/sparrow_ps_xadc_wiz_0_0.xci">
-          <Proxy FileSetName="sparrow_ps_xadc_wiz_0_0"/>
-        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="sparrow_ps.bd" FileRelPathName="ip/sparrow_ps_auto_pc_0/sparrow_ps_auto_pc_0.xci">
           <Proxy FileSetName="sparrow_ps_auto_pc_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="sparrow_ps.bd" FileRelPathName="ip/sparrow_ps_rst_ps7_0_50M_0/sparrow_ps_rst_ps7_0_50M_0.xci">
+          <Proxy FileSetName="sparrow_ps_rst_ps7_0_50M_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="sparrow_ps.bd" FileRelPathName="ip/sparrow_ps_xadc_wiz_0_0/sparrow_ps_xadc_wiz_0_0.xci">
+          <Proxy FileSetName="sparrow_ps_xadc_wiz_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="sparrow_ps.bd" FileRelPathName="ip/sparrow_ps_xbar_0/sparrow_ps_xbar_0.xci">
           <Proxy FileSetName="sparrow_ps_xbar_0"/>

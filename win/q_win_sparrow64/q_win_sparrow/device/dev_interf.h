@@ -5,7 +5,7 @@
 #define CMD_PUT_DAT  				0x3
 #define CMD_REQ_DAT  				0x4
 #define CMD_PUT_REQ_DAT  		    0x5
-#define CMD_PUT_REQ_DAT_ID  		0x1
+///#define CMD_PUT_REQ_DAT_ID  		0x1
 ///==========  from dev ====================
 #define CMD_ACK  					0x85
 
@@ -24,14 +24,14 @@
 
 
 #define CHNG_ALL		(0x1<<31)
-
+/*
 struct dac_spi_req_t
 {
 	quint8 addr;
 	quint8 resv;///nbytes;
 	quint16 data;///[MAX_SPI_ADC_LEN];
 };
-
+*/
 struct xil_dat_req_t
 {
 	quint16 addr;
@@ -66,11 +66,11 @@ struct cpu_dat_req_t
 #define NUM_REQ_SPI_DAC_DAT		0x99
 #define NUM_SEND_SPI_DAC_REQ	0x9A
 
-
+/*
 #define REQ_XIL_DAT				(0x1<<0)
 #define GET_XIL_DAT				(0x1<<1)
 #define PUT_XIL_DAT				(0x1<<2)
-
+*/
 
 
 
