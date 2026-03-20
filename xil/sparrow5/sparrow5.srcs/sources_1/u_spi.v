@@ -18,7 +18,7 @@ input [6:1]i_addr;
 input i_cs;
 output [15:0]o_data;
 ///====================================
-output [1:0]o_cs_spi;
+output o_cs_spi;
 input i_sdat;
 inout io_sdat;
 output o_sck;
@@ -29,7 +29,7 @@ output [3:0]tst;
 ///====================================
 reg [15:0]o_data;
 ///====================================
-reg [1:0]o_cs_spi;
+reg o_cs_spi;
 tri io_sdat;
 wire t_sck;
 wire o_sck;
@@ -54,17 +54,11 @@ else if((i_addr[6:1]==`OFFS_SPI_SPD)&set_sregs)
 
 always @(posedge i_clk or posedge i_clr)
 if(i_clr)
-  o_cs_spi[0]<= 1'b0;
+  o_cs_spi<= 1'b0;
 else if((i_addr[6:1]==`OFFS_SPI_CS_A)&set_sregs)
-  o_cs_spi[0]<= i_data[0];
-always @(posedge i_clk or posedge i_clr)
-if(i_clr)
-  o_cs_spi[1]<= 1'b0;
-else if((i_addr[6:1]==`OFFS_SPI_CS_B)&set_sregs)
-  o_cs_spi[1]<= i_data[0];
-  
+  o_cs_spi<= i_data[0];
    
- always @(posedge i_clk or posedge i_clr)
+always @(posedge i_clk or posedge i_clr)
 if(i_clr)
   spi_cnf<= 8'b0;
 else if((i_addr[6:1]==`OFFS_SPI_CNF)&set_sregs)
@@ -118,9 +112,7 @@ case(i_addr[6:1])
     `OFFS_SPI_SPD:
 	   o_data<={8'b0,spd_spi};
     `OFFS_SPI_CS_A:
-	   o_data<={14'b0,o_busy,o_cs_spi[0]};
-    `OFFS_SPI_CS_B:
-	   o_data<={14'b0,o_busy,o_cs_spi[1]};
+	   o_data<={14'b0,o_busy,o_cs_spi};
     `OFFS_SPI_RD_DATA:
 	   o_data<={8'b0,spi_odat};
     `OFFS_SPI_CNF:

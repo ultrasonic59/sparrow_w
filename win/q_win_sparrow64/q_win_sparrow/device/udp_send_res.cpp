@@ -32,7 +32,6 @@ if (start_stop)
 	connect(udpSocket, SIGNAL(readyRead()), this, SLOT(udp_ready_dat()));
 	connect(udpSocket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(socketError(QAbstractSocket::SocketError)));
 	udpSocket->bind(port);
-///	udpSocket->bind();
 	socket_run = true;
 
 }
@@ -55,6 +54,7 @@ void udp_send_res::socketError(QAbstractSocket::SocketError err)
 
 udp_send_res::~udp_send_res()
 {
+
 }
 void udp_send_res::set_conn(bool connected)
 {
@@ -90,7 +90,7 @@ while(udpSocket->hasPendingDatagrams())
 	if(next_size==0)
 		return;
 	datagram.resize(next_size);
-////	udp_stat.len_rsv_dat=size;
+///	udp_stat.len_rsv_dat=size;
 ////		p_dev_data->time_stamp();
 
 ////elaps_timer_2.start();
@@ -100,7 +100,11 @@ while(udpSocket->hasPendingDatagrams())
 	if(curr_host_addr.toIPv4Address() != q_host_addr.toIPv4Address())
 		return;
 	set_conn(true);
+	qDebug() << "next_size : " << next_size;
+
 	olen=obr_udp_res_cmd((quint8 *)datagram.data(), next_size);
+	qDebug() << "olen : " << olen;
+
 	if(olen)
 		{
 		p_hdlc_head=(hdlc_head_t *)datagram.data();

@@ -43,6 +43,10 @@ protected slots:
 	void Aimp_changed();
 	void DevFreq_changed();
 	void GaussClicked();
+	void kus_changed();
+	void offs_changed();
+	void dds_clicked();
+
 public slots:
 
 	void SetConnStatus();

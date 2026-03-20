@@ -74,6 +74,8 @@ set_property src_info {type:XDC file:2 line:54 export:INPUT save:INPUT read:READ
 set_property PACKAGE_PIN R10 [get_ports io_dac_sdio]
 set_property src_info {type:XDC file:2 line:56 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN K13 [get_ports o_dac_en]
+set_property src_info {type:XDC file:2 line:59 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN P10 [get_ports o_dac_reset]
 set_property src_info {type:XDC file:2 line:63 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN E13 [get_ports i_sync[0]]
 set_property src_info {type:XDC file:2 line:65 export:INPUT save:INPUT read:READ} [current_design]

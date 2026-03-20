@@ -32,8 +32,9 @@ class pc_udp : public QObject ///public c_base_dev_cmd
 {
  Q_OBJECT
 public:
-	pc_udp(int *pport,QString &_ip_addr, xil_dat_req_t* o_data = nullptr
-		, bool* end_cmd=nullptr	, quint32* g_changed_param=nullptr,quint8* last_cmd_good = nullptr, udp_stat_t *udp_stat =nullptr);
+	pc_udp(int *pport,QString &_ip_addr, xil_dat_req_t* o_data = nullptr, par_contr_t* par_contr=nullptr
+		, bool* end_cmd=nullptr	, quint32* g_changed_param=nullptr, QVector<qint16>* imp_ampl=nullptr
+		,quint8* last_cmd_good = nullptr, udp_stat_t *udp_stat =nullptr);
 	virtual ~pc_udp();
 public:
 	xil_dat_req_t *p_odata;
@@ -87,9 +88,14 @@ protected:
 
 	qint16 req_cnt;
 	bool initing;
-	bool apply_params();
-	bool send_par_to_dev();
+///	bool apply_params();
+///	bool send_par_to_dev();
 	quint32	m_changed_param;
+
+	par_contr_t* p_param;
+	par_contr_t m_param;
+	QVector<qint16>* p_imp_ampl;
+
 	bool send_param();
 	quint8 *par_trk_buff;
 	bool socket_run;
@@ -110,7 +116,7 @@ public slots:
 	void sl_get_xil(void);
 	void sl_put_xil(xil_dat_req_t ireq);
 	////void sl_set_out_a(void*);
-	bool send_all_par_to_dev();
+	///bool send_all_par_to_dev();
 	void sl_set_stop_def_rej(bool on);
 	void sl_put_req_dac(xil_dat_req_t ireq);
 	void sl_put_dac(xil_dat_req_t ireq);

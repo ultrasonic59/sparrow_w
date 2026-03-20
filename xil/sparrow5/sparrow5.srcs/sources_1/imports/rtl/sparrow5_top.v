@@ -50,6 +50,7 @@ module sparrow5_top
     ,o_dac_dat_p
     ,o_dac_dat_m
  ///======serial dac adc====================
+     ,o_dac_reset
     ,o_dac_sck
    ,io_dac_sdio
     ,o_dac_en
@@ -108,6 +109,7 @@ output o_dac_dclk_m;
 output [6:0]o_dac_dat_p;
 output [6:0]o_dac_dat_m;
  ///======serial dac adc====================
+ output o_dac_reset;
  output o_dac_sck;
  inout io_dac_sdio;
  output o_dac_en;
@@ -267,7 +269,9 @@ ila_0 ila0(
  .probe6(ps_sys_cs)
  );
  */
-///==================================== 
+///====================================
+wire o_dac_reset;
+ 
 wire o_dac_sck;
 tri io_dac_sdio;
 wire o_dac_en;
@@ -290,6 +294,22 @@ reg  [ 31: 0] rdata       ;
 assign ps_sys_rdata= rdata;
 ///=====================================================
 ///=======================================
+wire set_upr;
+
+reg [15:0]upr;
+wire cs_upr;
+assign cs_upr=((ps_sys_addr[15:14]== `ADDR_COMMON) &(ps_sys_addr[13:12]== `ADDR_COMMON_REGS)
+                 &(ps_sys_addr[6:1]==`OFFS_UPR)
+                 &(ps_sys_cs)); 
+ assign set_upr=cs_upr&ps_sys_wen;
+                                    
+always @(posedge ps_sys_clk)
+if(set_upr)
+  begin
+	upr<=ps_sys_wdata[15:0];
+  end
+assign	o_dac_reset=upr[0];
+
 wire [1:0]t_izl;
 assign	t_izl = i_sync;
 
@@ -357,7 +377,7 @@ u_dac u_dac_(.i_ps_clk(ps_sys_clk)
 ///========================================
 wire [3:0]uspi_tst;
 wire [15:0]uspi_odata;
-wire [1:0]o_cs_spi;
+wire o_cs_spi;
 wire o_sck_spi;
 wire cs_uspi;
 assign cs_uspi= (ps_sys_addr[15:14]== `ADDR_COMMON)
@@ -374,7 +394,7 @@ u_spi u_spi_(.i_clk(ps_sys_clk),.i_clr(clr)
 			,.tst(uspi_tst)
 				);
 assign o_dac_sck=o_sck_spi;	
-assign o_dac_en=~o_cs_spi[0];
+assign o_dac_en=~o_cs_spi;
 ///======================================= 
 /*
 ila_0 ila0(
@@ -400,10 +420,8 @@ output o_adc_clk_n;
 */
 
 //++++++++++++++ test ++++++++++++++++
-wire [15:0]odat_us;
-
+///wire [15:0]odat_us;
 ////wire [15:0]odat_ugen;
-
 ///=====================================
 always @*
 case (ps_sys_addr[15:14])
@@ -419,6 +437,8 @@ case (ps_sys_addr[15:14])
 	               rdata[15:0]<=uspi_odata;	
              default:
     	           case (ps_sys_addr[6:1])
+                     `OFFS_UPR:
+	                    rdata[15:0]<=upr;	
                      `OFFS_VERS0:
 	                    rdata[15:0]<=`VERS0;	
                      `OFFS_VERS1:
@@ -433,7 +453,7 @@ case (ps_sys_addr[15:14])
             endcase
           endcase  
 	default:
-	  rdata[15:0]<=odat_us[15:0];						// 
+	  rdata[15:0]<=upr[15:0];						// 
 ///	  rdata[15:0]<=odat_us[15:0];						// 
 ///	  rdata[15:0]<=cnt_time[17:2];						// 
 endcase

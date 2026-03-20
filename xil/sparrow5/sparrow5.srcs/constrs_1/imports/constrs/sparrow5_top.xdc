@@ -56,8 +56,8 @@ set_property IOSTANDARD LVCMOS25 [get_ports io_dac_sdio]
 set_property PACKAGE_PIN K13 [get_ports o_dac_en]
 set_property IOSTANDARD LVCMOS25 [get_ports o_dac_en]
 
-###set_property PACKAGE_PIN P10 [get_ports o_dac_reset]
-###set_property IOSTANDARD LVCMOS25 [get_ports o_dac_reset]
+set_property PACKAGE_PIN P10 [get_ports o_dac_reset]
+set_property IOSTANDARD LVCMOS25 [get_ports o_dac_reset]
 
 ###======================================================================
 set_property PACKAGE_PIN E13 [get_ports i_sync[0]]

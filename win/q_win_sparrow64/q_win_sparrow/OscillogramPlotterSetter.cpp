@@ -128,6 +128,7 @@ void OscillogramPlotterSetter::DrawGrid(QPainter & painter)
 
 void OscillogramPlotterSetter::PlotRespond(QPainter & painter, qint16 *point_arr, quint16 num_points)
 {
+	
 	QPen pen1( OscProp->OscillogramColor );
 
 	pen1.setWidthF(OscProp->OscillogramWidth);
@@ -138,7 +139,7 @@ void OscillogramPlotterSetter::PlotRespond(QPainter & painter, qint16 *point_arr
     float plot_y_step = static_cast<float>(height) / (MAX_OSC_VAL - MIN_OSC_VAL);
 
     painter.setRenderHints(QPainter::Antialiasing, true);
-
+	
     QLine line;
 
     for(int i = 0; i < (num_points - 1); i++)
@@ -147,12 +148,16 @@ void OscillogramPlotterSetter::PlotRespond(QPainter & painter, qint16 *point_arr
             , x_b + plot_x_step * (i + 1), y_b + height - plot_y_step * (point_arr[i+1] - MIN_OSC_VAL));
 			painter.drawLine(line);
     }
+	
     painter.setRenderHints(QPainter::Antialiasing, false);
 }
 
 
 void OscillogramPlotterSetter::PlotRespond(qint16 *point_arr, quint16 num_points)
 {
+	///return;
+
+
 	if(pixmap_width != 0 && pixmap_height != 0)
 	{
 		QPainter painter(pixmap);

@@ -21,21 +21,16 @@ void q_win_sparrow::saveSettings()
 	settings.setValue("Tcycle", sent_par.Tcycle);
 	settings.setValue("Tdef", sent_par.Tdef);
 	settings.setValue("kus", sent_par.kus);
-	settings.setValue("beg_osc", sent_par.beg_osc);
-	settings.setValue("step_osc", sent_par.step_osc);
+	settings.setValue("offs", sent_par.offs);
+///	settings.setValue("step_osc", sent_par.step_osc);
 	settings.setValue("attenuator", sent_par.attenuator);
-
 
 	settings.setValue("num_periods", par_contr.num_periods);
 
 	settings.setValue("Aimp", par_contr.Aimp);
 	settings.setValue("dev_frequency", par_contr.dev_frequency);
 	settings.setValue("gaus_enable", par_contr.gaus_enable);
-
-
-	QVariant variant;
-	variant.setValue<QList<int>>(ui.splitter_main->sizes());
-	settings.setValue("Splitter_main", variant );
+	settings.setValue("dds_enable", par_contr.dds_enable);
 }
 
 
@@ -58,23 +53,16 @@ void q_win_sparrow::loadSettings()
 	sent_par.Tcycle = settings.value("Tcycle", sent_par.Tcycle).toInt();
 	sent_par.Tdef = settings.value("Tdef", sent_par.Tdef).toInt();
 	sent_par.kus = settings.value("kus", sent_par.kus).toInt();
-	sent_par.beg_osc = settings.value("beg_osc", sent_par.beg_osc).toInt();
-	sent_par.step_osc = settings.value("step_osc", sent_par.step_osc).toInt();
+	sent_par.offs = settings.value("offs", sent_par.offs).toInt();
+///	sent_par.step_osc = settings.value("step_osc", sent_par.step_osc).toInt();
 	sent_par.attenuator = settings.value("attenuator", sent_par.attenuator).toInt();
-
 
 	par_contr.num_periods = settings.value("num_periods", par_contr.num_periods).toInt();
 
 	par_contr.Aimp = settings.value("Aimp", par_contr.Aimp).toInt();
 	par_contr.dev_frequency = settings.value("dev_frequency", par_contr.dev_frequency).toFloat();
 	par_contr.gaus_enable = settings.value("gaus_enable", par_contr.gaus_enable).toBool();
-
-
-	QList<int> default_splitter_size;
-	default_splitter_size << 200 << 200;
-	QVariant default_variant;
-	default_variant.setValue<QList<int>>(default_splitter_size);
-	ui.splitter_main->setSizes( settings.value("Splitter_main",  default_variant).value<QList<int>>() );
+	par_contr.dds_enable = settings.value("dds_enable", par_contr.dds_enable).toBool();
 
 }
 
@@ -175,6 +163,22 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 	ui.checkBox_gauss->setChecked(p_par_contr->gaus_enable);
 	connect(ui.checkBox_gauss, SIGNAL(clicked()), this, SLOT(GaussClicked()));
 
+	ui.ed_kus->set_num_dig(NUM_DIG_KUS);
+	ui.ed_kus->set_data(reinterpret_cast<unsigned short*>(&p_sent_par->kus));
+	ui.ed_kus->set_min_max(MIN_KUS, MAX_KUS);
+	ui.ed_kus->show_par();
+	connect(ui.ed_kus, SIGNAL(param_changed()), this, SLOT(kus_changed()));
+
+	ui.ed_offs->set_num_dig(NUM_DIG_OFFS);
+	ui.ed_offs->set_data(reinterpret_cast<unsigned short*>(&p_sent_par->offs));
+	ui.ed_offs->set_min_max(MIN_OFFS, MAX_OFFS);
+	ui.ed_offs->show_par();
+	connect(ui.ed_offs, SIGNAL(param_changed()), this, SLOT(offs_changed()));
+
+	ui.checkBox_dds->setChecked(p_par_contr->dds_enable);
+	connect(ui.checkBox_dds, SIGNAL(clicked()), this, SLOT(dds_clicked()));
+
+
 	plot_array.fill(0);
 	plot_array.resize(plot_arr_length);
 	ImpulseToPlot();
@@ -247,12 +251,11 @@ void q_win_sparrow::osc_length_changed()
 
 void q_win_sparrow::Timp_len_changed()
 {
-////	dev_obj.ApplyImpAmlToPar();
+	device_cmd.ApplyImpAmlToPar();
 	RecalculateImpulse();
 	ImpulseToPlot();
 
 	plotter.PlotRespond(plot_array.data(), plot_arr_length);
-
 
 	device_cmd.g_changed_param |= CHNG_TIMP_LEN | CHNG_IMP_POINTS;
 }
@@ -297,6 +300,24 @@ void q_win_sparrow::Aimp_changed()
 	ImpulseToPlot();
 	plotter.PlotRespond(plot_array.data(), plot_arr_length);
 	device_cmd.g_changed_param |= CHNG_IMP_POINTS;
+}
+void q_win_sparrow::kus_changed()
+{
+	device_cmd.g_changed_param |= CHNG_KUS;
+}
+void q_win_sparrow::offs_changed()
+{
+	device_cmd.g_changed_param |= CHNG_OFFS;
+}
+void q_win_sparrow::dds_clicked()
+{
+	device_cmd.curr_par_contr.dds_enable = ui.checkBox_dds->isChecked();
+
+///	RecalculateImpulse();
+///	ImpulseToPlot();
+///	plotter.PlotRespond(plot_array.data(), plot_arr_length);
+
+	device_cmd.g_changed_param |= CHNG_ON_DDS;
 }
 
 
@@ -390,7 +411,6 @@ void q_win_sparrow::slot_rd_xil_dat(xil_dat_req_t* odat)
 	if (device_cmd.dbg_get_xil(xil_req, odat))
 	{
 		emit put_xil_dat_dial(odat);
-
 	}
 	else
 	{

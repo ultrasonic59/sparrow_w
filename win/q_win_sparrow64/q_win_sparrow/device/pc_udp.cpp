@@ -12,14 +12,18 @@ quint8 get_cur_rej(void)
 return CurRej;
 }
 
-pc_udp::pc_udp(int *pport,QString &_ip_addr, xil_dat_req_t* o_data
-	          , bool* end_cmd, quint32* g_changed_param,quint8* last_cmd_good, udp_stat_t* udp_stat)
+pc_udp::pc_udp(int *pport,QString &_ip_addr, xil_dat_req_t* o_data, par_contr_t* par_contr
+	          , bool* end_cmd, quint32* g_changed_param, QVector<qint16>* imp_ampl
+	          ,quint8* last_cmd_good, udp_stat_t* udp_stat)
 	: 
 	pUdpSendRes(nullptr), attached(false)
 	,ip_addr(_ip_addr)
 	,p_odata(o_data)
+	, p_param(par_contr)
 	, p_end_cmd(end_cmd)
 	, pg_changed_param(g_changed_param)
+	,p_imp_ampl(imp_ampl)
+
 	, p_last_Cmd_good(last_cmd_good)
 	,p_udp_stat(udp_stat)
 	,req_cnt(0)
@@ -317,7 +321,7 @@ void pc_udp::sl_set_run(bool irun)
 	socket_run = irun;
 }
 */
-
+/*
 bool pc_udp::apply_params()
 {
 quint8 curr_mode = 0;
@@ -337,312 +341,85 @@ if(result )
 #endif
 return result;
 }
-bool pc_udp::send_par_to_dev()
-{
-bool rez=false;
-if (*pg_changed_param) {
-	    m_changed_param=*pg_changed_param;
-		*pg_changed_param = 0;
-	    }
-else 
-	{
-	///	m_changed_param = *pg_changed_param & (CHNG_CHAN | CHNG_TACT | CHNG_NUS
-	///		| CHNG_BEGR | CHNG_ENDR | CHNG_NSTRB
-	///		| CHNG_NUMPV | CHNG_NGEN | CHNG_NPOW
-	///		| CHNG_REJ_OSC | CHNG_ALL);
-		*pg_changed_param = 0;
+*/
 
-	}
-	if (m_changed_param)
-	{
-	///	memcpy(&m_param, &p_dev_data->curr_par_session.par_dev.par_contr, sizeof(par_contr_t));
-///		qDebug() << "rej_osc=" << p_dev_data->curr_par_session.par_dev.par_contr.osc_par.rej_osc << "size=" << sizeof(par_contr_t);
-///		qDebug() << "par_trk_t=" << sizeof(par_trk_t) << "cn_info_t=" << sizeof(cn_info_t) << "par_osc_t=" << sizeof(par_osc_t);
-
-	///====================================
-///	Params::g_changed_param = 0;
-///	if (m_changed_param)
-///	{
-		if (send_param())
-		{
-			m_changed_param = 0;
-			rez = true;
-		}
-		else
-			rez = false;
-	}
-///}
-////set_changes(Params::g_changed_param);
-
-/////return dev_cmd.dev_put_param(cmd_buffer.get(), cmd_buffer.get_len());
-return rez;
-}
-bool pc_udp::send_all_par_to_dev()
-{
-bool rez = false;
-m_changed_param = *pg_changed_param;
-///memcpy(&m_param, &p_dev_data->curr_par_session.par_dev.par_contr, sizeof(par_contr_t));
-if (send_param())
-   {
-	m_changed_param = 0;
-	rez = true;
-   }
-else
- rez = false;
-
-return rez;
-}
-///===========================================================
-#define _mCurrUs	m_param.trk_par.tacts[m_param.osc_par.ntact].uss[m_param.osc_par.ninp/NUM_INPUTS]
-#define _mCurrNgen	m_param.trk_par.tacts[m_param.osc_par.ntact].gens[m_param.curr_gen]
-#define _mCurrPow	m_param.trk_par.pow_gen[m_param.curr_pow]
 ///===========================================================
 bool pc_udp::send_param()
 {
-quint32 t_changed_param=0;
-quint16 tnum_bytes=0;
-quint16 t_offs=0;
-if(m_changed_param&CHNG_ALL)
-	m_changed_param = CHNG_ALL;
-////qDebug() << "rej_osc" << m_param.osc_par.rej_osc<<"par_contr_t" << sizeof(par_contr_t);
+	quint16 tnum_bytes = 0;
+	quint16 t_offs = 0;
 
-if(m_changed_param & CHNG_ALL)
-    {
-	t_changed_param=m_changed_param;
-////	memcpy(par_trk_buff+OFFS_FLG_CHNG, &m_changed_param, sizeof(quint32));
-	t_offs=OFFS_PARAM_DAT;
-	tnum_bytes=OFFS_PARAM_DAT;
-///	memcpy(par_trk_buff+t_offs, &m_param, sizeof(par_contr_t));
-	t_offs+=sizeof(par_contr_t);
-	tnum_bytes+=sizeof(par_contr_t);
-////	qDebug() << "par_contr_t=" <<sizeof(par_contr_t)<<"par_trk_t="<< sizeof(par_trk_t)<<"par_tact_t="<< sizeof(par_tact_t)<<"par_osc_t="<< sizeof(par_osc_t)
-///		);
-/*
-	for (int ii = 0; ii < 8; ii++)
+	if (*pg_changed_param == 0)
+		return true;
+	memcpy(&m_param, p_param, sizeof(par_contr_t));
+	m_changed_param = *pg_changed_param;
+	*pg_changed_param = 0;
+	memcpy(par_trk_buff + OFFS_FLG_CHNG, &m_changed_param, sizeof(quint32));
+	t_offs = OFFS_PARAM_DAT;
+	tnum_bytes = OFFS_PARAM_DAT;
+
+	par_sent_t& m_sent_par = m_param.sent_par;
+
+
+	if (m_changed_param & CHNG_TIMP_LEN)
 	{
-		quint8 t_nus = m_param.cn_info[ii].ninp / NUM_INPUTS;
-		qDebug() << "rej us ch" << ii << "tact = " << m_param.cn_info[ii].n_tact << " us = " << t_nus << "rej=" << QString::number(m_param.trk_par.tacts[m_param.cn_info[ii].n_tact].uss[t_nus].us_Rej, 16);
+		memcpy(par_trk_buff + t_offs, &m_sent_par.Timp_len, sizeof(quint16));
+		t_offs += sizeof(quint16);
+		tnum_bytes += sizeof(quint16);
+		m_changed_param &= ~CHNG_TIMP_LEN;
 	}
-	*/
-/*
-	qDebug() << "per0" << m_param.trk_par.tacts[0].len_tact <<"per1"<< m_param.trk_par.tacts[1].len_tact
-		<<"per2"<< m_param.trk_par.tacts[2].len_tact<< "per3"<< m_param.trk_par.tacts[3].len_tact;
-	qDebug() << "hi0" << m_param.trk_par.tacts[0].len_hipow <<"hi1"<< m_param.trk_par.tacts[1].len_hipow
-		<<"hi2"<< m_param.trk_par.tacts[2].len_hipow<< "hi3"<< m_param.trk_par.tacts[3].len_hipow;
-	qDebug() << "mx_a0" << m_param.trk_par.tacts[0].uss[0].us_input <<"mx_a1"<< m_param.trk_par.tacts[1].uss[0].us_input
-		<<"mx_a2"<< m_param.trk_par.tacts[2].uss[0].us_input<< "mx_a3"<< m_param.trk_par.tacts[3].uss[0].us_input;
-	qDebug() << "mx_b0" << m_param.trk_par.tacts[0].uss[1].us_input <<"mx_b1"<< m_param.trk_par.tacts[1].uss[1].us_input
-		<<"mx_b2"<< m_param.trk_par.tacts[2].uss[1].us_input<< "mx_b3"<< m_param.trk_par.tacts[3].uss[1].us_input;
-*/
-	}
-else
+	if (m_changed_param & CHNG_TIMP_OFFSET)
 	{
-	t_offs=OFFS_PARAM_DAT;
-	tnum_bytes=OFFS_PARAM_DAT;
-#if 0
-	if(m_changed_param&CHNG_TACT)
-		{
-		memcpy(par_trk_buff+t_offs,&m_param.osc_par.ntact, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_TACT;
-		m_changed_param&=~CHNG_TACT;
-		}
-	if(m_changed_param&CHNG_NUS)
-		{
-	////	memcpy(par_trk_buff+t_offs, &m_param.osc_par.n_us, sizeof(quint8));
-	////	t_offs+=sizeof(quint8);
-	////	tnum_bytes+=sizeof(quint8);
-
-		memcpy(par_trk_buff+t_offs, &m_param.osc_par.ninp, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_NUS;
-		m_changed_param&=~CHNG_NUS;
-		}
-	if(m_changed_param&CHNG_ONUS)
-		{
-		memcpy(par_trk_buff+t_offs,&_mCurrUs.on_us, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8); 
-		t_changed_param|= CHNG_ONUS;
-		m_changed_param&=~CHNG_ONUS;
-		}
-	if(m_changed_param&CHNG_KUS)
-		{
-		memcpy(par_trk_buff+t_offs, &_mCurrUs.kus, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_KUS;
-		m_changed_param&=~CHNG_KUS;
-		}
-	if(m_changed_param&CHNG_BEGR)
-		{
-		memcpy(par_trk_buff+t_offs, &m_param.osc_par.curr_beg_r, sizeof(quint16));
-		t_offs+=sizeof(quint16);
-		tnum_bytes+=sizeof(quint16);
-		t_changed_param|= CHNG_BEGR;
-		m_changed_param&=~CHNG_BEGR;
-		}
-	if(m_changed_param&CHNG_ENDR)
-		{
-		quint8 t_stp;
-		memcpy(par_trk_buff+t_offs, &m_param.osc_par.curr_end_r, sizeof(quint16));
-		t_offs+=sizeof(quint16);
-		tnum_bytes+=sizeof(quint16);
-		memcpy(par_trk_buff+t_offs, &m_param.osc_par.curr_stp_r, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_ENDR;
-		m_changed_param&=~CHNG_ENDR;
-		}
-	if(m_changed_param&CHNG_TT)
-		{
-		memcpy(par_trk_buff+t_offs, &_mCurrUs.taut, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_TT;
-		m_changed_param&=~CHNG_TT;
-		}
-	if(m_changed_param&CHNG_TV)
-		{
-		memcpy(par_trk_buff+t_offs, &_mCurrUs.tauv, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_TV;
-		m_changed_param&=~CHNG_TV;
-		}
-	if(m_changed_param&CHNG_NSTRB)
-		{
-		memcpy(par_trk_buff+t_offs, &m_param.osc_par.curr_strb, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_NSTRB;
-		m_changed_param&=~CHNG_NSTRB;
-		}
-	if(m_changed_param&CHNG_BSTRB)
-		{
-		memcpy(par_trk_buff+t_offs, &_mCurrUs.strb[m_param.osc_par.curr_strb].beg, sizeof(quint16));
-		t_offs+=sizeof(quint16);
-		tnum_bytes+=sizeof(quint16);
-		t_changed_param|= CHNG_BSTRB;
-		m_changed_param&=~CHNG_BSTRB;
-		}
-	if(m_changed_param&CHNG_LSTRB)
-		{
-		memcpy(par_trk_buff+t_offs, &_mCurrUs.strb[m_param.osc_par.curr_strb].len, sizeof(quint16));
-		t_offs+=sizeof(quint16);
-		tnum_bytes+=sizeof(quint16);
-		t_changed_param|= CHNG_LSTRB;
-		m_changed_param&=~CHNG_LSTRB;
-		}
-	if(m_changed_param&CHNG_POR)
-		{
-		memcpy(par_trk_buff+t_offs, &_mCurrUs.strb[m_param.osc_par.curr_strb].por, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_POR;
-		m_changed_param&=~CHNG_POR;
-		}
-	if(m_changed_param&CHNG_NUMPV)
-		{
-		memcpy(par_trk_buff+t_offs, &m_param.osc_par.curr_pvrch, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_NUMPV;
-		m_changed_param&=~CHNG_NUMPV;
-		}
-	if(m_changed_param&CHNG_VRON)
-		{
-		memcpy(par_trk_buff+t_offs, &_mCurrUs.vrch.on_vrch, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_VRON;
-		m_changed_param&=~CHNG_VRON;
-		}
-	if(m_changed_param&CHNG_VTIME)
-		{
-		memcpy(par_trk_buff+t_offs, &_mCurrUs.vrch.time[m_param.osc_par.curr_pvrch], sizeof(quint16));
-		t_offs+=sizeof(quint16);
-		tnum_bytes+=sizeof(quint16);
-		t_changed_param|= CHNG_VTIME;
-		m_changed_param&=~CHNG_VTIME;
-		}
-	if(m_changed_param&CHNG_VKUS)
-		{
-		memcpy(par_trk_buff+t_offs, &_mCurrUs.vrch.kus[m_param.osc_par.curr_pvrch], sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_VKUS;
-		m_changed_param&=~CHNG_VKUS;
-		}
-	if(m_changed_param&CHNG_NGEN)
-		{
-		memcpy(par_trk_buff+t_offs, &m_param.curr_gen, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_NGEN;
-		m_changed_param&=~CHNG_NGEN;
-		}
-	if(m_changed_param&CHNG_ONGEN)
-		{
-
-		memcpy(par_trk_buff+t_offs, &_mCurrNgen.on_gen, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_ONGEN;
-		m_changed_param&=~CHNG_ONGEN;
-		}
-	if(m_changed_param&CHNG_LIMP)
-		{
-		memcpy(par_trk_buff+t_offs, &_mCurrNgen.len_imp, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_LIMP;
-		m_changed_param&=~CHNG_LIMP;
-		}
-	if(m_changed_param&CHNG_NPOW)
-		{
-		memcpy(par_trk_buff+t_offs, &m_param.curr_pow, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_NPOW;
-		m_changed_param&=~CHNG_NPOW;
-		}
-	if(m_changed_param&CHNG_PVAL)
-		{
-		memcpy(par_trk_buff+t_offs, &_mCurrPow.val, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_PVAL;
-		m_changed_param&=~CHNG_PVAL;
-		}
-	if(m_changed_param&CHNG_US_REJ)
-		{
-		memcpy(par_trk_buff+t_offs, &_mCurrUs.us_Rej, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		memcpy(par_trk_buff+t_offs, &_mCurrUs.detpar, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_US_REJ;
-		m_changed_param&=~CHNG_US_REJ;
-		}
-	if(m_changed_param&CHNG_REJ_OSC)
-		{
-		memcpy(par_trk_buff+t_offs, &m_param.osc_par.rej_osc, sizeof(quint8));
-		t_offs+=sizeof(quint8);
-		tnum_bytes+=sizeof(quint8);
-		t_changed_param|= CHNG_REJ_OSC;
-		m_changed_param&=~CHNG_REJ_OSC;
-		}
-#endif
+		memcpy(par_trk_buff + t_offs, &m_sent_par.Timp_offset, sizeof(quint16));
+		t_offs += sizeof(quint16);
+		tnum_bytes += sizeof(quint16);
+		m_changed_param &= ~CHNG_TIMP_OFFSET;
 	}
-memcpy(par_trk_buff, &tnum_bytes, sizeof(quint16));
-memcpy(par_trk_buff+OFFS_FLG_CHNG, &t_changed_param, sizeof(quint32));
-t_changed_param=0;
-return dev_put_param(par_trk_buff,tnum_bytes);
+	if (m_changed_param & CHNG_TCYCLE)
+	{
+		memcpy(par_trk_buff + t_offs, &m_sent_par.Tcycle, sizeof(quint16));
+		t_offs += sizeof(quint16);
+		tnum_bytes += sizeof(quint16);
+		m_changed_param &= ~CHNG_TCYCLE;
+	}
+	if (m_changed_param & CHNG_TDEF)
+	{
+		memcpy(par_trk_buff + t_offs, &m_sent_par.Tdef, sizeof(quint16));
+		t_offs += sizeof(quint16);
+		tnum_bytes += sizeof(quint16);
+		m_changed_param &= ~CHNG_TDEF;
+	}
+	if (m_changed_param & CHNG_IMP_POINTS)
+	{
+		memcpy(par_trk_buff + t_offs, &m_sent_par.Timp_len, sizeof(qint16));
+		t_offs += sizeof(quint16);
+		memcpy(par_trk_buff + t_offs, p_imp_ampl->data(), sizeof(qint16) * m_sent_par.Timp_len);
+		t_offs += sizeof(qint16) * m_sent_par.Timp_len;
+		tnum_bytes += sizeof(qint16) * m_sent_par.Timp_len + sizeof(quint16);
+		m_changed_param &= ~CHNG_IMP_POINTS;
+	}
+	if (m_changed_param & CHNG_KUS)
+	{
+		memcpy(par_trk_buff + t_offs, &m_sent_par.kus, sizeof(quint16));
+		t_offs += sizeof(quint16);
+		tnum_bytes += sizeof(quint16);
+		m_changed_param &= ~CHNG_KUS;
+	}
+	if (m_changed_param & CHNG_OFFS)
+	{
+		memcpy(par_trk_buff + t_offs, &m_sent_par.offs, sizeof(quint16));
+		t_offs += sizeof(quint16);
+		tnum_bytes += sizeof(quint16);
+		m_changed_param &= ~CHNG_OFFS;
+	}
+
+	quint16 tnum_bytes1;
+	tnum_bytes1 = tnum_bytes + OFFS_FLG_CHNG;
+	memcpy(par_trk_buff, &tnum_bytes, sizeof(quint16));
+
+	return dev_put_param(par_trk_buff, tnum_bytes);
 }
+
 void pc_udp::sl_set_run(bool irun)
 {
 	socket_run = irun;
@@ -682,7 +459,7 @@ void pc_udp::req_timer_timeout()
 	if (!socket_run)
 		return;
 	req_cmd_t t_req_cmd;
-	send_par_to_dev();
+	send_param();
 	int cnt = req_que.count();
 	if (cnt)
 	{
@@ -691,75 +468,6 @@ void pc_udp::req_timer_timeout()
 		obr_cmd(t_req_cmd);
 	}
 
-#if 0
-//	qDebug() << "                             ++++++++++++++                                ";
-//	qDebug() << "------------------------Called req_timer_timeout-------------------------" ;
-//	el_timer_2.start();
-if (!socket_run)
-		return;
-if(initing)
-	{
-	if(apply_params())
-		{
-		initing = false;
-		emit signal_connect_setted();
-		}
-	}
-else
-	{
-	req_cmd_t t_req_cmd;
-	send_par_to_dev();
-	int cnt = req_que.count();
-///	qDebug() << "cnt= " << cnt;
-	if (cnt)
-       {
-///		qDebug() << "cnt= "<<cnt;
-		t_req_cmd = req_que.dequeue();
-		obr_cmd(t_req_cmd);
-	   }
-	bool get_result = true;
-	if(*p_tune_mode | stop_def_rej)
-		{
-		++osc_counter;
-		if(osc_counter > max_osc_counter)
-			{
-			osc_counter = 0;
-				/////???if((p_dev_data->curr_par_session.ad_osc_par.mode == OFF) && get_result)
-					{
-				quint8 t_osc_buf[DEF_LEN_OSC*2];
-				get_result = dev_get_osc0(t_osc_buf);
-				if(get_result )
-					{
-					memcpy(p_dev_data->osc_data.buffOsc.osc, t_osc_buf, sizeof(quint8)*DEF_LEN_OSC);
-				    emit sign_ready_data(READY_OSC0);
-					}
-					}
-			}
-		}
-///===========================================================================
-		quint16 res_length = 0;
-	////	quint8 t_data_buff[MAX_FRAME_LEN];
-	////	get_result = dev_cmd.dev_get_amps_stat( t_data_buff, &res_length );			// 
-	////	if(get_result)
-			{
-////			amp_stat_buff_t *amp_stat_buff = reinterpret_cast<amp_stat_buff_t *>(p_dev_data->data_buff);
-			////	cur_cnt++;
-			amp_stat_buff_t *amp_stat_buff = &p_dev_data->buff_struct;
-			get_result = get_amp_stat_dat(amp_stat_buff, &res_length);
-			if(get_result)
-				{
-				emit sign_ready_data(READY_AMPS);
-				}
-			else
-				{
-				qDebug() << "[!get_result]" ;
-				}
-		}
-///===========================================================================
-	}
-
-//qDebug() << "-----------------------End fuc req_timer, elapsed time:" << el_timer_2.elapsed() << "-------------------";
-#endif
 }
 void pc_udp::SlotSetIniting(bool ini)
 {

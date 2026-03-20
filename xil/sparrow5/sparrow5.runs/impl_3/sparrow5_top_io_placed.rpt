@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date                      : Thu Mar 19 18:46:08 2026
+| Date                      : Fri Mar 20 18:53:40 2026
 | Host                      : vovag running 64-bit major release  (build 9200)
 | Command                   : report_io -file sparrow5_top_io_placed.rpt
 | Design                    : sparrow5_top
@@ -25,7 +25,7 @@ Table of Contents
 +---------------+
 | Total User IO |
 +---------------+
-|           138 |
+|           139 |
 +---------------+
 
 
@@ -239,7 +239,7 @@ Table of Contents
 | P7         |                   | High Range | VCCO_34                 | VCCO        |                    |      34 |            |      |                     |                      |    2.50 |            |           |          |      |                  |              |                   |              |
 | P8         | o_dac_dclk_p      | High Range | IO_L23P_T3_34           | OUTPUT      | LVDS_25            |      34 |            |      |                     |               FD_100 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | P9         | o_dac_dclk_m      | High Range | IO_L23N_T3_34           | OUTPUT      | LVDS_25            |      34 |            |      |                     |               FD_100 |         | FIXED      |           |          |      | NONE             |              |                   |              |
-| P10        |                   | High Range | IO_L24P_T3_34           | User IO     |                    |      34 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
+| P10        | o_dac_reset       | High Range | IO_L24P_T3_34           | OUTPUT      | LVCMOS25           |      34 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | P11        | o_dac_dat_p[0]    | High Range | IO_L16P_T2_34           | OUTPUT      | LVDS_25            |      34 |            |      |                     |               FD_100 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | P12        |                   |            | GND                     | GND         |                    |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
 | P13        | o_zz[1]           | High Range | IO_L18P_T2_34           | TRISTATE    | LVCMOS25           |      34 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |

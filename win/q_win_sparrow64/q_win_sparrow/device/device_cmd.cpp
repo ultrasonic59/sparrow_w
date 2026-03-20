@@ -19,7 +19,8 @@ c_device_cmd::c_device_cmd(QObject *parent, quint8* odata):
 	    port(2000)
 {
 	p_thr_udp = new QThread();
-	p_pc_udp = new pc_udp(&port, ip_addr,p_odata,  &end_cmd, &g_changed_param, &last_Cmd_good, &udp_stat);
+	p_pc_udp = new pc_udp(&port, ip_addr,p_odata, &curr_par_contr, &end_cmd, &g_changed_param
+		, &imp_ampl, &last_Cmd_good, &udp_stat);
 	p_pc_udp->udp_pc_init();
 	p_pc_udp->moveToThread(p_thr_udp);
 	p_thr_udp->start();

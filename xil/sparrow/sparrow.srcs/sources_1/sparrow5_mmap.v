@@ -2,7 +2,7 @@
 `define __SPARROW5_MMAP__
 ///==================================
 `define  VERS0    16'h2026
-`define  VERS1    16'h1903
+`define  VERS1    16'h2003
 
 ///=======  a[15:14]===========================
 `define  ADDR_COMMON		     2'h0		
@@ -12,10 +12,10 @@
 `define  ADDR_COMMON_REGS		 2'h0		
 `define  ADDR_DAC_REGS 		   	 2'h1   ///
 ///========ADDR_COMMON_REGS==============
-///==============ug A[6:1]===============		
+///==============dac A[6:1]===============		
 `define  OFFS_VERS0 		        6'h00		
 `define  OFFS_VERS1			        6'h01
-///`define  OFFS_STAT 		        6'h02
+`define  OFFS_UPR 		        6'h02
 ///`define  OFFS_PSK               6'h03
 ///`define  OFFS_CLR_IRQ           6'h04
 `define  OFFS_RD_C0 		    6'h05     /// for check connect a5a5
@@ -24,7 +24,7 @@
 `define  OFFS_CS_USPI 	    	2'h01       ///a[6:5]
 `define  OFFS_SPI_SPD 	    	6'h11
 `define  OFFS_SPI_CS_A 	        6'h12       ///DAC
-`define  OFFS_SPI_CS_B 	        6'h13       ///ADC
+///`define  OFFS_SPI_CS_B 	        6'h13       ///ADC
 `define  OFFS_SPI_WR_DATA 	    6'h14
 `define  OFFS_SPI_REQ_DATA 	    6'h15
 `define  OFFS_SPI_RD_DATA 	    6'h16

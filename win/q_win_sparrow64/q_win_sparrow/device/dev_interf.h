@@ -12,7 +12,7 @@
 #define CMD_SUBM_PUT				0x85
 #define CMD_SUBM_REQ	  			0x5	
 
-#define NUM_REQ_STAT			0x8		///
+#define NUM_REQ_STAT			    0x8		///
 
 #define NUM_REQ_REJ						0x9
 #define NUM_SET_REJ						0xA
