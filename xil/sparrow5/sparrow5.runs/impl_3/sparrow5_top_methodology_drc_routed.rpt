@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Fri Mar 20 18:54:04 2026
+| Date         : Sat Mar 21 19:46:17 2026
 | Host         : vovag running 64-bit major release  (build 9200)
 | Command      : report_methodology -file sparrow5_top_methodology_drc_routed.rpt -pb sparrow5_top_methodology_drc_routed.pb -rpx sparrow5_top_methodology_drc_routed.rpx
 | Design       : sparrow5_top
@@ -23,7 +23,7 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 212
+             Violations found: 199
 +-----------+------------------+-------------------------------------------------+------------+
 | Rule      | Severity         | Description                                     | Violations |
 +-----------+------------------+-------------------------------------------------+------------+
@@ -31,7 +31,7 @@ Table of Contents
 | LUTAR-1   | Warning          | LUT drives async reset alert                    | 6          |
 | PDRC-190  | Warning          | Suboptimally placed synchronized register chain | 10         |
 | TIMING-9  | Warning          | Unknown CDC Logic                               | 1          |
-| TIMING-16 | Warning          | Large setup violation                           | 38         |
+| TIMING-16 | Warning          | Large setup violation                           | 25         |
 | TIMING-18 | Warning          | Missing input or output delay                   | 4          |
 | TIMING-20 | Warning          | Non-clocked latch                               | 24         |
 +-----------+------------------+-------------------------------------------------+------------+
@@ -710,57 +710,57 @@ Related violations: <none>
 
 LUTAR-1#6 Warning
 LUT drives async reset alert  
-LUT cell i_ps/t_cs_spi_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) u_spi_/spi_/enCntD_reg/CLR, u_spi_/spi_/o_dat_reg[0]/CLR, u_spi_/spi_/o_dat_reg[1]/CLR, u_spi_/spi_/o_dat_reg[2]/CLR, u_spi_/spi_/o_dat_reg[3]/CLR, u_spi_/spi_/o_dat_reg[4]/CLR, u_spi_/spi_/o_dat_reg[5]/CLR, u_spi_/spi_/o_dat_reg[6]/CLR, u_spi_/spi_/o_dat_reg[7]/CLR, u_spi_/spi_/o_sck_reg/CLR, u_spi_/spi_/qCntB_reg[0]/CLR, u_spi_/spi_/qCntB_reg[1]/CLR, u_spi_/spi_/qCntB_reg[2]/CLR, u_spi_/spi_/qCntB_reg[3]/CLR, u_spi_/spi_/qCntB_reg[4]/CLR (the first 15 of 49 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell i_ps/t_cs_spi_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) u_spi_/spi_/enCntD_reg/CLR, u_spi_/spi_/o_dat_reg[0]/CLR, u_spi_/spi_/o_dat_reg[1]/CLR, u_spi_/spi_/o_dat_reg[2]/CLR, u_spi_/spi_/o_dat_reg[3]/CLR, u_spi_/spi_/o_dat_reg[4]/CLR, u_spi_/spi_/o_dat_reg[5]/CLR, u_spi_/spi_/o_dat_reg[6]/CLR, u_spi_/spi_/o_dat_reg[7]/CLR, u_spi_/spi_/o_sck_reg/CLR, u_spi_/spi_/qCntB_reg[0]/CLR, u_spi_/spi_/qCntB_reg[1]/CLR, u_spi_/spi_/qCntB_reg[2]/CLR, u_spi_/spi_/qCntB_reg[3]/CLR, u_spi_/spi_/qCntB_reg[4]/CLR (the first 15 of 48 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 PDRC-190#1 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[0] in site SLICE_X20Y24 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[0] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[0] in site SLICE_X15Y31 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[0] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#2 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[1] in site SLICE_X18Y25 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[1] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[1] in site SLICE_X16Y30 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[1] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#3 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[2] in site SLICE_X21Y24 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[2] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[2] in site SLICE_X14Y32 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[2] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#4 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[3] in site SLICE_X23Y24 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[3] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[3] in site SLICE_X13Y31 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[3] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#5 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_reg[0] in site SLICE_X19Y24 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_1_reg[0] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_reg[0] in site SLICE_X17Y32 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_1_reg[0] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#6 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_reg[1] in site SLICE_X22Y23 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_1_reg[1] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_reg[1] in site SLICE_X18Y32 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_1_reg[1] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#7 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_reg[2] in site SLICE_X20Y22 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_1_reg[2] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_reg[2] in site SLICE_X16Y32 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_1_reg[2] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#8 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_reg[0] in site SLICE_X10Y23 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_1_reg[0] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_reg[0] in site SLICE_X20Y35 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_1_reg[0] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#9 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_reg[1] in site SLICE_X8Y23 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_1_reg[1] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_reg[1] in site SLICE_X20Y38 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_1_reg[1] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#10 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_reg[2] in site SLICE_X7Y23 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_1_reg[2] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_reg[2] in site SLICE_X21Y36 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_1_reg[2] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 TIMING-9#1 Warning
@@ -770,192 +770,127 @@ Related violations: <none>
 
 TIMING-16#1 Warning
 Large setup violation  
-There is a large setup violation of -1.064 ns between u_dac_/ila0/inst/ila_core_inst/u_ila_cap_ctrl/u_cap_addrgen/i_intcap.CAP_ADDR_O_reg[2]/C (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/ila_trace_memory_inst/SUBCORE_RAM_BLK_MEM_1.trace_block_memory/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ADDRARDADDR[4] (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.012 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][85]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#2 Warning
 Large setup violation  
-There is a large setup violation of -1.065 ns between u_dac_/ila0/inst/ila_core_inst/u_ila_cap_ctrl/u_cap_addrgen/i_intcap.CAP_ADDR_O_reg[9]/C (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/ila_trace_memory_inst/SUBCORE_RAM_BLK_MEM_1.trace_block_memory/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ADDRARDADDR[12] (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.037 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][78]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#3 Warning
 Large setup violation  
-There is a large setup violation of -1.077 ns between u_dac_/ila0/inst/ila_core_inst/u_ila_cap_ctrl/u_cap_addrgen/i_intcap.CAP_ADDR_O_reg[9]/C (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/ila_trace_memory_inst/SUBCORE_RAM_BLK_MEM_1.trace_block_memory/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[18].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ADDRARDADDR[12] (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.061 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][52]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#4 Warning
 Large setup violation  
-There is a large setup violation of -1.093 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][78]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.071 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][80]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#5 Warning
 Large setup violation  
-There is a large setup violation of -1.096 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][83]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.077 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/u_trig/U_TM/N_DDR_MODE.G_NMU[5].U_M/allx_typeA_match_detection.ltlib_v1_0_0_allx_typeA_inst/probeDelay1_reg[9]/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#6 Warning
 Large setup violation  
-There is a large setup violation of -1.171 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][80]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.087 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][75]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#7 Warning
 Large setup violation  
-There is a large setup violation of -1.204 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/u_trig/U_TM/N_DDR_MODE.G_NMU[5].U_M/allx_typeA_match_detection.ltlib_v1_0_0_allx_typeA_inst/probeDelay1_reg[9]/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.158 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][83]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#8 Warning
 Large setup violation  
-There is a large setup violation of -1.209 ns between u_dac_/ila0/inst/ila_core_inst/u_ila_cap_ctrl/u_cap_addrgen/i_intcap.CAP_ADDR_O_reg[2]/C (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/ila_trace_memory_inst/SUBCORE_RAM_BLK_MEM_1.trace_block_memory/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[17].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ADDRARDADDR[5] (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.235 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][81]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#9 Warning
 Large setup violation  
-There is a large setup violation of -1.233 ns between u_dac_/ila0/inst/ila_core_inst/u_ila_cap_ctrl/u_cap_addrgen/i_intcap.CAP_ADDR_O_reg[0]/C (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/ila_trace_memory_inst/SUBCORE_RAM_BLK_MEM_1.trace_block_memory/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ADDRARDADDR[3] (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.268 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][82]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#10 Warning
 Large setup violation  
-There is a large setup violation of -1.241 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][74]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.295 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][84]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#11 Warning
 Large setup violation  
-There is a large setup violation of -1.304 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][84]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.344 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[0].dac_data_/i_tx_data_oddr/D2 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#12 Warning
 Large setup violation  
-There is a large setup violation of -1.307 ns between u_dac_/ila0/inst/ila_core_inst/u_ila_cap_ctrl/u_cap_addrgen/i_intcap.CAP_ADDR_O_reg[3]/C (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/ila_trace_memory_inst/SUBCORE_RAM_BLK_MEM_1.trace_block_memory/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[16].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ADDRARDADDR[6] (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.354 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][76]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#13 Warning
 Large setup violation  
-There is a large setup violation of -1.326 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][76]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.678 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[2].dac_data_/i_tx_data_oddr/D2 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#14 Warning
 Large setup violation  
-There is a large setup violation of -1.358 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][75]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.735 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[0].dac_data_/i_tx_data_oddr/D1 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#15 Warning
 Large setup violation  
-There is a large setup violation of -1.366 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/u_trig/U_TM/N_DDR_MODE.G_NMU[5].U_M/allx_typeA_match_detection.ltlib_v1_0_0_allx_typeA_inst/probeDelay1_reg[5]/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.749 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[6].dac_data_/i_tx_data_oddr/D2 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#16 Warning
 Large setup violation  
-There is a large setup violation of -1.379 ns between u_dac_/ila0/inst/ila_core_inst/u_ila_cap_ctrl/u_cap_addrgen/i_intcap.CAP_ADDR_O_reg[3]/C (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/ila_trace_memory_inst/SUBCORE_RAM_BLK_MEM_1.trace_block_memory/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ADDRARDADDR[6] (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.802 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[3].dac_data_/i_tx_data_oddr/D2 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#17 Warning
 Large setup violation  
-There is a large setup violation of -1.408 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][82]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.810 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[1].dac_data_/i_tx_data_oddr/D1 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#18 Warning
 Large setup violation  
-There is a large setup violation of -1.409 ns between u_dac_/ila0/inst/ila_core_inst/u_ila_cap_ctrl/u_cap_addrgen/i_intcap.CAP_ADDR_O_reg[9]/C (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/ila_trace_memory_inst/SUBCORE_RAM_BLK_MEM_1.trace_block_memory/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[19].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ADDRARDADDR[12] (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.828 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[1].dac_data_/i_tx_data_oddr/D2 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#19 Warning
 Large setup violation  
-There is a large setup violation of -1.416 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][81]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.845 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[5].dac_data_/i_tx_data_oddr/D2 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#20 Warning
 Large setup violation  
-There is a large setup violation of -1.421 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][72]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.042 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[6].dac_data_/i_tx_data_oddr/D1 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#21 Warning
 Large setup violation  
-There is a large setup violation of -1.529 ns between u_dac_/ila0/inst/ila_core_inst/u_ila_cap_ctrl/u_cap_addrgen/i_intcap.CAP_ADDR_O_reg[9]/C (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/ila_trace_memory_inst/SUBCORE_RAM_BLK_MEM_1.trace_block_memory/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ADDRARDADDR[12] (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.065 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[2].dac_data_/i_tx_data_oddr/D1 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#22 Warning
 Large setup violation  
-There is a large setup violation of -1.565 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][73]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.159 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[4].dac_data_/i_tx_data_oddr/D1 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#23 Warning
 Large setup violation  
-There is a large setup violation of -1.597 ns between u_dac_/ila0/inst/ila_core_inst/u_ila_cap_ctrl/u_cap_addrgen/i_intcap.CAP_ADDR_O_reg[0]/C (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/ila_trace_memory_inst/SUBCORE_RAM_BLK_MEM_1.trace_block_memory/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ADDRARDADDR[3] (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.187 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[5].dac_data_/i_tx_data_oddr/D1 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#24 Warning
 Large setup violation  
-There is a large setup violation of -1.634 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/ila0/inst/ila_core_inst/shifted_data_in_reg[7][77]_srl8/D (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.197 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[4].dac_data_/i_tx_data_oddr/D2 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#25 Warning
 Large setup violation  
-There is a large setup violation of -1.951 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[5].dac_data_/i_tx_data_oddr/D1 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#26 Warning
-Large setup violation  
-There is a large setup violation of -1.955 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[6].dac_data_/i_tx_data_oddr/D1 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#27 Warning
-Large setup violation  
-There is a large setup violation of -2.003 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[4].dac_data_/i_tx_data_oddr/D2 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#28 Warning
-Large setup violation  
-There is a large setup violation of -2.012 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[2].dac_data_/i_tx_data_oddr/D2 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#29 Warning
-Large setup violation  
-There is a large setup violation of -2.043 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[6].dac_data_/i_tx_data_oddr/D2 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#30 Warning
-Large setup violation  
-There is a large setup violation of -2.117 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[4].dac_data_/i_tx_data_oddr/D1 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#31 Warning
-Large setup violation  
-There is a large setup violation of -2.134 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[0].dac_data_/i_tx_data_oddr/D1 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#32 Warning
-Large setup violation  
-There is a large setup violation of -2.215 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[2].dac_data_/i_tx_data_oddr/D1 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#33 Warning
-Large setup violation  
-There is a large setup violation of -2.246 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[0].dac_data_/i_tx_data_oddr/D2 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#34 Warning
-Large setup violation  
-There is a large setup violation of -2.256 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[1].dac_data_/i_tx_data_oddr/D1 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#35 Warning
-Large setup violation  
-There is a large setup violation of -2.285 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[3].dac_data_/i_tx_data_oddr/D2 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#36 Warning
-Large setup violation  
-There is a large setup violation of -2.334 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[3].dac_data_/i_tx_data_oddr/D1 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#37 Warning
-Large setup violation  
-There is a large setup violation of -2.368 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[1].dac_data_/i_tx_data_oddr/D2 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#38 Warning
-Large setup violation  
-There is a large setup violation of -2.369 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[5].dac_data_/i_tx_data_oddr/D2 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.314 ns between u_dac_/mem_dac/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/CLKBWRCLK (clocked by clk_out2_pll24_80) and u_dac_/dac_data[3].dac_data_/i_tx_data_oddr/D1 (clocked by clk_out2_pll24_80). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-18#1 Warning

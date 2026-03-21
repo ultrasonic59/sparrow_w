@@ -1,7 +1,7 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
--- Date        : Thu Mar  5 01:19:31 2026
+-- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
+-- Date        : Sat Mar 21 19:34:11 2026
 -- Host        : vovag running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/mem_2kx16/mem_2kx16_sim_netlist.vhdl
@@ -2348,7 +2348,7 @@ entity mem_2kx16 is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of mem_2kx16 : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of mem_2kx16 : entity is "blk_mem_gen_v8_4_3,Vivado 2019.1.3";
+  attribute x_core_info of mem_2kx16 : entity is "blk_mem_gen_v8_4_3,Vivado 2019.1";
 end mem_2kx16;
 
 architecture STRUCTURE of mem_2kx16 is

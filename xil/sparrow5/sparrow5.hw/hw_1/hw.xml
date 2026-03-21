@@ -2284,6 +2284,73 @@
         <Option Id="DISPLAY_VISIBILITY" value=""/>
         <Option Id="HW_ILA" value="hw_ila_1"/>
         <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe4[13:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq14&apos;hXXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="u_dac_/curr_ph[31]"/>
+        <net name="u_dac_/curr_ph[30]"/>
+        <net name="u_dac_/curr_ph[29]"/>
+        <net name="u_dac_/curr_ph[28]"/>
+        <net name="u_dac_/curr_ph[27]"/>
+        <net name="u_dac_/curr_ph[26]"/>
+        <net name="u_dac_/curr_ph[25]"/>
+        <net name="u_dac_/curr_ph[24]"/>
+        <net name="u_dac_/curr_ph[23]"/>
+        <net name="u_dac_/curr_ph[22]"/>
+        <net name="u_dac_/curr_ph[21]"/>
+        <net name="u_dac_/curr_ph[20]"/>
+        <net name="u_dac_/curr_ph[19]"/>
+        <net name="u_dac_/curr_ph[18]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq13&apos;hXXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq13&apos;hXXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe1[12:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq13&apos;hXXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="u_dac_/dac_cnt[12]"/>
+        <net name="u_dac_/dac_cnt[11]"/>
+        <net name="u_dac_/dac_cnt[10]"/>
+        <net name="u_dac_/dac_cnt[9]"/>
+        <net name="u_dac_/dac_cnt[8]"/>
+        <net name="u_dac_/dac_cnt[7]"/>
+        <net name="u_dac_/dac_cnt[6]"/>
+        <net name="u_dac_/dac_cnt[5]"/>
+        <net name="u_dac_/dac_cnt[4]"/>
+        <net name="u_dac_/dac_cnt[3]"/>
+        <net name="u_dac_/dac_cnt[2]"/>
+        <net name="u_dac_/dac_cnt[1]"/>
+        <net name="u_dac_/dac_cnt[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq14&apos;hXXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq14&apos;hXXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
         <Option Id="MAP" value="probe1[13:0]"/>
         <Option Id="NAME.CUSTOM" value=""/>
         <Option Id="NAME.SELECT" value="Long"/>
@@ -2308,7 +2375,7 @@
         <net name="u_dac_/dac_cnt[0]"/>
       </nets>
     </probe>
-    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq13&apos;hXXXX"/>
         <Option Id="COMPARE_VALUE.0" value="eq13&apos;hXXXX"/>
@@ -2343,6 +2410,40 @@
     </probe>
     <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq14&apos;hXXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq14&apos;hXXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe2[13:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq14&apos;hXXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="u_dac_/dac_ram_addr[13]"/>
+        <net name="u_dac_/dac_ram_addr[12]"/>
+        <net name="u_dac_/dac_ram_addr[11]"/>
+        <net name="u_dac_/dac_ram_addr[10]"/>
+        <net name="u_dac_/dac_ram_addr[9]"/>
+        <net name="u_dac_/dac_ram_addr[8]"/>
+        <net name="u_dac_/dac_ram_addr[7]"/>
+        <net name="u_dac_/dac_ram_addr[6]"/>
+        <net name="u_dac_/dac_ram_addr[5]"/>
+        <net name="u_dac_/dac_ram_addr[4]"/>
+        <net name="u_dac_/dac_ram_addr[3]"/>
+        <net name="u_dac_/dac_ram_addr[2]"/>
+        <net name="u_dac_/dac_ram_addr[1]"/>
+        <net name="u_dac_/dac_ram_addr[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq16&apos;hXXXX"/>
         <Option Id="COMPARE_VALUE.0" value="eq16&apos;hXXXX"/>
         <Option Id="DISPLAY_AS_ENUM" value="1"/>
@@ -2356,7 +2457,7 @@
         <Option Id="NAME.SELECT" value="Long"/>
         <Option Id="SOURCE" value="netlist"/>
         <Option Id="TRIGGER_COMPARE_VALUE" value="eq16&apos;hXXXX"/>
-        <Option Id="WAVEFORM_STYLE" value="Analog"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
       </probeOptions>
       <nets>
         <net name="u_dac_/dac_ram_odata[15]"/>
@@ -2413,7 +2514,7 @@
         <Option Id="NAME.SELECT" value="Long"/>
         <Option Id="SOURCE" value="netlist"/>
         <Option Id="TRIGGER_COMPARE_VALUE" value="eq14&apos;hXXXX"/>
-        <Option Id="WAVEFORM_STYLE" value="Analog"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
       </probeOptions>
       <nets>
         <net name="u_dac_/tt_odat[13]"/>

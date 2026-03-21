@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_3" LaunchPart="xc7z007sclg225-1" LaunchTime="1774021930">
+<GenRun Id="impl_3" LaunchPart="xc7z007sclg225-1" LaunchTime="1774111461">
   <File Type="BITSTR-BMM" Name="sparrow5_top_bd.bmm"/>
   <File Type="OPT-METHODOLOGY-DRC" Name="sparrow5_top_methodology_drc_opted.rpt"/>
   <File Type="INIT-TIMING" Name="sparrow5_top_timing_summary_init.rpt"/>

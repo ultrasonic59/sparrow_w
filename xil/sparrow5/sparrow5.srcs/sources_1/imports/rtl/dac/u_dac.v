@@ -108,12 +108,12 @@ if(i_addr[6:1] ==`OFFS_DELAY_CNT_DAC)
 end
 
 ///====================================
-reg [13:0]dac_cnt;
+reg [12:0]dac_cnt;
 always @(posedge i_clk or posedge i_clr)
 if(i_clr)
-	dac_cnt <= 14'b0;				///
-else if(dac_cnt>=len_cnt_dac[13:0])
-	dac_cnt <= 14'b0;				///
+	dac_cnt <= 13'b0;				///
+else if(dac_cnt>=len_cnt_dac[12:0])
+	dac_cnt <= 13'b0;				///
 else
 	dac_cnt <=dac_cnt+1'b1; 
 ///====================================
@@ -135,8 +135,8 @@ wire [12:0]dac_ram_addr;
 wire [15:0]dac_ram_odata;
 
 assign t_odat= (ena_tst_dac_out)?dac_odata[13:0]
-                :(on_dds)?(dds_ph_dat?dac_ram_addr:dds_out)
-                :dds_ph_dat?dac_cnt[13:0]:dac_ram_odata[13:0];
+                :(on_dds)?(dds_ph_dat? {dac_ram_addr,1'b0}:dds_out)
+                :dds_ph_dat? {dac_cnt,1'b0}:dac_ram_odata[13:0];
 assign tt_odat= t_odat;
 ///====================================
 
@@ -177,7 +177,7 @@ ila_0 ila0(
  .probe1(dac_cnt),
  .probe2(dac_ram_addr),
  .probe3(dac_ram_odata),
- .probe4(curr_ph[31:19]),
+ .probe4(curr_ph[31:18]),
  .probe5(tt_odat)
  );
 ///===================================

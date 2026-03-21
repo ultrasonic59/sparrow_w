@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date             : Fri Mar 20 18:54:05 2026
+| Date             : Sat Mar 21 19:46:18 2026
 | Host             : vovag running 64-bit major release  (build 9200)
 | Command          : report_power -file sparrow5_top_power_routed.rpt -pb sparrow5_top_power_summary_routed.pb -rpx sparrow5_top_power_routed.rpx
 | Design           : sparrow5_top
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.867        |
+| Total On-Chip Power (W)  | 1.871        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 1.738        |
+| Dynamic (W)              | 1.741        |
 | Device Static (W)        | 0.130        |
 | Effective TJA (C/W)      | 11.5         |
-| Max Ambient (C)          | 63.5         |
-| Junction Temperature (C) | 46.5         |
+| Max Ambient (C)          | 63.4         |
+| Junction Temperature (C) | 46.6         |
 | Confidence Level         | Medium       |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -53,22 +53,22 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.035 |       12 |       --- |             --- |
-| Slice Logic              |     0.006 |     7381 |       --- |             --- |
-|   LUT as Logic           |     0.004 |     2259 |     14400 |           15.69 |
-|   Register               |    <0.001 |     3741 |     28800 |           12.99 |
+| Slice Logic              |     0.005 |     7375 |       --- |             --- |
+|   LUT as Logic           |     0.004 |     2263 |     14400 |           15.72 |
+|   Register               |    <0.001 |     3740 |     28800 |           12.99 |
 |   LUT as Shift Register  |    <0.001 |      215 |      6000 |            3.58 |
-|   CARRY4                 |    <0.001 |       84 |      4400 |            1.91 |
+|   CARRY4                 |    <0.001 |       83 |      4400 |            1.89 |
 |   LUT as Distributed RAM |    <0.001 |       24 |      6000 |            0.40 |
 |   F7/F8 Muxes            |    <0.001 |        3 |     17600 |            0.02 |
 |   Others                 |     0.000 |      527 |       --- |             --- |
-| Signals                  |     0.012 |     5697 |       --- |             --- |
+| Signals                  |     0.013 |     5723 |       --- |             --- |
 | Block RAM                |     0.029 |     23.5 |        50 |           47.00 |
 | PLL                      |     0.127 |        1 |         2 |           50.00 |
-| I/O                      |     0.350 |       39 |        54 |           72.22 |
+| I/O                      |     0.353 |       39 |        54 |           72.22 |
 | XADC                     |     0.004 |        1 |       --- |             --- |
 | PS7                      |     1.175 |        1 |       --- |             --- |
 | Static Power             |     0.130 |          |           |                 |
-| Total                    |     1.867 |          |           |                 |
+| Total                    |     1.871 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -79,9 +79,9 @@ Table of Contents
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
 | Vccint    |       1.000 |     0.099 |       0.091 |      0.008 |
-| Vccaux    |       1.800 |     0.078 |       0.069 |      0.009 |
+| Vccaux    |       1.800 |     0.078 |       0.070 |      0.009 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
-| Vcco25    |       2.500 |     0.138 |       0.137 |      0.001 |
+| Vcco25    |       2.500 |     0.139 |       0.138 |      0.001 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
@@ -91,7 +91,7 @@ Table of Contents
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
 | MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccpint   |       1.000 |     0.696 |       0.664 |      0.032 |
+| Vccpint   |       1.000 |     0.697 |       0.664 |      0.032 |
 | Vccpaux   |       1.800 |     0.036 |       0.026 |      0.010 |
 | Vccpll    |       1.800 |     0.017 |       0.014 |      0.003 |
 | Vcco_ddr  |       1.350 |     0.321 |       0.319 |      0.002 |
@@ -158,29 +158,29 @@ Table of Contents
 +---------------------------+-----------+
 | Name                      | Power (W) |
 +---------------------------+-----------+
-| sparrow5_top              |     1.738 |
+| sparrow5_top              |     1.741 |
 |   dbg_hub                 |     0.005 |
 |     inst                  |     0.005 |
 |       BSCANID.u_xsdbm_id  |     0.005 |
 |   i_ps                    |     1.194 |
 |     i_gp0_slave           |     0.002 |
-|     system_i              |     1.192 |
-|       sparrow_ps_i        |     1.192 |
+|     system_i              |     1.193 |
+|       sparrow_ps_i        |     1.193 |
 |   pll1                    |     0.127 |
 |     inst                  |     0.127 |
-|   u_dac_                  |     0.409 |
-|     dac_data[0].dac_data_ |     0.039 |
-|     dac_data[1].dac_data_ |     0.038 |
-|     dac_data[2].dac_data_ |     0.038 |
-|     dac_data[3].dac_data_ |     0.038 |
-|     dac_data[4].dac_data_ |     0.038 |
-|     dac_data[5].dac_data_ |     0.038 |
+|   u_dac_                  |     0.412 |
+|     dac_data[0].dac_data_ |     0.038 |
+|     dac_data[1].dac_data_ |     0.039 |
+|     dac_data[2].dac_data_ |     0.039 |
+|     dac_data[3].dac_data_ |     0.039 |
+|     dac_data[4].dac_data_ |     0.039 |
+|     dac_data[5].dac_data_ |     0.039 |
 |     dac_data[6].dac_data_ |     0.038 |
 |     ila0                  |     0.039 |
 |       inst                |     0.039 |
 |     mem_dac               |     0.018 |
 |       U0                  |     0.018 |
-|     ph_acc                |     0.001 |
+|     ph_acc                |     0.002 |
 +---------------------------+-----------+
 
 

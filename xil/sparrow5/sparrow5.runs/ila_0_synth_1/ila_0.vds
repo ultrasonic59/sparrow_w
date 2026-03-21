@@ -1,9 +1,9 @@
 #-----------------------------------------------------------
-# Vivado v2019.1.3 (64-bit)
-# SW Build 2644227 on Wed Sep  4 09:45:24 MDT 2019
-# IP Build 2633630 on Wed Sep  4 12:30:14 MDT 2019
-# Start of session at: Thu Mar  5 01:18:30 2026
-# Process ID: 12312
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Sat Mar 21 19:42:18 2026
+# Process ID: 26100
 # Current directory: D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/ila_0_synth_1
 # Command line: vivado.exe -log ila_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ila_0.tcl
 # Log file: D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/ila_0_synth_1/ila_0.vds
@@ -20,9 +20,9 @@ Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Device 21-403] Loading part xc7z007sclg225-1
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 9120 
+INFO: Helper process launched with PID 30404 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 846.801 ; gain = 197.125
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 846.566 ; gain = 196.770
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'ila_0' [d:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/ila_0/synth/ila_0.v:84]
 INFO: [Synth 8-6157] synthesizing module 'CFGLUT5' [C:/Xilinx/Vivado/2019.1/scripts/rt/data/unisim_comp.v:1516]
@@ -142,7 +142,7 @@ WARNING: [Synth 8-3331] design blk_mem_gen_v8_4_3_blk_mem_gen_mux__parameterized
 WARNING: [Synth 8-3331] design blk_mem_gen_v8_4_3_blk_mem_gen_mux__parameterized0 has unconnected port SBITERRIN[5]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:55 ; elapsed = 00:00:59 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished RTL Elaboration : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -155,10 +155,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:55 ; elapsed = 00:00:59 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:55 ; elapsed = 00:00:59 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 135 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -174,29 +174,29 @@ Parsing XDC File [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/ila_0_s
 Finished Parsing XDC File [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/ila_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1276.363 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1276.199 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 86 instances were transformed.
   CFGLUT5 => CFGLUT5 (SRLC32E, SRL16E): 76 instances
   CFGLUT5 => SRLC32E: 10 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.113 . Memory (MB): peak = 1276.363 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.099 . Memory (MB): peak = 1276.199 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:01:00 ; elapsed = 00:01:04 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished Constraint Validation : Time (s): cpu = 00:00:44 ; elapsed = 00:00:48 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z007sclg225-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:01:00 ; elapsed = 00:01:04 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:44 ; elapsed = 00:00:48 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property DONT_TOUCH = true for inst. (constraint file  D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/ila_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:00 ; elapsed = 00:01:04 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:44 ; elapsed = 00:00:48 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s__parameterized6'
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s'
@@ -287,7 +287,7 @@ INFO: [Synth 8-3898] No Re-encoding of one hot register 'current_state_reg' in m
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3898] No Re-encoding of one hot register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s__parameterized5'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:02 ; elapsed = 00:01:05 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:46 ; elapsed = 00:00:49 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -627,7 +627,7 @@ Detailed RTL Component Info :
 Module ltlib_v1_0_0_allx_typeA__parameterized1 
 Detailed RTL Component Info : 
 +---Registers : 
-	               14 Bit    Registers := 2     
+	               13 Bit    Registers := 2     
 Module ltlib_v1_0_0_match__parameterized1 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -635,7 +635,7 @@ Detailed RTL Component Info :
 Module ltlib_v1_0_0_allx_typeA__parameterized2 
 Detailed RTL Component Info : 
 +---Registers : 
-	               13 Bit    Registers := 2     
+	               14 Bit    Registers := 2     
 Module ltlib_v1_0_0_match__parameterized2 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -815,10 +815,10 @@ INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_892/I_E
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_887/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[0]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[5].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[0]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[5].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[4].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[0]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[4].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[0]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[3].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[0]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[5].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[2].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[0]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]'
-INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[2].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[0]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[5].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
-INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[1].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[0]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[1].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[0]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[5].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[0].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[0]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_14/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[0]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_13/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[0]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]'
@@ -842,10 +842,10 @@ INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_892/I_E
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_887/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[5].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[4].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[4].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[5].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[3].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[5].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[2].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[5].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
-INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[2].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
-INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[1].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[5].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[1].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[0].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_14/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_13/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[1]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
@@ -868,11 +868,11 @@ INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_88f/I_E
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_892/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_887/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[5].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[4].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
-INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[4].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[2].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[4].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[4].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[4].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[4].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[3].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[2].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
-INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[2].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[2].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
-INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[1].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[2].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[1].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[4].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[0].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_14/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_13/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
@@ -885,19 +885,19 @@ INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_d/I_EN_
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_c/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_b/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_4/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
-INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_3/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[2].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_3/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[4].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_2/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_1/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
-INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_0/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[2].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_0/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[2]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[4].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/slaveRegDo_ff8_reg[3]' (FDRE) to 'inst/ila_core_inst/u_ila_regs/slaveRegDo_ff8_reg[4]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\ila_core_inst/u_ila_regs/slaveRegDo_ff7_reg[3] )
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[4]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_892/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[4]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[5].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[4]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[4].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[4].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[1].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[3].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[4]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE_MU1.MU_STATUS[2].mu_tpid_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[4]'
-INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[2].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[1].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[1].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]' (FDE) to 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[0].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[4]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/N_DDR_MODE.PROBE_STATUS[0].probe_width_reg/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[4]'
 INFO: [Synth 8-3886] merging instance 'inst/ila_core_inst/u_ila_regs/reg_14/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[3]' (FDE) to 'inst/ila_core_inst/u_ila_regs/reg_88f/I_EN_STAT_EQ1.U_STAT/xsdb_reg_reg[4]'
@@ -957,7 +957,7 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\ila
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\ila_core_inst/u_ila_regs/slaveRegDo_mux_1_reg[14] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\ila_core_inst/u_ila_regs/slaveRegDo_mux_1_reg[15] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:06 ; elapsed = 00:01:10 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:49 ; elapsed = 00:00:53 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -969,13 +969,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:13 ; elapsed = 00:01:17 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:56 ; elapsed = 00:01:00 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:15 ; elapsed = 00:01:20 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished Timing Optimization : Time (s): cpu = 00:00:58 ; elapsed = 00:01:01 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -987,7 +987,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:16 ; elapsed = 00:01:20 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished Technology Mapping : Time (s): cpu = 00:00:58 ; elapsed = 00:01:02 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1051,7 +1051,7 @@ INFO: [Synth 8-3295] tying undriven pin inst:sl_iport0[0] to constant 0
 INFO: [Synth 8-3295] tying undriven pin inst:trig_in to constant 0
 INFO: [Synth 8-3295] tying undriven pin inst:trig_out_ack to constant 0
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:17 ; elapsed = 00:01:21 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished IO Insertion : Time (s): cpu = 00:00:59 ; elapsed = 00:01:03 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1064,7 +1064,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:17 ; elapsed = 00:01:21 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:59 ; elapsed = 00:01:03 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1076,25 +1076,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:17 ; elapsed = 00:01:21 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:59 ; elapsed = 00:01:03 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:17 ; elapsed = 00:01:21 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:59 ; elapsed = 00:01:03 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:17 ; elapsed = 00:01:21 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:59 ; elapsed = 00:01:03 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:17 ; elapsed = 00:01:21 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:59 ; elapsed = 00:01:03 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -1130,11 +1130,11 @@ Report Cell Usage:
 |1     |CARRY4     |    40|
 |2     |CFGLUT5    |    86|
 |3     |LUT1       |    34|
-|4     |LUT2       |    42|
+|4     |LUT2       |    45|
 |5     |LUT3       |   181|
-|6     |LUT4       |   122|
-|7     |LUT5       |    97|
-|8     |LUT6       |   461|
+|6     |LUT4       |   121|
+|7     |LUT5       |    93|
+|8     |LUT6       |   460|
 |9     |MUXF7      |     3|
 |10    |RAMB18E1   |     1|
 |11    |RAMB36E1   |     1|
@@ -1150,9 +1150,9 @@ Report Instance Areas:
 +------+------------------------------------------------------------------------+-------------------------------------------------------------+------+
 |      |Instance                                                                |Module                                                       |Cells |
 +------+------------------------------------------------------------------------+-------------------------------------------------------------+------+
-|1     |top                                                                     |                                                             |  2867|
-|2     |  inst                                                                  |ila_v6_2_9_ila                                               |  2867|
-|3     |    ila_core_inst                                                       |ila_v6_2_9_ila_core                                          |  2860|
+|1     |top                                                                     |                                                             |  2864|
+|2     |  inst                                                                  |ila_v6_2_9_ila                                               |  2864|
+|3     |    ila_core_inst                                                       |ila_v6_2_9_ila_core                                          |  2857|
 |4     |      ila_trace_memory_inst                                             |ila_v6_2_9_ila_trace_memory                                  |   106|
 |5     |        \SUBCORE_RAM_BLK_MEM_1.trace_block_memory                       |blk_mem_gen_v8_4_3                                           |   106|
 |6     |          inst_blk_mem_gen                                              |blk_mem_gen_v8_4_3_synth                                     |   106|
@@ -1229,7 +1229,7 @@ Report Instance Areas:
 |77    |                DUT                                                     |ltlib_v1_0_0_all_typeA__parameterized1                       |    12|
 |78    |                  \I_WHOLE_SLICE.G_SLICE_IDX[0].U_ALL_SRL_SLICE         |ltlib_v1_0_0_all_typeA_slice__parameterized1                 |     5|
 |79    |                  \I_WHOLE_SLICE.G_SLICE_IDX[1].U_ALL_SRL_SLICE         |ltlib_v1_0_0_all_typeA_slice__parameterized2                 |     5|
-|80    |      u_ila_regs                                                        |ila_v6_2_9_ila_register                                      |  1726|
+|80    |      u_ila_regs                                                        |ila_v6_2_9_ila_register                                      |  1725|
 |81    |        U_XSDB_SLAVE                                                    |xsdbs_v1_0_2_xsdbs                                           |   302|
 |82    |        reg_890                                                         |xsdbs_v1_0_2_reg__parameterized54                            |    16|
 |83    |          \I_EN_STAT_EQ1.U_STAT                                         |xsdbs_v1_0_2_reg_stat_42                                     |    16|
@@ -1240,24 +1240,24 @@ Report Instance Areas:
 |88    |        \MU_SRL[4].mu_srl_reg                                           |xsdbs_v1_0_2_reg_p2s__parameterized3                         |    75|
 |89    |        \MU_SRL[5].mu_srl_reg                                           |xsdbs_v1_0_2_reg_p2s__parameterized4                         |    75|
 |90    |        \TC_SRL[0].tc_srl_reg                                           |xsdbs_v1_0_2_reg_p2s__parameterized5                         |    78|
-|91    |        reg_15                                                          |xsdbs_v1_0_2_reg__parameterized36                            |    25|
-|92    |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl_41                                      |    25|
-|93    |        reg_16                                                          |xsdbs_v1_0_2_reg__parameterized37                            |    19|
-|94    |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl_40                                      |    19|
-|95    |        reg_17                                                          |xsdbs_v1_0_2_reg__parameterized38                            |    26|
-|96    |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl_39                                      |    26|
+|91    |        reg_15                                                          |xsdbs_v1_0_2_reg__parameterized36                            |    26|
+|92    |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl_41                                      |    26|
+|93    |        reg_16                                                          |xsdbs_v1_0_2_reg__parameterized37                            |    22|
+|94    |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl_40                                      |    22|
+|95    |        reg_17                                                          |xsdbs_v1_0_2_reg__parameterized38                            |    22|
+|96    |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl_39                                      |    22|
 |97    |        reg_18                                                          |xsdbs_v1_0_2_reg__parameterized39                            |    18|
 |98    |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl_38                                      |    18|
-|99    |        reg_19                                                          |xsdbs_v1_0_2_reg__parameterized40                            |    28|
-|100   |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl_37                                      |    28|
-|101   |        reg_1a                                                          |xsdbs_v1_0_2_reg__parameterized41                            |    24|
-|102   |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl__parameterized1_36                      |    24|
-|103   |        reg_6                                                           |xsdbs_v1_0_2_reg__parameterized21                            |    21|
-|104   |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl_35                                      |    21|
-|105   |        reg_7                                                           |xsdbs_v1_0_2_reg__parameterized22                            |    53|
-|106   |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl__parameterized0                         |    53|
-|107   |        reg_8                                                           |xsdbs_v1_0_2_reg__parameterized23                            |     8|
-|108   |          \I_EN_STAT_EQ1.U_STAT                                         |xsdbs_v1_0_2_reg_stat_34                                     |     8|
+|99    |        reg_19                                                          |xsdbs_v1_0_2_reg__parameterized40                            |    29|
+|100   |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl_37                                      |    29|
+|101   |        reg_1a                                                          |xsdbs_v1_0_2_reg__parameterized41                            |    23|
+|102   |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl__parameterized1_36                      |    23|
+|103   |        reg_6                                                           |xsdbs_v1_0_2_reg__parameterized21                            |    23|
+|104   |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl_35                                      |    23|
+|105   |        reg_7                                                           |xsdbs_v1_0_2_reg__parameterized22                            |    50|
+|106   |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl__parameterized0                         |    50|
+|107   |        reg_8                                                           |xsdbs_v1_0_2_reg__parameterized23                            |     7|
+|108   |          \I_EN_STAT_EQ1.U_STAT                                         |xsdbs_v1_0_2_reg_stat_34                                     |     7|
 |109   |        reg_80                                                          |xsdbs_v1_0_2_reg__parameterized42                            |    18|
 |110   |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl__parameterized1_33                      |    18|
 |111   |        reg_81                                                          |xsdbs_v1_0_2_reg__parameterized43                            |    17|
@@ -1274,11 +1274,11 @@ Report Instance Areas:
 |122   |          \I_EN_STAT_EQ1.U_STAT                                         |xsdbs_v1_0_2_reg_stat_28                                     |     3|
 |123   |        reg_88d                                                         |xsdbs_v1_0_2_reg__parameterized51                            |     4|
 |124   |          \I_EN_STAT_EQ1.U_STAT                                         |xsdbs_v1_0_2_reg_stat_27                                     |     4|
-|125   |        reg_9                                                           |xsdbs_v1_0_2_reg__parameterized24                            |    21|
-|126   |          \I_EN_STAT_EQ1.U_STAT                                         |xsdbs_v1_0_2_reg_stat_26                                     |    21|
-|127   |        reg_srl_fff                                                     |xsdbs_v1_0_2_reg_p2s__parameterized6                         |    90|
-|128   |        reg_stream_ffd                                                  |xsdbs_v1_0_2_reg_stream                                      |    34|
-|129   |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl                                         |    34|
+|125   |        reg_9                                                           |xsdbs_v1_0_2_reg__parameterized24                            |    23|
+|126   |          \I_EN_STAT_EQ1.U_STAT                                         |xsdbs_v1_0_2_reg_stat_26                                     |    23|
+|127   |        reg_srl_fff                                                     |xsdbs_v1_0_2_reg_p2s__parameterized6                         |    87|
+|128   |        reg_stream_ffd                                                  |xsdbs_v1_0_2_reg_stream                                      |    35|
+|129   |          \I_EN_CTL_EQ1.U_CTL                                           |xsdbs_v1_0_2_reg_ctl                                         |    35|
 |130   |        reg_stream_ffe                                                  |xsdbs_v1_0_2_reg_stream__parameterized0                      |    16|
 |131   |          \I_EN_STAT_EQ1.U_STAT                                         |xsdbs_v1_0_2_reg_stat                                        |    16|
 |132   |      u_ila_reset_ctrl                                                  |ila_v6_2_9_ila_reset_ctrl                                    |    46|
@@ -1299,45 +1299,45 @@ Report Instance Areas:
 |147   |              DUT                                                       |ltlib_v1_0_0_all_typeA__parameterized0_18                    |    13|
 |148   |                \I_WHOLE_SLICE.G_SLICE_IDX[0].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice__parameterized0_19              |     5|
 |149   |                \I_WHOLE_SLICE.G_SLICE_IDX[1].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice_20                              |     6|
-|150   |          \N_DDR_MODE.G_NMU[1].U_M                                      |ltlib_v1_0_0_match__parameterized1                           |    42|
-|151   |            \allx_typeA_match_detection.ltlib_v1_0_0_allx_typeA_inst    |ltlib_v1_0_0_allx_typeA__parameterized1_13                   |    41|
+|150   |          \N_DDR_MODE.G_NMU[1].U_M                                      |ltlib_v1_0_0_match__parameterized1                           |    40|
+|151   |            \allx_typeA_match_detection.ltlib_v1_0_0_allx_typeA_inst    |ltlib_v1_0_0_allx_typeA__parameterized1_13                   |    39|
 |152   |              DUT                                                       |ltlib_v1_0_0_all_typeA__parameterized0_14                    |    13|
 |153   |                \I_WHOLE_SLICE.G_SLICE_IDX[0].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice__parameterized0_15              |     5|
 |154   |                \I_WHOLE_SLICE.G_SLICE_IDX[1].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice_16                              |     6|
-|155   |          \N_DDR_MODE.G_NMU[2].U_M                                      |ltlib_v1_0_0_match__parameterized2                           |    40|
-|156   |            \allx_typeA_match_detection.ltlib_v1_0_0_allx_typeA_inst    |ltlib_v1_0_0_allx_typeA__parameterized2_9                    |    39|
+|155   |          \N_DDR_MODE.G_NMU[2].U_M                                      |ltlib_v1_0_0_match__parameterized1_0                         |    40|
+|156   |            \allx_typeA_match_detection.ltlib_v1_0_0_allx_typeA_inst    |ltlib_v1_0_0_allx_typeA__parameterized1                      |    39|
 |157   |              DUT                                                       |ltlib_v1_0_0_all_typeA__parameterized0_10                    |    13|
 |158   |                \I_WHOLE_SLICE.G_SLICE_IDX[0].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice__parameterized0_11              |     5|
 |159   |                \I_WHOLE_SLICE.G_SLICE_IDX[1].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice_12                              |     6|
-|160   |          \N_DDR_MODE.G_NMU[3].U_M                                      |ltlib_v1_0_0_match__parameterized0_0                         |    46|
+|160   |          \N_DDR_MODE.G_NMU[3].U_M                                      |ltlib_v1_0_0_match__parameterized0_1                         |    46|
 |161   |            \allx_typeA_match_detection.ltlib_v1_0_0_allx_typeA_inst    |ltlib_v1_0_0_allx_typeA__parameterized0                      |    45|
-|162   |              DUT                                                       |ltlib_v1_0_0_all_typeA__parameterized0_6                     |    13|
-|163   |                \I_WHOLE_SLICE.G_SLICE_IDX[0].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice__parameterized0_7               |     5|
-|164   |                \I_WHOLE_SLICE.G_SLICE_IDX[1].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice_8                               |     6|
-|165   |          \N_DDR_MODE.G_NMU[4].U_M                                      |ltlib_v1_0_0_match__parameterized2_1                         |    40|
-|166   |            \allx_typeA_match_detection.ltlib_v1_0_0_allx_typeA_inst    |ltlib_v1_0_0_allx_typeA__parameterized2                      |    39|
-|167   |              DUT                                                       |ltlib_v1_0_0_all_typeA__parameterized0_3                     |    13|
-|168   |                \I_WHOLE_SLICE.G_SLICE_IDX[0].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice__parameterized0_4               |     5|
-|169   |                \I_WHOLE_SLICE.G_SLICE_IDX[1].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice_5                               |     6|
-|170   |          \N_DDR_MODE.G_NMU[5].U_M                                      |ltlib_v1_0_0_match__parameterized1_2                         |    42|
-|171   |            \allx_typeA_match_detection.ltlib_v1_0_0_allx_typeA_inst    |ltlib_v1_0_0_allx_typeA__parameterized1                      |    41|
+|162   |              DUT                                                       |ltlib_v1_0_0_all_typeA__parameterized0_7                     |    13|
+|163   |                \I_WHOLE_SLICE.G_SLICE_IDX[0].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice__parameterized0_8               |     5|
+|164   |                \I_WHOLE_SLICE.G_SLICE_IDX[1].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice_9                               |     6|
+|165   |          \N_DDR_MODE.G_NMU[4].U_M                                      |ltlib_v1_0_0_match__parameterized2                           |    42|
+|166   |            \allx_typeA_match_detection.ltlib_v1_0_0_allx_typeA_inst    |ltlib_v1_0_0_allx_typeA__parameterized2_3                    |    41|
+|167   |              DUT                                                       |ltlib_v1_0_0_all_typeA__parameterized0_4                     |    13|
+|168   |                \I_WHOLE_SLICE.G_SLICE_IDX[0].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice__parameterized0_5               |     5|
+|169   |                \I_WHOLE_SLICE.G_SLICE_IDX[1].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice_6                               |     6|
+|170   |          \N_DDR_MODE.G_NMU[5].U_M                                      |ltlib_v1_0_0_match__parameterized2_2                         |    42|
+|171   |            \allx_typeA_match_detection.ltlib_v1_0_0_allx_typeA_inst    |ltlib_v1_0_0_allx_typeA__parameterized2                      |    41|
 |172   |              DUT                                                       |ltlib_v1_0_0_all_typeA__parameterized0                       |    13|
 |173   |                \I_WHOLE_SLICE.G_SLICE_IDX[0].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice__parameterized0                 |     5|
 |174   |                \I_WHOLE_SLICE.G_SLICE_IDX[1].U_ALL_SRL_SLICE           |ltlib_v1_0_0_all_typeA_slice                                 |     6|
-|175   |      xsdb_memory_read_inst                                             |ltlib_v1_0_0_generic_memrd                                   |   188|
+|175   |      xsdb_memory_read_inst                                             |ltlib_v1_0_0_generic_memrd                                   |   186|
 +------+------------------------------------------------------------------------+-------------------------------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:17 ; elapsed = 00:01:21 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:59 ; elapsed = 00:01:03 . Memory (MB): peak = 1276.199 ; gain = 626.402
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1167 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:01:18 . Memory (MB): peak = 1276.363 ; gain = 626.688
-Synthesis Optimization Complete : Time (s): cpu = 00:01:17 ; elapsed = 00:01:21 . Memory (MB): peak = 1276.363 ; gain = 626.688
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:01:00 . Memory (MB): peak = 1276.199 ; gain = 626.402
+Synthesis Optimization Complete : Time (s): cpu = 00:00:59 ; elapsed = 00:01:03 . Memory (MB): peak = 1276.199 ; gain = 626.402
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 149 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1276.363 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1276.199 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 86 instances were transformed.
   CFGLUT5 => CFGLUT5 (SRLC32E, SRL16E): 76 instances
@@ -1346,17 +1346,19 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 267 Infos, 103 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:22 ; elapsed = 00:01:28 . Memory (MB): peak = 1276.363 ; gain = 870.320
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1276.363 ; gain = 0.000
+synth_design: Time (s): cpu = 00:01:03 ; elapsed = 00:01:08 . Memory (MB): peak = 1276.199 ; gain = 870.461
+INFO: [Common 17-600] The following parameters have non-default value.
+tcl.collectionResultDisplayLimit
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1276.199 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/ila_0_synth_1/ila_0.dcp' has been generated.
 WARNING: [Common 17-576] 'use_project_ipc' is deprecated. This option is deprecated and no longer used.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP ila_0, cache-ID = 5a404876cb99711e
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP ila_0, cache-ID = 70127bb55b5cdbca
 INFO: [Coretcl 2-1174] Renamed 174 cell refs.
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1276.363 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1276.199 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/ila_0_synth_1/ila_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file ila_0_utilization_synth.rpt -pb ila_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Thu Mar  5 01:20:06 2026...
+INFO: [Common 17-206] Exiting Vivado at Sat Mar 21 19:43:32 2026...

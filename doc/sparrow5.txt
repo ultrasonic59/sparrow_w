@@ -1,0 +1,16 @@
+
+///=======  a[13:12]===========================
+`define  ADDR_COMMON_REGS		 2'h0		
+`define  ADDR_DAC_REGS 		   	 2'h1   ///  0x800
+
+`define  OFFS_CONF 		        6'h00       ///0x800
+
+`define  OFFS_DAC_OUT 		        6'h01   ///0x801
+
+
+`define  B_ON_TST               0   ///DAC_OUT -> DAC
+`define  B_ON_DDS               1
+`define  B_EN_DDS               2
+`define  B_DDS_PH_DAT           3   ///=1 phasa, =0 dat
+`define  B_EXT_SYNC             4   ///=1 ext sync
+`define  B_EXT_FAL              5   ///=1 falling edge
