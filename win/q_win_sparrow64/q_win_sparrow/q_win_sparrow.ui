@@ -310,7 +310,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>260</y>
+       <y>250</y>
        <width>70</width>
        <height>17</height>
       </rect>
@@ -393,7 +393,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>280</y>
+       <y>270</y>
        <width>70</width>
        <height>17</height>
       </rect>
@@ -462,6 +462,19 @@
      </property>
      <property name="text">
       <string>Offs</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_auto">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>290</y>
+       <width>70</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>auto</string>
      </property>
     </widget>
    </widget>

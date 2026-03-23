@@ -31,6 +31,8 @@ void q_win_sparrow::saveSettings()
 	settings.setValue("dev_frequency", par_contr.dev_frequency);
 	settings.setValue("gaus_enable", par_contr.gaus_enable);
 	settings.setValue("dds_enable", par_contr.dds_enable);
+	settings.setValue("auto_enable", par_contr.auto_enable);
+
 }
 
 
@@ -63,6 +65,7 @@ void q_win_sparrow::loadSettings()
 	par_contr.dev_frequency = settings.value("dev_frequency", par_contr.dev_frequency).toFloat();
 	par_contr.gaus_enable = settings.value("gaus_enable", par_contr.gaus_enable).toBool();
 	par_contr.dds_enable = settings.value("dds_enable", par_contr.dds_enable).toBool();
+	par_contr.auto_enable = settings.value("auto_enable", par_contr.auto_enable).toBool();
 
 }
 
@@ -125,6 +128,7 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 	ui.ed_t_imp_offset->set_data(reinterpret_cast<unsigned short*>(&p_sent_par->Timp_offset));
 	ui.ed_t_imp_offset->set_min_max(MIN_TIMP_OFFSET, MAX_TIMP_OFFSET);
 	ui.ed_t_imp_offset->show_par();
+
 	connect(ui.ed_t_imp_offset, SIGNAL(param_changed()), this, SLOT(Timp_offset_changed()));
 
 	ui.ed_t_cycle->set_num_dig(NUM_DIG_QUINT16);
@@ -257,7 +261,7 @@ void q_win_sparrow::Timp_len_changed()
 
 	plotter.PlotRespond(plot_array.data(), plot_arr_length);
 
-	device_cmd.g_changed_param |= CHNG_TIMP_LEN | CHNG_IMP_POINTS;
+	device_cmd.g_changed_param |=  CHNG_IMP_POINTS;
 }
 
 void q_win_sparrow::Timp_offset_changed()
@@ -290,7 +294,7 @@ void q_win_sparrow::NumPeriods_changed()
 	RecalculateImpulse();
 	ImpulseToPlot();
 	plotter.PlotRespond(plot_array.data(), plot_arr_length);
-	device_cmd.g_changed_param |= CHNG_TIMP_LEN | CHNG_IMP_POINTS;
+	device_cmd.g_changed_param |=  CHNG_IMP_POINTS;
 }
 
 
@@ -335,7 +339,7 @@ void q_win_sparrow::DevFreq_changed()
 	RecalculateImpulse();
 	ImpulseToPlot();
 	plotter.PlotRespond(plot_array.data(), plot_arr_length);
-	device_cmd.g_changed_param |= CHNG_TIMP_LEN | CHNG_IMP_POINTS;
+	device_cmd.g_changed_param |=  CHNG_IMP_POINTS;
 }
 
 
@@ -365,12 +369,13 @@ void q_win_sparrow::RecalculateImpulse()
 	for(quint16 i = 0; i < sent_par.Timp_len; i++)
 	{
 		if(par_contr.gaus_enable)
-			device_cmd.imp_ampl[i] = par_contr.Aimp * exp(-k*(i - len_div2)*(i - len_div2)) * sin(2* M_PI*i*par_contr.dev_frequency/COEF_PERIOD_TRANSF);
+			device_cmd.imp_ampl[i] = par_contr.Aimp * exp(-k*(i - len_div2)*(i - len_div2)) * (1.0 + sin(2* M_PI*i*par_contr.dev_frequency/COEF_PERIOD_TRANSF));
 		else
-			device_cmd.imp_ampl[i] = par_contr.Aimp * sin(2* M_PI*i*par_contr.dev_frequency/COEF_PERIOD_TRANSF);
+			device_cmd.imp_ampl[i] = par_contr.Aimp * (1.0+sin(2* M_PI*i*par_contr.dev_frequency/COEF_PERIOD_TRANSF));
 	}
 
 }
+///#define AMP_OFFS 0x2000
 
 void q_win_sparrow::ImpulseToPlot()
 {

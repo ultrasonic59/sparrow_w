@@ -276,6 +276,7 @@ wire o_dac_sck;
 tri io_dac_sdio;
 wire o_dac_en;
 ////assign o_zz=o_adc_en;
+wire [15:0]o_zz;
 
 ///==========================================
 /*
@@ -312,19 +313,25 @@ assign	o_dac_reset=upr[0];
 
 wire [1:0]t_izl;
 assign	t_izl = i_sync;
-
+reg [1:0]r_sync; 
 wire clr;
 ///assign clr=1'b0;
 assign clr= ~o_clr_n;
+
+always @(posedge _clk160 )
+r_sync<=i_sync;
+/*
 wire OnTimeCnt;
 assign	OnTimeCnt =1'b1;
 ///wire clk80;
 ///wire clk160;
 ///assign clk80=i_clk24;
+
 wire [17:0]cnt_time;
 
 sepia_time utime_(.i_clk(clk80),.i_clr(clr),.i_psk(t_izl)
 						,.i_onCnt(OnTimeCnt),.o_cnt_time(cnt_time),.tst());
+						*/
 ///=======================================
 ///======= sniff ===========================
 /*
@@ -371,7 +378,7 @@ u_dac u_dac_(.i_ps_clk(ps_sys_clk)
  ////           ,.o_dac_sync_p(o_dac_sync_p),.o_dac_sync_m(o_dac_sync_m)
            ,.o_dac_dclk_p(o_dac_dclk_p),.o_dac_dclk_m(o_dac_dclk_m)
            ,.o_dac_dat_p(o_dac_dat_p),.o_dac_dat_m(o_dac_dat_m)
-           ,.i_sync(i_sync)
+           ,.i_sync(r_sync[1])
 		      ,.tst(tst_udac));
 ///assign o_ext=tst_udac;		      
 ///========================================
@@ -471,6 +478,9 @@ assign t_ext[1]=tst_clk[0];
 assign t_ext[2]=tst_clk[1];		      
 assign t_ext[3]=tst_clk[2];		      
 ///=====================================================
+assign o_zz[1:0]=r_sync[1:0];
+
+assign o_zz[4:2]=tst_udac[2:0];
 
 /*
 always @*

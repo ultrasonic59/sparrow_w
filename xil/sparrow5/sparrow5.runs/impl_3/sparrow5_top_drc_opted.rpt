@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Sat Mar 21 19:45:26 2026
+| Date         : Mon Mar 23 20:59:29 2026
 | Host         : vovag running 64-bit major release  (build 9200)
 | Command      : report_drc -file sparrow5_top_drc_opted.rpt -pb sparrow5_top_drc_opted.pb -rpx sparrow5_top_drc_opted.rpx
 | Design       : sparrow5_top
@@ -24,15 +24,14 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 23
-+-------------+----------+-------------------------------------------------------------+------------+
-| Rule        | Severity | Description                                                 | Violations |
-+-------------+----------+-------------------------------------------------------------+------------+
-| CHECK-3     | Warning  | Report rule limit reached                                   | 1          |
-| PLCK-20     | Warning  | Clock Placer Checks                                         | 1          |
-| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 1          |
-| REQP-1839   | Warning  | RAMB36 async control check                                  | 20         |
-+-------------+----------+-------------------------------------------------------------+------------+
+             Violations found: 22
++-----------+----------+----------------------------+------------+
+| Rule      | Severity | Description                | Violations |
++-----------+----------+----------------------------+------------+
+| CHECK-3   | Warning  | Report rule limit reached  | 1          |
+| PLCK-20   | Warning  | Clock Placer Checks        | 1          |
+| REQP-1839 | Warning  | RAMB36 async control check | 20         |
++-----------+----------+----------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
@@ -50,12 +49,6 @@ Resolution: A dedicated routing path between the two can be used if: (a) The clo
 	pll1/inst/clkin1_ibufg (IBUF.O) is locked to E12
 	pll1/inst/plle2_adv_inst (PLLE2_ADV.CLKIN1) cannot be placed
 
-Related violations: <none>
-
-PLHOLDVIO-2#1 Warning
-Non-Optimal connections which could lead to hold violations  
-A LUT u_dac_/conf[15]_i_2 is driving clock pin of 128 cells. This could lead to large hold time violations. Involved cells are:
-u_dac_/conf_reg[0], u_dac_/conf_reg[10], u_dac_/conf_reg[11], u_dac_/conf_reg[12], u_dac_/conf_reg[13], u_dac_/conf_reg[14], u_dac_/conf_reg[15], u_dac_/conf_reg[1], u_dac_/conf_reg[2], u_dac_/conf_reg[3], u_dac_/conf_reg[4], u_dac_/conf_reg[5], u_dac_/conf_reg[6], u_dac_/conf_reg[7], u_dac_/conf_reg[8] (the first 15 of 128 listed)
 Related violations: <none>
 
 REQP-1839#1 Warning

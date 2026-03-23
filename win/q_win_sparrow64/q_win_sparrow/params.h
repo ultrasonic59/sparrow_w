@@ -120,6 +120,7 @@ struct par_contr_t
 	float dev_frequency;	// частота колебаний в импульсе
 	bool gaus_enable;
 	bool dds_enable;
+	bool auto_enable;
 
 };
 

@@ -40,13 +40,13 @@
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="207"/>
-    <Option Name="WTModelSimExportSim" Val="207"/>
-    <Option Name="WTQuestaExportSim" Val="207"/>
-    <Option Name="WTIesExportSim" Val="207"/>
-    <Option Name="WTVcsExportSim" Val="207"/>
-    <Option Name="WTRivieraExportSim" Val="207"/>
-    <Option Name="WTActivehdlExportSim" Val="207"/>
+    <Option Name="WTXSimExportSim" Val="209"/>
+    <Option Name="WTModelSimExportSim" Val="209"/>
+    <Option Name="WTQuestaExportSim" Val="209"/>
+    <Option Name="WTIesExportSim" Val="209"/>
+    <Option Name="WTVcsExportSim" Val="209"/>
+    <Option Name="WTRivieraExportSim" Val="209"/>
+    <Option Name="WTActivehdlExportSim" Val="209"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -126,20 +126,20 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="sparrow_ps.bd" FileRelPathName="ip/sparrow_ps_auto_pc_0/sparrow_ps_auto_pc_0.xci">
-          <Proxy FileSetName="sparrow_ps_auto_pc_0"/>
+        <CompFileExtendedInfo CompFileName="sparrow_ps.bd" FileRelPathName="ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0.xci">
+          <Proxy FileSetName="sparrow_ps_processing_system7_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="sparrow_ps.bd" FileRelPathName="ip/sparrow_ps_xadc_wiz_0_0/sparrow_ps_xadc_wiz_0_0.xci">
+          <Proxy FileSetName="sparrow_ps_xadc_wiz_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="sparrow_ps.bd" FileRelPathName="ip/sparrow_ps_xbar_0/sparrow_ps_xbar_0.xci">
           <Proxy FileSetName="sparrow_ps_xbar_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="sparrow_ps.bd" FileRelPathName="ip/sparrow_ps_processing_system7_0_0/sparrow_ps_processing_system7_0_0.xci">
-          <Proxy FileSetName="sparrow_ps_processing_system7_0_0"/>
+        <CompFileExtendedInfo CompFileName="sparrow_ps.bd" FileRelPathName="ip/sparrow_ps_auto_pc_0/sparrow_ps_auto_pc_0.xci">
+          <Proxy FileSetName="sparrow_ps_auto_pc_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="sparrow_ps.bd" FileRelPathName="ip/sparrow_ps_rst_ps7_0_50M_0/sparrow_ps_rst_ps7_0_50M_0.xci">
           <Proxy FileSetName="sparrow_ps_rst_ps7_0_50M_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="sparrow_ps.bd" FileRelPathName="ip/sparrow_ps_xadc_wiz_0_0/sparrow_ps_xadc_wiz_0_0.xci">
-          <Proxy FileSetName="sparrow_ps_xadc_wiz_0_0"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/dac/dac_data_out.v">

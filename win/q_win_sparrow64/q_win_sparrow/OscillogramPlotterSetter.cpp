@@ -144,8 +144,8 @@ void OscillogramPlotterSetter::PlotRespond(QPainter & painter, qint16 *point_arr
 
     for(int i = 0; i < (num_points - 1); i++)
     {
-        line.setLine( x_b + plot_x_step * i, y_b + height - plot_y_step * (point_arr[i] - MIN_OSC_VAL)
-            , x_b + plot_x_step * (i + 1), y_b + height - plot_y_step * (point_arr[i+1] - MIN_OSC_VAL));
+        line.setLine( x_b + plot_x_step * i, y_b + height - plot_y_step * (point_arr[i] - MIN_OSC_VAL/2)
+            , x_b + plot_x_step * (i + 1), y_b + height - plot_y_step * (point_arr[i+1] - MIN_OSC_VAL/2));
 			painter.drawLine(line);
     }
 	

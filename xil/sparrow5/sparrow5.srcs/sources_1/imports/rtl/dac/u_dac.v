@@ -44,7 +44,7 @@ wire o_dac_dclk_m;
 wire [6:0]o_dac_dat_p;
 wire [6:0]o_dac_dat_m;
 ///=====================================
-reg [2:0]z_sync;
+reg [3:0]z_sync;
 
 wire sregs_we_dat;
 assign sregs_we_dat=i_cs&(i_addr[13:12]==`ADDR_DAC_REGS)&(i_addr[15:14]==`ADDR_COMMON)&i_we;
@@ -108,22 +108,60 @@ if(i_addr[6:1] ==`OFFS_DELAY_CNT_DAC)
 end
 
 ///====================================
+reg [15:0]cnt_delay;
+wire end_delay_cnt_dac;
+assign end_delay_cnt_dac=(cnt_delay>=delay_cnt_dac);
+
+wire psk_dac1;
+assign psk_dac1=z_sync[1]&(!z_sync[2]);
+wire psk_dac0;
+assign psk_dac0= z_sync[0]&(!z_sync[1]);//(z_sync==4'h3);
+
 reg [12:0]dac_cnt;
+wire end_cnt_dac;
+assign end_cnt_dac=(dac_cnt>=len_cnt_dac[12:0]);
+
+reg ena_cnt_dac;
+always @(posedge i_clk or posedge i_clr)
+if(i_clr)
+	ena_cnt_dac <= 1'b0;				///
+else if(psk_dac1)
+	ena_cnt_dac <= 1'b0;				///
+else if(end_cnt_dac)
+	ena_cnt_dac <=1'b0; 
+else if(end_delay_cnt_dac)
+	ena_cnt_dac <=1'b1; 
+reg ena_cnt_delay;
+always @(posedge i_clk or posedge i_clr)
+if(i_clr)
+	ena_cnt_delay <= 1'b0;				///
+else if(end_delay_cnt_dac)
+	ena_cnt_delay <=1'b0; 
+else if(psk_dac0)
+	ena_cnt_delay <= 1'b1;				///
+	
+always @(posedge i_clk or posedge i_clr)
+if(i_clr)
+	cnt_delay <= 16'b0;				///
+else if(psk_dac0)
+	cnt_delay <= 16'b0;				///
+else if(ena_cnt_delay)
+	cnt_delay <=cnt_delay+1'b1; 
+
 always @(posedge i_clk or posedge i_clr)
 if(i_clr)
 	dac_cnt <= 13'b0;				///
-else if(dac_cnt>=len_cnt_dac[12:0])
+else if(psk_dac1)
 	dac_cnt <= 13'b0;				///
-else
+else if(ena_cnt_dac)
 	dac_cnt <=dac_cnt+1'b1; 
 ///====================================
 always @(posedge i_clk or posedge i_clr)
 if(i_clr)
-	z_sync <= 3'b0;				///
+	z_sync <= 4'b0;				///
 else
-	z_sync <={z_sync[1:0],i_sync}; 
+	z_sync <={z_sync[2:0],i_sync}; 
 
-assign tst= dac_cnt[3:0];
 wire [13:0]tt_odat;
 wire [13:0]t_odat;
 wire [13:0]dds_out;
@@ -133,10 +171,11 @@ wire ps_we_ram;
 wire [15:0]ps_ram_odata;
 wire [12:0]dac_ram_addr;
 wire [15:0]dac_ram_odata;
-
+wire [13:0]_dac_ram_odata;
+assign _dac_ram_odata=(ena_cnt_dac)?dac_ram_odata[13:0]:14'h2000;
 assign t_odat= (ena_tst_dac_out)?dac_odata[13:0]
                 :(on_dds)?(dds_ph_dat? {dac_ram_addr,1'b0}:dds_out)
-                :dds_ph_dat? {dac_cnt,1'b0}:dac_ram_odata[13:0];
+                :dds_ph_dat? {dac_cnt,1'b0}:_dac_ram_odata;
 assign tt_odat= t_odat;
 ///====================================
 
@@ -174,12 +213,16 @@ phase_acc ph_acc(.clk_i(i_clk),
 ila_0 ila0(
  .clk(i_clk),
  .probe0(conf),
- .probe1(dac_cnt),
- .probe2(dac_ram_addr),
- .probe3(dac_ram_odata),
- .probe4(curr_ph[31:18]),
- .probe5(tt_odat)
- );
+ .probe1( z_sync[2:0]),
+ .probe2(cnt_delay), 
+ .probe3(dac_cnt),
+ .probe4(dac_ram_addr),
+ .probe5(dac_ram_odata),
+ ///.probe4(curr_ph[31:18]),
+ .probe6(tt_odat),
+ .probe7(ena_cnt_dac),
+  .probe8(ena_cnt_delay)
+);
 ///===================================
 
 
@@ -259,5 +302,10 @@ case(i_addr[15:14])         ///1
     endcase        ///1
 end   
 ///=============================================
+assign tst[0]= ena_cnt_dac;
+assign tst[1]= ena_cnt_delay;
+assign tst[2]= psk_dac1;
+
+
 endmodule
 
