@@ -369,9 +369,9 @@ void q_win_sparrow::RecalculateImpulse()
 	for(quint16 i = 0; i < sent_par.Timp_len; i++)
 	{
 		if(par_contr.gaus_enable)
-			device_cmd.imp_ampl[i] = par_contr.Aimp * exp(-k*(i - len_div2)*(i - len_div2)) * (1.0 + sin(2* M_PI*i*par_contr.dev_frequency/COEF_PERIOD_TRANSF));
+			device_cmd.imp_ampl[i] = par_contr.Aimp * exp(-k*(i - len_div2)*(i - len_div2)) *  sin(2* M_PI*i*par_contr.dev_frequency/COEF_PERIOD_TRANSF);
 		else
-			device_cmd.imp_ampl[i] = par_contr.Aimp * (1.0+sin(2* M_PI*i*par_contr.dev_frequency/COEF_PERIOD_TRANSF));
+			device_cmd.imp_ampl[i] = par_contr.Aimp * sin(2* M_PI*i*par_contr.dev_frequency/COEF_PERIOD_TRANSF);
 	}
 
 }

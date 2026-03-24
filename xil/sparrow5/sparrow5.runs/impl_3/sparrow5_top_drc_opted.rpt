@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Mon Mar 23 20:59:29 2026
+| Date         : Tue Mar 24 12:05:10 2026
 | Host         : vovag running 64-bit major release  (build 9200)
 | Command      : report_drc -file sparrow5_top_drc_opted.rpt -pb sparrow5_top_drc_opted.pb -rpx sparrow5_top_drc_opted.rpx
 | Design       : sparrow5_top

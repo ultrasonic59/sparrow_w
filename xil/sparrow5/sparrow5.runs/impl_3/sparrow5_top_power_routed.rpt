@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date             : Mon Mar 23 21:00:22 2026
+| Date             : Tue Mar 24 12:05:58 2026
 | Host             : vovag running 64-bit major release  (build 9200)
 | Command          : report_power -file sparrow5_top_power_routed.rpt -pb sparrow5_top_power_summary_routed.pb -rpx sparrow5_top_power_routed.rpx
 | Design           : sparrow5_top
@@ -30,7 +30,7 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.884        |
+| Total On-Chip Power (W)  | 1.883        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
 | Dynamic (W)              | 1.751        |
@@ -52,24 +52,24 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.040 |       12 |       --- |             --- |
+| Clocks                   |     0.039 |       12 |       --- |             --- |
 | Slice Logic              |     0.006 |     8024 |       --- |             --- |
-|   LUT as Logic           |     0.004 |     2489 |     14400 |           17.28 |
+|   LUT as Logic           |     0.004 |     2482 |     14400 |           17.24 |
 |   Register               |    <0.001 |     4003 |     28800 |           13.90 |
 |   LUT as Shift Register  |    <0.001 |      238 |      6000 |            3.97 |
 |   CARRY4                 |    <0.001 |       98 |      4400 |            2.23 |
 |   LUT as Distributed RAM |    <0.001 |       24 |      6000 |            0.40 |
-|   F7/F8 Muxes            |    <0.001 |        5 |     17600 |            0.03 |
+|   F7/F8 Muxes            |    <0.001 |        4 |     17600 |            0.02 |
 |   BUFG                   |    <0.001 |        1 |        32 |            3.13 |
 |   Others                 |     0.000 |      624 |       --- |             --- |
-| Signals                  |     0.016 |     6246 |       --- |             --- |
+| Signals                  |     0.016 |     6243 |       --- |             --- |
 | Block RAM                |     0.031 |       46 |        50 |           92.00 |
 | PLL                      |     0.127 |        1 |         2 |           50.00 |
 | I/O                      |     0.353 |       41 |        54 |           75.93 |
 | XADC                     |     0.004 |        1 |       --- |             --- |
 | PS7                      |     1.175 |        1 |       --- |             --- |
 | Static Power             |     0.133 |          |           |                 |
-| Total                    |     1.884 |          |           |                 |
+| Total                    |     1.883 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -79,7 +79,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.110 |       0.101 |      0.009 |
+| Vccint    |       1.000 |     0.110 |       0.100 |      0.009 |
 | Vccaux    |       1.800 |     0.078 |       0.069 |      0.009 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.139 |       0.138 |      0.001 |
@@ -160,16 +160,16 @@ Table of Contents
 | Name                      | Power (W) |
 +---------------------------+-----------+
 | sparrow5_top              |     1.751 |
-|   dbg_hub                 |     0.005 |
-|     inst                  |     0.005 |
-|       BSCANID.u_xsdbm_id  |     0.005 |
+|   dbg_hub                 |     0.004 |
+|     inst                  |     0.004 |
+|       BSCANID.u_xsdbm_id  |     0.004 |
 |   i_ps                    |     1.195 |
 |     i_gp0_slave           |     0.002 |
 |     system_i              |     1.193 |
 |       sparrow_ps_i        |     1.193 |
 |   pll1                    |     0.127 |
 |     inst                  |     0.127 |
-|   u_dac_                  |     0.417 |
+|   u_dac_                  |     0.416 |
 |     dac_data[0].dac_data_ |     0.037 |
 |     dac_data[1].dac_data_ |     0.038 |
 |     dac_data[2].dac_data_ |     0.038 |
@@ -177,8 +177,8 @@ Table of Contents
 |     dac_data[4].dac_data_ |     0.038 |
 |     dac_data[5].dac_data_ |     0.038 |
 |     dac_data[6].dac_data_ |     0.038 |
-|     ila0                  |     0.049 |
-|       inst                |     0.049 |
+|     ila0                  |     0.048 |
+|       inst                |     0.048 |
 |     mem_dac               |     0.018 |
 |       U0                  |     0.018 |
 +---------------------------+-----------+

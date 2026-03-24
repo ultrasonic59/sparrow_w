@@ -113,9 +113,9 @@ wire end_delay_cnt_dac;
 assign end_delay_cnt_dac=(cnt_delay>=delay_cnt_dac);
 
 wire psk_dac1;
-assign psk_dac1=z_sync[1]&(!z_sync[2]);
+assign psk_dac1=z_sync[1]&(!z_sync[3]);
 wire psk_dac0;
-assign psk_dac0= z_sync[0]&(!z_sync[1]);//(z_sync==4'h3);
+assign psk_dac0= z_sync[0]&(!z_sync[2]);//(z_sync==4'h3);
 
 reg [12:0]dac_cnt;
 wire end_cnt_dac;
@@ -172,7 +172,7 @@ wire [15:0]ps_ram_odata;
 wire [12:0]dac_ram_addr;
 wire [15:0]dac_ram_odata;
 wire [13:0]_dac_ram_odata;
-assign _dac_ram_odata=(ena_cnt_dac)?dac_ram_odata[13:0]:14'h2000;
+assign _dac_ram_odata=(ena_cnt_dac)?dac_ram_odata[13:0]:14'h0;///14'h2000;
 assign t_odat= (ena_tst_dac_out)?dac_odata[13:0]
                 :(on_dds)?(dds_ph_dat? {dac_ram_addr,1'b0}:dds_out)
                 :dds_ph_dat? {dac_cnt,1'b0}:_dac_ram_odata;

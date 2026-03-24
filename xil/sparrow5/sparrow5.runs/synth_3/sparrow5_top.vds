@@ -2,8 +2,8 @@
 # Vivado v2019.1 (64-bit)
 # SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
 # IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-# Start of session at: Mon Mar 23 20:58:25 2026
-# Process ID: 24068
+# Start of session at: Tue Mar 24 12:03:58 2026
+# Process ID: 5984
 # Current directory: D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3
 # Command line: vivado.exe -log sparrow5_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source sparrow5_top.tcl
 # Log file: D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/sparrow5_top.vds
@@ -20,9 +20,9 @@ Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Device 21-403] Loading part xc7z007sclg225-1
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 19856 
+INFO: Helper process launched with PID 8484 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 846.523 ; gain = 183.090
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 846.297 ; gain = 182.137
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'sparrow5_top' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/sparrow5_top.v:14]
 INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_v' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/sparrow_ps_v.v:12]
@@ -64,8 +64,8 @@ INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [D:/proj/velog
 INFO: [Synth 8-6155] done synthesizing module 'axi_slave' (2#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/axi/axi_slave.v:3]
 INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_wrapper' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/hdl/sparrow_ps_wrapper.v:12]
 INFO: [Synth 8-6157] synthesizing module 'sparrow_ps' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:596]
-INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_processing_system7_0_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/sparrow_ps_processing_system7_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_processing_system7_0_0' (3#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/sparrow_ps_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_processing_system7_0_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/sparrow_ps_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_processing_system7_0_0' (3#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/sparrow_ps_processing_system7_0_0_stub.v:6]
 WARNING: [Synth 8-7023] instance 'processing_system7_0' of module 'sparrow_ps_processing_system7_0_0' has 69 connections declared, but only 67 given [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:821]
 INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_ps7_0_axi_periph_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:1004]
 INFO: [Synth 8-6157] synthesizing module 'm00_couplers_imp_13NPGDN' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:12]
@@ -73,27 +73,27 @@ INFO: [Synth 8-6155] done synthesizing module 'm00_couplers_imp_13NPGDN' (4#1) [
 INFO: [Synth 8-6157] synthesizing module 'm01_couplers_imp_1TCPY7H' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:158]
 INFO: [Synth 8-6155] done synthesizing module 'm01_couplers_imp_1TCPY7H' (5#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:158]
 INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_1TO1A0A' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:290]
-INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_auto_pc_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/sparrow_ps_auto_pc_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_auto_pc_0' (6#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/sparrow_ps_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_auto_pc_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/sparrow_ps_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_auto_pc_0' (6#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/sparrow_ps_auto_pc_0_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_1TO1A0A' (7#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:290]
-INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_xbar_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/sparrow_ps_xbar_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_xbar_0' (8#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/sparrow_ps_xbar_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_xbar_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/sparrow_ps_xbar_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_xbar_0' (8#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/sparrow_ps_xbar_0_stub.v:6]
 WARNING: [Synth 8-689] width (3) of port connection 'm_axi_arprot' does not match port width (6) of module 'sparrow_ps_xbar_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:1538]
 WARNING: [Synth 8-689] width (3) of port connection 'm_axi_awprot' does not match port width (6) of module 'sparrow_ps_xbar_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:1542]
 INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_ps7_0_axi_periph_0' (9#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:1004]
-INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_rst_ps7_0_50M_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/sparrow_ps_rst_ps7_0_50M_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_rst_ps7_0_50M_0' (10#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/sparrow_ps_rst_ps7_0_50M_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_rst_ps7_0_50M_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/sparrow_ps_rst_ps7_0_50M_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_rst_ps7_0_50M_0' (10#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/sparrow_ps_rst_ps7_0_50M_0_stub.v:6]
 WARNING: [Synth 8-7023] instance 'rst_ps7_0_50M' of module 'sparrow_ps_rst_ps7_0_50M_0' has 10 connections declared, but only 7 given [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:972]
-INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_xadc_wiz_0_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/sparrow_ps_xadc_wiz_0_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_xadc_wiz_0_0' (11#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/sparrow_ps_xadc_wiz_0_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'sparrow_ps_xadc_wiz_0_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/sparrow_ps_xadc_wiz_0_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_xadc_wiz_0_0' (11#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/sparrow_ps_xadc_wiz_0_0_stub.v:5]
 WARNING: [Synth 8-7023] instance 'xadc_wiz_0' of module 'sparrow_ps_xadc_wiz_0_0' has 27 connections declared, but only 21 given [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:980]
 INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps' (12#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/synth/sparrow_ps.v:596]
 INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_wrapper' (13#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/hdl/sparrow_ps_wrapper.v:12]
 WARNING: [Synth 8-7023] instance 'system_i' of module 'sparrow_ps_wrapper' has 47 connections declared, but only 46 given [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/sparrow_ps_v.v:273]
 INFO: [Synth 8-6155] done synthesizing module 'sparrow_ps_v' (14#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/bd/sparrow_ps/sparrow_ps_v.v:12]
 WARNING: [Synth 8-7023] instance 'i_ps' of module 'sparrow_ps_v' has 34 connections declared, but only 32 given [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/sparrow5_top.v:184]
-INFO: [Synth 8-6157] synthesizing module 'pll24_80' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/pll24_80_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'pll24_80' (15#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/pll24_80_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'pll24_80' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/pll24_80_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'pll24_80' (15#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/pll24_80_stub.v:5]
 INFO: [Synth 8-6157] synthesizing module 'u_dac' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/u_dac.v:3]
 INFO: [Synth 8-6157] synthesizing module 'dac_data_out' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/dac/dac_data_out.v:4]
 INFO: [Synth 8-6157] synthesizing module 'ODDR' [C:/Xilinx/Vivado/2019.1/scripts/rt/data/unisim_comp.v:49468]
@@ -110,14 +110,14 @@ INFO: [Synth 8-6157] synthesizing module 'OBUFDS' [C:/Xilinx/Vivado/2019.1/scrip
 	Parameter SLEW bound to: SLOW - type: string 
 INFO: [Synth 8-6155] done synthesizing module 'OBUFDS' (17#1) [C:/Xilinx/Vivado/2019.1/scripts/rt/data/unisim_comp.v:46012]
 INFO: [Synth 8-6155] done synthesizing module 'dac_data_out' (18#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/dac/dac_data_out.v:4]
-INFO: [Synth 8-6157] synthesizing module 'mem_2kx16' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/mem_2kx16_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'mem_2kx16' (19#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/mem_2kx16_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'mem_2kx16' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/mem_2kx16_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'mem_2kx16' (19#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/mem_2kx16_stub.v:6]
 INFO: [Synth 8-6157] synthesizing module 'phase_acc' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/phase_acc.v:4]
 	Parameter MAX_CNT_BL bound to: 1000 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'phase_acc' (20#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/phase_acc.v:4]
 WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/u_dac.v:213]
-INFO: [Synth 8-6157] synthesizing module 'ila_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/ila_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'ila_0' (21#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-24068-vovag/realtime/ila_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'ila_0' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/ila_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'ila_0' (21#1) [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/.Xil/Vivado-5984-vovag/realtime/ila_0_stub.v:6]
 INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ila0'. This will prevent further optimization [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/u_dac.v:213]
 INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ph_acc'. This will prevent further optimization [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/u_dac.v:202]
 INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'mem_dac'. This will prevent further optimization [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/dac/u_dac.v:186]
@@ -179,7 +179,7 @@ WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[2]
 WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[1]
 WARNING: [Synth 8-3331] design sparrow5_top has unconnected port io_ext[0]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 916.379 ; gain = 252.945
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 916.047 ; gain = 251.887
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -192,10 +192,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 916.379 ; gain = 252.945
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 916.047 ; gain = 251.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 916.379 ; gain = 252.945
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 916.047 ; gain = 251.887
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 16 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -246,23 +246,23 @@ Parsing XDC File [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3
 Finished Parsing XDC File [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1046.660 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1045.750 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1046.660 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1045.750 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'i_ps/system_i/sparrow_ps_i/xadc_wiz_0' at clock pin 's_axi_aclk' is different from the actual clock period '5.250', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'u_dac_/ila0' at clock pin 'clk' is different from the actual clock period '3.968', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'u_dac_/mem_dac' at clock pin 'clka' is different from the actual clock period '5.250', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1048.754 ; gain = 384.594
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z007sclg225-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1048.754 ; gain = 384.594
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -452,13 +452,13 @@ Applied set_property DONT_TOUCH = true for u_dac_/mem_dac. (constraint file  aut
 Applied set_property DONT_TOUCH = true for u_dac_/ila0. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pll1. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1048.754 ; gain = 384.594
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-4471] merging register 'o_busy_reg' into 'enCntD_reg' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/lib/spi_master3p.v:115]
 WARNING: [Synth 8-327] inferring latch for variable 'o_data_reg' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/u_spi.v:113]
 WARNING: [Synth 8-327] inferring latch for variable 'rdata_reg' [D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.srcs/sources_1/imports/rtl/sparrow5_top.v:295]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1048.754 ; gain = 384.594
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -630,7 +630,7 @@ INFO: [Synth 8-3886] merging instance 'u_spi_/o_data_reg[14]' (LD) to 'u_spi_/o_
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\u_spi_/o_data_reg[15] )
 WARNING: [Synth 8-3332] Sequential element (u_spi_/o_data_reg[15]) is unused and will be removed from module sparrow5_top.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1048.754 ; gain = 384.594
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -651,13 +651,13 @@ INFO: [Synth 8-5578] Moved timing constraint from pin 'pll1/clk_out3' to pin 'pl
 INFO: [Synth 8-5578] Moved timing constraint from pin 'pll1/clk_out4' to pin 'pll1/bbstub_clk_out4/O'
 INFO: [Synth 8-5819] Moved 8 constraints on hierarchical pins to their respective driving/loading pins
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1048.754 ; gain = 384.594
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Finished Timing Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1048.754 ; gain = 384.594
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -669,7 +669,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Finished Technology Mapping : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1048.754 ; gain = 384.594
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -694,7 +694,7 @@ Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-4560] design has 4 instantiated BUFGs while the available bufg limit from the part is 3
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Finished IO Insertion : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1048.754 ; gain = 384.594
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -707,7 +707,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1048.754 ; gain = 384.594
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -719,25 +719,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1048.754 ; gain = 384.594
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1048.754 ; gain = 384.594
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1048.754 ; gain = 384.594
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1048.754 ; gain = 384.594
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -772,22 +772,21 @@ Report Cell Usage:
 |9     |BUFG                              |     4|
 |10    |CARRY4                            |    20|
 |11    |LUT1                              |     6|
-|12    |LUT2                              |    25|
-|13    |LUT3                              |   123|
-|14    |LUT4                              |    86|
-|15    |LUT5                              |    35|
-|16    |LUT6                              |   170|
-|17    |MUXF7                             |     1|
-|18    |ODDR                              |     7|
-|19    |FDCE                              |    71|
-|20    |FDE_1                             |    16|
-|21    |FDRE                              |   347|
-|22    |LD                                |    24|
-|23    |IBUF                              |     2|
-|24    |IOBUF                             |     1|
-|25    |OBUF                              |     8|
-|26    |OBUFDS                            |     9|
-|27    |OBUFT                             |    11|
+|12    |LUT2                              |    24|
+|13    |LUT3                              |   122|
+|14    |LUT4                              |    88|
+|15    |LUT5                              |    37|
+|16    |LUT6                              |   169|
+|17    |ODDR                              |     7|
+|18    |FDCE                              |    71|
+|19    |FDE_1                             |    16|
+|20    |FDRE                              |   347|
+|21    |LD                                |    24|
+|22    |IBUF                              |     2|
+|23    |IOBUF                             |     1|
+|24    |OBUF                              |     8|
+|25    |OBUFDS                            |     9|
+|26    |OBUFT                             |    11|
 +------+----------------------------------+------+
 
 Report Instance Areas: 
@@ -795,13 +794,13 @@ Report Instance Areas:
 |      |Instance                    |Module                        |Cells |
 +------+----------------------------+------------------------------+------+
 |1     |top                         |                              |  1693|
-|2     |  i_ps                      |sparrow_ps_v                  |  1039|
+|2     |  i_ps                      |sparrow_ps_v                  |  1042|
 |3     |    i_gp0_slave             |axi_slave                     |   232|
 |4     |    system_i                |sparrow_ps_wrapper            |   691|
 |5     |      sparrow_ps_i          |sparrow_ps                    |   690|
 |6     |        ps7_0_axi_periph    |sparrow_ps_ps7_0_axi_periph_0 |   440|
 |7     |          s00_couplers      |s00_couplers_imp_1TO1A0A      |   177|
-|8     |  u_dac_                    |u_dac                         |   485|
+|8     |  u_dac_                    |u_dac                         |   482|
 |9     |    ph_acc                  |phase_acc                     |   131|
 |10    |    \dac_data[0].dac_data_  |dac_data_out                  |     5|
 |11    |    \dac_data[1].dac_data_  |dac_data_out_0                |     6|
@@ -809,22 +808,22 @@ Report Instance Areas:
 |13    |    \dac_data[3].dac_data_  |dac_data_out_2                |     6|
 |14    |    \dac_data[4].dac_data_  |dac_data_out_3                |     6|
 |15    |    \dac_data[5].dac_data_  |dac_data_out_4                |     6|
-|16    |    \dac_data[6].dac_data_  |dac_data_out_5                |     7|
+|16    |    \dac_data[6].dac_data_  |dac_data_out_5                |     6|
 |17    |  u_spi_                    |u_spi                         |   108|
 |18    |    spi_                    |spi_master3p                  |    71|
 +------+----------------------------+------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1048.754 ; gain = 384.594
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 31 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 1049.637 ; gain = 252.945
-Synthesis Optimization Complete : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1049.637 ; gain = 386.203
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:08 ; elapsed = 00:00:12 . Memory (MB): peak = 1048.754 ; gain = 251.887
+Synthesis Optimization Complete : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1048.754 ; gain = 384.594
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 78 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 77 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1064.766 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1061.062 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 41 instances were transformed.
   FDE_1 => FDRE (inverted pins: C): 16 instances
@@ -834,12 +833,10 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 127 Infos, 100 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1064.766 ; gain = 649.953
-INFO: [Common 17-600] The following parameters have non-default value.
-tcl.collectionResultDisplayLimit
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1064.766 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1061.062 ; gain = 645.883
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1061.062 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3/sparrow5_top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file sparrow5_top_utilization_synth.rpt -pb sparrow5_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Mar 23 20:58:46 2026...
+INFO: [Common 17-206] Exiting Vivado at Tue Mar 24 12:04:26 2026...
