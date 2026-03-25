@@ -23,6 +23,7 @@
 
 #define NUM_DIG_KUS		    5
 #define NUM_DIG_OFFS	    5
+#define NUM_DIG_ATT	        2
 
 #define	DEF_LENGTH			1000
 
@@ -87,6 +88,8 @@
 #define MIN_OFFS		0
 #define MAX_OFFS		4096
 
+#define MIN_ATT		    0
+#define MAX_ATT		    91
 
 #define MIN_DEV_FREQ		1
 #define MAX_DEV_FREQ		10000000

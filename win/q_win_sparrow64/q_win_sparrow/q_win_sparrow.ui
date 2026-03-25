@@ -477,6 +477,37 @@
       <string>auto</string>
      </property>
     </widget>
+    <widget class="QLabel" name="label_att">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>440</y>
+       <width>51</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>ATT</string>
+     </property>
+    </widget>
+    <widget class="param_ed" name="ed_att">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>440</y>
+       <width>71</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </widget>
    <widget class="PlotterWidget" name="widget_setted" native="true">
     <property name="geometry">

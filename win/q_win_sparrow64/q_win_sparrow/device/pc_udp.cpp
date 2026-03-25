@@ -412,6 +412,13 @@ bool pc_udp::send_param()
 		tnum_bytes += sizeof(quint16);
 		m_changed_param &= ~CHNG_OFFS;
 	}
+	if (m_changed_param & CHNG_ATTENUATOR)
+	{
+		memcpy(par_trk_buff + t_offs, &m_sent_par.attenuator, sizeof(quint8));
+		t_offs += sizeof(quint8);
+		tnum_bytes += sizeof(quint8);
+		m_changed_param &= ~CHNG_ATTENUATOR;
+	}
 
 	quint16 tnum_bytes1;
 	tnum_bytes1 = tnum_bytes + OFFS_FLG_CHNG;

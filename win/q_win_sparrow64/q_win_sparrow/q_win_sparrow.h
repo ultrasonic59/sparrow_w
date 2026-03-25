@@ -46,6 +46,7 @@ protected slots:
 	void kus_changed();
 	void offs_changed();
 	void dds_clicked();
+	void att_changed();
 
 public slots:
 

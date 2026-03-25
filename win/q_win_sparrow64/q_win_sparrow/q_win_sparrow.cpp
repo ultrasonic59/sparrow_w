@@ -182,6 +182,12 @@ q_win_sparrow::q_win_sparrow(QWidget *parent) :
 	ui.checkBox_dds->setChecked(p_par_contr->dds_enable);
 	connect(ui.checkBox_dds, SIGNAL(clicked()), this, SLOT(dds_clicked()));
 
+	ui.ed_att->set_num_dig(NUM_DIG_ATT);
+	ui.ed_att->set_data(reinterpret_cast<unsigned short*>(&p_sent_par->attenuator));
+	ui.ed_att->set_min_max(MIN_ATT, MAX_ATT);
+	ui.ed_att->show_par();
+	connect(ui.ed_att, SIGNAL(param_changed()), this, SLOT(att_changed()));
+
 
 	plot_array.fill(0);
 	plot_array.resize(plot_arr_length);
@@ -313,6 +319,12 @@ void q_win_sparrow::offs_changed()
 {
 	device_cmd.g_changed_param |= CHNG_OFFS;
 }
+
+void q_win_sparrow::att_changed()
+{
+	device_cmd.g_changed_param |= CHNG_ATTENUATOR;
+}
+
 void q_win_sparrow::dds_clicked()
 {
 	device_cmd.curr_par_contr.dds_enable = ui.checkBox_dds->isChecked();
