@@ -30,10 +30,10 @@ src/uart/uart.o src/uart/uart.o: ../src/uart/uart.c \
  ../../octopuz_test_bsp/ps7_cortexa9_0/include/queue.h \
  ../../octopuz_test_bsp/ps7_cortexa9_0/include/timers.h \
  ../../octopuz_test_bsp/ps7_cortexa9_0/include/task.h \
- E:\proj\velograph\umka2\xil\umka2\umka2.sdk\octopuz_test\src\hdlc/_hdlc.h \
- E:\proj\velograph\umka2\xil\umka2\umka2.sdk\octopuz_test\src\include/octopuz_types.h \
- E:\proj\velograph\umka2\xil\umka2\umka2.sdk\octopuz_test\src\include/octopuz_config.h \
- E:\proj\velograph\umka2\xil\umka2\umka2.sdk\octopuz_test\src\lib/ringbuffer.h
+ D:\proj\velograph\sparrow_w\xil\sparrow5\sparrow5.sdk\octopuz_test\src\hdlc/_hdlc.h \
+ D:\proj\velograph\sparrow_w\xil\sparrow5\sparrow5.sdk\octopuz_test\src\include/octopuz_types.h \
+ D:\proj\velograph\sparrow_w\xil\sparrow5\sparrow5.sdk\octopuz_test\src\include/octopuz_config.h \
+ D:\proj\velograph\sparrow_w\xil\sparrow5\sparrow5.sdk\octopuz_test\src\lib/ringbuffer.h
 
 ../../octopuz_test_bsp/ps7_cortexa9_0/include/xplatform_info.h:
 
@@ -97,10 +97,10 @@ src/uart/uart.o src/uart/uart.o: ../src/uart/uart.c \
 
 ../../octopuz_test_bsp/ps7_cortexa9_0/include/task.h:
 
-E:\proj\velograph\umka2\xil\umka2\umka2.sdk\octopuz_test\src\hdlc/_hdlc.h:
+D:\proj\velograph\sparrow_w\xil\sparrow5\sparrow5.sdk\octopuz_test\src\hdlc/_hdlc.h:
 
-E:\proj\velograph\umka2\xil\umka2\umka2.sdk\octopuz_test\src\include/octopuz_types.h:
+D:\proj\velograph\sparrow_w\xil\sparrow5\sparrow5.sdk\octopuz_test\src\include/octopuz_types.h:
 
-E:\proj\velograph\umka2\xil\umka2\umka2.sdk\octopuz_test\src\include/octopuz_config.h:
+D:\proj\velograph\sparrow_w\xil\sparrow5\sparrow5.sdk\octopuz_test\src\include/octopuz_config.h:
 
-E:\proj\velograph\umka2\xil\umka2\umka2.sdk\octopuz_test\src\lib/ringbuffer.h:
+D:\proj\velograph\sparrow_w\xil\sparrow5\sparrow5.sdk\octopuz_test\src\lib/ringbuffer.h:
