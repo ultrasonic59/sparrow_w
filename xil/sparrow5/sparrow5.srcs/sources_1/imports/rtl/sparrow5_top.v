@@ -79,18 +79,7 @@ module sparrow5_top
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
-  ///output clk40;
-  ///output fclk;
-  ///input [15:0]idata;
- /// output [0:14]o_addr;
-  ///output [0:1]o_be;
- /// output [0:15]o_data;
-  ///output [0:0]o_ncs;
-  ///output o_nrd;
- /// output o_nwr;
- /// output o_txd_c;
-///  input i_rxd_c;
-input i_clk24;
+  input i_clk24;
 ///===================================
 ///======ext io====================
 ////inout [11:0]io_ext;
