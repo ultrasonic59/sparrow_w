@@ -14,6 +14,10 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="D:\proj\emu_thick\sparrow5\sparrow5.sdk\thk_rx"/>
+			<item value="D:\proj\emu_thick\sparrow5\sparrow5.sdk\thk_fsbl"/>
+			<item value="D:\proj\emu_thick\sparrow5\sparrow5.sdk\thk_threadx"/>
+			<item value="D:\proj\emu_thick\sparrow5\sparrow5.sdk\thk_rtos"/>
 			<item value="D:\proj\velograph\octopuz\xil\octopuz3a\octopuz3a.sdk\FreeRTOS1\button_with_interrupts"/>
 			<item value="D:\proj\velograph\octopuz\xil\octopuz3a\octopuz3a.sdk\FreeRTOS1"/>
 			<item value="D:\proj\velograph\octopuz\xil\octopuz3a\octopuz3a.sdk\freertos\CORTEX_A9_Zynq_ZC702"/>

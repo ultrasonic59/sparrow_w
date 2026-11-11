@@ -1,0 +1,101 @@
+#include "xparameters.h"
+#include "xiicps.h"
+#include "xstatus.h"
+#include "xil_printf.h"
+
+#define MCP4725_ADDR    0x60    // 0xC0 >> 1
+#define MCP4725_WRITEDAC 0x40   //  в DAC
+
+#define IIC_DEVICE_ID   XPAR_XIICPS_0_DEVICE_ID  // xparameters.h
+
+XIicPs Iic;     //
+XIicPs_Config *Config;
+
+#define I2C1_BASEADDR 0xE0005000
+
+void I2C1_Init(void) {
+    memset(&Iic, 0, sizeof(Iic));
+    Iic.Config.BaseAddress = I2C1_BASEADDR;
+    XIicPs_Reset(&Iic);
+
+    // Control Register: Master mode + interrupts off
+    *(u32*)(I2C1_BASEADDR + 0x100) = 0x00000041;
+}
+int I2C_Scan(void) {
+    u8 dummy;
+    xil_printf("FULL I2C Scan (0x08..0x77):\r\n");
+
+    for (u8 addr = 0x08; addr < 0x78; addr++) {
+        int Status = XIicPs_MasterSendPolled(&Iic, &dummy, 0, addr);
+        if (Status == XST_SUCCESS) {
+            xil_printf("  ACK: 0x%02X\r\n", addr);
+        }
+    }
+    return XST_SUCCESS;
+}
+
+
+
+
+
+int MCP4725_Write(uint16_t dac_value) {
+    u8 SendBuffer[3];
+    
+    SendBuffer[0] = MCP4725_WRITEDAC;           //
+    SendBuffer[1] = (dac_value >> 4) & 0xFF;    //  (D11..D4)
+    SendBuffer[2] = (dac_value << 4) & 0xF0;    // (D3..D0)
+
+    return XIicPs_MasterSendPolled(&Iic, SendBuffer, 3, MCP4725_ADDR);
+}
+int main() {
+    int Status;
+
+ ///   xil_printf("MCP4725 I2C Test\r\n");
+    xil_printf("=== MIO52/53 + I2C1 DIAGNOSIS ===\r\n");
+    u32 mio52 = *(u32*)0xF80007D0;  // MIO52 Pin Ctrl
+    u32 mio53 = *(u32*)0xF80007D4;  // MIO53 Pin Ctrl
+    xil_printf("MIO52=0x%08X  MIO53=0x%08X\r\n", mio52, mio53);
+
+    xil_printf("IIC_DEVICE_ID = %d\r\n", IIC_DEVICE_ID);
+     xil_printf("Config = %p\r\n", Config);
+
+    // 1.
+    Config = XIicPs_LookupConfig(IIC_DEVICE_ID);
+    if (Config == NULL) {
+        xil_printf("I2C Config not found\r\n");
+        return XST_FAILURE;
+    }
+    xil_printf("Config OK: BaseAddr=0x%08X\r\n", Config->BaseAddress);
+
+    Status = XIicPs_CfgInitialize(&Iic, Config, Config->BaseAddress);
+    if (Status != XST_SUCCESS) {
+        xil_printf("I2C Init failed\r\n");
+        return XST_FAILURE;
+    }
+    xil_printf("I2C1 Init OK\r\n");
+    u32 status = XIicPs_ReadReg(Iic.Config.BaseAddress, XIICPS_SR_OFFSET);
+    xil_printf("I2C1 Status Reg = 0x%08X\r\n", status);
+    I2C1_Init();
+
+   /// XIicPs_SetOptions(&Iic, XIICPS_MASTER_OPTION);
+  ///   XIicPs_SetSerialClock(&Iic, 100000);  // 100 kHz
+    // 1. FULL I2C Scan
+      I2C_Scan();
+return 0;
+    // 2.
+    for (int i = 0; i < 10; i++) {
+        uint16_t dac_val = (i * 409) % 4096;  // 0..4095
+        Status = MCP4725_Write(dac_val);
+        
+        if (Status == XST_SUCCESS) {
+            xil_printf("DAC=%4d OK\r\n", dac_val);
+        } else {
+            xil_printf("DAC=%4d FAIL (0x%08X)\r\n", dac_val, Status);
+        }
+        
+        usleep(100000);  // 100ms
+    }
+
+    xil_printf("Test complete\r\n");
+    return XST_SUCCESS;
+}

@@ -1,0 +1,7 @@
+//arch = zynq; split = false; format = BIN
+the_ROM_image:
+{
+	[bootloader]../Debug/thk_fsbl.elf
+	../../sparrow5_top_hw_platform_0/sparrow5_top.bit
+	../../thk_rtos/Debug/thk_rtos.elf
+}

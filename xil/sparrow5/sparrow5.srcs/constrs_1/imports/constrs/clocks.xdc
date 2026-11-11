@@ -39,8 +39,8 @@ create_clock -period 6.250 -name VIRTUAL_clk_out2_pll24_80 -waveform {0.000 3.12
 
 set_false_path -from [get_clocks clk_fpga_0] -to [get_clocks clk_fpga_1]
 set_false_path -from [get_clocks clk_fpga_1] -to [get_clocks clk_fpga_0]
-set_false_path -from [get_clocks clk_fpga_0] -to [get_clocks -of_objects [get_pins pll1/inst/plle2_adv_inst/CLKOUT0]]
-set_false_path -from [get_clocks clk_fpga_1] -to [get_clocks -of_objects [get_pins pll1/inst/plle2_adv_inst/CLKOUT0]]
+set_false_path -from [get_clocks clk_fpga_0] -to [get_clocks -of_objects [get_pins pll1/clk_out1]]
+set_false_path -from [get_clocks clk_fpga_1] -to [get_clocks -of_objects [get_pins pll1/clk_out1]]
 ###set_false_path -from [list [get_clocks clk_fpga_1] clk_out1_pll24_80pll1/clk_out2] -to [list [get_clocks clk_fpga_0] [get_pins pll1/clk_out1]]
 ###set_false_path -from [list [get_clocks clk_fpga_1] [get_clocks [get_clocks -of_objects [get_pins pll1/inst/plle2_adv_inst/CLKOUT0]]] [get_clocks u_us/o_rdac_kus_clk]] -to [list [get_clocks clk_fpga_0] [get_pins pll1/clk_out3]]
 ###set_false_path -from [list [get_clocks clk_fpga_1] [get_clocks [get_clocks -of_objects [get_pins pll1/inst/plle2_adv_inst/CLKOUT0]]] [get_clocks u_us/o_rdac_kus_clk]] -to [list [get_clocks clk_fpga_0] [get_pins pll1/clk_out1]]
