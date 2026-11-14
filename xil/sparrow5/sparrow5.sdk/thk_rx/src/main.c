@@ -3,6 +3,7 @@
 #include "thk_app.h"
 #include "thk_bank.h"
 #include "usb_com.h"
+#include "usb_ehci.h"
 
 #include "xil_io.h"
 #include "xil_printf.h"
@@ -179,6 +180,22 @@ static void fill_status(ThkStatusBody* status)
     low = fpga_read(DAC_REG_INDEX(OFFS_TRIG_L));
     high = fpga_read(DAC_REG_INDEX(OFFS_TRIG_H));
     status->trigger_count = (uint32_t)low | ((uint32_t)high << 16);
+    if (com_is_open())
+        status->flags = (uint16_t)(status->flags | 1u);
+}
+
+static void com_log_bytes(const char* tag, const uint8_t* data, uint16_t len)
+{
+    uint16_t i;
+    xil_printf("COM %s len=%u:", tag, (unsigned)len);
+    for (i = 0; i < len; ++i)
+        xil_printf(" %02x", (unsigned)data[i]);
+    xil_printf(" |'");
+    for (i = 0; i < len; ++i) {
+        const uint8_t c = data[i];
+        xil_printf("%c", (c >= 32u && c < 127u) ? (char)c : '.');
+    }
+    xil_printf("'\r\n");
 }
 
 static uint16_t seal_reply(uint16_t type, uint32_t sequence, const void* payload, uint16_t length, uint8_t* out,
@@ -200,6 +217,18 @@ static uint16_t seal_reply(uint16_t type, uint32_t sequence, const void* payload
     return (uint16_t)(sizeof(header) + length);
 }
 
+/* STATUS payload: ThkStatusBody + uint16_t THK_RX_FW_VERSION (LE). */
+static uint16_t seal_status(uint32_t sequence, uint8_t* out, uint16_t out_cap)
+{
+    ThkStatusBody status;
+    uint8_t body[sizeof(ThkStatusBody) + sizeof(uint16_t)];
+    uint16_t ver = (uint16_t)THK_RX_FW_VERSION;
+    fill_status(&status);
+    memcpy(body, &status, sizeof(status));
+    memcpy(body + sizeof(status), &ver, sizeof(ver));
+    return seal_reply(THK_STATUS, sequence, body, (uint16_t)sizeof(body), out, out_cap);
+}
+
 uint16_t thk_handle(const uint8_t* frame, uint16_t frame_len, uint8_t* out, uint16_t out_cap)
 {
     ThkHeader header;
@@ -211,9 +240,7 @@ uint16_t thk_handle(const uint8_t* frame, uint16_t frame_len, uint8_t* out, uint
         return 0;
     payload = frame + sizeof(header);
     if (header.type == THK_HELLO) {
-        ThkStatusBody status;
-        fill_status(&status);
-        return seal_reply(THK_STATUS, header.sequence, &status, sizeof(status), out, out_cap);
+        return seal_status(header.sequence, out, out_cap);
     }
     if (header.type == THK_WAVE) {
         ThkAckBody ack;
@@ -232,7 +259,6 @@ uint16_t thk_handle(const uint8_t* frame, uint16_t frame_len, uint8_t* out, uint
     }
     if (header.type == THK_CTRL) {
         ThkCtrlBody command;
-        ThkStatusBody status;
         if (header.length >= sizeof(command)) {
             memcpy(&command, payload, sizeof(command));
             if (command.command == THK_CTRL_STOP) {
@@ -259,42 +285,90 @@ uint16_t thk_handle(const uint8_t* frame, uint16_t frame_len, uint8_t* out, uint
                     g_bank.last_error = 0;
             }
         }
-        fill_status(&status);
-        return seal_reply(THK_STATUS, header.sequence, &status, sizeof(status), out, out_cap);
+        return seal_status(header.sequence, out, out_cap);
     }
     if (header.type == THK_TEXT) {
         ThkAckBody ack;
-        ThkTextInfo info;
+        uint8_t body[sizeof(ThkAckBody) + 64];
+        uint8_t rx[64];
+        uint16_t rx_len = 0;
         uint16_t ack_status = THK_ACK_FORMAT;
+        uint16_t body_len;
+        uint16_t sealed;
+        uint32_t baud = 0;
+        uint16_t wait_ms = 100;
+        uint16_t text_off = 4;
+        const uint8_t* text;
+        uint16_t text_len;
         memset(&ack, 0, sizeof(ack));
-        if (header.length >= sizeof(info)) {
-            memcpy(&info, payload, sizeof(info));
-            if (com_write(info.baud, payload + sizeof(info), (uint16_t)(header.length - sizeof(info))) == 0)
+        memset(rx, 0, sizeof(rx));
+        if (header.length >= 4u) {
+            memcpy(&baud, payload, sizeof(baud));
+            /* New ThkTextInfo is 8 bytes (baud + rx_timeout_ms + reserved). */
+            if (header.length >= (uint16_t)sizeof(ThkTextInfo)) {
+                ThkTextInfo info;
+                memcpy(&info, payload, sizeof(info));
+                baud = info.baud;
+                if (info.rx_timeout_ms != 0)
+                    wait_ms = info.rx_timeout_ms;
+                text_off = (uint16_t)sizeof(ThkTextInfo);
+            }
+            if (wait_ms > 800u)
+                wait_ms = 800u;
+            text = payload + text_off;
+            text_len = (uint16_t)(header.length - text_off);
+            xil_printf("COM TEXT open=%d baud=%u wait=%u\r\n",
+                       com_is_open(), (unsigned)baud, (unsigned)wait_ms);
+            com_log_info();
+            /* Drop stale UART bytes so Att "N\\r" is not mixed with noise. */
+            {
+                uint16_t drain = 0;
+                com_read(rx, (uint16_t)sizeof(rx), &drain, 20);
+                if (drain)
+                    com_log_bytes("drain", rx, drain);
+                memset(rx, 0, sizeof(rx));
+            }
+            com_log_bytes("tx", text, text_len);
+            if (com_write(baud, text, text_len) == 0) {
                 ack_status = THK_ACK_OK;
-            else
+                /* Short turnaround only — do not purge RX after TX (would drop Att reply). */
+                ehci_wait_ms(2);
+                /* Att: "0\\r" -> "1\\r". Send COM uses short wait; Att probe asks ~500 ms. */
+                com_read(rx, (uint16_t)sizeof(rx), &rx_len, wait_ms);
+                com_log_bytes("rx", rx, rx_len);
+            } else {
                 ack_status = THK_ERR_COM;
+                xil_printf("COM tx fail\r\n");
+            }
         }
         ack.ack_sequence = header.sequence;
+        ack.chunk_index = rx_len;
         ack.status = ack_status;
-        return seal_reply(THK_ACK, header.sequence, &ack, sizeof(ack), out, out_cap);
+        memcpy(body, &ack, sizeof(ack));
+        if (rx_len > 0)
+            memcpy(body + sizeof(ack), rx, rx_len);
+        body_len = (uint16_t)(sizeof(ack) + rx_len);
+        sealed = seal_reply(THK_ACK, header.sequence, body, body_len, out, out_cap);
+        if (sealed == 0) {
+            /* Always return ACK even if RX tail does not fit the UDP reply buffer. */
+            ack.chunk_index = 0;
+            sealed = seal_reply(THK_ACK, header.sequence, &ack, (uint16_t)sizeof(ack), out, out_cap);
+        }
+        return sealed;
     }
     return 0;
 }
 
+
 int main(void)
 {
-
     thk_bank_reset(&g_bank);
-    if (!dac_hw_init()) {
+    xil_printf("thk_rx fw %u.%u\r\n",
+               (unsigned)(THK_RX_FW_VERSION >> 8),
+               (unsigned)(THK_RX_FW_VERSION & 0xffu));
+    if (!dac_hw_init())
         g_bank.last_error = THK_ERR_DAC;
-        xil_printf("DAC SPI fail\r\n");
-    } else {
-        xil_printf("DAC ready\r\n");
-    }
-    if (mcp4725_init() != 0)
-        xil_printf("I2C init fail\r\n");
-    else
-        xil_printf("MCP4725 0x60 amp, 0x61 offset\r\n");
+    (void)mcp4725_init();
     eth_run();
     return 0;
 }

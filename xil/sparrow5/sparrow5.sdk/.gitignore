@@ -1,0 +1,18 @@
+# Xilinx SDK noise
+.metadata/
+.sdk/
+.Xil/
+RemoteSystemsTempFiles/
+webtalk/
+**/Debug/
+**/Release/
+**/*.o
+**/*.d
+**/*.elf
+**/*.bin
+**/*.bit
+**/*_bsp/
+*_hw_platform_*/
+*.hdf
+SDK.log
+.gitignore.bak

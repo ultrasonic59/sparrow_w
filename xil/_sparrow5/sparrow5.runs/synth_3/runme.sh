@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='D:/proj/velograph/sparrow_w/xil/sparrow5/sparrow5.runs/synth_3'
+HD_PWD='D:/proj/emu_thick/sparrow5/sparrow5.runs/synth_3'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

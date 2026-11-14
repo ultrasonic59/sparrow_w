@@ -14,6 +14,9 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="D:\proj\brook_w\xil\sparrow5\sparrow5.sdk\thk_sd_loader"/>
+			<item value="D:\proj\brook_w\xil\sparrow5\sparrow5.sdk\fsbl_otter_sd_bsp"/>
+			<item value="D:\proj\brook_w\xil\sparrow5\sparrow5.sdk\fsbl_otter_sd"/>
 			<item value="D:\proj\emu_thick\sparrow5\sparrow5.sdk\thk_rx"/>
 			<item value="D:\proj\emu_thick\sparrow5\sparrow5.sdk\thk_fsbl"/>
 			<item value="D:\proj\emu_thick\sparrow5\sparrow5.sdk\thk_threadx"/>

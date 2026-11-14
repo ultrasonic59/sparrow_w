@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
--- Date        : Wed Nov 11 15:51:51 2026
+-- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
+-- Date        : Thu Nov 12 18:58:44 2026
 -- Host        : vovag running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
---               D:/proj/emu_thick/sparrow5/sparrow5.srcs/sources_1/ip/pll24_80/pll24_80_stub.vhdl
+--               D:/proj/brook_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/pll24_80/pll24_80_stub.vhdl
 -- Design      : pll24_80
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z007sclg225-1

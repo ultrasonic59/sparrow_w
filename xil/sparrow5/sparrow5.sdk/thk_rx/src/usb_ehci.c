@@ -2,7 +2,6 @@
 
 #include "xil_cache.h"
 #include "xil_io.h"
-#include "xil_printf.h"
 #include "xparameters.h"
 #include "xtime_l.h"
 
@@ -230,10 +229,8 @@ int ehci_init(void)
     for (i = 0; i < 100 && (usb_rd(USB_STS) & STS_ASS) == 0; ++i)
         ehci_wait_ms(1);
 
-    if ((usb_rd(0x100) & 0xffu) == 0) {
-        xil_printf("usb: controller off %08x\r\n", usb_rd(0x100));
+    if ((usb_rd(0x100) & 0xffu) == 0)
         return -1;
-    }
 
     port = usb_rd(USB_PORTSC);
     port &= ~PORT_W1C;
@@ -248,10 +245,8 @@ int ehci_init(void)
             break;
         ehci_wait_ms(1);
     }
-    if ((usb_rd(USB_PORTSC) & PORT_CCS) == 0) {
-        xil_printf("usb: no connect portsc %08x\r\n", usb_rd(USB_PORTSC));
+    if ((usb_rd(USB_PORTSC) & PORT_CCS) == 0)
         return -1;
-    }
     ehci_wait_ms(100);
 
     port = usb_rd(USB_PORTSC);
@@ -270,14 +265,10 @@ int ehci_init(void)
         ehci_wait_ms(1);
     }
     port = usb_rd(USB_PORTSC);
-    if ((port & PORT_PE) == 0) {
-        xil_printf("usb: port disabled portsc %08x\r\n", port);
+    if ((port & PORT_PE) == 0)
         return -1;
-    }
-    if ((((port >> 26) & 3u) != 2u) && (port & (1u << 9)) == 0) {
-        xil_printf("usb: not high-speed portsc %08x\r\n", port);
+    if ((((port >> 26) & 3u) != 2u) && (port & (1u << 9)) == 0)
         return -1;
-    }
     ehci_wait_ms(20);
     return 0;
 }
@@ -362,17 +353,17 @@ int ehci_bulk_out_tt(uint8_t addr, uint8_t speed, uint8_t hub, uint8_t port, uin
     return bulk_out_xfer(addr, speed, hub, port, ep, mps, data, length, toggle);
 }
 
-int ehci_bulk_in(uint8_t addr, uint8_t ep, uint16_t mps, void* data, uint16_t length, uint16_t* actual, int* toggle,
-                 uint32_t timeout_ms)
+static int bulk_in_xfer(uint8_t addr, uint8_t speed, uint8_t hub, uint8_t port, uint8_t ep, uint16_t mps, void* data,
+                        uint16_t length, uint16_t* actual, int* toggle, uint32_t timeout_ms)
 {
     uint16_t got = 0;
     int rc;
-    if (length > sizeof(g_bulk) || !toggle)
+    if (length > sizeof(g_bulk) || !toggle || mps == 0)
         return -1;
     cache_flush(g_bulk, length);
     cache_inval(g_bulk, length);
     prepare_bulk_qtd(1u << 8, *toggle ? 1u : 0u, length);
-    rc = run_chain(addr, ep, mps, 0, 1, timeout_ms, length, &got, 2, 0, 0);
+    rc = run_chain(addr, ep, mps, 0, 1, timeout_ms, length, &got, speed, hub, port);
     if (rc != 0)
         return rc;
     cache_inval(g_bulk, got ? got : length);
@@ -383,4 +374,16 @@ int ehci_bulk_in(uint8_t addr, uint8_t ep, uint16_t mps, void* data, uint16_t le
     if (data && got)
         memcpy(data, g_bulk, got);
     return 0;
+}
+
+int ehci_bulk_in(uint8_t addr, uint8_t ep, uint16_t mps, void* data, uint16_t length, uint16_t* actual, int* toggle,
+                 uint32_t timeout_ms)
+{
+    return bulk_in_xfer(addr, 2, 0, 0, ep, mps, data, length, actual, toggle, timeout_ms);
+}
+
+int ehci_bulk_in_tt(uint8_t addr, uint8_t speed, uint8_t hub, uint8_t port, uint8_t ep, uint16_t mps, void* data,
+                    uint16_t length, uint16_t* actual, int* toggle, uint32_t timeout_ms)
+{
+    return bulk_in_xfer(addr, speed, hub, port, ep, mps, data, length, actual, toggle, timeout_ms);
 }

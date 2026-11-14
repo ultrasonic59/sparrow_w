@@ -218,7 +218,7 @@ sparrow_ps_v i_ps
  /// .uart0_txd(o_txd_c)
 );
 //// assign o_ncs = !(ps_sys_addr[31:16]==16'h43c0);///|o_addr[15:8];///o_data[0];///o_addr[0];///o_data[0];///o_addr[1];///o_nwr;///tst_clk;////o_ncs;///tst_clk;////i_zz;
-wire _clk200;
+wire _clk250;
 wire _clk80;
 wire _clk160;
 wire clk96;
@@ -227,7 +227,7 @@ tri [11:0]io_ext;
 
 wire clk200;
 wire clk80;
-assign clk200=_clk200;
+assign clk200=_clk250;
 assign clk80=_clk80;
 ///assign clk40=fclk[3];
 ///assign clk80=fclk[2];
@@ -237,7 +237,7 @@ pll24_80 pll1
   // Clock out ports
  .clk_out1(_clk80),
  .clk_out2(_clk160),
- .clk_out3(_clk200),
+ .clk_out3(_clk250),
  .clk_out4(clk96),
   // Status and control signals
   .reset(1'b0),
@@ -359,7 +359,7 @@ assign cs_udac=((ps_sys_addr[15:14]== `ADDR_DAC_RAM)|| ((ps_sys_addr[15:14]== `A
                 &(ps_sys_addr[13:12]== `ADDR_DAC_REGS)))
                  &(ps_sys_cs);                      
 u_dac u_dac_(.i_ps_clk(ps_sys_clk)
-            ,.i_clk(_clk160),.i_clr(clr)
+            ,.i_clk(_clk250),.i_clr(clr)
  			,.i_cs(cs_udac),.i_we(ps_sys_wen),.i_addr(ps_sys_addr)
 			,.i_data(ps_sys_wdata[15:0]),.o_data(udac_odata)
            
@@ -367,7 +367,7 @@ u_dac u_dac_(.i_ps_clk(ps_sys_clk)
  ////           ,.o_dac_sync_p(o_dac_sync_p),.o_dac_sync_m(o_dac_sync_m)
            ,.o_dac_dclk_p(o_dac_dclk_p),.o_dac_dclk_m(o_dac_dclk_m)
            ,.o_dac_dat_p(o_dac_dat_p),.o_dac_dat_m(o_dac_dat_m)
-           ,.i_sync(r_sync[1])
+           ,.i_sync(i_sync[1])
 		      ,.tst(tst_udac));
 ///assign o_ext=tst_udac;		      
 ///========================================
@@ -470,6 +470,7 @@ assign t_ext[3]=tst_clk[2];
 assign o_zz[1:0]=r_sync[1:0];
 
 assign o_zz[4:2]=tst_udac[2:0];
+assign o_zz[5]=tst_udac[3];
 
 /*
 always @*

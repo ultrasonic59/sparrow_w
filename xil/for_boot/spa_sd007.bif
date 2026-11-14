@@ -3,5 +3,5 @@ the_ROM_image:
 {
 	[bootloader]D:\proj\velograph\sparrow_w\xil\for_boot\thk_fsbl.elf
 	D:\proj\velograph\sparrow_w\xil\for_boot\sparrow5_top.bit
-	D:\proj\velograph\sparrow_w\xil\for_boot\thk_rx.elf
+	D:\proj\velograph\sparrow_w\xil\for_boot\thk_sd_loader.elf
 }

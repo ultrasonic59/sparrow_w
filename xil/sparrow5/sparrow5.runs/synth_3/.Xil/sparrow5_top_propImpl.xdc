@@ -1,5 +1,5 @@
-set_property SRC_FILE_INFO {cfile:D:/proj/emu_thick/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc rfile:../../../sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc id:1} [current_design]
-set_property SRC_FILE_INFO {cfile:D:/proj/emu_thick/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/sparrow5_top.xdc rfile:../../../sparrow5.srcs/constrs_1/imports/constrs/sparrow5_top.xdc id:2} [current_design]
+set_property SRC_FILE_INFO {cfile:D:/proj/brook_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc rfile:../../../sparrow5.srcs/constrs_1/imports/constrs/clocks.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:D:/proj/brook_w/xil/sparrow5/sparrow5.srcs/constrs_1/imports/constrs/sparrow5_top.xdc rfile:../../../sparrow5.srcs/constrs_1/imports/constrs/sparrow5_top.xdc id:2} [current_design]
 set_property src_info {type:XDC file:1 line:40 export:INPUT save:INPUT read:READ} [current_design]
 set_false_path -from [get_clocks clk_fpga_0] -to [get_clocks clk_fpga_1]
 set_property src_info {type:XDC file:1 line:41 export:INPUT save:INPUT read:READ} [current_design]

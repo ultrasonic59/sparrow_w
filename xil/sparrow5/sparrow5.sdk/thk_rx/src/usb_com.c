@@ -1,7 +1,9 @@
 #include "usb_com.h"
 
 #include "usb_ehci.h"
+
 #include "xil_printf.h"
+#include "xtime_l.h"
 
 #include <string.h>
 
@@ -20,6 +22,9 @@ static uint16_t g_mps0;
 static uint8_t g_ep_out;
 static uint16_t g_mps_out;
 static int g_tog_out;
+static uint8_t g_ep_in;
+static uint16_t g_mps_in;
+static int g_tog_in;
 static uint8_t g_iface;
 static uint8_t g_kind;
 static uint32_t g_baud;
@@ -52,6 +57,19 @@ static void remember_out(const uint8_t* p, uint8_t iface, int* found)
     *found = 1;
 }
 
+static void remember_in(const uint8_t* p, uint8_t iface, uint8_t want_iface, int same_iface_only, int* found)
+{
+    uint16_t mps;
+    if (*found || p[0] < 7 || p[1] != 5 || (p[3] & 3u) != 2u || !(p[2] & 0x80u))
+        return;
+    if (same_iface_only && iface != want_iface)
+        return;
+    mps = (uint16_t)((p[4] | (p[5] << 8)) & 0x7ffu);
+    g_ep_in = (uint8_t)(p[2] & 0x0fu);
+    g_mps_in = mps ? mps : 64;
+    *found = 1;
+}
+
 static uint8_t detect(uint16_t vid, uint16_t pid, uint8_t device_class, const uint8_t* cfg, uint16_t cfg_len)
 {
     const uint8_t* p = cfg;
@@ -60,10 +78,16 @@ static uint8_t detect(uint16_t vid, uint16_t pid, uint8_t device_class, const ui
     uint8_t comm = 0;
     int have_comm = 0;
     int cdc = 0;
-    int found = 0;
+    int found_out = 0;
+    int found_in = 0;
     g_ep_out = 0;
     g_mps_out = 0;
+    g_ep_in = 0;
+    g_mps_in = 0;
     g_iface = 0;
+    /* Pass 1: bulk OUT (and note its interface). */
+    p = cfg;
+    iface = 0;
     while (p + 2 <= end) {
         uint8_t len = p[0];
         if (len < 2 || p + len > end)
@@ -78,13 +102,43 @@ static uint8_t detect(uint16_t vid, uint16_t pid, uint8_t device_class, const ui
                 cdc = 1;
             }
         } else {
-            remember_out(p, iface, &found);
+            remember_out(p, iface, &found_out);
         }
         p += len;
     }
+    /* Pass 2: bulk IN on the same interface as OUT (CDC data iface). */
+    if (found_out) {
+        p = cfg;
+        iface = 0;
+        while (p + 2 <= end) {
+            uint8_t len = p[0];
+            if (len < 2 || p + len > end)
+                break;
+            if (p[1] == 4 && len >= 9)
+                iface = p[2];
+            else
+                remember_in(p, iface, g_iface, 1, &found_in);
+            p += len;
+        }
+    }
+    /* Pass 3: any bulk IN if same-iface search failed. */
+    if (found_out && !found_in) {
+        p = cfg;
+        iface = 0;
+        while (p + 2 <= end) {
+            uint8_t len = p[0];
+            if (len < 2 || p + len > end)
+                break;
+            if (p[1] == 4 && len >= 9)
+                iface = p[2];
+            else
+                remember_in(p, iface, 0, 0, &found_in);
+            p += len;
+        }
+    }
     if (have_comm)
         g_iface = comm;
-    if (!found)
+    if (!found_out || !found_in)
         return 0;
     if (vid == 0x1a86 && (pid == 0x7523 || pid == 0x5523 || pid == 0x7522))
         return KIND_CH340;
@@ -228,21 +282,6 @@ static int apply_line(uint32_t baud)
     return -1;
 }
 
-static const char* kind_name(uint8_t kind)
-{
-    if (kind == KIND_CDC)
-        return "cdc";
-    if (kind == KIND_CH340)
-        return "ch340";
-    if (kind == KIND_CP210X)
-        return "cp210x";
-    if (kind == KIND_FTDI)
-        return "ftdi";
-    if (kind == KIND_PL2303)
-        return "pl2303";
-    return "?";
-}
-
 int com_attach(uint8_t addr, uint8_t speed, uint8_t hub, uint8_t port, uint16_t mps0, const uint8_t desc[18],
                const uint8_t* cfg, uint16_t cfg_len)
 {
@@ -259,6 +298,7 @@ int com_attach(uint8_t addr, uint8_t speed, uint8_t hub, uint8_t port, uint16_t 
     g_port = port;
     g_mps0 = mps0;
     g_tog_out = 0;
+    g_tog_in = 0;
     kind = detect(vid, pid, desc[4], cfg, cfg_len);
     if (kind == 0)
         return 1;
@@ -269,16 +309,35 @@ int com_attach(uint8_t addr, uint8_t speed, uint8_t hub, uint8_t port, uint16_t 
         return -1;
     if (kind == KIND_CP210X && ctrl(0x41, 0x00, 1, g_iface, 0, 0) != 0)
         return -1;
-    if (kind == KIND_FTDI && ctrl(0x40, 0, 0, g_iface, 0, 0) != 0)
-        return -1;
+    if (kind == KIND_FTDI) {
+        if (ctrl(0x40, 0, 0, g_iface, 0, 0) != 0)
+            return -1;
+        /* Latency 1 ms so short Att replies are not held in the chip. */
+        (void)ctrl(0x40, 9, 1, g_iface, 0, 0);
+    }
     if (kind == KIND_PL2303)
         pl2303_init();
     if (apply_line(115200) != 0)
         return -1;
     g_baud = 115200;
     g_open = 1;
-    xil_printf("usb-com %s ep %d\r\n", kind_name(kind), g_ep_out);
+    com_log_info();
     return 0;
+}
+
+int com_is_open(void)
+{
+    return g_open ? 1 : 0;
+}
+
+void com_log_info(void)
+{
+    static const char* names[] = { "?", "CDC", "CH340", "CP210x", "FTDI", "PL2303" };
+    const char* name = (g_kind >= 1 && g_kind <= 5) ? names[g_kind] : names[0];
+    xil_printf("COM attach %s speed=%u hub=%u port=%u addr=%u iface=%u out=%u/%u in=%u/%u\r\n",
+               name, (unsigned)g_speed, (unsigned)g_hub, (unsigned)g_port, (unsigned)g_addr,
+               (unsigned)g_iface, (unsigned)g_ep_out, (unsigned)g_mps_out, (unsigned)g_ep_in,
+               (unsigned)g_mps_in);
 }
 
 int com_write(uint32_t baud, const uint8_t* data, uint16_t length)
@@ -308,4 +367,99 @@ int com_write(uint32_t baud, const uint8_t* data, uint16_t length)
         return -1;
     }
     return 0;
+}
+
+int com_read(uint8_t* data, uint16_t cap, uint16_t* actual, uint32_t timeout_ms)
+{
+    uint16_t n = 0;
+    uint16_t nak_rounds = 0;
+    XTime start;
+    const XTime limit = (XTime)timeout_ms * (COUNTS_PER_SECOND / 1000u);
+    if (actual)
+        *actual = 0;
+    if (!g_open || !data || cap == 0 || g_ep_in == 0)
+        return -1;
+    /* Do not purge/clear here: Att may already have replied into the adapter FIFO. */
+    XTime_GetTime(&start);
+    while (n < cap) {
+        uint8_t chunk[64];
+        uint16_t got = 0;
+        uint16_t want = g_mps_in;
+        uint32_t slice;
+        int rc;
+        uint16_t i;
+        XTime now;
+        XTime_GetTime(&now);
+        if ((now - start) >= limit)
+            break;
+        slice = (uint32_t)(((limit - (now - start)) * 1000u) / COUNTS_PER_SECOND);
+        if (slice == 0)
+            slice = 1;
+        if (slice > 100u)
+            slice = 100u;
+        if (want > sizeof(chunk))
+            want = (uint16_t)sizeof(chunk);
+        if (g_speed == 2)
+            rc = ehci_bulk_in(g_addr, g_ep_in, g_mps_in, chunk, want, &got, &g_tog_in, slice);
+        else
+            rc = ehci_bulk_in_tt(g_addr, g_speed, g_hub, g_port, g_ep_in, g_mps_in, chunk, want, &got, &g_tog_in,
+                                 slice);
+        if (rc != 0) {
+            ++nak_rounds;
+            if (nak_rounds <= 3u || (nak_rounds % 5u) == 0u)
+                xil_printf("COM in rc=%d got=%u\r\n", rc, (unsigned)got);
+            if (rc == -1) {
+                ctrl(0x02, 1, 0, (uint16_t)(0x80u | g_ep_in), 0, 0);
+                g_tog_in = 0;
+            }
+            continue;
+        }
+        xil_printf("COM in ok got=%u:", (unsigned)got);
+        for (i = 0; i < got && i < 16u; ++i)
+            xil_printf(" %02x", (unsigned)chunk[i]);
+        xil_printf("\r\n");
+        if (got == 0)
+            continue;
+        {
+            uint8_t* p = chunk;
+            uint16_t len = got;
+            if (g_kind == KIND_FTDI) {
+                /* Normal FTDI bulk IN: 2 status bytes then payload.
+                   TT short-packet paths may deliver payload only (got=1: '1').
+                   ASCII '1' (0x31) and 'a' (0x61) also have low nibble 0x1 —
+                   so "10" must not be stripped as a modem/line status header. */
+                if (len >= 2u && (p[0] & 0x0fu) == 0x01u) {
+                    const uint8_t s1 = p[1];
+                    const int s1_att = (s1 == (uint8_t)'\r' || s1 == (uint8_t)'\n'
+                                        || (s1 >= (uint8_t)'0' && s1 <= (uint8_t)'9')
+                                        || (s1 >= (uint8_t)'a' && s1 <= (uint8_t)'f')
+                                        || (s1 >= (uint8_t)'A' && s1 <= (uint8_t)'F'));
+                    if (len > 2u || !s1_att) {
+                        p += 2;
+                        len = (uint16_t)(len - 2u);
+                        if (len == 0)
+                            continue;
+                    }
+                }
+            }
+            while (len && n < cap) {
+                const uint8_t b = *p++;
+                --len;
+                /* USB-UART adapters sometimes prepend NUL / status padding. */
+                if (b == 0)
+                    continue;
+                data[n++] = b;
+                if (b == '\r') {
+                    if (actual)
+                        *actual = n;
+                    return 0;
+                }
+            }
+        }
+    }
+    if (actual)
+        *actual = n;
+    if (n == 0)
+        xil_printf("COM in empty nak_rounds=%u\r\n", (unsigned)nak_rounds);
+    return n > 0 ? 0 : -1;
 }

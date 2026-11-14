@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
-// Date        : Wed Nov 11 15:51:51 2026
+// Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
+// Date        : Thu Nov 12 18:58:44 2026
 // Host        : vovag running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               D:/proj/emu_thick/sparrow5/sparrow5.srcs/sources_1/ip/pll24_80/pll24_80_sim_netlist.v
+//               D:/proj/brook_w/xil/sparrow5/sparrow5.srcs/sources_1/ip/pll24_80/pll24_80_sim_netlist.v
 // Design      : pll24_80
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.

@@ -3,7 +3,6 @@
 #include "usb_ehci.h"
 
 #include "thk_app.h"
-#include "xil_printf.h"
 
 #include <string.h>
 
@@ -206,11 +205,9 @@ static int read_version(void)
     else if (code == 0x4800u)
         g_version = 7;
     else {
-        xil_printf("rtl version %x\r\n", code);
         g_version = 0;
         return -1;
     }
-    xil_printf("rtl8152 ver %d\r\n", g_version);
     return 0;
 }
 
@@ -363,16 +360,12 @@ static int load_mac(void)
         g_mac[3] = 0x00;
         g_mac[4] = 0x81;
         g_mac[5] = 0x52;
-        xil_printf("mac empty, local %x:%x:%x:%x:%x:%x\r\n", g_mac[0], g_mac[1], g_mac[2], g_mac[3], g_mac[4],
-                   g_mac[5]);
-    } else {
-        xil_printf("mac %x:%x:%x:%x:%x:%x\r\n", g_mac[0], g_mac[1], g_mac[2], g_mac[3], g_mac[4], g_mac[5]);
     }
     if (write_mac(g_mac) != 0)
         return -1;
     memset(raw, 0, sizeof(raw));
     if (reg_io(1, PLA_IDR, MCU_PLA, raw, 8) != 0 || memcmp(raw, g_mac, 6) != 0)
-        xil_printf("mac now %x:%x:%x:%x:%x:%x\r\n", raw[0], raw[1], raw[2], raw[3], raw[4], raw[5]);
+        return -1;
     return 0;
 }
 
@@ -460,10 +453,7 @@ static void reply_arp(const uint8_t* frame)
     payload[17] = BOARD_IP3;
     memcpy(payload + 18, frame + 22, 6);
     memcpy(payload + 24, frame + 28, 4);
-    if (send_eth(frame + 6, 0x0806, payload, 28) != 0)
-        xil_printf("tx fail\r\n");
-    else
-        xil_printf("arp\r\n");
+    (void)send_eth(frame + 6, 0x0806, payload, 28);
 }
 
 static void reply_icmp(const uint8_t* ip, uint16_t ip_len)
@@ -489,17 +479,15 @@ static void reply_icmp(const uint8_t* ip, uint16_t ip_len)
     sum = ip_sum(pkt + 20, icmp_len);
     pkt[22] = (uint8_t)(sum >> 8);
     pkt[23] = (uint8_t)sum;
-    if (send_eth(g_frame + 6, 0x0800, pkt, ip_len) != 0)
-        xil_printf("icmp fail\r\n");
-    else
-        xil_printf("icmp\r\n");
+    (void)send_eth(g_frame + 6, 0x0800, pkt, ip_len);
 }
 
 static void reply_udp(const uint8_t* ip, const uint8_t* udp, uint16_t ulen)
 {
     uint8_t pkt[1600];
     uint16_t reply_len = 0;
-    uint8_t reply[sizeof(ThkHeader) + 32];
+    /* TEXT ACK may append up to 64 COM RX bytes after ThkAckBody. */
+    uint8_t reply[sizeof(ThkHeader) + sizeof(ThkAckBody) + 64];
     uint16_t sport = (uint16_t)((udp[0] << 8) | udp[1]);
     uint16_t dport = (uint16_t)((udp[2] << 8) | udp[3]);
     const uint8_t* payload = udp + 8;
@@ -717,21 +705,18 @@ static int open_nic(uint8_t addr, const uint8_t desc[18])
         return -1;
     if (take_bulk_endpoints(cfg, total) != 0)
         return -1;
-    xil_printf("rtl8152 pid %x ep %d/%d\r\n", pid, g_ep_in, g_ep_out);
     if (read_version() != 0)
         return -1;
     rtl_init_mac();
     aldps(0);
     exit_oob();
     if (load_mac() != 0)
-        xil_printf("mac write failed\r\n");
+        return -1;
     advertise();
-    if (wait_link() != 0)
-        xil_printf("no link, waiting for packets\r\n");
+    (void)wait_link();
     aldps(0);
     rtl_enable();
-    xil_printf("phy %x\r\n", ocp_read_word(MCU_PLA, PLA_PHYSTATUS));
-    xil_printf("ip %d.%d.%d.%d\r\n", BOARD_IP0, BOARD_IP1, BOARD_IP2, BOARD_IP3);
+    (void)ocp_read_word(MCU_PLA, PLA_PHYSTATUS);
     return 0;
 }
 
@@ -773,7 +758,6 @@ static int hub_child(uint8_t hub)
     ports = hub_desc[2];
     if (ports > 4)
         ports = 4;
-    xil_printf("hub ports %d\r\n", ports);
     for (port = 1; port <= ports; ++port)
         ctrl(hub, 0x23, 3, 8, port, 0, 0);
     ehci_wait_ms(100);
@@ -829,7 +813,6 @@ static int hub_child(uint8_t hub)
             continue;
         vid = (uint16_t)(desc[8] | (desc[9] << 8));
         pid = (uint16_t)(desc[10] | (desc[11] << 8));
-        xil_printf("port %d speed %d vid %x pid %x\r\n", port, speed, vid, pid);
         if (ctrl_pipe(addr, speed, hub, port, mps, 0x80, 6, 0x0200, 0, cfg, 9) != 0)
             continue;
         total = (uint16_t)(cfg[2] | (cfg[3] << 8));
@@ -846,11 +829,8 @@ static int hub_child(uint8_t hub)
         attached = com_attach(addr, speed, hub, port, mps, desc, cfg, total);
         if (attached == 0)
             have_com = 1;
-        else if (attached < 0)
-            xil_printf("usb-com init fail\r\n");
     }
-    if (!have_com)
-        xil_printf("no USB-COM\r\n");
+    (void)have_com;
     return nic == 0 ? 0 : -1;
 }
 
@@ -859,32 +839,20 @@ static int enumerate(void)
     uint8_t desc[18];
     uint8_t cfg[64];
     uint16_t total = 0;
-    if (read_device(0, desc) != 0) {
-        xil_printf("usb: no descriptor\r\n");
+    if (read_device(0, desc) != 0)
         return -1;
-    }
-    if (set_address(0, 1) != 0) {
-        xil_printf("usb: set address failed\r\n");
+    if (set_address(0, 1) != 0)
         return -1;
-    }
-    if (read_device(1, desc) != 0) {
-        xil_printf("usb: no descriptor\r\n");
+    if (read_device(1, desc) != 0)
         return -1;
-    }
-    xil_printf("root vid %x pid %x class %d\r\n", desc[8] | (desc[9] << 8), desc[10] | (desc[11] << 8), desc[4]);
     if ((desc[8] | (desc[9] << 8)) == VID_REALTEK)
         return open_nic(1, desc);
-    if (read_config(1, cfg, sizeof(cfg), &total) != 0) {
-        xil_printf("usb: no configuration\r\n");
+    if (read_config(1, cfg, sizeof(cfg), &total) != 0)
         return -1;
-    }
-    if (configure(1, cfg[5]) != 0) {
-        xil_printf("usb: configure failed\r\n");
+    if (configure(1, cfg[5]) != 0)
         return -1;
-    }
     if (desc[4] == 9 || (total > 14 && cfg[14] == 9))
         return hub_child(1);
-    xil_printf("usb: root is not a hub\r\n");
     return -1;
 }
 
@@ -900,27 +868,19 @@ static int pump(void)
 {
     uint16_t actual = 0;
     int idle = 0;
-    int shown = 0;
-    xil_printf("rx on\r\n");
     for (;;) {
         const int got = ehci_bulk_in(g_addr, g_ep_in, g_mps_in, g_rx, sizeof(g_rx), &actual, &g_tog_in, 1000);
         if (got == -2)
             continue;
         if (got != 0) {
             clear_in();
-            if (++idle > 20) {
-                xil_printf("usb in halt\r\n");
+            if (++idle > 20)
                 return -1;
-            }
             continue;
         }
         idle = 0;
         if (!actual)
             continue;
-        if (shown < 8) {
-            shown++;
-            xil_printf("rx %u\r\n", actual);
-        }
         on_rx(g_rx, actual);
     }
 }
@@ -928,13 +888,10 @@ static int pump(void)
 void eth_run(void)
 {
     for (;;) {
-        xil_printf("\r\nUSB FE1.1 -> RTL8152\r\n");
         if (ehci_init() != 0 || enumerate() != 0) {
-            xil_printf("no RTL8152\r\n");
             ehci_wait_ms(1000);
             continue;
         }
-        if (pump() != 0)
-            xil_printf("USB disconnect\r\n");
+        (void)pump();
     }
 }

@@ -21,5 +21,7 @@ int ehci_bulk_out_tt(uint8_t addr, uint8_t speed, uint8_t hub, uint8_t port, uin
                      const void* data, uint16_t length, int* toggle);
 int ehci_bulk_in(uint8_t addr, uint8_t ep, uint16_t mps, void* data, uint16_t length, uint16_t* actual,
                  int* toggle, uint32_t timeout_ms);
+int ehci_bulk_in_tt(uint8_t addr, uint8_t speed, uint8_t hub, uint8_t port, uint8_t ep, uint16_t mps, void* data,
+                    uint16_t length, uint16_t* actual, int* toggle, uint32_t timeout_ms);
 
 #endif

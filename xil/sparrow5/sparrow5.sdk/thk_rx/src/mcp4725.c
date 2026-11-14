@@ -1,6 +1,5 @@
 #include "mcp4725.h"
 
-#include "xil_printf.h"
 #include "xparameters.h"
 #include "xstatus.h"
 #include "xiicps.h"
@@ -51,9 +50,5 @@ int mcp4725_write(uint16_t amplitude, uint16_t offset)
         return -1;
     amp_ok = write_code(MCP4725_ADDR_AMPLITUDE, amplitude);
     off_ok = write_code(MCP4725_ADDR_OFFSET, offset);
-    if (amp_ok != 0)
-        xil_printf("MCP4725 amp fail\r\n");
-    if (off_ok != 0)
-        xil_printf("MCP4725 off fail\r\n");
     return (amp_ok == 0 && off_ok == 0) ? 0 : -1;
 }

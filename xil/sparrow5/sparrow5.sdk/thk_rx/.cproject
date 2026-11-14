@@ -27,7 +27,7 @@
 								<option id="xilinx.gnu.compiler.option.debugging.level.604637900" superClass="xilinx.gnu.compiler.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="xilinx.gnu.compiler.inferred.swplatform.includes.1588782268" superClass="xilinx.gnu.compiler.inferred.swplatform.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="../../thk_fsbl_bsp/ps7_cortexa9_0/include"/>
-									<listOptionValue builtIn="false" value="../../../../protocol"/>
+									<listOptionValue builtIn="false" value="D:/proj/brook_w/brookesia_tools/brook_tools/protocol"/>
 								</option>
 								<option id="xilinx.gnu.compiler.misc.other.2000130574" superClass="xilinx.gnu.compiler.misc.other" value="-c -fmessage-length=0 -MT&quot;$@&quot; -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard" valueType="string"/>
 								<inputType id="xilinx.gnu.armv7.c.compiler.input.15596020" name="C source files" superClass="xilinx.gnu.armv7.c.compiler.input"/>
@@ -37,7 +37,7 @@
 								<option id="xilinx.gnu.compiler.option.debugging.level.1056577662" superClass="xilinx.gnu.compiler.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="xilinx.gnu.compiler.inferred.swplatform.includes.458561402" superClass="xilinx.gnu.compiler.inferred.swplatform.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="../../thk_fsbl_bsp/ps7_cortexa9_0/include"/>
-									<listOptionValue builtIn="false" value="../../../../protocol"/>
+									<listOptionValue builtIn="false" value="D:/proj/brook_w/brookesia_tools/brook_tools/protocol"/>
 								</option>
 							</tool>
 							<tool id="xilinx.gnu.armv7.toolchain.archiver.1460627172" name="ARM v7 archiver" superClass="xilinx.gnu.armv7.toolchain.archiver"/>
@@ -98,7 +98,7 @@
 								<option id="xilinx.gnu.compiler.option.debugging.level.151582452" superClass="xilinx.gnu.compiler.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
 								<option id="xilinx.gnu.compiler.inferred.swplatform.includes.711918133" superClass="xilinx.gnu.compiler.inferred.swplatform.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="../../thk_fsbl_bsp/ps7_cortexa9_0/include"/>
-									<listOptionValue builtIn="false" value="../../../../protocol"/>
+									<listOptionValue builtIn="false" value="D:/proj/brook_w/brookesia_tools/brook_tools/protocol"/>
 								</option>
 								<option id="xilinx.gnu.compiler.misc.other.162051673" superClass="xilinx.gnu.compiler.misc.other" value="-c -fmessage-length=0 -MT&quot;$@&quot; -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard" valueType="string"/>
 								<inputType id="xilinx.gnu.armv7.c.compiler.input.1822376912" name="C source files" superClass="xilinx.gnu.armv7.c.compiler.input"/>
@@ -108,7 +108,7 @@
 								<option id="xilinx.gnu.compiler.option.debugging.level.250833107" superClass="xilinx.gnu.compiler.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
 								<option id="xilinx.gnu.compiler.inferred.swplatform.includes.1752855234" superClass="xilinx.gnu.compiler.inferred.swplatform.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="../../thk_fsbl_bsp/ps7_cortexa9_0/include"/>
-									<listOptionValue builtIn="false" value="../../../../protocol"/>
+									<listOptionValue builtIn="false" value="D:/proj/brook_w/brookesia_tools/brook_tools/protocol"/>
 								</option>
 							</tool>
 							<tool id="xilinx.gnu.armv7.toolchain.archiver.1104361147" name="ARM v7 archiver" superClass="xilinx.gnu.armv7.toolchain.archiver"/>
